@@ -29,22 +29,29 @@ export default function AppProvider({
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken && storedToken !== token) {
+      setToken(storedToken);
+    }
+
     async function getUser() {
       try {
         const res = await fetch("http://127.0.0.1:8000/api/user", {
           headers: {
-            Authorization: `Bearer ${token}`,
+            Authorization: `Bearer ${storedToken}`,
           },
         });
 
-        const data = await res.json();
-        setUser(data);
+        if (res.ok) {
+          const data = await res.json();
+          setUser(data);
+        }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     }
 
-    if (token) {
+    if (storedToken) {
       getUser();
     }
   }, [token]);
