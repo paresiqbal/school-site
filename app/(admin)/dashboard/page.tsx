@@ -1,6 +1,7 @@
 "use client";
 
 import { AppContext } from "@/context/AppContext";
+import { signOut } from "next-auth/react";
 import { useContext } from "react";
 
 export default function Dashboard() {
@@ -15,6 +16,8 @@ export default function Dashboard() {
           </div>
         )}
       </main>
+
+      <button onClick={() => signOut()}>Logout</button>
     </div>
   );
 }
