@@ -27,6 +27,8 @@ const authOptions: NextAuthOptions = {
         username: { label: "Username", type: "text" },
         password: { label: "Password", type: "password" },
       },
+
+      // authorize user
       async authorize(credentials) {
         const { username, password } = credentials as {
           username: string;
@@ -49,10 +51,11 @@ const authOptions: NextAuthOptions = {
             throw new Error("Invalid credentials");
           }
 
-          const user: User = await response.json();
+          const result = await response.json();
 
-          if (user) {
-            return user;
+          if (result.user && result.token) {
+            // Return both user and token
+            return { ...result.user, token: result.token };
           } else {
             return null;
           }

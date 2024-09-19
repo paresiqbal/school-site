@@ -1,7 +1,7 @@
 "use client";
 
 // React and Next.js hooks
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
@@ -23,6 +23,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import { AppContext } from "@/context/AppContext";
 
 // Interfaces
 interface FormData {
@@ -45,6 +46,7 @@ export default function Login() {
   const { data: session } = useSession();
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
+  const { setToken } = useContext(AppContext);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,22 +64,42 @@ export default function Login() {
   }, [session, router]);
 
   // Handle login
+  // Handle login
   async function handleLogin(data: FormData) {
     try {
-      const res = await signIn("credentials", {
-        redirect: false,
-        username: data.username,
-        password: data.password,
-        callbackUrl: "/dashboard",
+      // Make a request directly to your Laravel backend
+      const response = await fetch("http://127.0.0.1:8000/api/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
       });
 
-      if (res && !res.error) {
+      const result = await response.json();
+
+      if (response.ok) {
+        // Store the token in local storage
+        if (result.token) {
+          localStorage.setItem("token", result.token);
+          // Update the AppContext with the token if necessary
+          setToken(result.token);
+        }
+
+        // Optionally, use `signIn` to update NextAuth's session
+        // This will not include the token, but you can still use it for managing session states
+        await signIn("credentials", {
+          redirect: false,
+          username: data.username,
+          password: data.password,
+        });
+
         router.push("/dashboard");
       } else {
         setError("Invalid username or password. Please try again.");
       }
     } catch (error) {
-      console.error(error);
+      console.error("Login error:", error);
       setError("An error occurred during login. Please try again.");
     }
   }
