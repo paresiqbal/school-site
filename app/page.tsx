@@ -1,4 +1,11 @@
 import Image from "next/image";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "SMK Negeri 1 Rejang Lebong",
+  description: "Create with Next.js",
+  authors: [{ name: "Pahreza Iqbal Prastowo", url: "paresiqbal.me" }],
+};
 
 export default function Home() {
   return (
