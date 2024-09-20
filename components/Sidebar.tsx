@@ -20,6 +20,7 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
+import { useSession, signOut } from "next-auth/react";
 
 // Menu items for the sidebar
 const menuItems = [
@@ -27,11 +28,7 @@ const menuItems = [
   {
     icon: Users,
     label: "Users",
-    submenu: [
-      { label: "User List" },
-      { label: "Add User" },
-      { label: "User Groups" },
-    ],
+    submenu: [{ label: "User List" }],
   },
   { icon: Settings, label: "Settings" },
   { icon: HelpCircle, label: "Help" },
@@ -96,6 +93,8 @@ function SidebarContent({
   isDesktop,
   onClose,
 }: SidebarContentProps) {
+  const { data: session } = useSession(); // Use the session data here
+
   return (
     <div
       className={cn(
@@ -228,10 +227,11 @@ function SidebarContent({
             isShrunk && isDesktop && "justify-center"
           )}
         >
-          <div className="w-8 h-8 rounded-full  bg-neutral-600" />
+          <div className="w-8 h-8 rounded-full bg-neutral-600" />
           {(!isShrunk || !isDesktop) && (
             <span className="text-sm font-medium transition-opacity duration-300 ease-in-out">
-              John Doe
+              {/* Show real username from session */}
+              {session?.user?.name || "John Doe"}
             </span>
           )}
         </div>
@@ -241,6 +241,7 @@ function SidebarContent({
             "w-full justify-start gap-2 transition-all duration-300 ease-in-out",
             isShrunk && isDesktop && "justify-center p-0 w-12 h-12"
           )}
+          onClick={() => signOut()} // Add logout functionality
         >
           <LogOut className="h-4 w-4 flex-shrink-0" />
           {(!isShrunk || !isDesktop) && (
