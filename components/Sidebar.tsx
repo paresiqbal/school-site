@@ -10,7 +10,7 @@ import {
 import { cn } from "@/lib/utils";
 import {
   Home,
-  Settings,
+  Newspaper,
   Users,
   HelpCircle,
   Menu,
@@ -26,7 +26,7 @@ import Link from "next/link"; // Import Link from Next.js
 // Menu items for the sidebar
 const menuItems = [
   { icon: Home, label: "Home", href: "/" }, // Add href for navigation
-  { icon: Settings, label: "News", href: "/dashboard/news" },
+  { icon: Newspaper, label: "News", href: "/dashboard/news" },
   {
     icon: Users,
     label: "Users",
