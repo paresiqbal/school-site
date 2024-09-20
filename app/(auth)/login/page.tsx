@@ -25,13 +25,11 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import { AppContext } from "@/context/AppContext";
 
-// Interfaces
 interface FormData {
   username: string;
   password: string;
 }
 
-// Form schema
 const formSchema = z.object({
   username: z.string().min(4, {
     message: "Username must be at least 4 characters.",
@@ -41,7 +39,6 @@ const formSchema = z.object({
   }),
 });
 
-// Login component
 export default function Login() {
   const { data: session } = useSession();
   const router = useRouter();
@@ -56,18 +53,14 @@ export default function Login() {
     },
   });
 
-  // Redirect to the dashboard if already logged in
   useEffect(() => {
     if (session) {
       router.push("/dashboard");
     }
   }, [session, router]);
 
-  // Handle login
-  // Handle login
   async function handleLogin(data: FormData) {
     try {
-      // Make a request directly to your Laravel backend
       const response = await fetch("http://127.0.0.1:8000/api/login", {
         method: "POST",
         headers: {
@@ -79,15 +72,12 @@ export default function Login() {
       const result = await response.json();
 
       if (response.ok) {
-        // Store the token in local storage
         if (result.token) {
           localStorage.setItem("token", result.token);
-          // Update the AppContext with the token if necessary
+
           setToken(result.token);
         }
 
-        // Optionally, use `signIn` to update NextAuth's session
-        // This will not include the token, but you can still use it for managing session states
         await signIn("credentials", {
           redirect: false,
           username: data.username,
@@ -105,11 +95,14 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <Card className="w-full max-w-md space-y-6 rounded-md p-8">
-        <h1 className="text-center text-2xl font-bold">Login Account</h1>
+    <div className="flex min-h-screen items-center justify-center text-white">
+      <Card className="w-full max-w-md space-y-6 rounded-md p-8 bg-background">
+        <h1 className="text-center text-2xl font-bold text-white">Login</h1>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-8">
+          <form
+            onSubmit={form.handleSubmit(handleLogin)}
+            className="space-y-8 text-white"
+          >
             <FormField
               control={form.control}
               name="username"
