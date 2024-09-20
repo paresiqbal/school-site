@@ -45,7 +45,7 @@ interface SidebarContentProps {
   onClose?: () => void;
 }
 
-export default function Component() {
+export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isShrunk, setIsShrunk] = useState(false);
 
