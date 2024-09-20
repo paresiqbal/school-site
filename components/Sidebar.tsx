@@ -99,7 +99,7 @@ function SidebarContent({
   return (
     <div
       className={cn(
-        "flex h-full flex-col border-r border-neutral-600 bg-neutral-900 transition-all duration-300 ease-in-out",
+        "flex h-full flex-col border-r border-neutral-600 transition-all duration-300 ease-in-out",
         isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full"
       )}
     >
