@@ -26,13 +26,13 @@ import Link from "next/link"; // Import Link from Next.js
 // Menu items for the sidebar
 const menuItems = [
   { icon: Home, label: "Home", href: "/" }, // Add href for navigation
+  { icon: Settings, label: "News", href: "/dashboard/news" },
   {
     icon: Users,
     label: "Users",
     href: "/users",
     submenu: [{ label: "User List", href: "/users/list" }],
   },
-  { icon: Settings, label: "Settings", href: "/settings" },
   { icon: HelpCircle, label: "Help", href: "/help" },
 ];
 
