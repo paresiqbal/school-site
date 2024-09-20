@@ -99,11 +99,11 @@ function SidebarContent({
   return (
     <div
       className={cn(
-        "flex h-full flex-col border-r  transition-all duration-300 ease-in-out",
+        "flex h-full flex-col border-r border-neutral-600 bg-neutral-900 transition-all duration-300 ease-in-out",
         isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full"
       )}
     >
-      <div className="flex h-14 items-center justify-between border-b px-4">
+      <div className="flex h-14 items-center justify-between border-b border-neutral-600 px-4">
         <div className="flex items-center space-x-2">
           {(!isShrunk || !isDesktop) && (
             <svg
@@ -218,7 +218,7 @@ function SidebarContent({
       </ScrollArea>
       <div
         className={cn(
-          "border-t p-4 transition-all duration-300 ease-in-out",
+          "border-t border-neutral-600 p-4 transition-all duration-300 ease-in-out",
           isShrunk && isDesktop && "flex flex-col items-center"
         )}
       >
@@ -228,7 +228,7 @@ function SidebarContent({
             isShrunk && isDesktop && "justify-center"
           )}
         >
-          <div className="w-8 h-8 rounded-full bg-gray-300 dark:bg-gray-600" />
+          <div className="w-8 h-8 rounded-full  bg-neutral-600" />
           {(!isShrunk || !isDesktop) && (
             <span className="text-sm font-medium transition-opacity duration-300 ease-in-out">
               John Doe
