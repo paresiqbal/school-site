@@ -10,7 +10,7 @@ export default function DashboardLayout({
   return (
     <section className="flex bg-background">
       <Sidebar />
-      {children}
+      <div>{children}</div>
     </section>
   );
 }

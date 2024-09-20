@@ -6,7 +6,7 @@ export default function Dashboard() {
   const { data: session } = useSession();
 
   return (
-    <div className="p-4">
+    <div>
       {session?.user && (
         <div>
           <h1 className="font-bold text-2xl">Welcome, {session.user.name}!</h1>

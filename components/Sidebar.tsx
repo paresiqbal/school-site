@@ -21,11 +21,18 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
-import Link from "next/link"; // Import Link from Next.js
+import Link from "next/link";
+
+interface SidebarContentProps {
+  isShrunk: boolean;
+  setIsShrunk: (shrunk: boolean) => void;
+  isDesktop: boolean;
+  onClose?: () => void;
+}
 
 // Menu items for the sidebar
 const menuItems = [
-  { icon: Home, label: "Home", href: "/" }, // Add href for navigation
+  { icon: Home, label: "Home", href: "/dashboard" },
   { icon: Newspaper, label: "News", href: "/dashboard/news" },
   {
     icon: Users,
@@ -35,14 +42,6 @@ const menuItems = [
   },
   { icon: HelpCircle, label: "Help", href: "/help" },
 ];
-
-// Define the props type for SidebarContent
-interface SidebarContentProps {
-  isShrunk: boolean;
-  setIsShrunk: (shrunk: boolean) => void;
-  isDesktop: boolean;
-  onClose?: () => void;
-}
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
