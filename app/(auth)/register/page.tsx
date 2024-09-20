@@ -22,7 +22,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
+import { Card, CardDescription } from "@/components/ui/card";
 import { AppContext } from "@/context/AppContext";
 
 // Interfaces
@@ -85,19 +85,17 @@ export default function Register() {
 
       if (res.ok) {
         localStorage.setItem("token", result.token);
-        setToken(result.token); // No need to use `any` here if `AppContext` is typed correctly
+        setToken(result.token);
         router.push("/login");
       } else {
-        // Handle server-side validation errors
         if (result.errors) {
           Object.keys(result.errors).forEach((key) => {
             form.setError(key as keyof FormData, {
               type: "server",
-              message: result.errors[key][0], // Display the first error message
+              message: result.errors[key][0],
             });
           });
         } else {
-          // If there's a general error (e.g., network issue)
           setServerError(
             "An error occurred during registration. Please try again."
           );
@@ -114,22 +112,31 @@ export default function Register() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center">
-      <Card className="w-full max-w-md space-y-6 rounded-md p-8">
-        <h1 className="text-center text-2xl font-bold">Register Account</h1>
+    <div className="flex min-h-screen items-center justify-center text-white">
+      <Card className="w-full max-w-md space-y-6 p-8 bg-background">
+        <h1 className="text-center text-2xl font-bold text-white">
+          Register Account
+        </h1>
+        <CardDescription className="text-center">
+          Enter your username and password below to signup your account
+        </CardDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleRegister)}
-            className="space-y-8"
+            className="space-y-8 text-white"
           >
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Username</FormLabel>
+                  <FormLabel className="font-bold">Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your username" {...field} />
+                    <Input
+                      placeholder="Your username"
+                      {...field}
+                      className="rounded-lg"
+                    />
                   </FormControl>
                   <FormDescription>
                     This is your public display name.
@@ -143,9 +150,14 @@ export default function Register() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Password</FormLabel>
+                  <FormLabel className="font-bold">Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="******" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="******"
+                      {...field}
+                      className="rounded-lg"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -155,7 +167,11 @@ export default function Register() {
             {serverError && (
               <div className="text-center text-red-500">{serverError}</div>
             )}
-            <Button type="submit" className="w-full" disabled={loading}>
+            <Button
+              type="submit"
+              className="w-full rounded-lg font-bold"
+              disabled={loading}
+            >
               {loading ? "Submitting..." : "Submit"}
             </Button>
           </form>
