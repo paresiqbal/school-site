@@ -21,7 +21,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
+import { Card, CardDescription } from "@/components/ui/card";
 import { AppContext } from "@/context/AppContext";
 
 interface FormData {
@@ -95,13 +95,13 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center text-white">
-      <Card className="w-full max-w-md space-y-6 rounded-md p-8 bg-background">
+      <Card className="w-full max-w-md space-y-6 p-8 bg-background">
         <h1 className="text-center text-2xl font-bold text-white">
           Login an Account
         </h1>
-        <p className="text-white text-sm">
+        <CardDescription className="text-center">
           Enter your username and password below to signin your account
-        </p>
+        </CardDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleLogin)}
@@ -114,7 +114,11 @@ export default function Login() {
                 <FormItem>
                   <FormLabel className="font-bold">Username</FormLabel>
                   <FormControl>
-                    <Input placeholder="Your username" {...field} />
+                    <Input
+                      placeholder="shadcn"
+                      {...field}
+                      className="rounded-lg"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -127,14 +131,19 @@ export default function Login() {
                 <FormItem>
                   <FormLabel className="font-bold">Password</FormLabel>
                   <FormControl>
-                    <Input type="password" placeholder="******" {...field} />
+                    <Input
+                      type="password"
+                      placeholder="******"
+                      {...field}
+                      className="rounded-lg"
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
             {error && <div className="text-center text-red-500">{error}</div>}
-            <Button type="submit" className="w-full font-bold">
+            <Button type="submit" className="w-full font-bold rounded-lg">
               Submit
             </Button>
           </form>
