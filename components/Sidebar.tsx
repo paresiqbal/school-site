@@ -21,17 +21,19 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
+import Link from "next/link"; // Import Link from Next.js
 
 // Menu items for the sidebar
 const menuItems = [
-  { icon: Home, label: "Home" },
+  { icon: Home, label: "Home", href: "/" }, // Add href for navigation
   {
     icon: Users,
     label: "Users",
-    submenu: [{ label: "User List" }],
+    href: "/users",
+    submenu: [{ label: "User List", href: "/users/list" }],
   },
-  { icon: Settings, label: "Settings" },
-  { icon: HelpCircle, label: "Help" },
+  { icon: Settings, label: "Settings", href: "/settings" },
+  { icon: HelpCircle, label: "Help", href: "/help" },
 ];
 
 // Define the props type for SidebarContent
@@ -182,35 +184,34 @@ function SidebarContent({
                 </CollapsibleTrigger>
                 <CollapsibleContent className="ml-6 mt-1 space-y-1">
                   {item.submenu.map((subItem, subIndex) => (
-                    <Button
-                      key={subIndex}
-                      variant="ghost"
-                      className="w-full justify-start"
-                    >
-                      {subItem.label}
-                    </Button>
+                    <Link key={subIndex} href={subItem.href} passHref>
+                      <Button variant="ghost" className="w-full justify-start">
+                        {subItem.label}
+                      </Button>
+                    </Link>
                   ))}
                 </CollapsibleContent>
               </Collapsible>
             ) : (
-              <Button
-                key={index}
-                variant="ghost"
-                className={cn(
-                  "justify-start gap-2 transition-all duration-300 ease-in-out",
-                  isShrunk && isDesktop
-                    ? "w-12 h-12 p-0 justify-center"
-                    : "w-full"
-                )}
-                title={isShrunk && isDesktop ? item.label : undefined}
-              >
-                <item.icon className="h-4 w-4 flex-shrink-0" />
-                {(!isShrunk || !isDesktop) && (
-                  <span className="transition-opacity duration-300 ease-in-out">
-                    {item.label}
-                  </span>
-                )}
-              </Button>
+              <Link key={index} href={item.href} passHref>
+                <Button
+                  variant="ghost"
+                  className={cn(
+                    "justify-start gap-2 transition-all duration-300 ease-in-out",
+                    isShrunk && isDesktop
+                      ? "w-12 h-12 p-0 justify-center"
+                      : "w-full"
+                  )}
+                  title={isShrunk && isDesktop ? item.label : undefined}
+                >
+                  <item.icon className="h-4 w-4 flex-shrink-0" />
+                  {(!isShrunk || !isDesktop) && (
+                    <span className="transition-opacity duration-300 ease-in-out">
+                      {item.label}
+                    </span>
+                  )}
+                </Button>
+              </Link>
             )
           )}
         </nav>
