@@ -54,8 +54,9 @@ const authOptions: NextAuthOptions = {
 
           const result = await response.json();
 
-          if (result.user && result.token) {
-            return { ...result.user, token: result.token };
+          // Check if the structure is correct and extract user and token
+          if (result.username && result.token) {
+            return { ...result.username, token: result.token };
           } else {
             return null;
           }
