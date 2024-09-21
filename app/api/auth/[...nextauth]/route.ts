@@ -40,6 +40,7 @@ const authOptions: NextAuthOptions = {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
+              Accept: "application/json",
             },
             body: JSON.stringify({
               username,
@@ -54,7 +55,6 @@ const authOptions: NextAuthOptions = {
           const result = await response.json();
 
           if (result.user && result.token) {
-            // Return both user and token
             return { ...result.user, token: result.token };
           } else {
             return null;
@@ -75,7 +75,6 @@ const authOptions: NextAuthOptions = {
       token: CustomJWT;
       user?: User | NextAuthUser | undefined;
     }) {
-      // Add username to the token if user is available
       if (user && "username" in user) {
         token.id = user.id;
         token.username = user.username;
@@ -85,7 +84,6 @@ const authOptions: NextAuthOptions = {
     },
 
     async session({ session, token }: { session: Session; token: CustomJWT }) {
-      // Attach username to the session object using an existing property
       if (token.username) {
         session.user = {
           ...session.user,
