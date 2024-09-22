@@ -1,72 +1,44 @@
 "use client";
 
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { AppContext } from "@/context/AppContext";
-import Link from "next/link";
 import { useContext, useState } from "react";
 
-export default function News() {
+export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [formData, setFormData] = useState({
     title: "",
     content: "",
   });
+  const [errors, setErrors] = useState({});
 
-  const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
+  async function handleCreate(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const response = await fetch("http://127.0.0.1:8000/api/news", {
+    const res = await fetch("http://127.0.0.1:8000/api/news", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
+        Autorization: `Bearer ${token} `,
       },
-      body: JSON.stringify({
-        title: formData.title,
-        content: formData.content,
-      }),
+      body: JSON.stringify(formData),
     });
 
-    if (response.ok) {
-      const result = await response.json();
-      console.log("News created:", result);
-      setFormData({
-        title: "",
-        content: "",
-      });
+    const data = await res.json();
+
+    if (data.errors) {
+      setErrors(data.errors);
     } else {
-      console.error("Failed to create news");
+      console.log("News created successfully");
     }
-  };
+
+    console.log(data);
+  }
 
   return (
     <div>
-      <Breadcrumb className="hidden md:flex font-semibold">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard" className="hover:text-white">
-                Dashboard
-              </Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage className="text-white font-semibold">
-              News
-            </BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-      <div className="py-8">
-        <form onSubmit={handleCreate} className="flex flex-col">
+      <h1>Create New News</h1>
+      <form onSubmit={handleCreate} className="w-1/2 mx-auto">
+        <div>
           <input
             type="text"
             placeholder="Title"
@@ -74,19 +46,20 @@ export default function News() {
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
-            required
           />
+        </div>
+        <div>
           <textarea
-            placeholder="Content"
+            placeholder="content"
+            rows={6}
             value={formData.content}
             onChange={(e) =>
               setFormData({ ...formData, content: e.target.value })
             }
-            required
-          />
-          <button type="submit">Submit</button>
-        </form>
-      </div>
+          ></textarea>
+        </div>
+        <button className="w-4 bg-blue-700">Submit</button>
+      </form>
     </div>
   );
 }
