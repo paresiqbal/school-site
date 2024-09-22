@@ -16,28 +16,31 @@ export default function News() {
   const { token } = useContext(AppContext);
   const [formData, setFormData] = useState({
     title: "",
-    body: "",
-    image: null,
-    publish_at: "",
+    content: "",
   });
 
   const handleCreate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await fetch("http://localhost:8000/api/create-news", {
+    const response = await fetch("http://127.0.0.1:8000/api/news", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
-        formData,
+        title: formData.title,
+        content: formData.content,
       }),
     });
 
     if (response.ok) {
       const result = await response.json();
       console.log("News created:", result);
+      setFormData({
+        title: "",
+        content: "",
+      });
     } else {
       console.error("Failed to create news");
     }
@@ -63,26 +66,23 @@ export default function News() {
         </BreadcrumbList>
       </Breadcrumb>
       <div className="py-8">
-        <form action="submit" onSubmit={handleCreate} className="flex flex-col">
+        <form onSubmit={handleCreate} className="flex flex-col">
           <input
             type="text"
-            placeholder="title"
+            placeholder="Title"
             value={formData.title}
             onChange={(e) =>
               setFormData({ ...formData, title: e.target.value })
             }
+            required
           />
           <textarea
-            placeholder="content"
-            value={formData.body}
-            onChange={(e) => setFormData({ ...formData, body: e.target.value })}
-          />
-          <input
-            type="datetime-local"
-            value={formData.publish_at}
+            placeholder="Content"
+            value={formData.content}
             onChange={(e) =>
-              setFormData({ ...formData, publish_at: e.target.value })
+              setFormData({ ...formData, content: e.target.value })
             }
+            required
           />
           <button type="submit">Submit</button>
         </form>
