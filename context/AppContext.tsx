@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, useMemo } from "react";
 
 interface User {
   id: number;
@@ -23,42 +23,53 @@ export default function AppProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+  const [token, setToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
 
+  // Fetch the token from localStorage on the client side
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
-    if (storedToken && storedToken !== token) {
+    if (storedToken) {
       setToken(storedToken);
+    }
+  }, []);
+
+  // Fetch user data when the token changes
+  useEffect(() => {
+    if (!token) {
+      setUser(null);
+      return;
     }
 
     async function getUser() {
       try {
         const res = await fetch("http://127.0.0.1:8000/api/user", {
           headers: {
-            Authorization: `Bearer ${storedToken}`,
+            Authorization: `Bearer ${token}`,
           },
         });
 
         if (res.ok) {
           const data = await res.json();
           setUser(data);
+        } else {
+          // Handle invalid token or unauthorized access
+          setUser(null);
         }
       } catch (error) {
         console.error("Error fetching user data:", error);
       }
     }
 
-    if (storedToken) {
-      getUser();
-    }
+    getUser();
   }, [token]);
 
+  const contextValue = useMemo(
+    () => ({ token, setToken, user }),
+    [token, user]
+  );
+
   return (
-    <AppContext.Provider value={{ token, setToken, user }}>
-      {children}
-    </AppContext.Provider>
+    <AppContext.Provider value={contextValue}>{children}</AppContext.Provider>
   );
 }
