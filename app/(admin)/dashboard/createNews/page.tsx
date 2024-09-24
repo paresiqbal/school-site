@@ -37,6 +37,8 @@ import {
 } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 
+import { Toaster, toast } from "sonner";
+
 interface FormData {
   title: string;
   content: string;
@@ -71,6 +73,7 @@ export default function CreateNews() {
         type: "server",
         message: "Authentication token is missing. Please log in.",
       });
+      toast.error("Authentication token is missing. Please log in.");
       return;
     }
 
@@ -92,6 +95,7 @@ export default function CreateNews() {
           type: "server",
           message: "Unauthorized. Please log in again.",
         });
+        toast.error("Unauthorized. Please log in again.");
         return;
       }
 
@@ -102,13 +106,16 @@ export default function CreateNews() {
             message: result.errors[key][0],
           });
         });
+        toast.error("Error creating news. Please check the form.");
       } else {
         setSuccessMessage("News created successfully.");
+        toast.success("News created successfully.");
         form.reset();
       }
     } catch (error) {
       console.error("Error creating news:", error);
       setServerError("Network error. Please try again later.");
+      toast.error("Network error. Please try again later.");
     }
   }
 
@@ -131,6 +138,7 @@ export default function CreateNews() {
       {serverError && <p className="text-destructive mb-4">{serverError}</p>}
 
       {/* Form create news */}
+      <Toaster />
       <Card>
         <CardHeader>
           <CardTitle>Create News</CardTitle>
