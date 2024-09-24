@@ -30,7 +30,14 @@ export default function RootLayout({
       >
         <AppProvider>
           <SessionProvider>
-            <ThemeProvider>{children}</ThemeProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="light"
+              enableSystem
+              disableTransitionOnChange
+            >
+              {children}
+            </ThemeProvider>
           </SessionProvider>
         </AppProvider>
       </body>
