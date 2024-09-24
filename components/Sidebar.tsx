@@ -1,4 +1,9 @@
+import Link from "next/link";
 import { useState } from "react";
+import { useSession, signOut } from "next-auth/react";
+
+// ui lib
+import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -7,7 +12,8 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
-import { cn } from "@/lib/utils";
+
+// icons
 import {
   Home,
   Newspaper,
@@ -20,9 +26,6 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
-import { useSession, signOut } from "next-auth/react";
-
-import Link from "next/link";
 
 interface SidebarContentProps {
   isShrunk: boolean;
@@ -95,7 +98,7 @@ function SidebarContent({
   isDesktop,
   onClose,
 }: SidebarContentProps) {
-  const { data: session } = useSession(); // Use the session data here
+  const { data: session } = useSession();
 
   return (
     <div
