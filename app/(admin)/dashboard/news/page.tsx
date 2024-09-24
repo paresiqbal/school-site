@@ -34,6 +34,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 
 interface FormData {
   title: string;
@@ -134,26 +135,23 @@ export default function CreateNews() {
 
       <Card className="bg-background text-white">
         <CardHeader>
-          <CardTitle>Create News</CardTitle>
+          <CardTitle className="text-2xl font-bold">Create News</CardTitle>
           <CardDescription>Fill this form to create a news.</CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleCreate)}
-              className="p-4 shadow-md"
-            >
+            <form onSubmit={form.handleSubmit(handleCreate)}>
               <FormField
                 control={form.control}
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-bold">Title</FormLabel>
+                    <FormLabel>Title</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter news title"
+                        placeholder="News title"
                         {...field}
-                        className="w-full p-2 rounded"
+                        className="w-full rounded-lg"
                       />
                     </FormControl>
                     <FormMessage />
@@ -165,11 +163,11 @@ export default function CreateNews() {
                 name="content"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-bold">Content</FormLabel>
+                    <FormLabel>Content</FormLabel>
                     <FormControl>
-                      <textarea
+                      <Textarea
                         rows={6}
-                        placeholder="Enter news content"
+                        placeholder="News content"
                         {...field}
                         className="w-full p-2 border rounded bg-background"
                       />
@@ -178,16 +176,12 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
-
-              {/* Server errors */}
               {serverError && <p className="text-red-600">{serverError}</p>}
-
-              {/* Submit button */}
               <Button
                 type="submit"
-                className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700"
+                className="font-bold w-full p-2 rounded mt-4"
               >
-                Submit
+                Create News
               </Button>
             </form>
           </Form>

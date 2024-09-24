@@ -21,6 +21,7 @@ import {
   ChevronDown,
 } from "lucide-react";
 import { useSession, signOut } from "next-auth/react";
+
 import Link from "next/link";
 
 interface SidebarContentProps {
