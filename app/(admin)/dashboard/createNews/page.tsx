@@ -127,14 +127,13 @@ export default function CreateNews() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {successMessage && (
-        <p className="text-green-600 mb-4">{successMessage}</p>
-      )}
-      {serverError && <p className="text-red-600 mb-4">{serverError}</p>}
+      {successMessage && <p className="text-primry mb-4">{successMessage}</p>}
+      {serverError && <p className="text-destructive mb-4">{serverError}</p>}
 
-      <Card className="bg-background text-white">
+      {/* Form create news */}
+      <Card>
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Create News</CardTitle>
+          <CardTitle>Create News</CardTitle>
           <CardDescription>Fill this form to create a news.</CardDescription>
         </CardHeader>
         <CardContent>
