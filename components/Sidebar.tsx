@@ -44,7 +44,10 @@ const menuItems = [
     icon: Newspaper,
     label: "News",
     href: "#",
-    submenu: [{ label: "Create News", href: "/dashboard/news" }],
+    submenu: [
+      { label: "Create News", href: "/dashboard/createNews" },
+      { label: "News List", href: "/dashboard/listNews" },
+    ],
   },
   {
     icon: Users,
