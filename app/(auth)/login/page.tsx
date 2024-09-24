@@ -95,25 +95,20 @@ export default function Login() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center text-white">
+    <div className="flex min-h-screen items-center justify-center bg-background">
       <Card className="w-full max-w-md space-y-6 p-8 bg-background">
-        <h1 className="text-center text-2xl font-bold text-white">
-          Login an Account
-        </h1>
+        <h1 className="text-center text-2xl font-bold">Login an Account</h1>
         <CardDescription className="text-center">
           Enter your username and password below to signin your account
         </CardDescription>
         <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(handleLogin)}
-            className="space-y-8 text-white"
-          >
+          <form onSubmit={form.handleSubmit(handleLogin)} className="space-y-8">
             <FormField
               control={form.control}
               name="username"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-bold">Username</FormLabel>
+                  <FormLabel>Username</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="shadcn"
@@ -130,7 +125,7 @@ export default function Login() {
               name="password"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="font-bold">Password</FormLabel>
+                  <FormLabel>Password</FormLabel>
                   <FormControl>
                     <Input
                       type="password"
@@ -143,7 +138,9 @@ export default function Login() {
                 </FormItem>
               )}
             />
-            {error && <div className="text-center text-red-500">{error}</div>}
+            {error && (
+              <div className="text-center text-destructive">{error}</div>
+            )}
             <Button type="submit" className="w-full font-bold rounded-lg">
               Submit
             </Button>

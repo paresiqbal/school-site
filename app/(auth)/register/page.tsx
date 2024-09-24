@@ -112,18 +112,16 @@ export default function Register() {
   }
 
   return (
-    <div className="flex min-h-screen items-center justify-center text-white">
+    <div className="flex min-h-screen items-center justify-center bg-background">
       <Card className="w-full max-w-md space-y-6 p-8 bg-background">
-        <h1 className="text-center text-2xl font-bold text-white">
-          Register Account
-        </h1>
+        <h1 className="text-center text-2xl font-bold">Register Account</h1>
         <CardDescription className="text-center">
           Enter your username and password below to signup your account
         </CardDescription>
         <Form {...form}>
           <form
             onSubmit={form.handleSubmit(handleRegister)}
-            className="space-y-8 text-white"
+            className="space-y-8"
           >
             <FormField
               control={form.control}
@@ -132,11 +130,7 @@ export default function Register() {
                 <FormItem>
                   <FormLabel className="font-bold">Username</FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Your username"
-                      {...field}
-                      className="rounded-lg"
-                    />
+                    <Input placeholder="Your username" {...field} />
                   </FormControl>
                   <FormDescription>
                     This is your public display name.
@@ -152,20 +146,15 @@ export default function Register() {
                 <FormItem>
                   <FormLabel className="font-bold">Password</FormLabel>
                   <FormControl>
-                    <Input
-                      type="password"
-                      placeholder="******"
-                      {...field}
-                      className="rounded-lg"
-                    />
+                    <Input type="password" placeholder="******" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-            {/* Display server error */}
+
             {serverError && (
-              <div className="text-center text-red-500">{serverError}</div>
+              <div className="text-center text-destructive">{serverError}</div>
             )}
             <Button
               type="submit"
