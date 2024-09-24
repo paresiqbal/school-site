@@ -19,9 +19,7 @@ export default function Dashboard() {
       <Breadcrumb className="hidden md:flex pb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbPage className="font-bold text-white/70 hover:text-white">
-              Recent Orders
-            </BreadcrumbPage>
+            <BreadcrumbPage>Dashboard</BreadcrumbPage>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
         </BreadcrumbList>

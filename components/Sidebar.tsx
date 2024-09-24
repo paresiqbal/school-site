@@ -106,11 +106,11 @@ function SidebarContent({
   return (
     <div
       className={cn(
-        "flex h-full flex-col border-r border-neutral-600 transition-all duration-300 ease-in-out",
+        "flex h-full flex-col border-r transition-all duration-300 ease-in-out",
         isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full"
       )}
     >
-      <div className="flex h-14 items-center justify-between border-b border-neutral-600 pr-4 bg-foreground">
+      <div className="flex h-14 items-center justify-between border-b pr-4 bg-foreground">
         <div className="flex items-center space-x-2">
           {(!isShrunk || !isDesktop) && (
             <a
@@ -222,7 +222,7 @@ function SidebarContent({
 
       <div
         className={cn(
-          "border-t border-neutral-600 p-4 transition-all duration-300 ease-in-out",
+          "border-t p-4 transition-all duration-300 ease-in-out",
           isShrunk && isDesktop && "flex flex-col items-center"
         )}
       >
