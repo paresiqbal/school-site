@@ -26,6 +26,7 @@ import {
   X,
   ChevronDown,
 } from "lucide-react";
+import Image from "next/image";
 
 interface SidebarContentProps {
   isShrunk: boolean;
@@ -107,27 +108,24 @@ function SidebarContent({
         isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full"
       )}
     >
-      <div className="flex h-14 items-center justify-between border-b border-neutral-600 px-4">
+      <div className="flex h-14 items-center justify-between border-b border-neutral-600 pr-4 bg-foreground">
         <div className="flex items-center space-x-2">
           {(!isShrunk || !isDesktop) && (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="h-6 w-6"
+            <a
+              className=" text-bold border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+              href="/dashboard"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <circle cx="12" cy="12" r="10" />
-              <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-              <line x1="9" y1="9" x2="9.01" y2="9" />
-              <line x1="15" y1="9" x2="15.01" y2="9" />
-            </svg>
-          )}
-          {(!isShrunk || !isDesktop) && (
-            <span className="text-lg font-semibold">My App</span>
+              <Image
+                className="dark:invert"
+                src="https://nextjs.org/icons/vercel.svg"
+                alt="Vercel logomark"
+                width={20}
+                height={20}
+              />
+              SMKN 1 RL
+            </a>
           )}
         </div>
         {isDesktop ? (
@@ -136,7 +134,7 @@ function SidebarContent({
             size="icon"
             onClick={() => setIsShrunk(!isShrunk)}
             className={cn(
-              "transition-all duration-300 ease-in-out",
+              "transition-all duration-300 ease-in-out bg-background",
               isShrunk ? "ml-0" : "ml-auto"
             )}
           >
@@ -219,6 +217,7 @@ function SidebarContent({
           )}
         </nav>
       </ScrollArea>
+
       <div
         className={cn(
           "border-t border-neutral-600 p-4 transition-all duration-300 ease-in-out",
@@ -234,8 +233,7 @@ function SidebarContent({
           <div className="w-8 h-8 rounded-full bg-neutral-600" />
           {(!isShrunk || !isDesktop) && (
             <span className="text-sm font-medium transition-opacity duration-300 ease-in-out">
-              {/* Show real username from session */}
-              {session?.user?.name || "John Doe"}
+              {session?.user?.name || "Uknown User"}
             </span>
           )}
         </div>
@@ -245,7 +243,7 @@ function SidebarContent({
             "w-full justify-start gap-2 transition-all duration-300 ease-in-out",
             isShrunk && isDesktop && "justify-center p-0 w-12 h-12"
           )}
-          onClick={() => signOut()} // Add logout functionality
+          onClick={() => signOut()}
         >
           <LogOut className="h-4 w-4 flex-shrink-0" />
           {(!isShrunk || !isDesktop) && (
