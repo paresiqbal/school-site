@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import {
   Breadcrumb,
   BreadcrumbItem,
+  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -116,15 +117,13 @@ export default function CreateNews() {
       <Breadcrumb className="hidden md:flex pb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
-            <Link href={"/dashboard"} className="hover:text-white font-bold">
-              Dashboard
-            </Link>
+            <BreadcrumbLink asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage className="font-bold text-white/70 hover:text-white">
-              News
-            </BreadcrumbPage>
+            <BreadcrumbPage>Create News</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>

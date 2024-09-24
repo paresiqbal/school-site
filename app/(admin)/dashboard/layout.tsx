@@ -11,7 +11,7 @@ export default function DashboardLayout({
   return (
     <section className="flex bg-background">
       <Sidebar />
-      <div className="p-6 w-full font-semibold">{children}</div>
+      <div className="p-6 w-full">{children}</div>
       <div className="fixed bottom-4 right-4 z-50">
         <ModeToggle />
       </div>
