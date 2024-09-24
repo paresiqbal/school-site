@@ -28,7 +28,9 @@ export default function Dashboard() {
       </Breadcrumb>
       {session?.user && (
         <div>
-          <h1 className="font-bold text-2xl">Welcome, {session.user.name}!</h1>
+          <h1 className="font-bold text-2xl">
+            Welcome, <span className="text-primary">{session.user.name}!</span>
+          </h1>
         </div>
       )}
     </div>
