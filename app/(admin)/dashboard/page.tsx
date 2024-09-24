@@ -10,6 +10,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { ModeToggle } from "@/components/ModeToggle";
 
 export default function Dashboard() {
   const { data: session } = useSession();
@@ -33,6 +34,7 @@ export default function Dashboard() {
           </h1>
         </div>
       )}
+      <ModeToggle />
     </div>
   );
 }
