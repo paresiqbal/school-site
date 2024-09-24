@@ -53,7 +53,6 @@ const formSchema = z.object({
 
 export default function CreateNews() {
   const { token } = useContext(AppContext);
-  const [successMessage, setSuccessMessage] = useState("");
   const [serverError, setServerError] = useState<string | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -66,7 +65,6 @@ export default function CreateNews() {
 
   async function handleCreate(data: FormData) {
     setServerError(null);
-    setSuccessMessage("");
 
     if (!token) {
       form.setError("title", {
@@ -108,7 +106,6 @@ export default function CreateNews() {
         });
         toast.error("Error creating news. Please check the form.");
       } else {
-        setSuccessMessage("News created successfully.");
         toast.success("News created successfully.");
         form.reset();
       }
@@ -134,8 +131,6 @@ export default function CreateNews() {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {successMessage && <p className="text-primry mb-4">{successMessage}</p>}
-      {serverError && <p className="text-destructive mb-4">{serverError}</p>}
 
       {/* Form create news */}
       <Toaster />
