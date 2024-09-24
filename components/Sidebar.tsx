@@ -40,11 +40,16 @@ interface SidebarContentProps {
 const menuItems = [
   { icon: Home, label: "Home", href: "/" },
   { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
-  { icon: Newspaper, label: "News", href: "/dashboard/news" },
+  {
+    icon: Newspaper,
+    label: "News",
+    href: "#",
+    submenu: [{ label: "Create News", href: "/dashboard/news" }],
+  },
   {
     icon: Users,
     label: "Users",
-    href: "/users",
+    href: "#",
     submenu: [{ label: "User List", href: "/users/list" }],
   },
   { icon: HelpCircle, label: "Help", href: "/help" },
