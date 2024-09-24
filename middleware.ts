@@ -7,4 +7,4 @@ export function mainMiddleware() {
   return res;
 }
 
-export default withAuth(mainMiddleware, ["/dashboard"]);
+export default withAuth(mainMiddleware, ["/dashboard", "/dashboard/news"]);
