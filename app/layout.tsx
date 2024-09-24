@@ -40,6 +40,7 @@ export default function RootLayout({
             </ThemeProvider>
           </SessionProvider>
         </AppProvider>
+        {/* Theme mode toggler */}
       </body>
     </html>
   );

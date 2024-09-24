@@ -25,6 +25,7 @@ import {
   LogOut,
   X,
   ChevronDown,
+  LayoutDashboard,
 } from "lucide-react";
 import Image from "next/image";
 
@@ -37,7 +38,8 @@ interface SidebarContentProps {
 
 // Menu items for the sidebar
 const menuItems = [
-  { icon: Home, label: "Home", href: "/dashboard" },
+  { icon: Home, label: "Home", href: "/" },
+  { icon: LayoutDashboard, label: "Dashboard", href: "/dashboard" },
   { icon: Newspaper, label: "News", href: "/dashboard/news" },
   {
     icon: Users,

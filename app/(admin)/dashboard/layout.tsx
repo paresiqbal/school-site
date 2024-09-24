@@ -1,5 +1,6 @@
 "use client";
 
+import { ModeToggle } from "@/components/ModeToggle";
 import Sidebar from "@/components/Sidebar";
 
 export default function DashboardLayout({
@@ -11,6 +12,9 @@ export default function DashboardLayout({
     <section className="flex bg-background">
       <Sidebar />
       <div className="p-6 w-full font-semibold">{children}</div>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ModeToggle />
+      </div>
     </section>
   );
 }
