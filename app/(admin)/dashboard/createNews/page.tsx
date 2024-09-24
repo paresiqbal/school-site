@@ -63,8 +63,11 @@ export default function CreateNews() {
     },
   });
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   async function handleCreate(data: FormData) {
     setServerError(null);
+    setIsSubmitting(true);
 
     if (!token) {
       form.setError("title", {
@@ -72,6 +75,7 @@ export default function CreateNews() {
         message: "Authentication token is missing. Please log in.",
       });
       toast.error("Authentication token is missing. Please log in.");
+      setIsSubmitting(false);
       return;
     }
 
@@ -113,6 +117,8 @@ export default function CreateNews() {
       console.error("Error creating news:", error);
       setServerError("Network error. Please try again later.");
       toast.error("Network error. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   }
 
@@ -153,6 +159,7 @@ export default function CreateNews() {
                         placeholder="News title"
                         {...field}
                         className="w-full rounded-lg"
+                        disabled={isSubmitting}
                       />
                     </FormControl>
                     <FormMessage />
@@ -171,6 +178,7 @@ export default function CreateNews() {
                         placeholder="News content"
                         {...field}
                         className="w-full p-2 border rounded bg-background"
+                        disabled={isSubmitting}
                       />
                     </FormControl>
                     <FormMessage />
@@ -181,8 +189,9 @@ export default function CreateNews() {
               <Button
                 type="submit"
                 className="font-bold w-full p-2 rounded mt-4"
+                disabled={isSubmitting}
               >
-                Create News
+                {isSubmitting ? "Creating..." : "Create News"}
               </Button>
             </form>
           </Form>
