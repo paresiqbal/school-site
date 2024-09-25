@@ -46,7 +46,7 @@ const menuItems = [
     href: "#",
     submenu: [
       { label: "Create News", href: "/dashboard/createNews" },
-      { label: "News List", href: "/dashboard/listNews" },
+      { label: "News List", href: "/dashboard/news" },
     ],
   },
   {
