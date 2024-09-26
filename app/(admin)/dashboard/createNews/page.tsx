@@ -1,15 +1,13 @@
 "use client";
 
+import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
-import { useContext, useState } from "react";
-
-// lib
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-// ui lib
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
   FormControl,
@@ -18,7 +16,14 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
+import { Toaster, toast } from "sonner";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -28,32 +33,26 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Textarea } from "@/components/ui/textarea";
 
-import { Toaster, toast } from "sonner";
-
-interface FormData {
-  title: string;
-  content: string;
-}
-
+// Validation schema for title and content
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
   content: z
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
+  image: z.any().optional(), // Optional image field
 });
+
+interface FormData {
+  title: string;
+  content: string;
+  image?: FileList; // For image uploads
+}
 
 export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -62,8 +61,6 @@ export default function CreateNews() {
       content: "",
     },
   });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -79,15 +76,22 @@ export default function CreateNews() {
       return;
     }
 
+    // Create FormData to include image
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("content", data.content);
+
+    if (data.image && data.image.length > 0) {
+      formData.append("image", data.image[0]); // Add image to FormData
+    }
+
     try {
       const res = await fetch("http://127.0.0.1:8000/api/news", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(data),
+        body: formData, // Send as FormData
       });
 
       const result = await res.json();
@@ -185,6 +189,21 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
+
+              {/* New Image Field */}
+              <FormItem>
+                <FormLabel>Upload Image</FormLabel>
+                <FormControl>
+                  <Input
+                    type="file"
+                    accept="image/*"
+                    disabled={isSubmitting}
+                    {...form.register("image")}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+
               {serverError && <p className="text-red-600">{serverError}</p>}
               <Button
                 type="submit"
