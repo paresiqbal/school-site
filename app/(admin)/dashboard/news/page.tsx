@@ -126,7 +126,7 @@ export default function ListNews() {
                 Delete
               </Button>
               {/* Add Edit Button */}
-              <Link href={`/news/${item.id}`}>
+              <Link href={`/dashboard/news/${item.id}`}>
                 <Button>Edit</Button>
               </Link>
             </CardFooter>
