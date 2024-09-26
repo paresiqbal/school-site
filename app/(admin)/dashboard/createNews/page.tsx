@@ -1,5 +1,6 @@
 "use client";
 
+import { Paperclip } from "lucide-react";
 import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
@@ -34,25 +35,26 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 
-// Validation schema for title and content
+// Validation schema for title, content, and optional image
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
   content: z
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
-  image: z.any().optional(), // Optional image field
+  image: z.any().optional(),
 });
 
 interface FormData {
   title: string;
   content: string;
-  image?: FileList; // For image uploads
+  image?: FileList;
 }
 
 export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,6 +63,12 @@ export default function CreateNews() {
       content: "",
     },
   });
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setSelectedImage(event.target.files[0]); // Store the selected image
+    }
+  };
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -81,8 +89,8 @@ export default function CreateNews() {
     formData.append("title", data.title);
     formData.append("content", data.content);
 
-    if (data.image && data.image.length > 0) {
-      formData.append("image", data.image[0]); // Add image to FormData
+    if (selectedImage) {
+      formData.append("image", selectedImage); // Add image to FormData
     }
 
     try {
@@ -91,7 +99,7 @@ export default function CreateNews() {
         headers: {
           Authorization: `Bearer ${token}`,
         },
-        body: formData, // Send as FormData
+        body: formData,
       });
 
       const result = await res.json();
@@ -152,6 +160,7 @@ export default function CreateNews() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleCreate)}>
+              {/* Title Field */}
               <FormField
                 control={form.control}
                 name="title"
@@ -170,41 +179,53 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
+
+              {/* Content Field with Paperclip Icon in the Bottom Left */}
               <FormField
                 control={form.control}
                 name="content"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Content</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        rows={6}
-                        placeholder="News content"
-                        {...field}
-                        className="w-full p-2 border rounded bg-background"
-                        disabled={isSubmitting}
+                    <div className="relative">
+                      <FormControl>
+                        <Textarea
+                          rows={6}
+                          placeholder="News content"
+                          {...field}
+                          className="w-full p-2 border rounded bg-background"
+                          disabled={isSubmitting}
+                        />
+                      </FormControl>
+
+                      {/* Paperclip Icon in Bottom Left Corner */}
+                      <label
+                        htmlFor="fileInput"
+                        className="absolute left-4 bottom-4 cursor-pointer"
+                      >
+                        <Paperclip className="text-gray-500" />
+                      </label>
+                      <input
+                        id="fileInput"
+                        type="file"
+                        accept="image/*"
+                        className="hidden" // Hide default input
+                        onChange={handleFileChange} // Capture the selected image
                       />
-                    </FormControl>
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              {/* New Image Field */}
-              <FormItem>
-                <FormLabel>Upload Image</FormLabel>
-                <FormControl>
-                  <Input
-                    type="file"
-                    accept="image/*"
-                    disabled={isSubmitting}
-                    {...form.register("image")}
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
+              {/* Display selected image name (optional) */}
+              {selectedImage && (
+                <p className="mt-2 text-sm text-gray-600">
+                  Selected file: {selectedImage.name}
+                </p>
+              )}
 
-              {serverError && <p className="text-red-600">{serverError}</p>}
+              {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
                 className="font-bold w-full p-2 rounded mt-4"
