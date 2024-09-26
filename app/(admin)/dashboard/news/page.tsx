@@ -125,6 +125,10 @@ export default function ListNews() {
               >
                 Delete
               </Button>
+              {/* Add Edit Button */}
+              <Link href={`/news/${item.id}`}>
+                <Button>Edit</Button>
+              </Link>
             </CardFooter>
           </div>
           <div className="p-16 bg-gray-500"></div>
