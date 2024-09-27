@@ -114,15 +114,16 @@ function SidebarContent({
   return (
     <div
       className={cn(
-        "flex h-full flex-col border-r transition-all duration-300 ease-in-out",
+        "flex flex-col h-screen border-r transition-all duration-300 ease-in-out", // h-screen ensures it takes full screen height
         isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full"
       )}
     >
+      {/* Sidebar Header */}
       <div className="flex h-14 items-center justify-between border-b pr-4 bg-foreground">
         <div className="flex items-center space-x-2">
           {(!isShrunk || !isDesktop) && (
             <a
-              className=" text-bold border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+              className="text-bold border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] sm:text-base h-10 sm:h-12 px-4 sm:px-5"
               href="/dashboard"
               target="_blank"
               rel="noopener noreferrer"
@@ -138,6 +139,8 @@ function SidebarContent({
             </a>
           )}
         </div>
+
+        {/* Shrink/Expand Button */}
         {isDesktop ? (
           <Button
             variant="ghost"
@@ -166,7 +169,9 @@ function SidebarContent({
           </Button>
         )}
       </div>
-      <ScrollArea className="flex-1">
+
+      {/* Scrollable Sidebar Content */}
+      <ScrollArea className="flex-1 overflow-y-auto">
         <nav
           className={cn(
             "flex flex-col gap-2 p-2 transition-all duration-300 ease-in-out",
@@ -228,6 +233,7 @@ function SidebarContent({
         </nav>
       </ScrollArea>
 
+      {/* Sidebar Footer */}
       <div
         className={cn(
           "border-t p-4 transition-all duration-300 ease-in-out",
@@ -243,7 +249,7 @@ function SidebarContent({
           <div className="w-8 h-8 rounded-full bg-neutral-600" />
           {(!isShrunk || !isDesktop) && (
             <span className="text-sm font-medium transition-opacity duration-300 ease-in-out">
-              {session?.user?.name || "Uknown User"}
+              {session?.user?.name || "Unknown User"}
             </span>
           )}
         </div>

@@ -269,7 +269,7 @@ export default function DetailNews(props: DetailNewsProps) {
                     className="rounded-lg shadow"
                   />
                 )}
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-3">
                   {newsDetail?.content && renderContent(newsDetail.content)}
                 </div>
               </div>
