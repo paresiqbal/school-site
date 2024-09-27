@@ -79,7 +79,6 @@ export default function ListNews() {
         throw new Error("Failed to delete news.");
       }
 
-      // Remove the deleted news item from the state
       setNews((prevNews) => prevNews.filter((item) => item.id !== id));
       toast.success("News deleted successfully");
     } catch (error) {
@@ -125,7 +124,6 @@ export default function ListNews() {
               >
                 Delete
               </Button>
-              {/* Add Edit Button */}
               <Link href={`/dashboard/news/${item.id}`}>
                 <Button>Edit</Button>
               </Link>

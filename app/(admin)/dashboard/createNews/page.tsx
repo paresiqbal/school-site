@@ -35,7 +35,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
 
-// Validation schema for title, content, and optional image
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
   content: z
@@ -66,7 +65,7 @@ export default function CreateNews() {
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
-      setSelectedImage(event.target.files[0]); // Store the selected image
+      setSelectedImage(event.target.files[0]);
     }
   };
 
@@ -84,13 +83,12 @@ export default function CreateNews() {
       return;
     }
 
-    // Create FormData to include image
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.content);
 
     if (selectedImage) {
-      formData.append("image", selectedImage); // Add image to FormData
+      formData.append("image", selectedImage);
     }
 
     try {
@@ -160,7 +158,6 @@ export default function CreateNews() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleCreate)}>
-              {/* Title Field */}
               <FormField
                 control={form.control}
                 name="title"
@@ -180,7 +177,6 @@ export default function CreateNews() {
                 )}
               />
 
-              {/* Content Field with Paperclip Icon in the Bottom Left */}
               <FormField
                 control={form.control}
                 name="content"
@@ -198,7 +194,6 @@ export default function CreateNews() {
                         />
                       </FormControl>
 
-                      {/* Paperclip Icon in Bottom Left Corner */}
                       <label
                         htmlFor="fileInput"
                         className="absolute left-4 bottom-4 cursor-pointer"
@@ -209,8 +204,8 @@ export default function CreateNews() {
                         id="fileInput"
                         type="file"
                         accept="image/*"
-                        className="hidden" // Hide default input
-                        onChange={handleFileChange} // Capture the selected image
+                        className="hidden"
+                        onChange={handleFileChange}
                       />
                     </div>
                     <FormMessage />
@@ -218,7 +213,6 @@ export default function CreateNews() {
                 )}
               />
 
-              {/* Display selected image name (optional) */}
               {selectedImage && (
                 <p className="mt-2 text-sm text-gray-600">
                   Selected file: {selectedImage.name}
