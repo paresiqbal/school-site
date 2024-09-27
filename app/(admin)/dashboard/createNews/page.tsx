@@ -60,6 +60,7 @@ export default function CreateNews() {
     defaultValues: {
       title: "",
       content: "",
+      image: "",
     },
   });
 

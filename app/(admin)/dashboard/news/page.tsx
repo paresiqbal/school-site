@@ -61,6 +61,10 @@ export default function ListNews() {
     fetchNews();
   }, [token]);
 
+  const truncateText = (text: string, limit: number) => {
+    return text.length > limit ? text.substring(0, limit) + "..." : text;
+  };
+
   const handleDelete = async (id: number) => {
     if (!token) {
       toast.error("Unauthorized. Please log in.");
@@ -115,7 +119,7 @@ export default function ListNews() {
               <CardTitle>{item.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p>{item.content}</p>
+              <p>{truncateText(item.content, 255)}</p>
             </CardContent>
             <CardFooter>
               <Button
