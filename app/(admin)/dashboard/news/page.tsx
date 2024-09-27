@@ -136,7 +136,12 @@ export default function ListNews() {
             </CardFooter>
           </div>
           {item.image && (
-            <Image src={item.image} alt={item.title} width={200} height={200} />
+            <Image
+              src={`http://localhost:8000/${item.image}`}
+              alt={item.title}
+              width={500}
+              height={300}
+            />
           )}
         </Card>
       ))}
