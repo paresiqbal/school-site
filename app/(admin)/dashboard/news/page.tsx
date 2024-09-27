@@ -142,7 +142,7 @@ export default function ListNews() {
 
               <Link href={`/dashboard/news/${item.id}`}>
                 <Button className="flex items-center gap-2">
-                  Edit
+                  See more
                   <span>
                     <Pencil className="h-4 w-4" />
                   </span>

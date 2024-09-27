@@ -132,9 +132,7 @@ export default function DetailNews(props: DetailNewsProps) {
   return (
     <div className="container mx-auto">
       <Toaster />
-
       {isEditing ? (
-        // Edit form when in edit mode
         <Form {...form}>
           <form onSubmit={form.handleSubmit(handleUpdate)}>
             <FormField
@@ -186,7 +184,6 @@ export default function DetailNews(props: DetailNewsProps) {
           </form>
         </Form>
       ) : (
-        // Display news details when not in edit mode
         <div>
           <h1>{newsDetail?.title}</h1>
           <p>{newsDetail?.content}</p>
