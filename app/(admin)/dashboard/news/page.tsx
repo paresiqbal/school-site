@@ -1,6 +1,10 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
+import Link from "next/link";
+import Image from "next/image";
+
+// ui lib
 import { AppContext } from "@/context/AppContext";
 import {
   Card,
@@ -19,8 +23,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
-import Image from "next/image";
+
+// icons
+import { Pencil, Trash2 } from "lucide-react";
 
 interface NewsItem {
   id: number;
@@ -118,20 +123,30 @@ export default function ListNews() {
         <Card key={item.id} className="mb-4 flex flex-row items-center">
           <div className="w-3/4">
             <CardHeader className="flex">
-              <CardTitle>{item.title}</CardTitle>
+              <CardTitle className="text-xl">{item.title}</CardTitle>
             </CardHeader>
             <CardContent>
               <p>{truncateText(item.content, 255)}</p>
             </CardContent>
-            <CardFooter>
+            <CardFooter className="flex gap-4">
               <Button
                 variant="destructive"
                 onClick={() => handleDelete(item.id)}
+                className="flex items-center gap-2"
               >
                 Delete
+                <span>
+                  <Trash2 className="h-4 w-4" />
+                </span>
               </Button>
+
               <Link href={`/dashboard/news/${item.id}`}>
-                <Button>Edit</Button>
+                <Button className="flex items-center gap-2">
+                  Edit
+                  <span>
+                    <Pencil className="h-4 w-4" />
+                  </span>
+                </Button>
               </Link>
             </CardFooter>
           </div>
@@ -139,8 +154,9 @@ export default function ListNews() {
             <Image
               src={`http://localhost:8000/${item.image}`}
               alt={item.title}
-              width={500}
-              height={300}
+              width={250}
+              height={150}
+              className="rounded-lg"
             />
           )}
         </Card>
