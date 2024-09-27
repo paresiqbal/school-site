@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/form";
 import { Toaster, toast } from "sonner";
 import { AppContext } from "@/context/AppContext";
+import Image from "next/image";
 
 // Validation schema using zod
 const formSchema = z.object({
@@ -23,11 +24,13 @@ const formSchema = z.object({
   content: z
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
+  image: z.string().optional(), // Optional image field for existing image
 });
 
 interface NewsDetail {
   title: string;
   content: string;
+  image?: string; // Optional image field for displaying the existing image
 }
 
 type DetailNewsProps = { params: { slug: string } };
@@ -45,6 +48,7 @@ export default function DetailNews(props: DetailNewsProps) {
     defaultValues: {
       title: "",
       content: "",
+      image: "", // Initialize as an empty string
     },
   });
 
@@ -64,6 +68,7 @@ export default function DetailNews(props: DetailNewsProps) {
         setNewsDetail(data);
         form.setValue("title", data.title);
         form.setValue("content", data.content);
+        form.setValue("image", data.image); // Set the image if exists
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -170,6 +175,35 @@ export default function DetailNews(props: DetailNewsProps) {
                 </FormItem>
               )}
             />
+            {newsDetail?.image && (
+              <div>
+                <Image
+                  src={`http://localhost:8000/${newsDetail.image}`}
+                  width={500}
+                  height={300}
+                  alt="News"
+                />
+                <p>Current Image</p>
+              </div>
+            )}
+            <FormField
+              control={form.control}
+              name="image"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Image URL</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="text"
+                      placeholder="Optional new image URL"
+                      {...field}
+                      className="w-full rounded-lg"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
             <Button type="submit" className="mt-4" disabled={isLoading}>
               {isLoading ? "Updating..." : "Update News"}
             </Button>
@@ -187,6 +221,14 @@ export default function DetailNews(props: DetailNewsProps) {
         <div>
           <h1>{newsDetail?.title}</h1>
           <p>{newsDetail?.content}</p>
+          {newsDetail?.image && (
+            <Image
+              src={`http://localhost:8000/${newsDetail.image}`}
+              width={500}
+              height={300}
+              alt="News"
+            />
+          )}
           <Button className="mt-4" onClick={toggleEditMode}>
             Edit News
           </Button>
