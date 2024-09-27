@@ -34,6 +34,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Pencil, Trash2 } from "lucide-react";
 
 // Validation schema using zod
 const formSchema = z.object({
@@ -274,12 +275,20 @@ export default function DetailNews(props: DetailNewsProps) {
                 </div>
               </div>
               <div className="pt-8 flex gap-2">
-                <Button onClick={toggleEditMode}>Edit News</Button>
                 <Button
+                  className="flex items-center gap-2"
                   onClick={toggleEditMode}
-                  className="bg-destructive text-white"
                 >
+                  Edit
+                  <span>
+                    <Pencil className="h-4 w-4" />
+                  </span>
+                </Button>
+                <Button className="bg-destructive text-white">
                   Delete
+                  <span>
+                    <Trash2 className="h-4 w-4" />
+                  </span>
                 </Button>
               </div>
             </CardContent>
