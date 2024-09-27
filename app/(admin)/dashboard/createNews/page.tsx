@@ -5,6 +5,7 @@ import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,7 +34,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -177,7 +177,6 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
-
               <FormField
                 control={form.control}
                 name="content"
@@ -213,7 +212,6 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
-
               {selectedImage && (
                 <p className="mt-2 text-sm text-gray-600">
                   Selected file: {selectedImage.name}

@@ -18,19 +18,36 @@ import { Toaster, toast } from "sonner";
 import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
 
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
 // Validation schema using zod
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
   content: z
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
-  image: z.string().optional(), // Optional image field for existing image
+  image: z.string().optional(),
 });
 
 interface NewsDetail {
   title: string;
   content: string;
-  image?: string; // Optional image field for displaying the existing image
+  image?: string;
 }
 
 type DetailNewsProps = { params: { slug: string } };
@@ -48,11 +65,10 @@ export default function DetailNews(props: DetailNewsProps) {
     defaultValues: {
       title: "",
       content: "",
-      image: "", // Initialize as an empty string
+      image: "",
     },
   });
 
-  // Fetch the existing news details
   useEffect(() => {
     const fetchNews = async () => {
       setIsLoading(true);
@@ -68,7 +84,7 @@ export default function DetailNews(props: DetailNewsProps) {
         setNewsDetail(data);
         form.setValue("title", data.title);
         form.setValue("content", data.content);
-        form.setValue("image", data.image); // Set the image if exists
+        form.setValue("image", data.image);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -83,7 +99,12 @@ export default function DetailNews(props: DetailNewsProps) {
     fetchNews();
   }, [params.slug, form]);
 
-  // Handle the form submission to update news
+  const renderContent = (content: string) => {
+    return content
+      .split("\n")
+      .map((text: string, index: number) => <p key={index}>{text}</p>);
+  };
+
   const handleUpdate = async (data: NewsDetail) => {
     setIsLoading(true);
     setError(null);
@@ -119,121 +140,152 @@ export default function DetailNews(props: DetailNewsProps) {
     }
   };
 
-  // Loading state
   if (isLoading && !newsDetail) {
     return <div>Loading...</div>;
   }
 
-  // Error state
   if (error) {
     return <div>Error: {error}</div>;
   }
 
-  // Toggle editing mode
   const toggleEditMode = () => {
     setIsEditing(!isEditing);
   };
 
   return (
     <div className="container mx-auto">
+      <Breadcrumb className="hidden md:flex pb-4">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Detail News</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       <Toaster />
-      {isEditing ? (
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(handleUpdate)}>
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Title</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="News title"
-                      {...field}
-                      className="w-full rounded-lg"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="content"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Content</FormLabel>
-                  <FormControl>
-                    <Textarea
-                      rows={6}
-                      placeholder="News content"
-                      {...field}
-                      className="w-full p-2 border rounded bg-background"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            {newsDetail?.image && (
-              <div>
-                <Image
-                  src={`http://localhost:8000/${newsDetail.image}`}
-                  width={500}
-                  height={300}
-                  alt="News"
+      <Card>
+        {isEditing ? (
+          <CardContent>
+            <Form {...form}>
+              <form onSubmit={form.handleSubmit(handleUpdate)}>
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Title</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="News title"
+                          {...field}
+                          className="w-full rounded-lg"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
                 />
-                <p>Current Image</p>
-              </div>
-            )}
-            <FormField
-              control={form.control}
-              name="image"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Image URL</FormLabel>
-                  <FormControl>
-                    <Input
-                      type="text"
-                      placeholder="Optional new image URL"
-                      {...field}
-                      className="w-full rounded-lg"
+                <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Content</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          rows={6}
+                          placeholder="News content"
+                          {...field}
+                          className="w-full p-2 border rounded bg-background"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                {newsDetail?.image && (
+                  <div>
+                    <Image
+                      src={`http://localhost:8000/${newsDetail.image}`}
+                      width={500}
+                      height={300}
+                      alt="News"
                     />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <Button type="submit" className="mt-4" disabled={isLoading}>
-              {isLoading ? "Updating..." : "Update News"}
-            </Button>
-            <Button
-              type="button"
-              className="mt-4 ml-2"
-              variant="outline"
-              onClick={toggleEditMode}
-            >
-              Cancel
-            </Button>
-          </form>
-        </Form>
-      ) : (
-        <div>
-          <h1>{newsDetail?.title}</h1>
-          <p>{newsDetail?.content}</p>
-          {newsDetail?.image && (
-            <Image
-              src={`http://localhost:8000/${newsDetail.image}`}
-              width={500}
-              height={300}
-              alt="News"
-            />
-          )}
-          <Button className="mt-4" onClick={toggleEditMode}>
-            Edit News
-          </Button>
-        </div>
-      )}
+                    <p>Current Image</p>
+                  </div>
+                )}
+                <FormField
+                  control={form.control}
+                  name="image"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Image URL</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Optional new image URL"
+                          {...field}
+                          className="w-full rounded-lg"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="mt-4" disabled={isLoading}>
+                  {isLoading ? "Updating..." : "Update News"}
+                </Button>
+                <Button
+                  type="button"
+                  className="mt-4 ml-2"
+                  variant="outline"
+                  onClick={toggleEditMode}
+                >
+                  Cancel
+                </Button>
+              </form>
+            </Form>
+          </CardContent>
+        ) : (
+          <div>
+            <CardHeader>
+              <CardTitle className="text-2xl">{newsDetail?.title}</CardTitle>
+              <CardDescription>9 September 2024</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <div className="flex flex-col gap-4">
+                {newsDetail?.image && (
+                  <Image
+                    src={`http://localhost:8000/${newsDetail.image}`}
+                    width={800}
+                    height={600}
+                    alt="News"
+                    className="rounded-lg shadow"
+                  />
+                )}
+                <div className="flex flex-col gap-2">
+                  {newsDetail?.content && renderContent(newsDetail.content)}
+                </div>
+              </div>
+              <div className="pt-8 flex gap-2">
+                <Button onClick={toggleEditMode}>Edit News</Button>
+                <Button
+                  onClick={toggleEditMode}
+                  className="bg-destructive text-white"
+                >
+                  Delete
+                </Button>
+              </div>
+            </CardContent>
+          </div>
+        )}
+      </Card>
     </div>
   );
 }
