@@ -20,11 +20,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import Image from "next/image";
 
 interface NewsItem {
   id: number;
   title: string;
   content: string;
+  image?: string;
 }
 
 export default function ListNews() {
@@ -133,7 +135,9 @@ export default function ListNews() {
               </Link>
             </CardFooter>
           </div>
-          <div className="p-16 bg-gray-500"></div>
+          {item.image && (
+            <Image src={item.image} alt={item.title} width={200} height={200} />
+          )}
         </Card>
       ))}
       <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
