@@ -172,87 +172,92 @@ export default function DetailNews(props: DetailNewsProps) {
       <Toaster />
       <Card>
         {isEditing ? (
-          <CardContent>
+          <div>
             <Form {...form}>
               <form onSubmit={form.handleSubmit(handleUpdate)}>
-                <FormField
-                  control={form.control}
-                  name="title"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Title</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="News title"
-                          {...field}
-                          className="w-full rounded-lg"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
+                <CardHeader>
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Title</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="News title"
+                            {...field}
+                            className="w-full rounded-lg"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </CardHeader>
+                <CardContent>
+                  {newsDetail?.image && (
+                    <div>
+                      <Image
+                        src={`http://localhost:8000/${newsDetail.image}`}
+                        width={500}
+                        height={300}
+                        alt="News"
+                      />
+                      <p>Current Image</p>
+                    </div>
                   )}
-                />
-                <FormField
-                  control={form.control}
-                  name="content"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Content</FormLabel>
-                      <FormControl>
-                        <Textarea
-                          rows={6}
-                          placeholder="News content"
-                          {...field}
-                          className="w-full p-2 border rounded bg-background"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                {newsDetail?.image && (
-                  <div>
-                    <Image
-                      src={`http://localhost:8000/${newsDetail.image}`}
-                      width={500}
-                      height={300}
-                      alt="News"
-                    />
-                    <p>Current Image</p>
-                  </div>
-                )}
-                <FormField
-                  control={form.control}
-                  name="image"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Image URL</FormLabel>
-                      <FormControl>
-                        <Input
-                          type="text"
-                          placeholder="Optional new image URL"
-                          {...field}
-                          className="w-full rounded-lg"
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button type="submit" className="mt-4" disabled={isLoading}>
-                  {isLoading ? "Updating..." : "Update News"}
-                </Button>
-                <Button
-                  type="button"
-                  className="mt-4 ml-2"
-                  variant="outline"
-                  onClick={toggleEditMode}
-                >
-                  Cancel
-                </Button>
+                  <FormField
+                    control={form.control}
+                    name="image"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image URL</FormLabel>
+                        <FormControl>
+                          <Input
+                            type="text"
+                            placeholder="Optional new image URL"
+                            {...field}
+                            className="w-full rounded-lg"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="content"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Content</FormLabel>
+                        <FormControl>
+                          <Textarea
+                            rows={6}
+                            placeholder="News content"
+                            {...field}
+                            className="w-full p-2 border rounded bg-background"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <Button type="submit" className="mt-4" disabled={isLoading}>
+                    {isLoading ? "Updating..." : "Update News"}
+                  </Button>
+                  <Button
+                    type="button"
+                    className="mt-4 ml-2"
+                    variant="outline"
+                    onClick={toggleEditMode}
+                  >
+                    Cancel
+                  </Button>
+                </CardContent>
               </form>
             </Form>
-          </CardContent>
+          </div>
         ) : (
           <div>
             <CardHeader>
