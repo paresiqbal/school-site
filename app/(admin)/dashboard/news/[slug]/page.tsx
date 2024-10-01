@@ -111,14 +111,25 @@ export default function DetailNews(props: DetailNewsProps) {
     setError(null);
 
     try {
+      // Create FormData to send image file and other data
+      const formData = new FormData();
+      formData.append("title", data.title);
+      formData.append("content", data.content);
+
+      // Check if there's a new image file
+      const imageFile = (
+        document.getElementById("imageInput") as HTMLInputElement
+      ).files?.[0];
+      if (imageFile) {
+        formData.append("image", imageFile);
+      }
+
       const res = await fetch(`http://127.0.0.1:8000/api/news/${params.slug}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
-          accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(data),
+        body: formData, // Send FormData
       });
 
       if (!res.ok) {
@@ -209,14 +220,14 @@ export default function DetailNews(props: DetailNewsProps) {
                   <FormField
                     control={form.control}
                     name="image"
-                    render={({ field }) => (
+                    render={() => (
                       <FormItem>
-                        <FormLabel>Image URL</FormLabel>
+                        <FormLabel>Choose New Image</FormLabel>
                         <FormControl>
                           <Input
-                            type="text"
-                            placeholder="Optional new image URL"
-                            {...field}
+                            type="file"
+                            id="imageInput"
+                            accept="image/*"
                             className="w-full rounded-lg"
                           />
                         </FormControl>
@@ -250,7 +261,7 @@ export default function DetailNews(props: DetailNewsProps) {
                     type="button"
                     className="mt-4 ml-2"
                     variant="outline"
-                    onClick={toggleEditMode}
+                    onClick={() => setIsEditing(false)}
                   >
                     Cancel
                   </Button>

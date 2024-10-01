@@ -31,10 +31,6 @@ export default function Dashboard() {
           </h1>
         </div>
       )}
-
-      <div>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ab, unde.
-      </div>
     </div>
   );
 }
