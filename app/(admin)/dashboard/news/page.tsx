@@ -9,6 +9,7 @@ import { AppContext } from "@/context/AppContext";
 import {
   Card,
   CardContent,
+  CardDescription,
   CardFooter,
   CardHeader,
   CardTitle,
@@ -32,6 +33,7 @@ interface NewsItem {
   title: string;
   content: string;
   image?: string;
+  created_at: string;
 }
 
 export default function ListNews() {
@@ -98,6 +100,18 @@ export default function ListNews() {
     }
   };
 
+  const formatDate = (dateString?: string | null): string => {
+    if (!dateString) return "Date not available";
+
+    const options: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
+
   if (loading) return <p>Loading...</p>;
   if (error) return <p className="text-red-600">{error}</p>;
 
@@ -124,11 +138,20 @@ export default function ListNews() {
           <div className="w-3/4">
             <CardHeader className="flex">
               <CardTitle className="text-xl">{item.title}</CardTitle>
+              <CardDescription>{formatDate(item.created_at)}</CardDescription>
             </CardHeader>
             <CardContent>
               <p>{truncateText(item.content, 255)}</p>
             </CardContent>
             <CardFooter className="flex gap-4">
+              <Link href={`/dashboard/news/${item.id}`}>
+                <Button className="flex items-center gap-2">
+                  See more
+                  <span>
+                    <Pencil className="h-4 w-4" />
+                  </span>
+                </Button>
+              </Link>
               <Button
                 variant="destructive"
                 onClick={() => handleDelete(item.id)}
@@ -139,15 +162,6 @@ export default function ListNews() {
                   <Trash2 className="h-4 w-4" />
                 </span>
               </Button>
-
-              <Link href={`/dashboard/news/${item.id}`}>
-                <Button className="flex items-center gap-2">
-                  See more
-                  <span>
-                    <Pencil className="h-4 w-4" />
-                  </span>
-                </Button>
-              </Link>
             </CardFooter>
           </div>
           {item.image && (
