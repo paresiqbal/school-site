@@ -41,6 +41,9 @@ export default function DetailNews({ params }: DetailNewsProps) {
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedTitle, setEditedTitle] = useState("");
+  const [editedContent, setEditedContent] = useState("");
 
   useEffect(() => {
     async function fetchNewsDetail() {
@@ -62,6 +65,8 @@ export default function DetailNews({ params }: DetailNewsProps) {
 
         const data = await res.json();
         setNewsDetail(data);
+        setEditedTitle(data.title);
+        setEditedContent(data.content);
         toast.success("News loaded successfully");
       } catch (error) {
         console.error(error);
@@ -85,6 +90,42 @@ export default function DetailNews({ params }: DetailNewsProps) {
     };
 
     return new Date(dateString).toLocaleDateString("en-US", options);
+  };
+
+  const handleEditToggle = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleSave = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const res = await fetch(
+        `http://127.0.0.1:8000/api/news/${newsDetail?.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            title: editedTitle,
+            content: editedContent,
+          }),
+        }
+      );
+
+      if (!res.ok) {
+        throw new Error("Failed to update news.");
+      }
+
+      const updatedNews = await res.json();
+      setNewsDetail(updatedNews);
+      setIsEditing(false);
+      toast.success("News updated successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update news.");
+    }
   };
 
   if (loading)
@@ -118,10 +159,50 @@ export default function DetailNews({ params }: DetailNewsProps) {
 
       <Card className="mb-6 p-4">
         <CardHeader>
-          <CardTitle className="text-2xl md:text-3xl">
-            {newsDetail.title}
-          </CardTitle>
-          <CardDescription>{formatDate(newsDetail.created_at)}</CardDescription>
+          {isEditing ? (
+            <form onSubmit={handleSave}>
+              <input
+                type="text"
+                value={editedTitle}
+                onChange={(e) => setEditedTitle(e.target.value)}
+                className="text-2xl md:text-3xl w-full mb-2"
+              />
+              <textarea
+                value={editedContent}
+                onChange={(e) => setEditedContent(e.target.value)}
+                rows={5}
+                className="w-full mb-4"
+              />
+              <button
+                type="submit"
+                className="bg-blue-500 text-white px-4 py-2 rounded"
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={handleEditToggle}
+                className="ml-2 bg-gray-500 text-white px-4 py-2 rounded"
+              >
+                Cancel
+              </button>
+            </form>
+          ) : (
+            <>
+              <CardTitle className="text-2xl md:text-3xl">
+                {newsDetail.title}
+              </CardTitle>
+              <CardDescription>
+                {formatDate(newsDetail.created_at)}
+              </CardDescription>
+              <button
+                onClick={handleEditToggle}
+                className="mt-2 bg-green-500 text-white px-4 py-2 rounded"
+              >
+                Edit
+              </button>
+            </>
+          )}
         </CardHeader>
         <CardContent className="mt-4">
           {newsDetail.image && (
@@ -138,7 +219,9 @@ export default function DetailNews({ params }: DetailNewsProps) {
           <div
             className="text-base md:text-lg"
             dangerouslySetInnerHTML={{
-              __html: newsDetail.content.replace(/\n/g, "<br />"),
+              __html: isEditing
+                ? editedContent.replace(/\n/g, "<br />")
+                : newsDetail.content.replace(/\n/g, "<br />"),
             }}
           />
         </CardContent>
