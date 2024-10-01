@@ -263,7 +263,7 @@ export default function EditNews({ params }: DetailNewsProps) {
                 type="submit"
                 className="font-bold w-full p-2 rounded mt-4"
               >
-                Save
+                Save Update
               </Button>
             </form>
           </Form>
