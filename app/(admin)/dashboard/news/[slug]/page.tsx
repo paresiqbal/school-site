@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -16,7 +17,6 @@ import {
 } from "@/components/ui/form";
 import { Toaster, toast } from "sonner";
 import { AppContext } from "@/context/AppContext";
-import Image from "next/image";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -41,13 +41,11 @@ const formSchema = z.object({
   content: z
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
-  image: z.instanceof(File).optional(), // Change to accept a File instance
 });
 
 interface NewsDetail {
   title: string;
   content: string;
-  image?: string;
 }
 
 type DetailNewsProps = { params: { slug: string } };
@@ -65,7 +63,6 @@ export default function DetailNews(props: DetailNewsProps) {
     defaultValues: {
       title: "",
       content: "",
-      image: undefined, // Default to undefined for file
     },
   });
 
@@ -84,7 +81,6 @@ export default function DetailNews(props: DetailNewsProps) {
         setNewsDetail(data);
         form.setValue("title", data.title);
         form.setValue("content", data.content);
-        // Remove image from setting default value as we are uploading a file now
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -99,23 +95,9 @@ export default function DetailNews(props: DetailNewsProps) {
     fetchNews();
   }, [params.slug, form]);
 
-  const renderContent = (content: string) => {
-    return content
-      .split("\n")
-      .map((text: string, index: number) => <p key={index}>{text}</p>);
-  };
-
   const handleUpdate = async (data: z.infer<typeof formSchema>) => {
-    // Use the correct type inferred from the form schema
     setIsLoading(true);
     setError(null);
-
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("content", data.content);
-    if (data.image) {
-      formData.append("image", data.image); // Append the image file
-    }
 
     try {
       const res = await fetch(`http://127.0.0.1:8000/api/news/${params.slug}`, {
@@ -123,8 +105,9 @@ export default function DetailNews(props: DetailNewsProps) {
         headers: {
           accept: "application/json",
           Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json", // Assuming JSON payload
         },
-        body: formData, // Use FormData as the body
+        body: JSON.stringify(data), // Send data as JSON
       });
 
       if (!res.ok) {
@@ -178,94 +161,60 @@ export default function DetailNews(props: DetailNewsProps) {
       <Toaster />
       <Card>
         {isEditing ? (
-          <div>
-            <Form {...form}>
-              <form onSubmit={form.handleSubmit(handleUpdate)}>
-                <CardHeader>
-                  <FormField
-                    control={form.control}
-                    name="title"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Title</FormLabel>
-                        <FormControl>
-                          <Input
-                            placeholder="News title"
-                            {...field}
-                            className="w-full rounded-lg"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                </CardHeader>
-                <CardContent>
-                  {newsDetail?.image && (
-                    <div>
-                      <Image
-                        src={`http://localhost:8000/${newsDetail.image}`}
-                        width={500}
-                        height={300}
-                        alt="News"
-                      />
-                    </div>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleUpdate)}>
+              <CardHeader>
+                <FormField
+                  control={form.control}
+                  name="title"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Title</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="News title"
+                          {...field}
+                          className="w-full rounded-lg"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
                   )}
-                  <FormField
-                    control={form.control}
-                    name="image"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Image Upload</FormLabel>
-                        <FormControl>
-                          <Input
-                            type="file" // Change type to file
-                            accept="image/*" // Accept image files only
-                            onChange={(e) => {
-                              if (e.target.files) {
-                                field.onChange(e.target.files[0]); // Get the first file
-                              }
-                            }}
-                            className="w-full rounded-lg"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
-                    control={form.control}
-                    name="content"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Content</FormLabel>
-                        <FormControl>
-                          <Textarea
-                            rows={6}
-                            placeholder="News content"
-                            {...field}
-                            className="w-full p-2 border rounded bg-background"
-                          />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <Button type="submit" className="mt-4" disabled={isLoading}>
-                    {isLoading ? "Updating..." : "Update News"}
-                  </Button>
-                  <Button
-                    type="button"
-                    className="mt-4 ml-2"
-                    variant="outline"
-                    onClick={toggleEditMode}
-                  >
-                    Cancel
-                  </Button>
-                </CardContent>
-              </form>
-            </Form>
-          </div>
+                />
+              </CardHeader>
+              <CardContent>
+                <FormField
+                  control={form.control}
+                  name="content"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Content</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          rows={6}
+                          placeholder="News content"
+                          {...field}
+                          className="w-full p-2 border rounded bg-background"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="mt-4" disabled={isLoading}>
+                  {isLoading ? "Updating..." : "Update News"}
+                </Button>
+                <Button
+                  type="button"
+                  className="mt-4 ml-2"
+                  variant="outline"
+                  onClick={toggleEditMode}
+                >
+                  Cancel
+                </Button>
+              </CardContent>
+            </form>
+          </Form>
         ) : (
           <div>
             <CardHeader>
@@ -273,19 +222,10 @@ export default function DetailNews(props: DetailNewsProps) {
               <CardDescription>9 September 2024</CardDescription>
             </CardHeader>
             <CardContent>
-              <div className="flex flex-col gap-4">
-                {newsDetail?.image && (
-                  <Image
-                    src={`http://localhost:8000/${newsDetail.image}`}
-                    width={800}
-                    height={600}
-                    alt="News"
-                    className="rounded-lg shadow"
-                  />
-                )}
-                <div className="flex flex-col gap-3">
-                  {newsDetail?.content && renderContent(newsDetail.content)}
-                </div>
+              <div className="flex flex-col gap-3">
+                {newsDetail?.content.split("\n").map((text, index) => (
+                  <p key={index}>{text}</p>
+                ))}
               </div>
               <div className="pt-8 flex gap-2">
                 <Button
