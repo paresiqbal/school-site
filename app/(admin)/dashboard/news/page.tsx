@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Pencil, Trash2 } from "lucide-react";
+import { Loader, Pencil, Trash2 } from "lucide-react";
 
 interface NewsData {
   id: number;
@@ -112,7 +112,12 @@ export default function ListNews() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <Loader className="animate-spin" size={48} />
+      </div>
+    );
   if (error) return <p className="text-red-600">{error}</p>;
 
   return (
