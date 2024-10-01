@@ -159,7 +159,7 @@ export default function EditNews({ params }: DetailNewsProps) {
   if (!newsDetail) return <p className="text-center mt-4">News not found.</p>;
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto">
       <Breadcrumb className="hidden md:flex pb-4">
         <BreadcrumbList>
           <BreadcrumbItem>
@@ -169,21 +169,27 @@ export default function EditNews({ params }: DetailNewsProps) {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
+            <BreadcrumbPage>
+              <Link href="/dashboard/news">List News</Link>
+            </BreadcrumbPage>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
             <BreadcrumbPage>Edit News</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
 
+      {/* Edit form */}
       <Toaster />
-
-      <Card className="mb-6 p-4">
+      <Card>
         <CardHeader>
           <CardTitle>Edit News</CardTitle>
           <CardDescription>
             Change this form to update the news.
           </CardDescription>
         </CardHeader>
-        <CardContent className="mt-4">
+        <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleSave)}>
               <FormField
@@ -193,18 +199,14 @@ export default function EditNews({ params }: DetailNewsProps) {
                   <FormItem>
                     <FormLabel>Title</FormLabel>
                     <FormControl>
-                      <Input
-                        placeholder="News title"
-                        {...field}
-                        className="w-full rounded-lg"
-                      />
+                      <Input placeholder="News title" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
               {newsDetail.image && (
-                <div className="w-full mb-4">
+                <div className="w-full py-6">
                   <Image
                     src={`http://localhost:8000/${newsDetail.image}`}
                     alt={newsDetail.title}
@@ -222,7 +224,7 @@ export default function EditNews({ params }: DetailNewsProps) {
                     <FormLabel>Content</FormLabel>
                     <FormControl>
                       <Textarea
-                        rows={5}
+                        rows={12}
                         placeholder="News content"
                         {...field}
                         className="w-full"
