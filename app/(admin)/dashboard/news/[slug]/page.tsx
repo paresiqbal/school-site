@@ -24,7 +24,7 @@ import {
 import { Toaster, toast } from "sonner";
 
 // icons
-import { Loader } from "lucide-react";
+import { Loader, Save } from "lucide-react";
 
 type DetailNewsProps = { params: { slug: string } };
 
@@ -42,8 +42,8 @@ export default function DetailNews({ params }: DetailNewsProps) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState("");
-  const [editedContent, setEditedContent] = useState("");
+  const [updatedTitle, setUpdatedTitle] = useState<string>("");
+  const [updatedContent, setUpdatedContent] = useState<string>("");
 
   useEffect(() => {
     async function fetchNewsDetail() {
@@ -65,8 +65,8 @@ export default function DetailNews({ params }: DetailNewsProps) {
 
         const data = await res.json();
         setNewsDetail(data);
-        setEditedTitle(data.title);
-        setEditedContent(data.content);
+        setUpdatedTitle(data.title);
+        setUpdatedContent(data.content);
         toast.success("News loaded successfully");
       } catch (error) {
         console.error(error);
@@ -96,8 +96,7 @@ export default function DetailNews({ params }: DetailNewsProps) {
     setIsEditing(!isEditing);
   };
 
-  const handleSave = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleUpdate = async () => {
     try {
       const res = await fetch(
         `http://127.0.0.1:8000/api/news/${newsDetail?.id}`,
@@ -108,8 +107,8 @@ export default function DetailNews({ params }: DetailNewsProps) {
             Authorization: `Bearer ${token}`,
           },
           body: JSON.stringify({
-            title: editedTitle,
-            content: editedContent,
+            title: updatedTitle,
+            content: updatedContent,
           }),
         }
       );
@@ -118,12 +117,12 @@ export default function DetailNews({ params }: DetailNewsProps) {
         throw new Error("Failed to update news.");
       }
 
-      const updatedNews = await res.json();
-      setNewsDetail(updatedNews);
+      const data = await res.json();
+      setNewsDetail(data);
       setIsEditing(false);
       toast.success("News updated successfully");
     } catch (error) {
-      console.error(error);
+      console.error("Error updating news:", error);
       toast.error("Failed to update news.");
     }
   };
@@ -159,73 +158,69 @@ export default function DetailNews({ params }: DetailNewsProps) {
 
       <Card className="mb-6 p-4">
         <CardHeader>
-          {isEditing ? (
-            <form onSubmit={handleSave}>
+          <CardTitle className="text-2xl md:text-3xl">
+            {isEditing ? (
               <input
                 type="text"
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-                className="text-2xl md:text-3xl w-full mb-2"
+                value={updatedTitle}
+                onChange={(e) => setUpdatedTitle(e.target.value)}
+                className="border border-gray-300 rounded p-2 w-full"
+                placeholder="Enter title"
               />
-              <textarea
-                value={editedContent}
-                onChange={(e) => setEditedContent(e.target.value)}
-                rows={5}
-                className="w-full mb-4"
-              />
+            ) : (
+              newsDetail.title
+            )}
+          </CardTitle>
+          <CardDescription>{formatDate(newsDetail.created_at)}</CardDescription>
+        </CardHeader>
+
+        {isEditing ? (
+          <CardContent>
+            <textarea
+              value={updatedContent}
+              onChange={(e) => setUpdatedContent(e.target.value)}
+              className="border border-gray-300 rounded p-2 w-full h-40"
+              placeholder="Enter content"
+            />
+            <div className="flex justify-end mt-4">
               <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded"
+                onClick={handleUpdate}
+                className="bg-blue-500 text-white rounded px-4 py-2"
               >
+                <Save className="inline h-4 w-4 mr-2" />
                 Save
               </button>
-              <button
-                type="button"
-                onClick={handleEditToggle}
-                className="ml-2 bg-gray-500 text-white px-4 py-2 rounded"
-              >
-                Cancel
-              </button>
-            </form>
-          ) : (
-            <>
-              <CardTitle className="text-2xl md:text-3xl">
-                {newsDetail.title}
-              </CardTitle>
-              <CardDescription>
-                {formatDate(newsDetail.created_at)}
-              </CardDescription>
-              <button
-                onClick={handleEditToggle}
-                className="mt-2 bg-green-500 text-white px-4 py-2 rounded"
-              >
-                Edit
-              </button>
-            </>
-          )}
-        </CardHeader>
-        <CardContent className="mt-4">
-          {newsDetail.image && (
-            <div className="w-full mb-6">
-              <Image
-                src={`http://localhost:8000/${newsDetail.image}`}
-                alt={newsDetail.title}
-                width={600}
-                height={400}
-                className="rounded-lg w-full h-auto object-cover"
-              />
             </div>
-          )}
-          <div
-            className="text-base md:text-lg"
-            dangerouslySetInnerHTML={{
-              __html: isEditing
-                ? editedContent.replace(/\n/g, "<br />")
-                : newsDetail.content.replace(/\n/g, "<br />"),
-            }}
-          />
-        </CardContent>
+          </CardContent>
+        ) : (
+          <CardContent className="mt-4">
+            {newsDetail.image && (
+              <div className="w-full mb-6">
+                <Image
+                  src={`http://localhost:8000/${newsDetail.image}`}
+                  alt={newsDetail.title}
+                  width={600}
+                  height={400}
+                  className="rounded-lg w-full h-auto object-cover"
+                />
+              </div>
+            )}
+            <div
+              className="text-base md:text-lg"
+              dangerouslySetInnerHTML={{
+                __html: newsDetail.content.replace(/\n/g, "<br />"),
+              }}
+            />
+          </CardContent>
+        )}
       </Card>
+
+      <button
+        onClick={handleEditToggle}
+        className="mt-4 bg-gray-500 text-white rounded px-4 py-2"
+      >
+        {isEditing ? "Cancel" : "Edit"}
+      </button>
     </div>
   );
 }
