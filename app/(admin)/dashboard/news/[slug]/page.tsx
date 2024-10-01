@@ -44,6 +44,7 @@ import { Pencil, Trash2 } from "lucide-react";
 interface NewsDetail {
   title: string;
   content: string;
+  created_at: string;
 }
 
 type DetailNewsProps = { params: { slug: string } };
@@ -57,11 +58,11 @@ const formSchema = z.object({
 
 export default function DetailNews(props: DetailNewsProps) {
   const { params } = props;
+  const { token } = useContext(AppContext);
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
   const [isEditing, setIsEditing] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const { token } = useContext(AppContext);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -99,6 +100,18 @@ export default function DetailNews(props: DetailNewsProps) {
 
     fetchNews();
   }, [params.slug, form]);
+
+  const formatDate = (dateString?: string | null): string => {
+    if (!dateString) return "Date not available";
+
+    const options: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
 
   const handleUpdate = async (data: z.infer<typeof formSchema>) => {
     setIsLoading(true);
@@ -224,7 +237,11 @@ export default function DetailNews(props: DetailNewsProps) {
           <div>
             <CardHeader>
               <CardTitle className="text-2xl">{newsDetail?.title}</CardTitle>
-              <CardDescription>9 September 2024</CardDescription>
+              <CardDescription>
+                {newsDetail
+                  ? formatDate(newsDetail.created_at)
+                  : "Date not available"}
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="flex flex-col gap-3">
