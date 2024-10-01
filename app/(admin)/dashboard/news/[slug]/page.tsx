@@ -2,8 +2,13 @@
 
 import { useState, useEffect, useContext } from "react";
 import { useForm } from "react-hook-form";
+import Link from "next/link";
+
+// lib
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+
+// ui lib
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,7 +30,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
+
+// icons
 import {
   Card,
   CardContent,
@@ -35,20 +41,19 @@ import {
 } from "@/components/ui/card";
 import { Pencil, Trash2 } from "lucide-react";
 
-// Validation schema using zod
-const formSchema = z.object({
-  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
-  content: z
-    .string()
-    .min(10, { message: "Content must be at least 10 characters." }),
-});
-
 interface NewsDetail {
   title: string;
   content: string;
 }
 
 type DetailNewsProps = { params: { slug: string } };
+
+const formSchema = z.object({
+  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
+  content: z
+    .string()
+    .min(10, { message: "Content must be at least 10 characters." }),
+});
 
 export default function DetailNews(props: DetailNewsProps) {
   const { params } = props;
@@ -105,9 +110,9 @@ export default function DetailNews(props: DetailNewsProps) {
         headers: {
           accept: "application/json",
           Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json", // Assuming JSON payload
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(data), // Send data as JSON
+        body: JSON.stringify(data),
       });
 
       if (!res.ok) {
