@@ -65,7 +65,7 @@ export default function EditNews({ params }: DetailNewsProps) {
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -109,13 +109,13 @@ export default function EditNews({ params }: DetailNewsProps) {
     }
 
     fetchNewsDetail();
-  }, [params.slug, token]);
+  }, [params.slug, token, form]);
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedImage(event.target.files[0]);
-    }
-  };
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.files && event.target.files.length > 0) {
+  //     setSelectedImage(event.target.files[0]);
+  //   }
+  // };
 
   const handleSave = async (data: z.infer<typeof formSchema>) => {
     try {
@@ -232,7 +232,7 @@ export default function EditNews({ params }: DetailNewsProps) {
                   </FormItem>
                 )}
               />
-              <div className="relative">
+              {/* <div className="relative">
                 <label
                   htmlFor="fileInput"
                   className="absolute left-4 bottom-4 cursor-pointer"
@@ -251,7 +251,7 @@ export default function EditNews({ params }: DetailNewsProps) {
                 <p className="mt-2 text-sm text-gray-600">
                   Selected file: {selectedImage.name}
                 </p>
-              )}
+              )} */}
               <Button
                 type="submit"
                 className="font-bold w-full p-2 rounded mt-4"
