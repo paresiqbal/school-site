@@ -1,7 +1,10 @@
 "use client";
+
 import { useState, useEffect } from "react";
-import { Toaster } from "sonner";
 import Image from "next/image";
+
+// ui lib
+import { Toaster } from "sonner";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -62,14 +65,11 @@ export default function DetailNews(props: DetailNewsProps) {
 
   const formatDate = (dateString?: string | null): string => {
     if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
+    return new Date(dateString).toLocaleDateString("en-US", {
+      day: "2-digit",
       month: "long",
       year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
+    });
   };
 
   if (isLoading) {
@@ -101,6 +101,7 @@ export default function DetailNews(props: DetailNewsProps) {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
+
       <Toaster />
       <Card>
         <CardHeader>
