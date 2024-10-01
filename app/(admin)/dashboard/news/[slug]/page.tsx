@@ -135,7 +135,12 @@ export default function DetailNews({ params }: DetailNewsProps) {
               />
             </div>
           )}
-          <p className="text-base md:text-lg">{newsDetail.content}</p>
+          <div
+            className="text-base md:text-lg"
+            dangerouslySetInnerHTML={{
+              __html: newsDetail.content.replace(/\n/g, "<br />"),
+            }}
+          />
         </CardContent>
       </Card>
     </div>
