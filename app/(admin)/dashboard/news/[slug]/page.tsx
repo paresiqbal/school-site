@@ -17,7 +17,6 @@ import {
 import { Toaster, toast } from "sonner";
 import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
-
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -42,7 +41,7 @@ const formSchema = z.object({
   content: z
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
-  image: z.string().optional(),
+  image: z.instanceof(File).optional(), // Change to accept a File instance
 });
 
 interface NewsDetail {
@@ -66,7 +65,7 @@ export default function DetailNews(props: DetailNewsProps) {
     defaultValues: {
       title: "",
       content: "",
-      image: "",
+      image: undefined, // Default to undefined for file
     },
   });
 
@@ -85,7 +84,7 @@ export default function DetailNews(props: DetailNewsProps) {
         setNewsDetail(data);
         form.setValue("title", data.title);
         form.setValue("content", data.content);
-        form.setValue("image", data.image);
+        // Remove image from setting default value as we are uploading a file now
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -106,19 +105,26 @@ export default function DetailNews(props: DetailNewsProps) {
       .map((text: string, index: number) => <p key={index}>{text}</p>);
   };
 
-  const handleUpdate = async (data: NewsDetail) => {
+  const handleUpdate = async (data: z.infer<typeof formSchema>) => {
+    // Use the correct type inferred from the form schema
     setIsLoading(true);
     setError(null);
+
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("content", data.content);
+    if (data.image) {
+      formData.append("image", data.image);
+    }
 
     try {
       const res = await fetch(`http://127.0.0.1:8000/api/news/${params.slug}`, {
         method: "PUT",
         headers: {
-          "Content-Type": "application/json",
           accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       if (!res.ok) {
@@ -210,12 +216,16 @@ export default function DetailNews(props: DetailNewsProps) {
                     name="image"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Image URL</FormLabel>
+                        <FormLabel>Image Upload</FormLabel>
                         <FormControl>
                           <Input
-                            type="text"
-                            placeholder="Optional new image URL"
-                            {...field}
+                            type="file" // Change type to file
+                            accept="image/*" // Accept image files only
+                            onChange={(e) => {
+                              if (e.target.files) {
+                                field.onChange(e.target.files[0]); // Get the first file
+                              }
+                            }}
                             className="w-full rounded-lg"
                           />
                         </FormControl>
