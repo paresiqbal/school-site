@@ -156,7 +156,9 @@ export default function ListNews() {
           )}
           <div className="w-full md:w-3/4">
             <CardHeader>
-              <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
+              <CardTitle className="text-lg md:text-xl">
+                <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
+              </CardTitle>
               <CardDescription>{formatDate(item.created_at)}</CardDescription>
             </CardHeader>
             <CardContent>
@@ -165,7 +167,7 @@ export default function ListNews() {
             <CardFooter className="flex gap-4">
               <Link href={`/dashboard/news/${item.id}`}>
                 <Button className="flex items-center gap-2">
-                  See more
+                  Edit News
                   <Pencil className="h-4 w-4" />
                 </Button>
               </Link>
