@@ -1,12 +1,16 @@
 "use client";
 
-import { Paperclip } from "lucide-react";
+import Link from "next/link";
 import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
+
+// ex lib
 import { z } from "zod";
-import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Toaster, toast } from "sonner";
+
+// ui lib
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,7 +22,6 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Toaster, toast } from "sonner";
 import {
   Card,
   CardHeader,
@@ -34,6 +37,9 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+
+// icons
+import { Paperclip } from "lucide-react";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
