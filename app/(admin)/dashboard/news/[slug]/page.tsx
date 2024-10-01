@@ -19,6 +19,15 @@ import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
 
 import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Link from "next/link";
+import {
   Card,
   CardContent,
   CardDescription,
@@ -33,7 +42,7 @@ const formSchema = z.object({
   content: z
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
-  image: z.any().optional(), // Allow file upload
+  image: z.string().optional(),
 });
 
 interface NewsDetail {
@@ -57,7 +66,7 @@ export default function DetailNews(props: DetailNewsProps) {
     defaultValues: {
       title: "",
       content: "",
-      image: null,
+      image: "",
     },
   });
 
@@ -76,6 +85,7 @@ export default function DetailNews(props: DetailNewsProps) {
         setNewsDetail(data);
         form.setValue("title", data.title);
         form.setValue("content", data.content);
+        form.setValue("image", data.image);
       } catch (err) {
         if (err instanceof Error) {
           setError(err.message);
@@ -90,24 +100,25 @@ export default function DetailNews(props: DetailNewsProps) {
     fetchNews();
   }, [params.slug, form]);
 
-  const handleUpdate = async (data: z.infer<typeof formSchema>) => {
+  const renderContent = (content: string) => {
+    return content
+      .split("\n")
+      .map((text: string, index: number) => <p key={index}>{text}</p>);
+  };
+
+  const handleUpdate = async (data: NewsDetail) => {
     setIsLoading(true);
     setError(null);
 
     try {
-      const formData = new FormData();
-      formData.append("title", data.title);
-      formData.append("content", data.content);
-      if (data.image && data.image[0]) {
-        formData.append("image", data.image[0]);
-      }
-
       const res = await fetch(`http://127.0.0.1:8000/api/news/${params.slug}`, {
         method: "PUT",
         headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: formData,
+        body: JSON.stringify(data),
       });
 
       if (!res.ok) {
@@ -130,10 +141,6 @@ export default function DetailNews(props: DetailNewsProps) {
     }
   };
 
-  const toggleEditMode = () => {
-    setIsEditing(!isEditing);
-  };
-
   if (isLoading && !newsDetail) {
     return <div>Loading...</div>;
   }
@@ -142,14 +149,26 @@ export default function DetailNews(props: DetailNewsProps) {
     return <div>Error: {error}</div>;
   }
 
-  const renderContent = (content: string) => {
-    return content
-      .split("\n")
-      .map((text: string, index: number) => <p key={index}>{text}</p>);
+  const toggleEditMode = () => {
+    setIsEditing(!isEditing);
   };
 
   return (
     <div className="container mx-auto">
+      <Breadcrumb className="hidden md:flex pb-4">
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/dashboard">Dashboard</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Detail News</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+
       <Toaster />
       <Card>
         {isEditing ? (
@@ -168,7 +187,6 @@ export default function DetailNews(props: DetailNewsProps) {
                             placeholder="News title"
                             {...field}
                             className="w-full rounded-lg"
-                            value={field.value ?? ""}
                           />
                         </FormControl>
                         <FormMessage />
@@ -185,7 +203,6 @@ export default function DetailNews(props: DetailNewsProps) {
                         height={300}
                         alt="News"
                       />
-                      <p>Current Image</p>
                     </div>
                   )}
                   <FormField
@@ -193,13 +210,13 @@ export default function DetailNews(props: DetailNewsProps) {
                     name="image"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Upload New Image</FormLabel>
+                        <FormLabel>Image URL</FormLabel>
                         <FormControl>
                           <Input
-                            type="file"
-                            onChange={(e) => field.onChange(e.target.files)}
+                            type="text"
+                            placeholder="Optional new image URL"
+                            {...field}
                             className="w-full rounded-lg"
-                            accept="image/*"
                           />
                         </FormControl>
                         <FormMessage />
@@ -217,7 +234,6 @@ export default function DetailNews(props: DetailNewsProps) {
                             rows={6}
                             placeholder="News content"
                             {...field}
-                            value={field.value ?? ""}
                             className="w-full p-2 border rounded bg-background"
                           />
                         </FormControl>
@@ -225,7 +241,6 @@ export default function DetailNews(props: DetailNewsProps) {
                       </FormItem>
                     )}
                   />
-
                   <Button type="submit" className="mt-4" disabled={isLoading}>
                     {isLoading ? "Updating..." : "Update News"}
                   </Button>
