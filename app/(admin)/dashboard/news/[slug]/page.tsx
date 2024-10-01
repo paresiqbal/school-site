@@ -1,6 +1,7 @@
 "use client";
 
 import { useContext, useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
 
@@ -21,7 +22,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Toaster, toast } from "sonner";
-import Image from "next/image";
 
 // icons
 import { Loader } from "lucide-react";
