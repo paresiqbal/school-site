@@ -14,13 +14,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Toaster, toast } from "sonner";
 
 // icons
@@ -36,12 +30,11 @@ interface NewsDetail {
   created_at: string;
 }
 
-export default function DetailNews({ params }: DetailNewsProps) {
+export default function EditNews({ params }: DetailNewsProps) {
   const { token } = useContext(AppContext);
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState("");
   const [editedContent, setEditedContent] = useState("");
 
@@ -80,22 +73,6 @@ export default function DetailNews({ params }: DetailNewsProps) {
     fetchNewsDetail();
   }, [params.slug, token]);
 
-  const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  };
-
-  const handleEditToggle = () => {
-    setIsEditing(!isEditing);
-  };
-
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -120,7 +97,6 @@ export default function DetailNews({ params }: DetailNewsProps) {
 
       const updatedNews = await res.json();
       setNewsDetail(updatedNews);
-      setIsEditing(false);
       toast.success("News updated successfully");
     } catch (error) {
       console.error(error);
@@ -150,7 +126,7 @@ export default function DetailNews({ params }: DetailNewsProps) {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>Detail News</BreadcrumbPage>
+            <BreadcrumbPage>Edit News</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -159,72 +135,42 @@ export default function DetailNews({ params }: DetailNewsProps) {
 
       <Card className="mb-6 p-4">
         <CardHeader>
-          {isEditing ? (
-            <form onSubmit={handleSave}>
-              <input
-                type="text"
-                value={editedTitle}
-                onChange={(e) => setEditedTitle(e.target.value)}
-                className="text-2xl md:text-3xl w-full mb-2"
-              />
-              <textarea
-                value={editedContent}
-                onChange={(e) => setEditedContent(e.target.value)}
-                rows={5}
-                className="w-full mb-4"
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded"
-              >
-                Save
-              </button>
-              <button
-                type="button"
-                onClick={handleEditToggle}
-                className="ml-2 bg-gray-500 text-white px-4 py-2 rounded"
-              >
-                Cancel
-              </button>
-            </form>
-          ) : (
-            <>
-              <CardTitle className="text-2xl md:text-3xl">
-                {newsDetail.title}
-              </CardTitle>
-              <CardDescription>
-                {formatDate(newsDetail.created_at)}
-              </CardDescription>
-              <button
-                onClick={handleEditToggle}
-                className="mt-2 bg-green-500 text-white px-4 py-2 rounded"
-              >
-                Edit
-              </button>
-            </>
-          )}
+          <h2 className="text-2xl md:text-3xl mb-2">Edit News</h2>
+          <form onSubmit={handleSave}>
+            <input
+              type="text"
+              value={editedTitle}
+              onChange={(e) => setEditedTitle(e.target.value)}
+              className="text-2xl md:text-3xl w-full mb-2"
+              required
+            />
+            {newsDetail.image && (
+              <div className="w-full mb-4">
+                <Image
+                  src={`http://localhost:8000/${newsDetail.image}`}
+                  alt={newsDetail.title}
+                  width={600}
+                  height={400}
+                  className="rounded-lg h-auto object-cover"
+                />
+              </div>
+            )}
+            <textarea
+              value={editedContent}
+              onChange={(e) => setEditedContent(e.target.value)}
+              rows={5}
+              className="w-full mb-4"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-blue-500 text-white px-4 py-2 rounded"
+            >
+              Save
+            </button>
+          </form>
         </CardHeader>
-        <CardContent className="mt-4">
-          {newsDetail.image && (
-            <div className="w-full mb-6">
-              <Image
-                src={`http://localhost:8000/${newsDetail.image}`}
-                alt={newsDetail.title}
-                width={600}
-                height={400}
-                className="rounded-lg w-full h-auto object-cover"
-              />
-            </div>
-          )}
-          <div
-            className="text-base md:text-lg"
-            dangerouslySetInnerHTML={{
-              __html: isEditing
-                ? editedContent.replace(/\n/g, "<br />")
-                : newsDetail.content.replace(/\n/g, "<br />"),
-            }}
-          />
-        </CardContent>
+        <CardContent className="mt-4"></CardContent>
       </Card>
     </div>
   );
