@@ -170,7 +170,12 @@ export default function EditNews({ params }: DetailNewsProps) {
           <BreadcrumbSeparator />
           <BreadcrumbItem>
             <BreadcrumbPage>
-              <Link href="/dashboard/news">List News</Link>
+              <Link
+                href="/dashboard/news"
+                className="text-zinc-300 hover:text-foreground"
+              >
+                List News
+              </Link>
             </BreadcrumbPage>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
