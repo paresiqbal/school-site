@@ -114,7 +114,7 @@ export default function DetailNews(props: DetailNewsProps) {
     formData.append("title", data.title);
     formData.append("content", data.content);
     if (data.image) {
-      formData.append("image", data.image);
+      formData.append("image", data.image); // Append the image file
     }
 
     try {
@@ -124,7 +124,7 @@ export default function DetailNews(props: DetailNewsProps) {
           accept: "application/json",
           Authorization: `Bearer ${token}`,
         },
-        body: formData,
+        body: formData, // Use FormData as the body
       });
 
       if (!res.ok) {
