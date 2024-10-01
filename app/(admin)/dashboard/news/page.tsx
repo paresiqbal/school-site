@@ -143,19 +143,19 @@ export default function ListNews() {
               <Image
                 src={`http://localhost:8000/${item.image}`}
                 alt={item.title}
-                width={250}
-                height={150}
+                width={300}
+                height={250}
                 className="rounded-lg w-full h-auto object-cover"
               />
             </div>
           )}
           <div className="w-full md:w-3/4">
-            <CardHeader className="mb-2">
+            <CardHeader>
               <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
               <CardDescription>{formatDate(item.created_at)}</CardDescription>
             </CardHeader>
-            <CardContent className="mb-2">
-              <p>{graphingText(item.content, 255)}</p>
+            <CardContent>
+              <p>{graphingText(item.content, 200)}</p>
             </CardContent>
             <CardFooter className="flex gap-4">
               <Link href={`/dashboard/news/${item.id}`}>
