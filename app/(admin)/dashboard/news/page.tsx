@@ -28,7 +28,7 @@ import {
 // icons
 import { Pencil, Trash2 } from "lucide-react";
 
-interface NewsItem {
+interface NewsData {
   id: number;
   title: string;
   content: string;
@@ -38,7 +38,7 @@ interface NewsItem {
 
 export default function ListNews() {
   const { token } = useContext(AppContext);
-  const [news, setNews] = useState<NewsItem[]>([]);
+  const [news, setNews] = useState<NewsData[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -70,7 +70,7 @@ export default function ListNews() {
     fetchNews();
   }, [token]);
 
-  const truncateText = (text: string, limit: number) => {
+  const graphingText = (text: string, limit: number) => {
     return text.length > limit ? text.substring(0, limit) + "..." : text;
   };
 
@@ -134,22 +134,34 @@ export default function ListNews() {
       {/* Form */}
       <Toaster />
       {news.map((item) => (
-        <Card key={item.id} className="mb-4 flex flex-row items-center">
-          <div className="w-3/4">
-            <CardHeader className="flex">
-              <CardTitle className="text-xl">{item.title}</CardTitle>
+        <Card
+          key={item.id}
+          className="mb-4 flex flex-col md:flex-row md:items-center p-4"
+        >
+          {item.image && (
+            <div className="w-full md:w-1/4 mb-4 md:mb-0 md:mr-4">
+              <Image
+                src={`http://localhost:8000/${item.image}`}
+                alt={item.title}
+                width={250}
+                height={150}
+                className="rounded-lg w-full h-auto object-cover"
+              />
+            </div>
+          )}
+          <div className="w-full md:w-3/4">
+            <CardHeader className="mb-2">
+              <CardTitle className="text-lg md:text-xl">{item.title}</CardTitle>
               <CardDescription>{formatDate(item.created_at)}</CardDescription>
             </CardHeader>
-            <CardContent>
-              <p>{truncateText(item.content, 255)}</p>
+            <CardContent className="mb-2">
+              <p>{graphingText(item.content, 255)}</p>
             </CardContent>
             <CardFooter className="flex gap-4">
               <Link href={`/dashboard/news/${item.id}`}>
                 <Button className="flex items-center gap-2">
                   See more
-                  <span>
-                    <Pencil className="h-4 w-4" />
-                  </span>
+                  <Pencil className="h-4 w-4" />
                 </Button>
               </Link>
               <Button
@@ -158,21 +170,10 @@ export default function ListNews() {
                 className="flex items-center gap-2"
               >
                 Delete
-                <span>
-                  <Trash2 className="h-4 w-4" />
-                </span>
+                <Trash2 className="h-4 w-4" />
               </Button>
             </CardFooter>
           </div>
-          {item.image && (
-            <Image
-              src={`http://localhost:8000/${item.image}`}
-              alt={item.title}
-              width={250}
-              height={150}
-              className="rounded-lg"
-            />
-          )}
         </Card>
       ))}
       <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
