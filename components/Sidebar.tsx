@@ -17,7 +17,7 @@ import {
 import {
   Home,
   Newspaper,
-  Users,
+  Calendar,
   HelpCircle,
   Menu,
   ChevronLeft,
@@ -50,10 +50,13 @@ const menuItems = [
     ],
   },
   {
-    icon: Users,
-    label: "Users",
+    icon: Calendar,
+    label: "Agenda",
     href: "#",
-    submenu: [{ label: "User List", href: "/users/list" }],
+    submenu: [
+      { label: "Create Agenda", href: "/dashboard/createAgenda" },
+      { label: "Agenda List", href: "/agenda/list" },
+    ],
   },
   { icon: HelpCircle, label: "Help", href: "/help" },
 ];
