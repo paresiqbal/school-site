@@ -40,15 +40,15 @@ import {
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
-  content: z
+  description: z
     .string()
-    .min(10, { message: "Content must be at least 10 characters." }),
+    .min(10, { message: "Description must be at least 10 characters." }),
   image: z.any().optional(),
 });
 
 interface FormData {
   title: string;
-  content: string;
+  description: string;
 }
 
 export default function CreateNews() {
@@ -60,7 +60,7 @@ export default function CreateNews() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
-      content: "",
+      description: "",
       image: "",
     },
   });
@@ -81,10 +81,10 @@ export default function CreateNews() {
 
     const formData = new FormData();
     formData.append("title", data.title);
-    formData.append("content", data.content);
+    formData.append("description", data.description);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/news", {
+      const res = await fetch("http://127.0.0.1:8000/api/agenda", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
