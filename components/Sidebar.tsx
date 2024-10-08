@@ -55,7 +55,7 @@ const menuItems = [
     href: "#",
     submenu: [
       { label: "Create Agenda", href: "/dashboard/createAgenda" },
-      { label: "Agenda List", href: "/agenda/list" },
+      { label: "Agenda List", href: "/dashboard/agenda" },
     ],
   },
   { icon: HelpCircle, label: "Help", href: "/help" },
