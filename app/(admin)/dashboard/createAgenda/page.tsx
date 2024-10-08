@@ -1,14 +1,17 @@
 "use client";
 
-import Link from "next/link";
+import * as React from "react";
 import { useState, useContext } from "react";
-import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
+import { AppContext } from "@/context/AppContext";
 
 // ex lib
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Toaster, toast } from "sonner";
+import { CalendarIcon } from "@radix-ui/react-icons";
+import { addDays, format } from "date-fns";
+import { DateRange } from "react-day-picker";
 
 // ui lib
 import { Button } from "@/components/ui/button";
@@ -30,13 +33,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
+import { Calendar } from "@/components/ui/calendar";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -55,6 +57,12 @@ export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Date picker state
+  const [date, setDate] = useState<DateRange | undefined>({
+    from: new Date(),
+    to: addDays(new Date(), 7),
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -83,6 +91,13 @@ export default function CreateNews() {
     formData.append("title", data.title);
     formData.append("description", data.description);
 
+    if (date?.from) {
+      formData.append("start_date", format(date.from, "dd-MM-yyyy"));
+    }
+    if (date?.to) {
+      formData.append("end_date", format(date.to, "dd-MM-yyyy"));
+    }
+
     try {
       const res = await fetch("http://127.0.0.1:8000/api/agenda", {
         method: "POST",
@@ -110,13 +125,13 @@ export default function CreateNews() {
             message: result.errors[key][0],
           });
         });
-        toast.error("Error creating news. Please check the form.");
+        toast.error("Error creating agenda. Please check the form.");
       } else {
-        toast.success("News created successfully.");
+        toast.success("Agenda created successfully.");
         form.reset();
       }
     } catch (error) {
-      console.error("Error creating news:", error);
+      console.error("Error creating agenda:", error);
       setServerError("Network error. Please try again later.");
       toast.error("Network error. Please try again later.");
     } finally {
@@ -126,20 +141,6 @@ export default function CreateNews() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden md:flex pb-4">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Create Agenda</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       {/* Form create news */}
       <Toaster />
       <Card>
@@ -189,6 +190,49 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
+
+              {/* Date Range Picker inside the Form */}
+              <FormItem>
+                <FormLabel>Date Range</FormLabel>
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      id="date"
+                      variant={"outline"}
+                      className={cn(
+                        "w-full justify-start text-left font-normal",
+                        !date && "text-muted-foreground"
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {date?.from ? (
+                        date.to ? (
+                          <>
+                            {format(date.from, "LLL dd, y")} -{" "}
+                            {format(date.to, "LLL dd, y")}
+                          </>
+                        ) : (
+                          format(date.from, "LLL dd, y")
+                        )
+                      ) : (
+                        <span>Pick a date</span>
+                      )}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      initialFocus
+                      mode="range"
+                      defaultMonth={date?.from}
+                      selected={date}
+                      onSelect={setDate}
+                      numberOfMonths={2}
+                    />
+                  </PopoverContent>
+                </Popover>
+                <FormMessage />
+              </FormItem>
+
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
