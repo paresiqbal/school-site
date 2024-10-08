@@ -22,6 +22,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Separator } from "@/components/ui/separator";
 
 // icons
 import { Loader, Trash2 } from "lucide-react";
@@ -30,6 +31,8 @@ interface AgendaData {
   id: number;
   title: string;
   description: string;
+  start_date: string;
+  end_date: string;
 }
 
 export default function ListAgenda() {
@@ -96,6 +99,16 @@ export default function ListAgenda() {
     }
   };
 
+  const formatDate = (dateString: string) => {
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", options);
+  };
+
   if (loading)
     return (
       <div className="flex justify-center items-center min-h-screen">
@@ -130,11 +143,13 @@ export default function ListAgenda() {
           <div className="w-full md:w-3/4">
             <CardHeader>
               <CardTitle className="text-lg md:text-xl">
-                <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
+                <h2 className="text-lg font-bold">{item.title}</h2>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p>{graphingText(item.description, 200)}</p>
+              <h3 className="text-2xl">
+                {graphingText(item.description, 200)}
+              </h3>
             </CardContent>
             <CardFooter className="flex gap-4">
               <Button
@@ -147,8 +162,18 @@ export default function ListAgenda() {
               </Button>
             </CardFooter>
           </div>
+          <div className="flex h-5 items-center space-x-4 text-sm">
+            <Separator orientation="vertical" />
+            <p>
+              <strong>Start Date:</strong> {formatDate(item.start_date)}
+            </p>
+            <p>
+              <strong>End Date:</strong> {formatDate(item.end_date)}
+            </p>
+          </div>
         </Card>
       ))}
+
       <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
         Refresh Agenda
       </Button>
