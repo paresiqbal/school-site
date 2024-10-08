@@ -62,7 +62,7 @@ interface FormData {
   description: string;
 }
 
-export default function CreateNews() {
+export default function CreateAgenda() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -164,7 +164,7 @@ export default function CreateNews() {
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* Form create news */}
+      {/* Form create agenda */}
       <Toaster />
       <Card>
         <CardHeader>
@@ -262,7 +262,7 @@ export default function CreateNews() {
                 className="font-bold w-full p-2 rounded mt-4"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Creating..." : "Create News"}
+                {isSubmitting ? "Creating..." : "Create Agenda"}
               </Button>
             </form>
           </Form>
