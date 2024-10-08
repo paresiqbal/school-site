@@ -142,10 +142,6 @@ export default function CreateNews() {
 
       {/* Form create news */}
       <Toaster />
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur,
-        eligendi.
-      </p>
       <Card>
         <CardHeader>
           <CardTitle>Create Agenda</CardTitle>
@@ -174,10 +170,10 @@ export default function CreateNews() {
               />
               <FormField
                 control={form.control}
-                name="content"
+                name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Content</FormLabel>
+                    <FormLabel>Description</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Textarea
