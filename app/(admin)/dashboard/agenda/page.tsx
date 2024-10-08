@@ -80,7 +80,7 @@ export default function ListAgenda() {
     }
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/news/${id}`, {
+      const res = await fetch(`http://127.0.0.1:8000/api/agenda/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -88,14 +88,14 @@ export default function ListAgenda() {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to delete news.");
+        throw new Error("Failed to delete agenda.");
       }
 
-      setAgenda((prevNews) => prevNews.filter((item) => item.id !== id));
-      toast.success("News deleted successfully");
+      setAgenda((prevAgenda) => prevAgenda.filter((item) => item.id !== id));
+      toast.success("Agenda deleted successfully");
     } catch (error) {
-      console.error("Error deleting news:", error);
-      toast.error("Failed to delete news.");
+      console.error("Error deleting agenda:", error);
+      toast.error("Failed to delete agenda.");
     }
   };
 
@@ -128,7 +128,7 @@ export default function ListAgenda() {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>List News</BreadcrumbPage>
+            <BreadcrumbPage>List Agenda</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
@@ -142,35 +142,35 @@ export default function ListAgenda() {
         >
           <div className="w-full md:w-3/4">
             <CardHeader>
-              <CardTitle className="text-lg md:text-xl">
+              <CardTitle className="text-md md:text-xl">
                 <h2 className="text-lg font-bold">{item.title}</h2>
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <h3 className="text-2xl">
-                {graphingText(item.description, 200)}
-              </h3>
+              <h3 className="text-lg">{graphingText(item.description, 200)}</h3>
             </CardContent>
-            <CardFooter className="flex gap-4">
-              <Button
-                variant="destructive"
-                onClick={() => handleDelete(item.id)}
-                className="flex items-center gap-2"
-              >
-                Delete
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </CardFooter>
           </div>
-          <div className="flex h-5 items-center space-x-4 text-sm">
-            <Separator orientation="vertical" />
-            <p>
-              <strong>Start Date:</strong> {formatDate(item.start_date)}
-            </p>
-            <p>
-              <strong>End Date:</strong> {formatDate(item.end_date)}
-            </p>
-          </div>
+          <CardFooter>
+            <div className="flex h-5 items-center space-x-4 text-sm">
+              <Separator orientation="vertical" />
+              <p>
+                <strong>Start Date:</strong> {formatDate(item.start_date)}
+              </p>
+              <p>
+                <strong>End Date:</strong> {formatDate(item.end_date)}
+              </p>
+            </div>
+          </CardFooter>
+          <CardFooter className="flex gap-4">
+            <Button
+              variant="destructive"
+              onClick={() => handleDelete(item.id)}
+              className="flex items-center gap-2"
+            >
+              Delete
+              <Trash2 className="h-4 w-4" />
+            </Button>
+          </CardFooter>
         </Card>
       ))}
 
