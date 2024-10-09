@@ -24,6 +24,7 @@ import {
   ChevronRight,
   LogOut,
   X,
+  Info,
   ChevronDown,
   LayoutDashboard,
 } from "lucide-react";
@@ -56,6 +57,15 @@ const menuItems = [
     submenu: [
       { label: "Create Agenda", href: "/dashboard/createAgenda" },
       { label: "Agenda List", href: "/dashboard/agenda" },
+    ],
+  },
+  {
+    icon: Info,
+    label: "Announcement",
+    href: "#",
+    submenu: [
+      { label: "Create Announcement", href: "/dashboard/createAnnouncement" },
+      { label: "Announcement List", href: "/dashboard/announcement" },
     ],
   },
   { icon: HelpCircle, label: "Help", href: "/help" },
