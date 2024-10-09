@@ -14,7 +14,7 @@ export default function Dashboard() {
   const { data: session } = useSession();
 
   return (
-    <div className="py-4 px-4 sm:px-6">
+    <div className="py-4">
       <div className="flex flex-col sm:flex-row justify-between items-center">
         {session?.user && (
           <>

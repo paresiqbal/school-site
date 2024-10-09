@@ -6,13 +6,6 @@ import Image from "next/image";
 
 // ui lib
 import { AppContext } from "@/context/AppContext";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Toaster, toast } from "sonner";
 
 // icons
@@ -88,7 +81,7 @@ export default function NewsComps() {
     <div className="container mx-auto">
       <Toaster />
       {news.slice(0, 3).map((item) => (
-        <Card
+        <div
           key={item.id}
           className="mb-2 flex flex-col md:flex-row md:items-center p-2"
         >
@@ -104,21 +97,21 @@ export default function NewsComps() {
             </div>
           )}
           <div className="w-full md:w-5/6">
-            <CardHeader>
-              <CardTitle className="text-sm md:text-md">
+            <div>
+              <h2 className="text-sm md:text-md">
                 <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
-              </CardTitle>
-              <CardDescription className="text-xs md:text-sm">
+              </h2>
+              <h3 className="text-xs md:text-sm">
                 {formatDate(item.created_at)}
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
+              </h3>
+            </div>
+            <div>
               <p className="text-xs md:text-sm">
                 {graphingText(item.content, 80)}
               </p>
-            </CardContent>
+            </div>
           </div>
-        </Card>
+        </div>
       ))}
     </div>
   );
