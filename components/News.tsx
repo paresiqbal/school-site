@@ -87,10 +87,10 @@ export default function NewsComps() {
   return (
     <div className="container mx-auto">
       <Toaster />
-      {news.map((item) => (
+      {news.slice(0, 3).map((item) => (
         <Card
           key={item.id}
-          className="mb-2 flex flex-col md:flex-row md:items-center p-2 md:p-4"
+          className="mb-2 flex flex-col md:flex-row md:items-center p-2"
         >
           {item.image && (
             <div className="w-full md:w-1/6 mb-2 md:mb-0 md:mr-4">
