@@ -9,15 +9,18 @@ export default function Dashboard() {
   const { data: session } = useSession();
 
   return (
-    <div>
-      {session?.user && (
-        <>
-          <h1 className="font-bold text-2xl">
-            Welcome, <span className="text-primary">{session.user.name}!</span>
-          </h1>
-          <CalendarComps />
-        </>
-      )}
+    <div className="py-4">
+      <div className="flex justify-between">
+        {session?.user && (
+          <>
+            <h1 className="font-bold text-3xl">
+              Welcome,{" "}
+              <span className="text-primary">{session.user.name}!</span>
+            </h1>
+            <CalendarComps />
+          </>
+        )}
+      </div>
     </div>
   );
 }
