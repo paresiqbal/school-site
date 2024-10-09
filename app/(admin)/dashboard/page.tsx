@@ -1,21 +1,24 @@
 "use client";
 
-import CalendarComps from "@/components/Calendar";
 import { useSession } from "next-auth/react";
 
-// ui lib
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// components
 import NewsComps from "@/components/News";
+
+// ui lib
+import CalendarComps from "@/components/Calendar";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Card } from "@/components/ui/card";
 
 export default function Dashboard() {
   const { data: session } = useSession();
 
   return (
-    <div className="py-4">
-      <div className="flex justify-between">
+    <div className="py-4 px-4 sm:px-6">
+      <div className="flex flex-col sm:flex-row justify-between items-center">
         {session?.user && (
           <>
-            <h1 className="font-bold text-3xl">
+            <h1 className="font-bold text-3xl text-center sm:text-left">
               Welcome,{" "}
               <span className="text-primary">{session.user.name}!</span>
             </h1>
@@ -24,8 +27,8 @@ export default function Dashboard() {
         )}
       </div>
       <div className="pt-10">
-        <Tabs defaultValue="account" className="w-10/12">
-          <TabsList className="grid w-full grid-cols-4">
+        <Tabs defaultValue="account" className="w-full sm:w-10/12">
+          <TabsList className="grid grid-cols-2 sm:grid-cols-4 w-full mb-10 lg:mb-2">
             <TabsTrigger value="News">News</TabsTrigger>
             <TabsTrigger value="Announcement">Announcement</TabsTrigger>
             <TabsTrigger value="Agenda">Agenda</TabsTrigger>
@@ -33,7 +36,9 @@ export default function Dashboard() {
           </TabsList>
 
           <TabsContent value="News">
-            <NewsComps />
+            <Card className="p-2">
+              <NewsComps />
+            </Card>
           </TabsContent>
           <TabsContent value="Announcement">
             <p>components here</p>
