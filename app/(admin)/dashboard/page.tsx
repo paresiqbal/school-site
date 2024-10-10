@@ -4,13 +4,13 @@ import { useSession } from "next-auth/react";
 
 // components
 import NewsComps from "@/components/News";
-
-// ui lib
 import CalendarComps from "@/components/Calendar";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Card } from "@/components/ui/card";
 import AnnouncementComps from "@/components/Announcement";
 import AgendaComps from "@/components/Agenda";
+
+// ui lib
+import { Card } from "@/components/ui/card";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Dashboard() {
   const { data: session } = useSession();
