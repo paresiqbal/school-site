@@ -80,7 +80,7 @@ export default function NewsComps() {
   return (
     <div className="container mx-auto">
       <Toaster />
-      {news.slice(0, 3).map((item) => (
+      {news.slice(0, 4).map((item) => (
         <div
           key={item.id}
           className="mb-2 flex flex-col md:flex-row md:items-center p-2"
