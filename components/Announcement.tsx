@@ -97,8 +97,8 @@ export default function AnnouncementComps() {
             </div>
           )}
           <div className="w-full md:w-5/6">
-            <div>
-              <h2 className="text-sm md:text-md">
+            <div className="py-2">
+              <h2 className="text-sm font-bold md:text-md hover:underline">
                 <Link href={`/dashboard/announcement/${item.id}`}>
                   {item.title}
                 </Link>
@@ -109,7 +109,7 @@ export default function AnnouncementComps() {
             </div>
             <div>
               <p className="text-xs md:text-sm">
-                {graphingText(item.content, 80)}
+                {graphingText(item.content, 130)}
               </p>
             </div>
           </div>

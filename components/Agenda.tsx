@@ -1,22 +1,14 @@
 "use client";
 
 import { useState, useEffect, useContext } from "react";
+import { AppContext } from "@/context/AppContext";
 
 // ui lib
-import { AppContext } from "@/context/AppContext";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Toaster, toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 
 // icons
-import { Loader, Trash2 } from "lucide-react";
+import { Loader } from "lucide-react";
 
 interface AgendaData {
   id: number;
@@ -26,7 +18,7 @@ interface AgendaData {
   end_date: string;
 }
 
-export default function ListAgenda() {
+export default function AgendaComps() {
   const { token } = useContext(AppContext);
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
   const [loading, setLoading] = useState(true);
@@ -64,32 +56,6 @@ export default function ListAgenda() {
     return text.length > limit ? text.substring(0, limit) + "..." : text;
   };
 
-  const handleDelete = async (id: number) => {
-    if (!token) {
-      toast.error("Unauthorized. Please log in.");
-      return;
-    }
-
-    try {
-      const res = await fetch(`http://127.0.0.1:8000/api/agenda/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to delete agenda.");
-      }
-
-      setAgenda((prevAgenda) => prevAgenda.filter((item) => item.id !== id));
-      toast.success("Agenda deleted successfully");
-    } catch (error) {
-      console.error("Error deleting agenda:", error);
-      toast.error("Failed to delete agenda.");
-    }
-  };
-
   const formatDate = (dateString: string) => {
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
@@ -109,27 +75,21 @@ export default function ListAgenda() {
   if (error) return <p className="text-red-600">{error}</p>;
 
   return (
-    <div className="container mx-auto">
-      {/* Form */}
+    <div className="container mx-auto p-4 sm:p-6 lg:p-8">
       <Toaster />
       {agenda.map((item) => (
-        <Card
-          key={item.id}
-          className="mb-4 flex flex-col md:flex-row md:items-center p-4"
-        >
-          <div className="w-full md:w-3/4">
-            <CardHeader>
-              <CardTitle className="text-md md:text-xl">
-                <h2 className="text-lg font-bold">{item.title}</h2>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-lg">{graphingText(item.description, 200)}</h3>
-            </CardContent>
-          </div>
-          <CardFooter>
-            <div className="flex h-5 items-center space-x-4 text-sm">
-              <Separator orientation="vertical" />
+        <>
+          <div
+            key={item.id}
+            className="mb-6 flex flex-col md:flex-row md:items-center"
+          >
+            <div className="w-full md:w-3/4 mb-4 md:mb-0">
+              <h2 className="text-sm font-bold md:text-md">{item.title}</h2>
+              <p className="text-xs md:text-sm">
+                {graphingText(item.description, 200)}
+              </p>
+            </div>
+            <div className="text-xs md:text-sm">
               <p>
                 <strong>Start Date:</strong> {formatDate(item.start_date)}
               </p>
@@ -137,23 +97,10 @@ export default function ListAgenda() {
                 <strong>End Date:</strong> {formatDate(item.end_date)}
               </p>
             </div>
-          </CardFooter>
-          <CardFooter className="flex gap-4">
-            <Button
-              variant="destructive"
-              onClick={() => handleDelete(item.id)}
-              className="flex items-center gap-2"
-            >
-              Delete
-              <Trash2 className="h-4 w-4" />
-            </Button>
-          </CardFooter>
-        </Card>
+          </div>
+          <Separator className="my-4" />
+        </>
       ))}
-
-      <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
-        Refresh Agenda
-      </Button>
     </div>
   );
 }

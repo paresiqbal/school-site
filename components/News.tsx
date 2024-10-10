@@ -107,7 +107,7 @@ export default function NewsComps() {
             </div>
             <div>
               <p className="text-xs md:text-sm">
-                {graphingText(item.content, 80)}
+                {graphingText(item.content, 130)}
               </p>
             </div>
           </div>

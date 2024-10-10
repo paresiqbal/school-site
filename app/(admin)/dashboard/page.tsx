@@ -10,6 +10,7 @@ import CalendarComps from "@/components/Calendar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card } from "@/components/ui/card";
 import AnnouncementComps from "@/components/Announcement";
+import AgendaComps from "@/components/Agenda";
 
 export default function Dashboard() {
   const { data: session } = useSession();
@@ -47,7 +48,9 @@ export default function Dashboard() {
             </Card>
           </TabsContent>
           <TabsContent value="Agenda">
-            <p>components here</p>
+            <Card>
+              <AgendaComps />
+            </Card>
           </TabsContent>
           <TabsContent value="Gallery">
             <p>components here</p>
