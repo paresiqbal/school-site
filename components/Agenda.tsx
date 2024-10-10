@@ -77,12 +77,9 @@ export default function AgendaComps() {
   return (
     <div className="container mx-auto p-4 sm:p-6 lg:p-8">
       <Toaster />
-      {agenda.map((item) => (
-        <>
-          <div
-            key={item.id}
-            className="mb-6 flex flex-col md:flex-row md:items-center"
-          >
+      {agenda.map((item, index) => (
+        <div key={item.id}>
+          <div className="mb-6 flex flex-col md:flex-row md:items-center">
             <div className="w-full md:w-3/4 mb-4 md:mb-0">
               <h2 className="text-sm font-bold md:text-md">{item.title}</h2>
               <p className="text-xs md:text-sm">
@@ -98,8 +95,8 @@ export default function AgendaComps() {
               </p>
             </div>
           </div>
-          <Separator className="my-4" />
-        </>
+          {index < agenda.length - 1 && <Separator className="my-4" />}
+        </div>
       ))}
     </div>
   );
