@@ -97,8 +97,8 @@ export default function NewsComps() {
             </div>
           )}
           <div className="w-full md:w-5/6">
-            <div>
-              <h2 className="text-sm md:text-md">
+            <div className="py-2">
+              <h2 className="text-sm font-bold md:text-md hover:underline">
                 <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
               </h2>
               <h3 className="text-xs md:text-sm">
