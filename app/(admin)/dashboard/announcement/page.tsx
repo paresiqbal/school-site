@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Loader, Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 interface AnnouncementData {
   id: number;
@@ -39,12 +39,10 @@ interface AnnouncementData {
 export default function ListAnnouncement() {
   const { token } = useContext(AppContext);
   const [announcement, setAnnouncement] = useState<AnnouncementData[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchAnnouncement() {
-      setLoading(true);
       setError(null);
       try {
         const res = await fetch("http://127.0.0.1:8000/api/announcement", {
@@ -62,8 +60,6 @@ export default function ListAnnouncement() {
         console.error(error);
         setError("Failed to load announcement. Please try again.");
         toast.error("Failed to load announcement");
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -114,13 +110,7 @@ export default function ListAnnouncement() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  if (loading)
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Loader className="animate-spin" size={48} />
-      </div>
-    );
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="text-destructive">{error}</p>;
 
   return (
     <div className="container mx-auto">
