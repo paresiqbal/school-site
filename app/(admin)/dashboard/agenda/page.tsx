@@ -25,7 +25,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 // icons
-import { Loader, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 interface AgendaData {
   id: number;
@@ -38,12 +38,11 @@ interface AgendaData {
 export default function ListAgenda() {
   const { token } = useContext(AppContext);
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
-  const [loading, setLoading] = useState(true);
+
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchAgenda() {
-      setLoading(true);
       setError(null);
       try {
         const res = await fetch("http://127.0.0.1:8000/api/agenda", {
@@ -61,8 +60,6 @@ export default function ListAgenda() {
         console.error(error);
         setError("Failed to load agenda. Please try again.");
         toast.error("Failed to load agenda");
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -109,12 +106,6 @@ export default function ListAgenda() {
     return date.toLocaleDateString("en-US", options);
   };
 
-  if (loading)
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Loader className="animate-spin" size={48} />
-      </div>
-    );
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
