@@ -141,7 +141,7 @@ export default function CreateAnnouncement() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden md:flex pb-4">
+      <Breadcrumb className="hidden pb-4 md:flex">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -197,14 +197,14 @@ export default function CreateAnnouncement() {
                           rows={6}
                           placeholder="Announcement content"
                           {...field}
-                          className="w-full p-2 border rounded bg-background"
+                          className="w-full rounded border bg-background p-2"
                           disabled={isSubmitting}
                         />
                       </FormControl>
 
                       <label
                         htmlFor="fileInput"
-                        className="absolute left-4 bottom-4 cursor-pointer"
+                        className="absolute bottom-4 left-4 cursor-pointer"
                       >
                         <Paperclip className="text-gray-500" />
                       </label>
@@ -229,7 +229,7 @@ export default function CreateAnnouncement() {
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
-                className="font-bold w-full p-2 rounded mt-4"
+                className="mt-4 w-full rounded p-2 font-bold"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Creating..." : "Create Announcement"}

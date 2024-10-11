@@ -96,7 +96,7 @@ export default function Login() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
-      <Card className="w-full max-w-md space-y-6 p-8 bg-background">
+      <Card className="w-full max-w-md space-y-6 bg-background p-8">
         <h1 className="text-center text-2xl font-bold">Login an Account</h1>
         <CardDescription className="text-center">
           Enter your username and password below to signin your account
@@ -141,7 +141,7 @@ export default function Login() {
             {error && (
               <div className="text-center text-destructive">{error}</div>
             )}
-            <Button type="submit" className="w-full font-bold rounded-lg">
+            <Button type="submit" className="w-full rounded-lg font-bold">
               Submit
             </Button>
           </form>

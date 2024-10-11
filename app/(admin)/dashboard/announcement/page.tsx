@@ -93,7 +93,7 @@ export default function ListAnnouncement() {
       }
 
       setAnnouncement((prevAnnouncement) =>
-        prevAnnouncement.filter((item) => item.id !== id)
+        prevAnnouncement.filter((item) => item.id !== id),
       );
       toast.success("Announcement deleted successfully");
     } catch (error) {
@@ -116,7 +116,7 @@ export default function ListAnnouncement() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center">
         <Loader className="animate-spin" size={48} />
       </div>
     );
@@ -124,7 +124,7 @@ export default function ListAnnouncement() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden md:flex pb-4">
+      <Breadcrumb className="hidden pb-4 md:flex">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -143,16 +143,16 @@ export default function ListAnnouncement() {
       {announcement.map((item) => (
         <Card
           key={item.id}
-          className="mb-4 flex flex-col md:flex-row md:items-center p-4"
+          className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
         >
           {item.image && (
-            <div className="w-full md:w-1/4 mb-4 md:mb-0 md:mr-4">
+            <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
               <Image
                 src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
                 width={300}
                 height={250}
-                className="rounded-lg w-full h-auto object-cover"
+                className="h-auto w-full rounded-lg object-cover"
               />
             </div>
           )}

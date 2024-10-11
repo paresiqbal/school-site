@@ -88,7 +88,7 @@ export default function EditNews({ params }: DetailNewsProps) {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          }
+          },
         );
         if (!res.ok) {
           throw new Error("Failed to fetch news details.");
@@ -136,7 +136,7 @@ export default function EditNews({ params }: DetailNewsProps) {
             Authorization: `Bearer ${token}`,
           },
           body: formData,
-        }
+        },
       );
 
       if (!res.ok) {
@@ -154,18 +154,18 @@ export default function EditNews({ params }: DetailNewsProps) {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center">
         <Loader className="animate-spin" size={48} />
       </div>
     );
 
-  if (error) return <p className="text-red-600 text-center mt-4">{error}</p>;
+  if (error) return <p className="mt-4 text-center text-red-600">{error}</p>;
 
-  if (!newsDetail) return <p className="text-center mt-4">News not found.</p>;
+  if (!newsDetail) return <p className="mt-4 text-center">News not found.</p>;
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden md:flex pb-4">
+      <Breadcrumb className="hidden pb-4 md:flex">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -222,7 +222,7 @@ export default function EditNews({ params }: DetailNewsProps) {
                     alt={newsDetail.title}
                     width={600}
                     height={400}
-                    className="rounded-lg h-auto object-cover"
+                    className="h-auto rounded-lg object-cover"
                   />
                 </div>
               )}
@@ -247,7 +247,7 @@ export default function EditNews({ params }: DetailNewsProps) {
               <div className="relative">
                 <label
                   htmlFor="fileInput"
-                  className="absolute left-4 bottom-4 cursor-pointer"
+                  className="absolute bottom-4 left-4 cursor-pointer"
                 >
                   <span className="text-gray-500">Attach Image</span>
                 </label>
@@ -266,7 +266,7 @@ export default function EditNews({ params }: DetailNewsProps) {
               )}
               <Button
                 type="submit"
-                className="font-bold w-full p-2 rounded mt-4"
+                className="mt-4 w-full rounded p-2 font-bold"
               >
                 Save Update
               </Button>

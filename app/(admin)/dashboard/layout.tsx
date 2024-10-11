@@ -13,7 +13,7 @@ export default function DashboardLayout({
       <div>
         <Sidebar />
       </div>
-      <div className="p-6 w-full bg-muted/40">{children}</div>
+      <div className="w-full bg-muted/40 p-6">{children}</div>
       <div className="fixed bottom-4 right-4 z-50">
         <ModeToggle />
       </div>

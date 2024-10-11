@@ -149,7 +149,7 @@ export default function CreateAgenda() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden md:flex pb-4">
+      <Breadcrumb className="hidden pb-4 md:flex">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -203,7 +203,7 @@ export default function CreateAgenda() {
                           rows={6}
                           placeholder="Agenda description"
                           {...field}
-                          className="w-full p-2 border rounded bg-background"
+                          className="w-full rounded border bg-background p-2"
                           disabled={isSubmitting}
                         />
                       </FormControl>
@@ -223,7 +223,7 @@ export default function CreateAgenda() {
                       variant={"outline"}
                       className={cn(
                         "w-full justify-start text-left font-normal",
-                        !date && "text-muted-foreground"
+                        !date && "text-muted-foreground",
                       )}
                     >
                       <CalendarIcon className="mr-2 h-4 w-4" />
@@ -258,7 +258,7 @@ export default function CreateAgenda() {
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
-                className="font-bold w-full p-2 rounded mt-4"
+                className="mt-4 w-full rounded p-2 font-bold"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? "Creating..." : "Create Agenda"}

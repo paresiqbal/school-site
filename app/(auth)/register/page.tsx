@@ -97,14 +97,14 @@ export default function Register() {
           });
         } else {
           setServerError(
-            "An error occurred during registration. Please try again."
+            "An error occurred during registration. Please try again.",
           );
         }
       }
     } catch (error) {
       console.error("Registration error:", error);
       setServerError(
-        "An error occurred during registration. Please try again."
+        "An error occurred during registration. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -113,7 +113,7 @@ export default function Register() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background">
-      <Card className="w-full max-w-md space-y-6 p-8 bg-background">
+      <Card className="w-full max-w-md space-y-6 bg-background p-8">
         <h1 className="text-center text-2xl font-bold">Register Account</h1>
         <CardDescription className="text-center">
           Enter your username and password below to signup your account

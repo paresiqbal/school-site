@@ -111,7 +111,7 @@ export default function ListAgenda() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center">
         <Loader className="animate-spin" size={48} />
       </div>
     );
@@ -119,7 +119,7 @@ export default function ListAgenda() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden md:flex pb-4">
+      <Breadcrumb className="hidden pb-4 md:flex">
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink asChild>
@@ -138,7 +138,7 @@ export default function ListAgenda() {
       {agenda.map((item) => (
         <Card
           key={item.id}
-          className="mb-4 flex flex-col md:flex-row md:items-center p-4"
+          className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
         >
           <div className="w-full md:w-3/4">
             <CardHeader>

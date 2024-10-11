@@ -1,36 +1,36 @@
 export default function Loading() {
   return (
     <div className="container mx-auto min-h-screen p-4">
-      <div className="hidden md:flex pb-4 space-x-2">
-        <div className="w-20 h-4 bg-muted-foreground/40 rounded-md animate-pulse"></div>
+      <div className="hidden space-x-2 pb-4 md:flex">
+        <div className="h-4 w-20 animate-pulse rounded-md bg-muted-foreground/40"></div>
         <span className="text-muted-foreground">/</span>
-        <div className="w-24 h-4 bg-muted-foreground/40 rounded-md animate-pulse"></div>
+        <div className="h-4 w-24 animate-pulse rounded-md bg-muted-foreground/40"></div>
       </div>
 
-      <div className="bg-muted-foreground/40 rounded-lg shadow p-6 animate-pulse">
+      <div className="animate-pulse rounded-lg bg-muted-foreground/40 p-6 shadow">
         <div className="mb-4">
-          <div className="w-40 h-6 bg-zinc-500 rounded-md mb-2"></div>
-          <div className="w-64 h-4 bg-zinc-500 rounded-md"></div>
+          <div className="mb-2 h-6 w-40 rounded-md bg-zinc-500"></div>
+          <div className="h-4 w-64 rounded-md bg-zinc-500"></div>
         </div>
 
         <div className="space-y-4">
           <div>
-            <div className="w-20 h-4 bg-zinc-500 rounded-md mb-2"></div>
-            <div className="w-full h-10 bg-zinc-500 rounded-lg"></div>
+            <div className="mb-2 h-4 w-20 rounded-md bg-zinc-500"></div>
+            <div className="h-10 w-full rounded-lg bg-zinc-500"></div>
           </div>
 
           <div>
-            <div className="w-24 h-4 bg-zinc-500 rounded-md mb-2"></div>
-            <div className="w-full h-24 bg-zinc-500 rounded-lg"></div>
+            <div className="mb-2 h-4 w-24 rounded-md bg-zinc-500"></div>
+            <div className="h-24 w-full rounded-lg bg-zinc-500"></div>
           </div>
 
           <div className="relative">
-            <div className="w-full h-10 bg-zinc-500 rounded-lg"></div>
+            <div className="h-10 w-full rounded-lg bg-zinc-500"></div>
           </div>
         </div>
 
         <div className="mt-4">
-          <div className="w-full h-10 bg-zinc-500 rounded-lg"></div>
+          <div className="h-10 w-full rounded-lg bg-zinc-500"></div>
         </div>
       </div>
     </div>
