@@ -65,6 +65,7 @@ export default function EditNews({ params }: DetailNewsProps) {
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [loading, setLoading] = useState(true); // New loading state
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -87,6 +88,7 @@ export default function EditNews({ params }: DetailNewsProps) {
             },
           },
         );
+
         if (!res.ok) {
           throw new Error("Failed to fetch news details.");
         }
@@ -100,6 +102,8 @@ export default function EditNews({ params }: DetailNewsProps) {
         console.error(error);
         setError("Failed to load news details. Please try again.");
         toast.error("Failed to load news details.");
+      } finally {
+        setLoading(false); // Set loading to false after fetch
       }
     }
 
@@ -127,7 +131,6 @@ export default function EditNews({ params }: DetailNewsProps) {
         {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           body: formData,
@@ -147,9 +150,10 @@ export default function EditNews({ params }: DetailNewsProps) {
     }
   };
 
+  // Handle different states
+  if (loading) return <p className="mt-4 text-center">Loading...</p>;
   if (error)
     return <p className="mt-4 text-center text-destructive">{error}</p>;
-
   if (!newsDetail) return <p className="mt-4 text-center">News not found.</p>;
 
   return (
@@ -240,7 +244,6 @@ export default function EditNews({ params }: DetailNewsProps) {
                 >
                   <Paperclip className="text-primary" />
                 </label>
-
                 <input
                   id="fileInput"
                   type="file"
