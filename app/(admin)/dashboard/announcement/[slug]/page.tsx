@@ -35,7 +35,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 // Icons
-import { Loader } from "lucide-react";
+import { Loader, Paperclip } from "lucide-react";
 
 // Zod for validation
 import { z } from "zod";
@@ -221,7 +221,7 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
               {announcementDetail.image && (
                 <div className="w-full py-6">
                   <Image
-                    src={`http://localhost:8000/${announcementDetail.image}`}
+                    src={`http://localhost:8000/storage/${announcementDetail.image}`}
                     alt={announcementDetail.title}
                     width={600}
                     height={400}
@@ -250,9 +250,9 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
               <div className="relative">
                 <label
                   htmlFor="fileInput"
-                  className="absolute bottom-4 left-4 cursor-pointer"
+                  className="absolute bottom-4 right-4 cursor-pointer"
                 >
-                  <span className="text-gray-500">Attach Image</span>
+                  <Paperclip className="text-primary" />
                 </label>
                 <input
                   id="fileInput"
