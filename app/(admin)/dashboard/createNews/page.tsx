@@ -192,7 +192,7 @@ export default function CreateNews() {
                     <div className="relative">
                       <FormControl>
                         <Textarea
-                          rows={6}
+                          rows={10}
                           placeholder="News content"
                           {...field}
                           className="w-full rounded border bg-background p-2"
@@ -202,9 +202,9 @@ export default function CreateNews() {
 
                       <label
                         htmlFor="fileInput"
-                        className="absolute bottom-4 left-4 cursor-pointer"
+                        className="absolute bottom-4 right-4 cursor-pointer"
                       >
-                        <Paperclip className="text-gray-500" />
+                        <Paperclip className="text-primary" />
                       </label>
                       <input
                         id="fileInput"
@@ -219,11 +219,10 @@ export default function CreateNews() {
                 )}
               />
               {selectedImage && (
-                <p className="mt-2 text-sm text-gray-600">
-                  Selected file: {selectedImage.name}
+                <p className="mt-2 text-sm text-primary underline">
+                  Selected image: {selectedImage.name}
                 </p>
               )}
-
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
