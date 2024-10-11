@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, RotateCcw, Trash2 } from "lucide-react";
 
 interface AnnouncementData {
   id: number;
@@ -161,7 +161,7 @@ export default function ListAnnouncement() {
             <CardFooter className="flex gap-4">
               <Link href={`/dashboard/announcement/${item.id}`}>
                 <Button className="flex items-center gap-2">
-                  Edit Announcement
+                  Edit
                   <Pencil className="h-4 w-4" />
                 </Button>
               </Link>
@@ -178,7 +178,7 @@ export default function ListAnnouncement() {
         </Card>
       ))}
       <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
-        Refresh Announcement
+        <RotateCcw className="h-4 w-4" />
       </Button>
     </div>
   );
