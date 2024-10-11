@@ -135,10 +135,6 @@ export default function EditNews({ params }: DetailNewsProps) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          // body: JSON.stringify({
-          //   title: data.title,
-          //   content: data.content,
-          // }),
           body: formData,
         }
       );

@@ -66,7 +66,7 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
     useState<AnnouncementDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -112,13 +112,21 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
     fetchAnnouncementDetail();
   }, [params.slug, token, form]);
 
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     setSelectedImage(event.target.files[0]);
-  //   }
-  // };
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setSelectedImage(event.target.files[0]);
+    }
+  };
 
   const handleSave = async (data: z.infer<typeof formSchema>) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("content", data.content);
+
+    if (selectedImage) {
+      formData.append("image", selectedImage);
+    }
+
     try {
       const res = await fetch(
         `http://127.0.0.1:8000/api/announcement/${announcementDetail?.id}`,
@@ -128,10 +136,7 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            title: data.title,
-            content: data.content,
-          }),
+          body: formData,
         }
       );
 
@@ -241,7 +246,7 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
                   </FormItem>
                 )}
               />
-              {/* <div className="relative">
+              <div className="relative">
                 <label
                   htmlFor="fileInput"
                   className="absolute left-4 bottom-4 cursor-pointer"
@@ -260,7 +265,7 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
                 <p className="mt-2 text-sm text-gray-600">
                   Selected file: {selectedImage.name}
                 </p>
-              )} */}
+              )}
               <Button
                 type="submit"
                 className="font-bold w-full p-2 rounded mt-4"
