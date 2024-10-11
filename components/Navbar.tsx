@@ -2,8 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu, ChevronDown, ChevronUp } from "lucide-react";
 
+// ui lib
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import {
@@ -12,6 +12,9 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
+// icons
+import { Menu, ChevronDown, ChevronUp } from "lucide-react";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,12 +37,12 @@ export default function Navbar() {
 
   return (
     <nav className="bg-background shadow-sm">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0 flex items-center">
+      <div className="mx-auto max-w-6xl px-4">
+        <div className="flex h-16 items-center justify-between">
+          <div className="flex flex-shrink-0 items-center">
             <Link href="/" className="flex items-center text-primary">
               <svg
-                className="h-8 w-8 mr-2"
+                className="mr-2 h-8 w-8"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
@@ -47,23 +50,20 @@ export default function Navbar() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               >
-                <circle cx="12" cy="12" r="10" />
-                <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                <line x1="9" y1="9" x2="9.01" y2="9" />
-                <line x1="15" y1="9" x2="15.01" y2="9" />
+                <polygon points="12,2 2,22 22,22" />
               </svg>
-              <span className="text-xl font-bold">Company Name</span>
+              <span className="text-xl font-bold">SMK Negeri 1</span>
               <span className="sr-only">Company Logo and Name</span>
             </Link>
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex space-x-4">
+          <div className="hidden space-x-4 md:flex">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
               >
                 {item.name}
               </Link>
@@ -72,7 +72,7 @@ export default function Navbar() {
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
-                  className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
                 >
                   Services <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
@@ -99,12 +99,12 @@ export default function Navbar() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="right">
-                <div className="flex flex-col space-y-4 mt-4">
+                <div className="mt-4 flex flex-col space-y-4">
                   {navItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
                       onClick={toggleMenu}
                     >
                       {item.name}
@@ -113,7 +113,7 @@ export default function Navbar() {
                   <div className="relative">
                     <Button
                       variant="ghost"
-                      className="text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium justify-start w-full"
+                      className="w-full justify-start rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
                       onClick={toggleServices}
                     >
                       Services{" "}
@@ -124,12 +124,12 @@ export default function Navbar() {
                       )}
                     </Button>
                     {isServicesOpen && (
-                      <div className="pl-4 mt-2 space-y-2">
+                      <div className="mt-2 space-y-2 pl-4">
                         {serviceItems.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="block text-gray-600 hover:text-primary px-3 py-2 rounded-md text-sm font-medium"
+                            className="block rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
                             onClick={toggleMenu}
                           >
                             {item.name}
