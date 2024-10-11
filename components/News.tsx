@@ -71,11 +71,11 @@ export default function NewsComps() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center">
         <Loader className="animate-spin" size={48} />
       </div>
     );
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="text-destructive">{error}</p>;
 
   return (
     <div className="container mx-auto">
@@ -83,22 +83,22 @@ export default function NewsComps() {
       {news.slice(0, 4).map((item) => (
         <div
           key={item.id}
-          className="mb-2 flex flex-col md:flex-row md:items-center p-2"
+          className="mb-2 flex flex-col p-2 md:flex-row md:items-center"
         >
           {item.image && (
-            <div className="w-full md:w-1/6 mb-2 md:mb-0 md:mr-4">
+            <div className="mb-2 w-full md:mb-0 md:mr-4 md:w-1/6">
               <Image
                 src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
                 width={150}
                 height={100}
-                className="rounded-md w-full h-auto object-cover"
+                className="h-auto w-full rounded-md object-cover"
               />
             </div>
           )}
           <div className="w-full md:w-5/6">
             <div className="py-2">
-              <h2 className="text-sm font-bold md:text-md hover:underline">
+              <h2 className="md:text-md text-sm font-bold hover:underline">
                 <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
               </h2>
               <h3 className="text-xs md:text-sm">

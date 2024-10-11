@@ -160,7 +160,8 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
       </div>
     );
 
-  if (error) return <p className="mt-4 text-center text-red-600">{error}</p>;
+  if (error)
+    return <p className="mt-4 text-center text-destructive">{error}</p>;
 
   if (!announcementDetail)
     return <p className="mt-4 text-center">Announcement not found.</p>;

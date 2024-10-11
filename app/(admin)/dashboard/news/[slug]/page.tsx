@@ -159,7 +159,8 @@ export default function EditNews({ params }: DetailNewsProps) {
       </div>
     );
 
-  if (error) return <p className="mt-4 text-center text-red-600">{error}</p>;
+  if (error)
+    return <p className="mt-4 text-center text-destructive">{error}</p>;
 
   if (!newsDetail) return <p className="mt-4 text-center">News not found.</p>;
 

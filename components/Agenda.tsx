@@ -68,11 +68,11 @@ export default function AgendaComps() {
 
   if (loading)
     return (
-      <div className="flex justify-center items-center min-h-screen">
+      <div className="flex min-h-screen items-center justify-center">
         <Loader className="animate-spin" size={48} />
       </div>
     );
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="text-destructive">{error}</p>;
 
   return (
     <div className="container mx-auto p-4 sm:p-6 lg:p-8">
@@ -80,8 +80,8 @@ export default function AgendaComps() {
       {agenda.map((item, index) => (
         <div key={item.id}>
           <div className="mb-6 flex flex-col md:flex-row md:items-center">
-            <div className="w-full md:w-3/4 mb-4 md:mb-0">
-              <h2 className="text-sm font-bold md:text-md">{item.title}</h2>
+            <div className="mb-4 w-full md:mb-0 md:w-3/4">
+              <h2 className="md:text-md text-sm font-bold">{item.title}</h2>
               <p className="text-xs md:text-sm">
                 {graphingText(item.description, 200)}
               </p>

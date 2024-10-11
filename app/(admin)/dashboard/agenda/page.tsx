@@ -115,7 +115,7 @@ export default function ListAgenda() {
         <Loader className="animate-spin" size={48} />
       </div>
     );
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="text-destructive">{error}</p>;
 
   return (
     <div className="container mx-auto">

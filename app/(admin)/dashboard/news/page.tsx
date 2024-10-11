@@ -108,7 +108,7 @@ export default function ListNews() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error) return <p className="text-destructive">{error}</p>;
 
   return (
     <div className="container mx-auto">
