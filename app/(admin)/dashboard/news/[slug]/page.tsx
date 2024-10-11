@@ -5,6 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
 
+// Zod for validation
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+
 // UI library imports
 import { Toaster, toast } from "sonner";
 import {
@@ -34,13 +39,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
-// Icons
-import { Loader } from "lucide-react";
-
-// Zod for validation
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+// icons
+import { Paperclip } from "lucide-react";
 
 type DetailNewsProps = { params: { slug: string } };
 
@@ -63,7 +63,6 @@ const formSchema = z.object({
 export default function EditNews({ params }: DetailNewsProps) {
   const { token } = useContext(AppContext);
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
@@ -78,7 +77,6 @@ export default function EditNews({ params }: DetailNewsProps) {
 
   useEffect(() => {
     async function fetchNewsDetail() {
-      setLoading(true);
       setError(null);
 
       try {
@@ -103,8 +101,6 @@ export default function EditNews({ params }: DetailNewsProps) {
         console.error(error);
         setError("Failed to load news details. Please try again.");
         toast.error("Failed to load news details.");
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -151,13 +147,6 @@ export default function EditNews({ params }: DetailNewsProps) {
       toast.error("Failed to update news.");
     }
   };
-
-  if (loading)
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Loader className="animate-spin" size={48} />
-      </div>
-    );
 
   if (error)
     return <p className="mt-4 text-center text-destructive">{error}</p>;
@@ -248,10 +237,11 @@ export default function EditNews({ params }: DetailNewsProps) {
               <div className="relative">
                 <label
                   htmlFor="fileInput"
-                  className="absolute bottom-4 left-4 cursor-pointer"
+                  className="absolute bottom-4 right-4 cursor-pointer"
                 >
-                  <span className="text-gray-500">Attach Image</span>
+                  <Paperclip className="text-primary" />
                 </label>
+
                 <input
                   id="fileInput"
                   type="file"
