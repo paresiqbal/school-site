@@ -78,7 +78,6 @@ export default function EditNews({ params }: DetailNewsProps) {
   useEffect(() => {
     async function fetchNewsDetail() {
       setError(null);
-
       try {
         const res = await fetch(
           `http://127.0.0.1:8000/api/news/${params.slug}`,
