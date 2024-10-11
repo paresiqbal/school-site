@@ -146,7 +146,7 @@ export default function ListNews() {
           {item.image && (
             <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
               <Image
-                src={`http://localhost:8000/storage/${item.image}`}
+                src={`http://localhost:8000/${item.image}`}
                 alt={item.title}
                 width={300}
                 height={250}
