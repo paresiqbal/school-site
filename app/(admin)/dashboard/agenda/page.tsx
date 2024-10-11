@@ -25,7 +25,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 // icons
-import { Trash2 } from "lucide-react";
+import { RotateCcw, Trash2 } from "lucide-react";
 
 interface AgendaData {
   id: number;
@@ -166,7 +166,7 @@ export default function ListAgenda() {
       ))}
 
       <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
-        Refresh Agenda
+        <RotateCcw className="h-4 w-4" />
       </Button>
     </div>
   );
