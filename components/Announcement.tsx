@@ -88,7 +88,7 @@ export default function AnnouncementComps() {
           {item.image && (
             <div className="w-full md:w-1/6 mb-2 md:mb-0 md:mr-4">
               <Image
-                src={`http://localhost:8000/${item.image}`}
+                src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
                 width={150}
                 height={100}

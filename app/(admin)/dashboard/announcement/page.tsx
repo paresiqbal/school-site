@@ -148,7 +148,7 @@ export default function ListAnnouncement() {
           {item.image && (
             <div className="w-full md:w-1/4 mb-4 md:mb-0 md:mr-4">
               <Image
-                src={`http://localhost:8000/${item.image}`}
+                src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
                 width={300}
                 height={250}
