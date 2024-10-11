@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Loader, Pencil, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 
 interface NewsData {
   id: number;
@@ -39,12 +39,10 @@ interface NewsData {
 export default function ListNews() {
   const { token } = useContext(AppContext);
   const [news, setNews] = useState<NewsData[]>([]);
-  const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchNews() {
-      setLoading(true);
       setError(null);
       try {
         const res = await fetch("http://127.0.0.1:8000/api/news", {
@@ -62,8 +60,6 @@ export default function ListNews() {
         console.error(error);
         setError("Failed to load news. Please try again.");
         toast.error("Failed to load news");
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -112,12 +108,6 @@ export default function ListNews() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  if (loading)
-    return (
-      <div className="flex min-h-screen items-center justify-center">
-        <Loader className="animate-spin" size={48} />
-      </div>
-    );
   if (error) return <p className="text-red-600">{error}</p>;
 
   return (
@@ -146,7 +136,7 @@ export default function ListNews() {
           {item.image && (
             <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
               <Image
-                src={`http://localhost:8000/${item.image}`}
+                src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
                 width={300}
                 height={250}

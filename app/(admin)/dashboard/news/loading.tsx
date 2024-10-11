@@ -1,36 +1,38 @@
-export default function loading() {
+export default function Loading() {
   return (
     <div className="container mx-auto min-h-screen p-4">
-      <div className="hidden pb-4 md:flex">
+      <div className="hidden space-x-2 pb-4 md:flex">
         <div className="h-4 w-20 animate-pulse rounded-md bg-muted-foreground/40"></div>
-        <span className="mx-2 text-muted-foreground">/</span>
+        <span className="text-muted-foreground">/</span>
         <div className="h-4 w-24 animate-pulse rounded-md bg-muted-foreground/40"></div>
       </div>
 
-      <div className="mb-4 flex animate-pulse flex-col p-4 md:flex-row md:items-center">
-        <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
-          <div className="h-64 w-full rounded-lg bg-zinc-500"></div>
+      <div className="animate-pulse rounded-lg bg-muted-foreground/40 p-6 shadow">
+        <div className="mb-4">
+          <div className="mb-2 h-6 w-40 rounded-md bg-zinc-500"></div>
+          <div className="h-4 w-64 rounded-md bg-zinc-500"></div>
         </div>
 
-        <div className="w-full md:w-3/4">
-          <div className="mb-2">
-            <div className="mb-2 h-6 w-48 rounded-md bg-zinc-500"></div>
-
-            <div className="h-4 w-32 rounded-md bg-zinc-500"></div>
+        <div className="space-y-4">
+          <div>
+            <div className="mb-2 h-4 w-20 rounded-md bg-zinc-500"></div>
+            <div className="h-10 w-full rounded-lg bg-zinc-500"></div>
           </div>
 
-          <div className="mb-4">
-            <div className="h-20 w-full rounded-md bg-zinc-500"></div>
+          <div>
+            <div className="mb-2 h-4 w-24 rounded-md bg-zinc-500"></div>
+            <div className="h-24 w-full rounded-lg bg-zinc-500"></div>
           </div>
 
-          <div className="flex gap-4">
-            <div className="h-10 w-24 rounded-md bg-zinc-500"></div>
-            <div className="h-10 w-24 rounded-md bg-zinc-500"></div>
+          <div className="relative">
+            <div className="h-10 w-full rounded-lg bg-zinc-500"></div>
           </div>
+        </div>
+
+        <div className="mt-4">
+          <div className="h-10 w-full rounded-lg bg-zinc-500"></div>
         </div>
       </div>
-
-      <div className="mt-4 h-10 w-36 animate-pulse rounded-md bg-zinc-500"></div>
     </div>
   );
 }
