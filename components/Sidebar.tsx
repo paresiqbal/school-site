@@ -80,8 +80,8 @@ export default function Sidebar() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden md:flex transition-all duration-300 ease-in-out",
-          isShrunk ? "w-16" : "w-64"
+          "hidden transition-all duration-300 ease-in-out md:flex",
+          isShrunk ? "w-16" : "w-64",
         )}
       >
         <SidebarContent
@@ -97,13 +97,13 @@ export default function Sidebar() {
           <Button
             variant="outline"
             size="icon"
-            className="md:hidden fixed top-4 left-4 z-40"
+            className="fixed left-4 top-4 z-40 md:hidden"
           >
             <Menu className="h-4 w-4" />
             <span className="sr-only">Toggle Sidebar</span>
           </Button>
         </SheetTrigger>
-        <SheetContent side="left" className="p-0 w-full">
+        <SheetContent side="left" className="w-full p-0">
           <SidebarContent
             isShrunk={false}
             setIsShrunk={() => {}}
@@ -127,16 +127,16 @@ function SidebarContent({
   return (
     <div
       className={cn(
-        "flex flex-col h-screen border-r transition-all duration-300 ease-in-out", // h-screen ensures it takes full screen height
-        isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full"
+        "flex h-screen flex-col border-r transition-all duration-300 ease-in-out", // h-screen ensures it takes full screen height
+        isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full",
       )}
     >
       {/* Sidebar Header */}
-      <div className="flex h-14 items-center justify-between border-b pr-4 bg-foreground">
+      <div className="flex h-14 items-center justify-between border-b bg-foreground pr-4">
         <div className="flex items-center space-x-2">
           {(!isShrunk || !isDesktop) && (
             <a
-              className="text-bold border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] sm:text-base h-10 sm:h-12 px-4 sm:px-5"
+              className="text-bold flex h-10 items-center justify-center gap-2 border-transparent bg-foreground px-4 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] sm:h-12 sm:px-5 sm:text-base"
               href="/dashboard"
               target="_blank"
               rel="noopener noreferrer"
@@ -160,8 +160,8 @@ function SidebarContent({
             size="icon"
             onClick={() => setIsShrunk(!isShrunk)}
             className={cn(
-              "transition-all duration-300 ease-in-out bg-background",
-              isShrunk ? "ml-0" : "ml-auto"
+              "bg-background transition-all duration-300 ease-in-out",
+              isShrunk ? "ml-0" : "ml-auto",
             )}
           >
             {isShrunk ? (
@@ -188,7 +188,7 @@ function SidebarContent({
         <nav
           className={cn(
             "flex flex-col gap-2 p-2 transition-all duration-300 ease-in-out",
-            isShrunk && isDesktop && "items-center"
+            isShrunk && isDesktop && "items-center",
           )}
         >
           {menuItems.map((item, index) =>
@@ -198,8 +198,8 @@ function SidebarContent({
                   <Button
                     variant="ghost"
                     className={cn(
-                      "justify-between w-full",
-                      isShrunk && isDesktop && "justify-center p-0 h-12"
+                      "w-full justify-between",
+                      isShrunk && isDesktop && "h-12 justify-center p-0",
                     )}
                   >
                     <div className="flex items-center gap-2">
@@ -228,8 +228,8 @@ function SidebarContent({
                   className={cn(
                     "justify-start gap-2 transition-all duration-300 ease-in-out",
                     isShrunk && isDesktop
-                      ? "w-12 h-12 p-0 justify-center"
-                      : "w-full"
+                      ? "h-12 w-12 justify-center p-0"
+                      : "w-full",
                   )}
                   title={isShrunk && isDesktop ? item.label : undefined}
                 >
@@ -241,7 +241,7 @@ function SidebarContent({
                   )}
                 </Button>
               </Link>
-            )
+            ),
           )}
         </nav>
       </ScrollArea>
@@ -250,16 +250,16 @@ function SidebarContent({
       <div
         className={cn(
           "border-t p-4 transition-all duration-300 ease-in-out",
-          isShrunk && isDesktop && "flex flex-col items-center"
+          isShrunk && isDesktop && "flex flex-col items-center",
         )}
       >
         <div
           className={cn(
-            "flex items-center gap-2 mb-2 transition-all duration-300 ease-in-out",
-            isShrunk && isDesktop && "justify-center"
+            "mb-2 flex items-center gap-2 transition-all duration-300 ease-in-out",
+            isShrunk && isDesktop && "justify-center",
           )}
         >
-          <div className="w-8 h-8 rounded-full bg-neutral-600" />
+          <div className="h-8 w-8 rounded-full bg-neutral-600" />
           {(!isShrunk || !isDesktop) && (
             <span className="text-sm font-medium transition-opacity duration-300 ease-in-out">
               {session?.user?.name || "Unknown User"}
@@ -270,7 +270,7 @@ function SidebarContent({
           variant="ghost"
           className={cn(
             "w-full justify-start gap-2 transition-all duration-300 ease-in-out",
-            isShrunk && isDesktop && "justify-center p-0 w-12 h-12"
+            isShrunk && isDesktop && "h-12 w-12 justify-center p-0",
           )}
           onClick={() => signOut()}
         >
