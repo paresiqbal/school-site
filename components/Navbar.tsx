@@ -62,7 +62,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/fasilitas"
+                      href="/facility"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Fasilitas
@@ -161,7 +161,7 @@ export default function Navbar() {
                   Visi dan Misi
                 </Link>
                 <Link
-                  href="/fasilitas"
+                  href="/facility"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Fasilitas
