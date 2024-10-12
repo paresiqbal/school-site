@@ -140,13 +140,13 @@ export default function Navbar() {
           <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <Link
               href="/"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
             >
               Home
             </Link>
             <div className="space-y-1">
               <button
-                className="block w-full rounded-md px-3 py-2 text-left text-primary transition-all hover:bg-muted hover:text-primary"
+                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 onClick={(e) =>
                   e.currentTarget.nextElementSibling?.classList.toggle("hidden")
                 }
@@ -156,27 +156,27 @@ export default function Navbar() {
               <div className="hidden pl-4">
                 <Link
                   href="/visiMisi"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Visi dan Misi
                 </Link>
                 <Link
                   href="/about/team"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
-                  Our Team
+                  Sejarah
                 </Link>
               </div>
             </div>
             <Link
               href="/services"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
             >
               Services
             </Link>
             <Link
               href="/contact"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
             >
               Contact
             </Link>
