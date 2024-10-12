@@ -2,148 +2,152 @@
 
 import { useState } from "react";
 import Link from "next/link";
-
-// ui lib
-import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, X, ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-
-// icons
-import { Menu, ChevronDown, ChevronUp } from "lucide-react";
+import Image from "next/image";
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-  const toggleServices = () => setIsServicesOpen(!isServicesOpen);
-
-  const navItems = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/about" },
-    { name: "Contact", href: "/contact" },
-  ];
-
-  const serviceItems = [
-    { name: "Web Development", href: "/services/web-development" },
-    { name: "Mobile Apps", href: "/services/mobile-apps" },
-    { name: "UI/UX Design", href: "/services/ui-ux-design" },
-  ];
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
-    <nav className="bg-background shadow-sm">
-      <div className="mx-auto max-w-6xl px-4">
+    <nav className="bg-background shadow-md">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          <div className="flex flex-shrink-0 items-center">
-            <Link href="/" className="flex items-center text-primary">
-              <svg
-                className="mr-2 h-8 w-8"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polygon points="12,2 2,22 22,22" />
-              </svg>
-              <span className="text-xl font-bold">SMK Negeri 1</span>
-              <span className="sr-only">Company Logo and Name</span>
+          <div className="flex items-center">
+            <Link
+              href="/"
+              className="flex flex-shrink-0 items-center justify-center"
+            >
+              <Image
+                src="/Next.js.png"
+                width={100}
+                height={50}
+                alt="next js logo"
+              />
+              <span className="text-2xl font-bold text-foreground">
+                SMK Negeri 1
+              </span>
             </Link>
           </div>
-
-          {/* Desktop menu */}
-          <div className="hidden space-x-4 md:flex">
-            {navItems.map((item) => (
+          <div className="hidden md:block">
+            <div className="ml-10 flex items-baseline space-x-8">
               <Link
-                key={item.name}
-                href={item.href}
-                className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
+                href="/"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                {item.name}
+                Home
               </Link>
-            ))}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="ghost"
-                  className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
-                >
-                  Services <ChevronDown className="ml-1 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent>
-                {serviceItems.map((item) => (
-                  <DropdownMenuItem key={item.name} asChild>
-                    <Link href={item.href} className="w-full">
-                      {item.name}
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  About <ChevronDown className="ml-1 inline-block h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/about/history"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Our History
                     </Link>
                   </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <Sheet>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="text-gray-600">
-                  <Menu className="h-6 w-6" />
-                  <span className="sr-only">Open menu</span>
-                </Button>
-              </SheetTrigger>
-              <SheetContent side="right">
-                <div className="mt-4 flex flex-col space-y-4">
-                  {navItems.map((item) => (
+                  <DropdownMenuItem>
                     <Link
-                      key={item.name}
-                      href={item.href}
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
-                      onClick={toggleMenu}
+                      href="/about/team"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      {item.name}
+                      Our Team
                     </Link>
-                  ))}
-                  <div className="relative">
-                    <Button
-                      variant="ghost"
-                      className="w-full justify-start rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
-                      onClick={toggleServices}
-                    >
-                      Services{" "}
-                      {isServicesOpen ? (
-                        <ChevronUp className="ml-1 h-4 w-4" />
-                      ) : (
-                        <ChevronDown className="ml-1 h-4 w-4" />
-                      )}
-                    </Button>
-                    {isServicesOpen && (
-                      <div className="mt-2 space-y-2 pl-4">
-                        {serviceItems.map((item) => (
-                          <Link
-                            key={item.name}
-                            href={item.href}
-                            className="block rounded-md px-3 py-2 text-sm font-medium text-gray-600 hover:text-primary"
-                            onClick={toggleMenu}
-                          >
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              </SheetContent>
-            </Sheet>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <Link
+                href="/services"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Services
+              </Link>
+              <Link
+                href="/contact"
+                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              >
+                Contact
+              </Link>
+            </div>
+          </div>
+          <div className="md:hidden">
+            <button
+              onClick={toggleMenu}
+              className="inline-flex items-center justify-center rounded-md p-2 hover:bg-foreground hover:text-secondary focus:outline-none focus:ring-2 focus:ring-inset focus:ring-secondary"
+              aria-expanded={isMenuOpen}
+            >
+              <span className="sr-only">Open main menu</span>
+              {isMenuOpen ? (
+                <X className="block h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="block h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
           </div>
         </div>
       </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+            <Link
+              href="/"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+            >
+              Home
+            </Link>
+            <div className="space-y-1">
+              <button
+                className="block w-full rounded-md px-3 py-2 text-left text-primary transition-all hover:bg-muted hover:text-primary"
+                onClick={(e) =>
+                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
+                }
+              >
+                About <ChevronDown className="ml-1 inline-block h-4 w-4" />
+              </button>
+              <div className="hidden pl-4">
+                <Link
+                  href="/about/history"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Our History
+                </Link>
+                <Link
+                  href="/about/team"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Our Team
+                </Link>
+              </div>
+            </div>
+            <Link
+              href="/services"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+            >
+              Services
+            </Link>
+            <Link
+              href="/contact"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
+            >
+              Contact
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
