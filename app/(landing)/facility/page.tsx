@@ -20,20 +20,56 @@ import Image from "next/image";
 
 export default function Facility() {
   const facilities = [
-    { name: "Classrooms", icon: School },
-    { name: "Library", icon: Book },
-    { name: "Science Lab", icon: FlaskConical },
-    { name: "Music Room", icon: Music },
-    { name: "Gymnasium", icon: Dumbbell },
-    { name: "Cafeteria", icon: Utensils },
-    { name: "Computer Lab", icon: Monitor },
-    { name: "Auditorium", icon: Users },
-    { name: "Nurse's Office", icon: Cross },
+    {
+      name: "Classrooms",
+      icon: School,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Library",
+      icon: Book,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Science Lab",
+      icon: FlaskConical,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Music Room",
+      icon: Music,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Gymnasium",
+      icon: Dumbbell,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Cafeteria",
+      icon: Utensils,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Computer Lab",
+      icon: Monitor,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Auditorium",
+      icon: Users,
+      image: "/placeholder.svg?height=100&width=200",
+    },
+    {
+      name: "Nurse's Office",
+      icon: Cross,
+      image: "/placeholder.svg?height=100&width=200",
+    },
   ];
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="mb-8 text-center text-3xl font-bold">School Facilities</h1>
+      <h1 className="mb-8 text-center text-3xl font-bold">Fasilitas Sekolah</h1>
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {facilities.map((facility, index) => (
           <Card
@@ -55,7 +91,7 @@ export default function Facility() {
             </CardContent>
             <CardFooter className="pt-2">
               <Image
-                src={#}
+                src={facility.image}
                 alt={`Image of ${facility.name}`}
                 width={200}
                 height={100}
