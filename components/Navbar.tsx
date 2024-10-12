@@ -54,7 +54,7 @@ export default function Navbar() {
                 <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
-                      href="/about/history"
+                      href="/visiMisi"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Visi Dan Misi
@@ -155,10 +155,10 @@ export default function Navbar() {
               </button>
               <div className="hidden pl-4">
                 <Link
-                  href="/about/history"
+                  href="/visiMisi"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-primary transition-all hover:bg-muted hover:text-primary"
                 >
-                  Our History
+                  Visi dan Misi
                 </Link>
                 <Link
                   href="/about/team"
