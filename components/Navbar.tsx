@@ -10,6 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,6 +82,7 @@ export default function Navbar() {
               >
                 Contact
               </Link>
+              <ModeToggle />
             </div>
           </div>
           <div className="md:hidden">
@@ -145,6 +147,7 @@ export default function Navbar() {
             >
               Contact
             </Link>
+            <ModeToggle />
           </div>
         </div>
       )}
