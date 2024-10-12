@@ -62,7 +62,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/about/team"
+                      href="/fasilitas"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Fasilitas
@@ -70,7 +70,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/about/team"
+                      href="/sejarah"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Sejarah
@@ -161,7 +161,13 @@ export default function Navbar() {
                   Visi dan Misi
                 </Link>
                 <Link
-                  href="/about/team"
+                  href="/fasilitas"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Fasilitas
+                </Link>
+                <Link
+                  href="/sejarah"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Sejarah
