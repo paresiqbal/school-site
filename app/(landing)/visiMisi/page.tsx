@@ -27,11 +27,11 @@ export default function VisiDanMisi() {
           </p>
         </div>
 
-        {/* <div className="mb-8 rounded-lg p-8 shadow-lg">
-          <h2 className="mb-4 text-center text-5xl font-bold underline underline-offset-8 md:text-7xl">
+        <div className="mb-8 rounded-lg shadow-lg">
+          <h2 className="mb-4 text-center text-3xl font-bold underline underline-offset-8 md:text-5xl lg:text-7xl">
             Misi
           </h2>
-          <ol className="list-inside list-decimal space-y-4 text-lg leading-relaxed text-gray-800 md:text-2xl">
+          <ol className="list-inside list-decimal space-y-4 text-lg leading-relaxed md:text-xl lg:text-2xl">
             <li>
               Mewujudkan pendidik dan tenaga kependidikan yang mampu
               memanfaatkan teknologi terkini dan profesional.
@@ -55,11 +55,11 @@ export default function VisiDanMisi() {
           </ol>
         </div>
 
-        <div className="mb-8 rounded-lg p-8 shadow-lg">
-          <h2 className="mb-4 text-center text-5xl font-bold underline underline-offset-8 md:text-7xl">
+        <div className="mb-8 rounded-lg shadow-lg">
+          <h2 className="mb-4 text-center text-3xl font-bold underline underline-offset-8 md:text-5xl lg:text-7xl">
             Tujuan
           </h2>
-          <ol className="list-inside list-decimal space-y-4 text-lg leading-relaxed text-gray-800 md:text-2xl">
+          <ol className="list-inside list-decimal space-y-4 text-lg leading-relaxed md:text-2xl">
             <li>
               Mewujudkan pendidik dan tenaga kependidikan yang mampu
               memanfaatkan teknologi terkini dan profesional.
@@ -81,7 +81,7 @@ export default function VisiDanMisi() {
               nasional dan internasional.
             </li>
           </ol>
-        </div> */}
+        </div>
       </div>
     </div>
   );
