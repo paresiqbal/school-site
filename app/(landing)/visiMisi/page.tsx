@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function VisiDanMisi() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="relative h-20 w-full overflow-hidden">
+      <div className="relative h-40 w-full overflow-hidden">
         <Image
           src="/assets/smk.png"
           alt="Picture of the author"
@@ -11,7 +11,7 @@ export default function VisiDanMisi() {
           objectFit="cover"
           className="blur-sm"
         />
-        <h1 className="absolute inset-0 flex items-center justify-center text-xl font-bold text-white">
+        <h1 className="absolute inset-0 flex items-center justify-center text-7xl font-bold text-white">
           Visi, Misi, dan Tujuan
         </h1>
       </div>
