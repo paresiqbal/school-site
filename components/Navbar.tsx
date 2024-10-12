@@ -110,10 +110,10 @@ export default function Navbar() {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link
-                href="/contact"
+                href="/kontak"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
-                Contact
+                Kontak
               </Link>
               <ModeToggle />
             </div>
@@ -168,6 +168,36 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
+            <div className="space-y-1">
+              <button
+                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                onClick={(e) =>
+                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
+                }
+              >
+                Artikel <ChevronDown className="ml-1 inline-block h-4 w-4" />
+              </button>
+              <div className="hidden pl-4">
+                <Link
+                  href="/visiMisi"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Berita
+                </Link>
+                <Link
+                  href="/about/team"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Pengumuman
+                </Link>
+                <Link
+                  href="/about/team"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Agenda
+                </Link>
+              </div>
+            </div>
             <Link
               href="/services"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
@@ -175,10 +205,10 @@ export default function Navbar() {
               Services
             </Link>
             <Link
-              href="/contact"
+              href="/kontak"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
             >
-              Contact
+              Kontak
             </Link>
             <ModeToggle />
           </div>
