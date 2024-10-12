@@ -1,4 +1,3 @@
-import { ModeToggle } from "@/components/ModeToggle";
 import Image from "next/image";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
@@ -107,7 +106,6 @@ export default function Home() {
             Go to nextjs.org →
           </a>
         </footer>
-        <ModeToggle />
       </div>
     </>
   );
