@@ -12,7 +12,7 @@ export default function LandingLayout({
       <div>
         <Navbar />
       </div>
-      <div className="w-full px-44">{children}</div>
+      <div className="w-full px-6 md:px-10 lg:px-40">{children}</div>
     </section>
   );
 }
