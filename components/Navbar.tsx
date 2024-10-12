@@ -49,7 +49,7 @@ export default function Navbar() {
               </Link>
               <DropdownMenu>
                 <DropdownMenuTrigger className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                  About <ChevronDown className="ml-1 inline-block h-4 w-4" />
+                  Profil <ChevronDown className="ml-1 inline-block h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
                   <DropdownMenuItem>
@@ -57,7 +57,7 @@ export default function Navbar() {
                       href="/about/history"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      Our History
+                      Visi Dan Misi
                     </Link>
                   </DropdownMenuItem>
                   <DropdownMenuItem>
@@ -65,17 +65,50 @@ export default function Navbar() {
                       href="/about/team"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      Our Team
+                      Fasilitas
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/about/team"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Sejarah
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <Link
-                href="/services"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                Services
-              </Link>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  Artikel <ChevronDown className="ml-1 inline-block h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/about/history"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Berita
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/about/team"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Pengumuman
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/about/team"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Agenda
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <Link
                 href="/contact"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
