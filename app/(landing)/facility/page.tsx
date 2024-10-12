@@ -1,4 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   School,
   Book,
@@ -10,6 +16,7 @@ import {
   Users,
   Cross,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Facility() {
   const facilities = [
@@ -46,6 +53,15 @@ export default function Facility() {
                 {getFacilityDescription(facility.name.toLowerCase())}.
               </p>
             </CardContent>
+            <CardFooter className="pt-2">
+              <Image
+                src={#}
+                alt={`Image of ${facility.name}`}
+                width={200}
+                height={100}
+                className="h-auto w-full rounded-md"
+              />
+            </CardFooter>
           </Card>
         ))}
       </div>
