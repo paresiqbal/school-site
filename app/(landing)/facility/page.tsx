@@ -11,7 +11,7 @@ import {
   Cross,
 } from "lucide-react";
 
-export default function Component() {
+export default function Facility() {
   const facilities = [
     { name: "Classrooms", icon: School },
     { name: "Library", icon: Book },
