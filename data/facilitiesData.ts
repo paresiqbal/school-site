@@ -194,9 +194,9 @@ export const facilitiesData = [
     description:
       "A spacious venue for assemblies, performances, and gatherings.",
     images: [
-      "/assets/facility/auditorium1.svg",
-      "/assets/facility/auditorium2.svg",
-      "/assets/facility/auditorium3.svg",
+      "/assets/facility/audit.svg",
+      "/assets/facility/audit.svg",
+      "/assets/facility/audit.svg",
     ],
     details: {
       capacity: "300 students",
@@ -221,9 +221,9 @@ export const facilitiesData = [
     description:
       "A medical facility providing health services and attention to students.",
     images: [
-      "/assets/facility/nurses-office1.svg",
-      "/assets/facility/nurses-office2.svg",
-      "/assets/facility/nurses-office3.svg",
+      "/assets/facility/hospital.svg",
+      "/assets/facility/hospital.svg",
+      "/assets/facility/hospital.svg",
     ],
     details: {
       capacity: "5 students",
