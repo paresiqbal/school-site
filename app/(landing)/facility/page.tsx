@@ -22,49 +22,68 @@ import Link from "next/link";
 export default function Facility() {
   const facilities = [
     {
+      id: 1,
       name: "Classrooms",
       icon: School,
       image: "/assets/facility/server.svg",
+      description:
+        "attend their daily lessons and engage in learning activities",
     },
     {
+      id: 2,
       name: "Library",
       icon: Book,
       image: "/assets/facility/server.svg",
+      description: "read books, study, and conduct research",
     },
     {
+      id: 3,
       name: "Science Lab",
       icon: FlaskConical,
       image: "/assets/facility/server.svg",
+      description: "perform experiments and learn about scientific concepts",
     },
     {
+      id: 4,
       name: "Music Room",
       icon: Music,
       image: "/assets/facility/server.svg",
+      description: "practice instruments and participate in music classes",
     },
     {
+      id: 5,
       name: "Gymnasium",
       icon: Dumbbell,
       image: "/assets/facility/server.svg",
+      description: "engage in physical education and sports activities",
     },
     {
+      id: 6,
       name: "Cafeteria",
       icon: Utensils,
       image: "/assets/facility/server.svg",
+      description: "eat meals and socialize during lunch breaks",
     },
     {
+      id: 7,
       name: "Computer Lab",
       icon: Monitor,
       image: "/assets/facility/server.svg",
+      description: "learn computer skills and work on digital projects",
     },
     {
+      id: 8,
       name: "Auditorium",
       icon: Users,
       image: "/assets/facility/server.svg",
+      description: "attend assemblies, performances, and large gatherings",
     },
     {
+      id: 9,
       name: "Nurse's Office",
       icon: Cross,
       image: "/assets/facility/server.svg",
+      description: "receive medical attention and health services",
     },
   ];
 
@@ -91,8 +110,7 @@ export default function Facility() {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                This is where students can{" "}
-                {getFacilityDescription(facility.name.toLowerCase())}.
+                This is where students can {facility.description}.
               </p>
             </CardContent>
             <CardFooter className="flex flex-col pt-2">
@@ -103,7 +121,10 @@ export default function Facility() {
                 height={100}
                 className="h-auto w-full rounded-md md:p-2"
               />
-              <Link href={`/`} className="hover:underline">
+              <Link
+                href={`/facility/${facility.id}`}
+                className="hover:underline"
+              >
                 Learn More
               </Link>
             </CardFooter>
@@ -119,29 +140,4 @@ export default function Facility() {
       </div>
     </div>
   );
-}
-
-function getFacilityDescription(facilityName: string): string {
-  switch (facilityName) {
-    case "classrooms":
-      return "attend their daily lessons and engage in learning activities";
-    case "library":
-      return "read books, study, and conduct research";
-    case "science lab":
-      return "perform experiments and learn about scientific concepts";
-    case "music room":
-      return "practice instruments and participate in music classes";
-    case "gymnasium":
-      return "engage in physical education and sports activities";
-    case "cafeteria":
-      return "eat meals and socialize during lunch breaks";
-    case "computer lab":
-      return "learn computer skills and work on digital projects";
-    case "auditorium":
-      return "attend assemblies, performances, and large gatherings";
-    case "nurse's office":
-      return "receive medical attention and health services";
-    default:
-      return "participate in various educational activities";
-  }
 }
