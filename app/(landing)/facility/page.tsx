@@ -74,7 +74,7 @@ export default function Facility() {
       id: 7,
       name: "Computer Lab",
       icon: Monitor,
-      image: "/assets/facility/server.svg",
+      image: "/assets/facility/computer.svg",
       description: "learn computer skills and work on digital projects",
       slug: "computer-lab",
     },

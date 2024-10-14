@@ -167,9 +167,9 @@ export const facilitiesData = [
     description:
       "A well-equipped computer lab for students to enhance their digital skills.",
     images: [
-      "/assets/facility/computer-lab1.svg",
-      "/assets/facility/computer-lab2.svg",
-      "/assets/facility/computer-lab3.svg",
+      "/assets/facility/computer.svg",
+      "/assets/facility/computer.svg",
+      "/assets/facility/computer.svg",
     ],
     details: {
       capacity: "25 students",
