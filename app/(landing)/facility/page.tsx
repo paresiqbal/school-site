@@ -23,47 +23,47 @@ export default function Facility() {
     {
       name: "Classrooms",
       icon: School,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Library",
       icon: Book,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Science Lab",
       icon: FlaskConical,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Music Room",
       icon: Music,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Gymnasium",
       icon: Dumbbell,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Cafeteria",
       icon: Utensils,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Computer Lab",
       icon: Monitor,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Auditorium",
       icon: Users,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
     {
       name: "Nurse's Office",
       icon: Cross,
-      image: "/placeholder.svg?height=100&width=200",
+      image: "/assets/facility/server.svg",
     },
   ];
 
