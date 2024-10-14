@@ -5,9 +5,9 @@ export const facilitiesData = [
     description:
       "Spacious classrooms designed to foster a conducive learning environment.",
     images: [
-      "/assets/facility/server.svg",
-      "/assets/facility/server.svg",
-      "/assets/facility/server.svg",
+      "/assets/facility/class.svg",
+      "/assets/facility/class.svg",
+      "/assets/facility/class.svg",
     ],
     details: {
       capacity: "30 students",
@@ -32,9 +32,9 @@ export const facilitiesData = [
     description:
       "A modern library filled with a vast collection of books and resources for research.",
     images: [
-      "/assets/facility/server.svg",
-      "/assets/facility/server.svg",
-      "/assets/facility/server.svg",
+      "/assets/facility/library.svg",
+      "/assets/facility/library.svg",
+      "/assets/facility/library.svg",
     ],
     details: {
       capacity: "50 students",

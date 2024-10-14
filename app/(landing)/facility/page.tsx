@@ -25,7 +25,7 @@ export default function Facility() {
       id: 1,
       name: "Classrooms",
       icon: School,
-      image: "/assets/facility/server.svg",
+      image: "/assets/facility/class.svg",
       description:
         "attend their daily lessons and engage in learning activities",
       slug: "classrooms",
@@ -34,7 +34,7 @@ export default function Facility() {
       id: 2,
       name: "Library",
       icon: Book,
-      image: "/assets/facility/server.svg",
+      image: "/assets/facility/library.svg",
       description: "read books, study, and conduct research",
       slug: "library",
     },
