@@ -140,9 +140,9 @@ export const facilitiesData = [
     description:
       "A dining area where students can enjoy healthy meals and socialize.",
     images: [
-      "/assets/facility/cafeteria1.svg",
-      "/assets/facility/cafeteria2.svg",
-      "/assets/facility/cafeteria3.svg",
+      "/assets/facility/cafe.svg",
+      "/assets/facility/cafe.svg",
+      "/assets/facility/cafe.svg",
     ],
     details: {
       capacity: "150 students",

@@ -66,7 +66,7 @@ export default function Facility() {
       id: 6,
       name: "Cafeteria",
       icon: Utensils,
-      image: "/assets/facility/server.svg",
+      image: "/assets/facility/cafe.svg",
       description: "eat meals and socialize during lunch breaks",
       slug: "cafeteria",
     },
