@@ -25,55 +25,46 @@ export default function Facility() {
       name: "Classrooms",
       icon: School,
       image: "/assets/facility/server.svg",
-      slug: "classrooms", // Add slug for dynamic routing
     },
     {
       name: "Library",
       icon: Book,
       image: "/assets/facility/server.svg",
-      slug: "library", // Add slug for dynamic routing
     },
     {
       name: "Science Lab",
       icon: FlaskConical,
       image: "/assets/facility/server.svg",
-      slug: "science-lab", // Add slug for dynamic routing
     },
     {
       name: "Music Room",
       icon: Music,
       image: "/assets/facility/server.svg",
-      slug: "music-room", // Add slug for dynamic routing
     },
     {
       name: "Gymnasium",
       icon: Dumbbell,
       image: "/assets/facility/server.svg",
-      slug: "gymnasium", // Add slug for dynamic routing
     },
     {
       name: "Cafeteria",
       icon: Utensils,
       image: "/assets/facility/server.svg",
-      slug: "cafeteria", // Add slug for dynamic routing
     },
     {
       name: "Computer Lab",
       icon: Monitor,
       image: "/assets/facility/server.svg",
-      slug: "computer-lab", // Add slug for dynamic routing
     },
     {
       name: "Auditorium",
       icon: Users,
       image: "/assets/facility/server.svg",
-      slug: "auditorium", // Add slug for dynamic routing
     },
     {
       name: "Nurse's Office",
       icon: Cross,
       image: "/assets/facility/server.svg",
-      slug: "nurses-office", // Add slug for dynamic routing
     },
   ];
 
@@ -84,11 +75,7 @@ export default function Facility() {
         Temukan berbagai ruang dan sumber daya yang dirancang untuk meningkatkan
         pembelajaran dan kesejahteraan siswa.
       </h2>
-      <input
-        type="text"
-        placeholder="Search facility..."
-        className="mb-4 rounded-md border p-2"
-      />
+
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {facilities.map((facility, index) => (
           <Card
@@ -116,10 +103,7 @@ export default function Facility() {
                 height={100}
                 className="h-auto w-full rounded-md md:p-2"
               />
-              <Link
-                href={`/facility/${facility.slug}`}
-                className="hover:underline"
-              >
+              <Link href={`/`} className="hover:underline">
                 Learn More
               </Link>
             </CardFooter>
