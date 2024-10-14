@@ -42,7 +42,7 @@ export default function Facility() {
       id: 3,
       name: "Science Lab",
       icon: FlaskConical,
-      image: "/assets/facility/server.svg",
+      image: "/assets/facility/lab.svg",
       description: "perform experiments and learn about scientific concepts",
       slug: "science-lab",
     },

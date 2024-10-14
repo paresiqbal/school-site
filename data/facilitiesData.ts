@@ -59,9 +59,9 @@ export const facilitiesData = [
     description:
       "A state-of-the-art science laboratory equipped with modern instruments and safety features.",
     images: [
-      "/assets/facility/science-lab1.svg",
-      "/assets/facility/science-lab2.svg",
-      "/assets/facility/science-lab3.svg",
+      "/assets/facility/lab.svg",
+      "/assets/facility/lab.svg",
+      "/assets/facility/lab.svg",
     ],
     details: {
       capacity: "30 students",
