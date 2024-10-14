@@ -108,11 +108,11 @@ export default function Facility() {
         {facilities.map((facility, index) => (
           <Card
             key={index}
-            className="bg-[#e0f48c] transition-shadow duration-300 hover:scale-105 hover:shadow-lg"
+            className="transition-shadow duration-300 hover:scale-105 hover:shadow-lg"
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-2">
               <facility.icon
-                className="h-10 w-10 rounded-full bg-primary p-2 text-white"
+                className="h-10 w-10 rounded-full bg-foreground p-2 text-background"
                 aria-label={facility.name}
               />
               <CardTitle>{facility.name}</CardTitle>
