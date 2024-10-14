@@ -3,15 +3,243 @@ export const facilitiesData = [
     slug: "classrooms",
     name: "Classrooms",
     description:
-      "This is where students attend their daily lessons and engage in learning activities.",
-    image: "/assets/facility/classrooms.svg",
+      "Spacious classrooms designed to foster a conducive learning environment.",
+    images: [
+      "/assets/facility/classroom1.svg",
+      "/assets/facility/classroom2.svg",
+      "/assets/facility/classroom3.svg",
+    ],
+    details: {
+      capacity: "30 students",
+      equipment: [
+        "Smart boards",
+        "Projectors",
+        "Desks and chairs",
+        "Computers",
+        "Whiteboards",
+      ],
+      safetyFeatures: [
+        "Fire alarms",
+        "Emergency exits",
+        "First aid kits",
+        "CCTV surveillance",
+      ],
+    },
   },
   {
     slug: "library",
     name: "Library",
     description:
-      "This is where students read books, study, and conduct research.",
-    image: "/assets/facility/library.svg",
+      "A modern library filled with a vast collection of books and resources for research.",
+    images: [
+      "/assets/facility/library1.svg",
+      "/assets/facility/library2.svg",
+      "/assets/facility/library3.svg",
+    ],
+    details: {
+      capacity: "50 students",
+      equipment: [
+        "Computers",
+        "Study tables",
+        "Bookshelves",
+        "Reading lounges",
+        "Wi-Fi access",
+      ],
+      safetyFeatures: [
+        "Fire alarms",
+        "Emergency exits",
+        "Surveillance cameras",
+        "First aid kits",
+      ],
+    },
   },
-  // Add other facilities here...
+  {
+    slug: "science-lab",
+    name: "Science Laboratory",
+    description:
+      "A state-of-the-art science laboratory equipped with modern instruments and safety features.",
+    images: [
+      "/assets/facility/science-lab1.svg",
+      "/assets/facility/science-lab2.svg",
+      "/assets/facility/science-lab3.svg",
+    ],
+    details: {
+      capacity: "30 students",
+      equipment: [
+        "Microscopes",
+        "Bunsen burners",
+        "Glassware sets",
+        "Digital scales",
+        "Safety goggles",
+      ],
+      safetyFeatures: [
+        "Emergency shower",
+        "Eyewash station",
+        "Fire extinguisher",
+        "First aid kit",
+      ],
+    },
+  },
+  {
+    slug: "music-room",
+    name: "Music Room",
+    description:
+      "A creative space for students to practice instruments and participate in music classes.",
+    images: [
+      "/assets/facility/music-room1.svg",
+      "/assets/facility/music-room2.svg",
+      "/assets/facility/music-room3.svg",
+    ],
+    details: {
+      capacity: "20 students",
+      equipment: [
+        "Pianos",
+        "Guitars",
+        "Drum sets",
+        "Sound system",
+        "Sheet music",
+      ],
+      safetyFeatures: [
+        "Soundproofing",
+        "Fire extinguishers",
+        "Emergency exits",
+        "First aid kit",
+      ],
+    },
+  },
+  {
+    slug: "gymnasium",
+    name: "Gymnasium",
+    description:
+      "A large gymnasium for physical education and various sports activities.",
+    images: [
+      "/assets/facility/gymnasium1.svg",
+      "/assets/facility/gymnasium2.svg",
+      "/assets/facility/gymnasium3.svg",
+    ],
+    details: {
+      capacity: "200 students",
+      equipment: [
+        "Basketball hoops",
+        "Volleyball nets",
+        "Weightlifting equipment",
+        "Gym mats",
+        "Track area",
+      ],
+      safetyFeatures: [
+        "First aid kits",
+        "Emergency exits",
+        "Surveillance cameras",
+        "Fire extinguishers",
+      ],
+    },
+  },
+  {
+    slug: "cafeteria",
+    name: "Cafeteria",
+    description:
+      "A dining area where students can enjoy healthy meals and socialize.",
+    images: [
+      "/assets/facility/cafeteria1.svg",
+      "/assets/facility/cafeteria2.svg",
+      "/assets/facility/cafeteria3.svg",
+    ],
+    details: {
+      capacity: "150 students",
+      equipment: [
+        "Dining tables and chairs",
+        "Food serving counters",
+        "Refrigerators",
+        "Microwaves",
+        "Dishwashing area",
+      ],
+      safetyFeatures: [
+        "Fire alarms",
+        "Emergency exits",
+        "Surveillance cameras",
+        "First aid kit",
+      ],
+    },
+  },
+  {
+    slug: "computer-lab",
+    name: "Computer Lab",
+    description:
+      "A well-equipped computer lab for students to enhance their digital skills.",
+    images: [
+      "/assets/facility/computer-lab1.svg",
+      "/assets/facility/computer-lab2.svg",
+      "/assets/facility/computer-lab3.svg",
+    ],
+    details: {
+      capacity: "25 students",
+      equipment: [
+        "Desktops and laptops",
+        "Printers",
+        "Software tools",
+        "Network connections",
+        "Projector",
+      ],
+      safetyFeatures: [
+        "Fire alarms",
+        "Emergency exits",
+        "First aid kit",
+        "CCTV surveillance",
+      ],
+    },
+  },
+  {
+    slug: "auditorium",
+    name: "Auditorium",
+    description:
+      "A spacious venue for assemblies, performances, and gatherings.",
+    images: [
+      "/assets/facility/auditorium1.svg",
+      "/assets/facility/auditorium2.svg",
+      "/assets/facility/auditorium3.svg",
+    ],
+    details: {
+      capacity: "300 students",
+      equipment: [
+        "Audio-visual systems",
+        "Stage lighting",
+        "Seating arrangements",
+        "Microphones",
+        "Projector",
+      ],
+      safetyFeatures: [
+        "Fire alarms",
+        "Emergency exits",
+        "First aid kit",
+        "Surveillance cameras",
+      ],
+    },
+  },
+  {
+    slug: "nurses-office",
+    name: "Nurse's Office",
+    description:
+      "A medical facility providing health services and attention to students.",
+    images: [
+      "/assets/facility/nurses-office1.svg",
+      "/assets/facility/nurses-office2.svg",
+      "/assets/facility/nurses-office3.svg",
+    ],
+    details: {
+      capacity: "5 students",
+      equipment: [
+        "Medical examination tables",
+        "Basic medical supplies",
+        "First aid kits",
+        "Consultation area",
+        "Patient records",
+      ],
+      safetyFeatures: [
+        "Emergency exits",
+        "Surveillance cameras",
+        "Fire extinguishers",
+        "First aid kits",
+      ],
+    },
+  },
 ];
