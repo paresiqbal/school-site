@@ -28,6 +28,7 @@ export default function Facility() {
       image: "/assets/facility/server.svg",
       description:
         "attend their daily lessons and engage in learning activities",
+      slug: "classrooms",
     },
     {
       id: 2,
@@ -35,6 +36,7 @@ export default function Facility() {
       icon: Book,
       image: "/assets/facility/server.svg",
       description: "read books, study, and conduct research",
+      slug: "library",
     },
     {
       id: 3,
@@ -42,6 +44,7 @@ export default function Facility() {
       icon: FlaskConical,
       image: "/assets/facility/server.svg",
       description: "perform experiments and learn about scientific concepts",
+      slug: "science-lab",
     },
     {
       id: 4,
@@ -49,6 +52,7 @@ export default function Facility() {
       icon: Music,
       image: "/assets/facility/server.svg",
       description: "practice instruments and participate in music classes",
+      slug: "music-room",
     },
     {
       id: 5,
@@ -56,6 +60,7 @@ export default function Facility() {
       icon: Dumbbell,
       image: "/assets/facility/server.svg",
       description: "engage in physical education and sports activities",
+      slug: "gymnasium",
     },
     {
       id: 6,
@@ -63,6 +68,7 @@ export default function Facility() {
       icon: Utensils,
       image: "/assets/facility/server.svg",
       description: "eat meals and socialize during lunch breaks",
+      slug: "cafeteria",
     },
     {
       id: 7,
@@ -70,6 +76,7 @@ export default function Facility() {
       icon: Monitor,
       image: "/assets/facility/server.svg",
       description: "learn computer skills and work on digital projects",
+      slug: "computer-lab",
     },
     {
       id: 8,
@@ -77,6 +84,7 @@ export default function Facility() {
       icon: Users,
       image: "/assets/facility/server.svg",
       description: "attend assemblies, performances, and large gatherings",
+      slug: "auditorium",
     },
     {
       id: 9,
@@ -84,6 +92,7 @@ export default function Facility() {
       icon: Cross,
       image: "/assets/facility/server.svg",
       description: "receive medical attention and health services",
+      slug: "nurses-office",
     },
   ];
 
@@ -122,7 +131,7 @@ export default function Facility() {
                 className="h-auto w-full rounded-md md:p-2"
               />
               <Link
-                href={`/facility/${facility.id}`}
+                href={`/facility/${facility.slug}`}
                 className="hover:underline"
               >
                 Learn More
