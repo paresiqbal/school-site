@@ -113,9 +113,9 @@ export const facilitiesData = [
     description:
       "A large gymnasium for physical education and various sports activities.",
     images: [
-      "/assets/facility/gymnasium1.svg",
-      "/assets/facility/gymnasium2.svg",
-      "/assets/facility/gymnasium3.svg",
+      "/assets/facility/gym.svg",
+      "/assets/facility/gym.svg",
+      "/assets/facility/gym.svg",
     ],
     details: {
       capacity: "200 students",

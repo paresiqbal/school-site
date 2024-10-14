@@ -58,7 +58,7 @@ export default function Facility() {
       id: 5,
       name: "Gymnasium",
       icon: Dumbbell,
-      image: "/assets/facility/server.svg",
+      image: "/assets/facility/gym.svg",
       description: "engage in physical education and sports activities",
       slug: "gymnasium",
     },
