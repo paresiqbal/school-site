@@ -50,7 +50,7 @@ export default function Facility() {
       id: 4,
       name: "Music Room",
       icon: Music,
-      image: "/assets/facility/server.svg",
+      image: "/assets/facility/studio.svg",
       description: "practice instruments and participate in music classes",
       slug: "music-room",
     },

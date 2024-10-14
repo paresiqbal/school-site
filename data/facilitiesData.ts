@@ -86,9 +86,9 @@ export const facilitiesData = [
     description:
       "A creative space for students to practice instruments and participate in music classes.",
     images: [
-      "/assets/facility/music-room1.svg",
-      "/assets/facility/music-room2.svg",
-      "/assets/facility/music-room3.svg",
+      "/assets/facility/studio.svg",
+      "/assets/facility/studio.svg",
+      "/assets/facility/studio.svg",
     ],
     details: {
       capacity: "20 students",
