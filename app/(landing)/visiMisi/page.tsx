@@ -49,7 +49,7 @@ export default function MissionVisionGoals() {
 
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2">
               <Eye className="h-6 w-6" />
               Visi Kami
             </CardTitle>
@@ -63,9 +63,9 @@ export default function MissionVisionGoals() {
 
         <Card className="flex flex-col md:col-span-2 lg:col-span-1">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2">
               <Target className="h-6 w-6" />
-              Our Goals
+              Tujuan Kami
             </CardTitle>
           </CardHeader>
           <CardContent className="flex-grow">
