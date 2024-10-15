@@ -11,11 +11,11 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-foreground px-8 py-12 text-background dark:bg-background dark:text-foreground lg:px-40">
+    <footer className="border-t-2 bg-foreground px-8 py-12 text-background dark:bg-background dark:text-foreground lg:px-40">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-[#70FFAF] dark:text-[#F97193]">
+            <h2 className="text-lg font-bold text-[#70FFAF]">
               SMK Negeri 1 Rejang Lebong
             </h2>
             <div className="flex space-x-4">
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
+            <h3 className="text-base font-bold text-[#70FFAF]">
               Jam Operasional
             </h3>
             <ul className="space-y-2 text-sm font-semibold">
@@ -55,9 +55,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
-              Kontak Kami
-            </h3>
+            <h3 className="text-base font-bold text-[#70FFAF]">Kontak Kami</h3>
             <ul className="space-y-2 text-sm font-semibold">
               <li className="flex items-center text-sm">
                 <Phone className="mr-2 h-5 w-5" />
@@ -69,9 +67,7 @@ export default function Footer() {
               </li>
             </ul>
             <div>
-              <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
-                Address
-              </h3>
+              <h3 className="text-base font-bold text-[#70FFAF]">Address</h3>
               <address className="mt-2 flex items-start text-sm font-semibold not-italic">
                 <MapPin className="mr-2 mt-1 h-5 w-5" />
                 <span>
@@ -88,9 +84,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
-              Tautan
-            </h3>
+            <h3 className="text-base font-bold text-[#70FFAF]">Tautan</h3>
             <ul className="space-y-2 text-sm font-semibold">
               <li>
                 <Link href="#" className="hover:underline">
