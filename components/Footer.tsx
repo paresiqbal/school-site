@@ -11,23 +11,23 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-100 py-12 text-gray-600">
+    <footer className="bg-[#121417] px-20 py-12 text-background">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-800">
-              Evergreen Academy
+            <h2 className="text-lg font-bold text-[#70FFAF]">
+              SMK Negeri 1 Rejang Lebong
             </h2>
             <div className="flex space-x-4">
-              <Link href="#" className="text-gray-600 hover:text-gray-800">
+              <Link href="#" className="">
                 <Facebook className="h-6 w-6" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="text-gray-600 hover:text-gray-800">
+              <Link href="#" className="">
                 <Instagram className="h-6 w-6" />
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="#" className="text-gray-600 hover:text-gray-800">
+              <Link href="#" className="">
                 <Twitter className="h-6 w-6" />
                 <span className="sr-only">Twitter</span>
               </Link>
@@ -35,7 +35,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800">
+            <h3 className="text-lg font-bold text-[#70FFAF]">
               Operational Hours
             </h3>
             <ul className="space-y-2">
@@ -55,7 +55,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800">Contact Us</h3>
+            <h3 className="text-lg font-bold text-[#70FFAF]">Contact Us</h3>
             <ul className="space-y-2">
               <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5" />
@@ -67,7 +67,7 @@ export default function Footer() {
               </li>
             </ul>
             <div>
-              <h3 className="text-lg font-semibold text-gray-800">Address</h3>
+              <h3 className="text-lg font-bold text-[#70FFAF]">Address</h3>
               <address className="mt-2 flex items-start not-italic">
                 <MapPin className="mr-2 mt-1 h-5 w-5" />
                 <span>
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-gray-800">Quick Links</h3>
+            <h3 className="text-lg font-bold text-[#70FFAF]">Quick Links</h3>
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="hover:underline">
