@@ -28,7 +28,7 @@ export default function MissionVisionGoals() {
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2">
               <BookOpen className="h-6 w-6" />
               Misi Kami
             </CardTitle>
