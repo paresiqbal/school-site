@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
@@ -107,6 +108,7 @@ export default function Home() {
           </a>
         </footer>
       </div>
+      <Footer />
     </>
   );
 }
