@@ -18,11 +18,9 @@ export default function SchoolHistory() {
       </h1>
       <p className="mb-12 text-center text-xl">Didirikan 1950</p>
 
-      <Card className="mb-12">
-        <CardHeader>
-          <CardTitle>Tentang Seskolah</CardTitle>
-        </CardHeader>
-        <CardContent>
+      <div className="mb-12">
+        <h2>Tentang Seskolah</h2>
+        <div>
           <p className="text-lg">
             SMKN 1 Rejang Lebong telah menjadi pilar keunggulan pendidikan
             selama lebih dari tujuh dekade. Didirikan pada tahun 1950, sekolah
@@ -30,8 +28,8 @@ export default function SchoolHistory() {
             berubah sambil mempertahankan nilai-nilai inti kami, yaitu
             integritas, inovasi, dan komunitas.
           </p>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
 
       <h2 className="mb-6 text-3xl font-semibold">Sejarah</h2>
       <div className="space-y-8">
@@ -50,7 +48,7 @@ export default function SchoolHistory() {
       </div>
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-        <Card>
+        <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
             <CardTitle>Siswa</CardTitle>
           </CardHeader>
@@ -61,7 +59,7 @@ export default function SchoolHistory() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
             <CardTitle>Major</CardTitle>
           </CardHeader>
@@ -72,7 +70,7 @@ export default function SchoolHistory() {
             </p>
           </CardContent>
         </Card>
-        <Card>
+        <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
             <CardTitle>Alumni</CardTitle>
           </CardHeader>
