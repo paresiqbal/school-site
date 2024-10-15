@@ -3,12 +3,20 @@ import { Badge } from "@/components/ui/badge";
 import { BookOpen, Eye, Target } from "lucide-react";
 
 export default function MissionVisionGoals() {
+  const missions = [
+    "Mewujudkan pendidik dan tenaga kependidikan yang mampu memanfaatkan teknologi terkini dan professional.",
+    "Mewujudkan proses pembelajaran yang berkualitas dan terintegrasi untuk membentuk karakter siswa.",
+    "Menumbuhkan lingkungan belajar yang kreatif dan inovatif bagi siswa.",
+    "Mewujudkan sarana prasarana berstandar industri dan berwawasan lingkungan.",
+    "Mengembangkan kerjasama yang luas dan bermakna dengan dunia kerja nasional dan internasional.",
+  ];
+
   const goals = [
-    "Achieve 100% graduation rate",
-    "Implement innovative STEM programs",
-    "Foster a diverse and inclusive community",
-    "Enhance global learning opportunities",
-    "Develop strong character and leadership skills",
+    "Menjadikan pendidik dan tenaga kependidikan yang berkarakter dan berdedikasi.",
+    "Meningkatkan kompetensi pendidik dan tenaga kependidikan sesuai dengan perkembangan teknologi.",
+    "Menjadikan pendidik dan tenaga kependidikan yang mampu bekerja dengan menggunakan teknologi informasi.",
+    "Menerapkan pembelajaran yang berpihak kepada siswa.",
+    "Membentuk siswa yang bisa berwirausaha secara nasional dan internasional.",
   ];
 
   return (
@@ -22,15 +30,20 @@ export default function MissionVisionGoals() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <BookOpen className="h-6 w-6" />
-              Our Mission
+              Misi Kami
             </CardTitle>
           </CardHeader>
           <CardContent className="flex-grow">
-            <p className="text-lg">
-              To empower students with knowledge, skills, and values to thrive
-              in a rapidly changing world, fostering a lifelong love for
-              learning and a commitment to positive global impact.
-            </p>
+            <ul className="space-y-2">
+              {missions.map((mission, index) => (
+                <li key={index} className="flex items-start">
+                  <Badge variant="secondary" className="mr-2 mt-1">
+                    {index + 1}
+                  </Badge>
+                  <span>{mission}</span>
+                </li>
+              ))}
+            </ul>
           </CardContent>
         </Card>
 
@@ -38,14 +51,12 @@ export default function MissionVisionGoals() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Eye className="h-6 w-6" />
-              Our Vision
+              Visi Kami
             </CardTitle>
           </CardHeader>
           <CardContent className="flex-grow">
             <p className="text-lg">
-              To be a leading educational institution that inspires and prepares
-              students to become innovative thinkers, compassionate leaders, and
-              responsible global citizens.
+              Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
           </CardContent>
         </Card>
