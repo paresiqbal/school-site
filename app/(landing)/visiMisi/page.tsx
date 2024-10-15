@@ -22,7 +22,7 @@ export default function MissionVisionGoals() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="mb-12 text-center text-4xl font-bold">
-        Evergreen Academy
+        SMK Negeri 1 Rejang Lebong
       </h1>
 
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -83,7 +83,7 @@ export default function MissionVisionGoals() {
         </Card>
       </div>
 
-      <Card className="mt-12">
+      <Card className="mt-12 bg-[#121417] text-background dark:bg-background dark:text-foreground">
         <CardContent className="py-6">
           <blockquote className="border-l-4 border-[#70FFAF] pl-4 italic">
             <p className="text-lg">
