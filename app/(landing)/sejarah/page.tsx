@@ -19,9 +19,11 @@ export default function SchoolHistory() {
       <p className="mb-12 text-center text-xl">Didirikan 1950</p>
 
       <div className="mb-12">
-        <h2>Tentang Seskolah</h2>
+        <h2 className="w-auto max-w-xs bg-[#70FFAF] p-2 text-2xl font-bold dark:text-background lg:text-3xl">
+          Tentang Sekolah
+        </h2>
         <div>
-          <p className="text-lg">
+          <p className="pt-2 text-base text-muted-foreground lg:text-lg">
             SMKN 1 Rejang Lebong telah menjadi pilar keunggulan pendidikan
             selama lebih dari tujuh dekade. Didirikan pada tahun 1950, sekolah
             kami terus berkembang untuk memenuhi kebutuhan siswa yang terus
@@ -31,7 +33,9 @@ export default function SchoolHistory() {
         </div>
       </div>
 
-      <h2 className="mb-6 text-3xl font-semibold">Sejarah</h2>
+      <h2 className="mb-6 max-w-xs bg-[#70FFAF] p-2 text-2xl font-semibold dark:text-background lg:text-3xl">
+        Sejarah
+      </h2>
       <div className="space-y-8">
         {timelineEvents.map((event, index) => (
           <div key={index} className="flex items-center">
