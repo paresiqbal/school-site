@@ -11,11 +11,11 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#121417] px-20 py-12 text-background">
-      <div className="container mx-auto px-4">
+    <footer className="bg-foreground px-8 py-12 text-background lg:px-40">
+      <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-[#70FFAF]">
+            <h2 className="text-lg font-bold text-[#70FFAF] dark:text-[#F97193]">
               SMK Negeri 1 Rejang Lebong
             </h2>
             <div className="flex space-x-4">
@@ -35,40 +35,44 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-[#70FFAF]">
-              Operational Hours
+            <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
+              Jam Operasional
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 text-sm font-semibold">
               <li className="flex items-center">
                 <Clock className="mr-2 h-5 w-5" />
-                <span>Monday - Friday: 8:00 AM - 4:00 PM</span>
+                <span>Senin - Jumat: 7:00 AM - 2:00 PM</span>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center text-sm">
                 <Clock className="mr-2 h-5 w-5" />
-                <span>Saturday: 9:00 AM - 12:00 PM</span>
+                <span>Sabtu: Ekstrakulikuler</span>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center text-sm">
                 <Clock className="mr-2 h-5 w-5" />
-                <span>Sunday: Closed</span>
+                <span>Minggu: Tutup</span>
               </li>
             </ul>
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-[#70FFAF]">Contact Us</h3>
-            <ul className="space-y-2">
-              <li className="flex items-center">
+            <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
+              Contact Us
+            </h3>
+            <ul className="space-y-2 text-sm font-semibold">
+              <li className="flex items-center text-sm">
                 <Phone className="mr-2 h-5 w-5" />
                 <span>(123) 456-7890</span>
               </li>
-              <li className="flex items-center">
+              <li className="flex items-center text-sm">
                 <Mail className="mr-2 h-5 w-5" />
                 <span>info@evergreenacademy.edu</span>
               </li>
             </ul>
             <div>
-              <h3 className="text-lg font-bold text-[#70FFAF]">Address</h3>
-              <address className="mt-2 flex items-start not-italic">
+              <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
+                Address
+              </h3>
+              <address className="mt-2 flex items-start text-sm font-semibold not-italic">
                 <MapPin className="mr-2 mt-1 h-5 w-5" />
                 <span>
                   123 Learning Lane,
@@ -82,8 +86,10 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-[#70FFAF]">Quick Links</h3>
-            <ul className="space-y-2">
+            <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
+              Quick Links
+            </h3>
+            <ul className="space-y-2 text-sm font-semibold">
               <li>
                 <Link href="#" className="hover:underline">
                   About Us
@@ -120,8 +126,8 @@ export default function Footer() {
 
         <div className="mt-8 flex flex-col items-center justify-between border-t border-gray-200 pt-8 md:flex-row">
           <p>
-            &copy; {new Date().getFullYear()} Evergreen Academy. All rights
-            reserved.
+            &copy; {new Date().getFullYear()} SMK Negeri 1 Rejang Lebong. All
+            rights reserved.
           </p>
           <div className="mt-4 space-x-4 md:mt-0">
             <Link href="#" className="text-sm hover:underline">
