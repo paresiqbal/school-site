@@ -85,7 +85,7 @@ export default function MissionVisionGoals() {
 
       <Card className="mt-12">
         <CardContent className="py-6">
-          <blockquote className="border-l-4 border-primary pl-4 italic">
+          <blockquote className="border-l-4 border-[#70FFAF] pl-4 italic">
             <p className="text-lg">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
