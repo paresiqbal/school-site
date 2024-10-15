@@ -28,7 +28,7 @@ export default function MissionVisionGoals() {
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2">
+            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
               <BookOpen className="h-6 w-6" />
               Misi Kami
             </CardTitle>
@@ -49,7 +49,7 @@ export default function MissionVisionGoals() {
 
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2">
+            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
               <Eye className="h-6 w-6" />
               Visi Kami
             </CardTitle>
@@ -63,7 +63,7 @@ export default function MissionVisionGoals() {
 
         <Card className="flex flex-col md:col-span-2 lg:col-span-1">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2">
+            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
               <Target className="h-6 w-6" />
               Tujuan Kami
             </CardTitle>
@@ -99,11 +99,12 @@ export default function MissionVisionGoals() {
 
       <div className="mt-12 text-center">
         <h2 className="mb-4 text-2xl font-semibold">
-          Join Us in Shaping the Future
+          Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
         <p className="text-lg text-muted-foreground">
-          At Evergreen Academy, were committed to nurturing the next generation
-          of leaders, thinkers, and doers. Together, we can make a difference.
+          Di SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
+          berikutnya para pemimpin, pemikir, dan pelaku. Bersama -sama, kita
+          bisa membuat perbedaan.
         </p>
       </div>
     </div>
