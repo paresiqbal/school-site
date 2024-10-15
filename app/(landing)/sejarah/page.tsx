@@ -3,34 +3,37 @@ import { Badge } from "@/components/ui/badge";
 
 export default function SchoolHistory() {
   const timelineEvents = [
-    { year: 1950, event: "School founded" },
-    { year: 1965, event: "First graduating class" },
-    { year: 1980, event: "New science building opened" },
-    { year: 1995, event: "Centennial celebration" },
-    { year: 2010, event: "Major campus renovation" },
-    { year: 2020, event: "Launch of online learning program" },
+    { year: 1950, event: "Sekolah didirikan" },
+    { year: 1965, event: "Kelas kelulusan pertama" },
+    { year: 1980, event: "Gedung sains baru dibuka" },
+    { year: 1995, event: "Perayaan ulang tahun keseratus" },
+    { year: 2010, event: "Renovasi kampus besar" },
+    { year: 2020, event: "Peluncuran program pembelajaran daring" },
   ];
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-8 text-center text-4xl font-bold">Evergreen Academy</h1>
-      <p className="mb-12 text-center text-xl">Established 1950</p>
+      <h1 className="mb-8 text-center text-4xl font-bold">
+        SMK Negeri 1 Rejang Lebong
+      </h1>
+      <p className="mb-12 text-center text-xl">Didirikan 1950</p>
 
       <Card className="mb-12">
         <CardHeader>
-          <CardTitle>About Our School</CardTitle>
+          <CardTitle>Tentang Seskolah</CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-lg">
-            Evergreen Academy has been a pillar of educational excellence for
-            over seven decades. Founded in 1950, our school has continuously
-            evolved to meet the changing needs of our students while maintaining
-            our core values of integrity, innovation, and community.
+            SMKN 1 Rejang Lebong telah menjadi pilar keunggulan pendidikan
+            selama lebih dari tujuh dekade. Didirikan pada tahun 1950, sekolah
+            kami terus berkembang untuk memenuhi kebutuhan siswa yang terus
+            berubah sambil mempertahankan nilai-nilai inti kami, yaitu
+            integritas, inovasi, dan komunitas.
           </p>
         </CardContent>
       </Card>
 
-      <h2 className="mb-6 text-3xl font-semibold">Our History</h2>
+      <h2 className="mb-6 text-3xl font-semibold">Sejarah</h2>
       <div className="space-y-8">
         {timelineEvents.map((event, index) => (
           <div key={index} className="flex items-center">
@@ -49,20 +52,24 @@ export default function SchoolHistory() {
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
         <Card>
           <CardHeader>
-            <CardTitle>Students</CardTitle>
+            <CardTitle>Siswa</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">1,200+</p>
-            <p className="text-sm text-muted-foreground">Enrolled annually</p>
+            <p className="text-4xl font-bold">200+</p>
+            <p className="text-sm text-muted-foreground">
+              Terdaftar setiap tahun
+            </p>
           </CardContent>
         </Card>
         <Card>
           <CardHeader>
-            <CardTitle>Faculty</CardTitle>
+            <CardTitle>Major</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">100+</p>
-            <p className="text-sm text-muted-foreground">Dedicated educators</p>
+            <p className="text-4xl font-bold">7</p>
+            <p className="text-sm text-muted-foreground">
+              Pendidik yang berdedikasi
+            </p>
           </CardContent>
         </Card>
         <Card>
@@ -70,8 +77,8 @@ export default function SchoolHistory() {
             <CardTitle>Alumni</CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-4xl font-bold">10,000+</p>
-            <p className="text-sm text-muted-foreground">Graduates worldwide</p>
+            <p className="text-4xl font-bold">5,000+</p>
+            <p className="text-sm text-muted-foreground">Lulusan Terbaik</p>
           </CardContent>
         </Card>
       </div>

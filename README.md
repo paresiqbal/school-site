@@ -40,3 +40,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - #f49595
 - #a8ccec
 - #e0f48c
+- #70FFAF
