@@ -56,16 +56,16 @@ export default function Footer() {
 
           <div className="space-y-4">
             <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
-              Contact Us
+              Kontak Kami
             </h3>
             <ul className="space-y-2 text-sm font-semibold">
               <li className="flex items-center text-sm">
                 <Phone className="mr-2 h-5 w-5" />
-                <span>(123) 456-7890</span>
+                <span>+62732 21258</span>
               </li>
               <li className="flex items-center text-sm">
                 <Mail className="mr-2 h-5 w-5" />
-                <span>info@evergreenacademy.edu</span>
+                <span>mail@smkn1rl.sch.id</span>
               </li>
             </ul>
             <div>
@@ -75,11 +75,13 @@ export default function Footer() {
               <address className="mt-2 flex items-start text-sm font-semibold not-italic">
                 <MapPin className="mr-2 mt-1 h-5 w-5" />
                 <span>
-                  123 Learning Lane,
+                  Jalan Ahmad Marzuki No 105
                   <br />
-                  Wisdom City, WS 12345,
+                  Kelurahan Air Rambai - Kecamatan Curup
                   <br />
-                  United States
+                  Kabupaten Rejang Lebong
+                  <br />
+                  Bengkulu - Indonesia
                 </span>
               </address>
             </div>
@@ -87,37 +89,37 @@ export default function Footer() {
 
           <div className="space-y-4">
             <h3 className="text-base font-bold text-[#70FFAF] dark:text-[#F97193]">
-              Quick Links
+              Tautan
             </h3>
             <ul className="space-y-2 text-sm font-semibold">
               <li>
                 <Link href="#" className="hover:underline">
-                  About Us
+                  Tentang Kami
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:underline">
-                  Admissions
+                  Administrasi
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:underline">
-                  Academics
+                  Akademik
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:underline">
-                  Student Life
+                  FAQ
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:underline">
-                  Parents Portal
+                  Rute
                 </Link>
               </li>
               <li>
                 <Link href="#" className="hover:underline">
-                  Career Opportunities
+                  Oportunisan Karir
                 </Link>
               </li>
             </ul>
