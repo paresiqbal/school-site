@@ -140,13 +140,6 @@ export default function Facility() {
           </Card>
         ))}
       </div>
-      <div className="mt-8 text-center">
-        <h2 className="text-xl font-semibold">What Our Students Say</h2>
-        <p className="text-sm text-gray-600">
-          The music room has really helped me grow as a musician!- Sarah, Grade
-          10
-        </p>
-      </div>
     </div>
   );
 }
