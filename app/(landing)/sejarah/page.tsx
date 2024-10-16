@@ -13,16 +13,16 @@ export default function SchoolHistory() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-8 text-center text-4xl font-bold">
+      <h1 className="mb-8 py-4 text-center text-4xl font-bold">
         SMK Negeri 1 Rejang Lebong
       </h1>
       <p className="mb-12 text-center text-xl">Didirikan 1950</p>
 
-      <div className="mb-12">
+      <div className="mb-12 pb-8">
         <h2 className="w-auto max-w-xs bg-[#70FFAF] p-2 text-2xl font-bold dark:text-background lg:text-3xl">
           Tentang Sekolah
         </h2>
-        <div>
+        <div className="py-4">
           <p className="pt-2 text-base text-muted-foreground lg:text-lg">
             SMKN 1 Rejang Lebong telah menjadi pilar keunggulan pendidikan
             selama lebih dari tujuh dekade. Didirikan pada tahun 1950, sekolah
@@ -51,10 +51,10 @@ export default function SchoolHistory() {
         ))}
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
+      <div className="mt-12 grid grid-cols-1 gap-6 py-8 md:grid-cols-3">
         <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
-            <CardTitle>Siswa</CardTitle>
+            <CardTitle className="text-[#70FFAF]">Siswa</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">200+</p>
@@ -65,7 +65,7 @@ export default function SchoolHistory() {
         </Card>
         <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
-            <CardTitle>Major</CardTitle>
+            <CardTitle className="text-[#70FFAF]">Major</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">7</p>
@@ -76,7 +76,7 @@ export default function SchoolHistory() {
         </Card>
         <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
-            <CardTitle>Alumni</CardTitle>
+            <CardTitle className="text-[#70FFAF]">Alumni</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">5,000+</p>
