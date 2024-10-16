@@ -81,25 +81,27 @@ export default function MissionVisionGoals() {
         </Card>
       </div>
 
-      <Card className="mt-12 bg-[#121417] text-background dark:bg-background dark:text-foreground">
-        <CardContent className="py-6">
-          <blockquote className="border-l-4 border-[#70FFAF] pl-4 italic">
-            <p className="text-lg">
-              Education is the passport to the future, for tomorrow belongs to
-              those who prepare for it today.
-            </p>
-            <footer className="mt-2 text-right text-muted-foreground">
-              — Malcolm X
-            </footer>
-          </blockquote>
-        </CardContent>
-      </Card>
+      <div className="py-8">
+        <Card className="mt-12 bg-[#121417] text-background dark:bg-background dark:text-foreground">
+          <CardContent className="py-6">
+            <blockquote className="border-l-4 border-[#70FFAF] pl-4 italic">
+              <p className="text-lg">
+                Education is the passport to the future, for tomorrow belongs to
+                those who prepare for it today.
+              </p>
+              <footer className="mt-2 text-right text-muted-foreground">
+                — Malcolm X
+              </footer>
+            </blockquote>
+          </CardContent>
+        </Card>
+      </div>
 
       <div className="mt-12 py-8 text-center">
-        <h2 className="mb-4 text-2xl font-semibold">
+        <h2 className="mb-4 pb-4 text-4xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
-        <p className="text-lg text-muted-foreground">
+        <p className="text-base text-muted-foreground">
           Di SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama -sama, kita
           bisa membuat perbedaan.
