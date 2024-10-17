@@ -20,12 +20,17 @@ export default function MissionVisionGoals() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-12 py-4 text-center text-4xl font-bold">
-        SMK Negeri 1 Rejang Lebong
-      </h1>
+    <div className="container mx-auto py-8">
+      <div className="space-y-2 pb-8 text-center">
+        <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">
+          SMK Negeri 1 Rejang Lebong
+        </h1>
+        <p className="text-md mb-12 text-muted-foreground md:text-lg">
+          Visi & Misi
+        </p>
+      </div>
 
-      <div className="grid gap-8 py-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
@@ -81,7 +86,7 @@ export default function MissionVisionGoals() {
         </Card>
       </div>
 
-      <div className="py-8">
+      <div>
         <Card className="mt-12 bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardContent className="py-6">
             <blockquote className="border-l-4 border-[#70FFAF] pl-4 italic">
