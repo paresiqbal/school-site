@@ -20,7 +20,7 @@ export default function MissionVisionGoals() {
   ];
 
   return (
-    <div className="mx-auto mb-48 mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">
           SMK Negeri 1 Rejang Lebong
@@ -86,9 +86,9 @@ export default function MissionVisionGoals() {
         </Card>
       </div>
 
-      <Card className="bg-[#F0FFF1]">
+      <Card className="bg-emerald-50">
         <CardContent className="py-6">
-          <blockquote className="border-l-4 border-[#09DC8B] pl-4 italic">
+          <blockquote className="border-l-4 border-emerald-600 pl-4 italic">
             <p className="text-lg">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.

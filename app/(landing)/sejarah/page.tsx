@@ -12,18 +12,22 @@ export default function SchoolHistory() {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="mb-8 py-4 text-center text-4xl font-bold">
-        SMK Negeri 1 Rejang Lebong
-      </h1>
-      <p className="mb-12 text-center text-xl">Didirikan 1950</p>
+    <div className="container mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:pt-12">
+      <div className="space-y-2 pb-8 text-center">
+        <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">
+          SMK Negeri 1 Rejang Lebong
+        </h1>
+        <p className="text-md mb-12 text-muted-foreground md:text-lg">
+          Didirikan 1950
+        </p>
+      </div>
 
-      <div className="mb-12 pb-8">
-        <h2 className="w-auto max-w-xs bg-[#70FFAF] p-2 text-2xl font-bold dark:text-background lg:text-3xl">
-          Tentang Sekolah
-        </h2>
-        <div className="py-4">
-          <p className="pt-2 text-base text-muted-foreground lg:text-lg">
+      <div className="space-y-4">
+        <div>
+          <h2 className="mb-6 text-3xl font-semibold underline decoration-emerald-600 underline-offset-8 md:text-4xl">
+            Tentang Sekolah
+          </h2>
+          <p className="text-md md:text-lg">
             SMKN 1 Rejang Lebong telah menjadi pilar keunggulan pendidikan
             selama lebih dari tujuh dekade. Didirikan pada tahun 1950, sekolah
             kami terus berkembang untuk memenuhi kebutuhan siswa yang terus
@@ -31,30 +35,31 @@ export default function SchoolHistory() {
             integritas, inovasi, dan komunitas.
           </p>
         </div>
-      </div>
-
-      <h2 className="mb-6 max-w-xs bg-[#70FFAF] p-2 text-2xl font-semibold dark:text-background lg:text-3xl">
-        Sejarah
-      </h2>
-      <div className="space-y-8">
-        {timelineEvents.map((event, index) => (
-          <div key={index} className="flex items-center">
-            <Badge variant="outline" className="mr-4 px-3 py-1 text-lg">
-              {event.year}
-            </Badge>
-            <Card className="flex-grow">
-              <CardContent className="py-4">
-                <p>{event.event}</p>
-              </CardContent>
-            </Card>
+        <div>
+          <h2 className="mb-6 text-3xl font-semibold underline decoration-emerald-600 underline-offset-8 md:text-4xl">
+            Sejarah
+          </h2>
+          <div className="space-y-8">
+            {timelineEvents.map((event, index) => (
+              <div key={index} className="flex items-center">
+                <Badge variant="outline" className="mr-4 px-3 py-1 text-lg">
+                  {event.year}
+                </Badge>
+                <Card className="flex-grow">
+                  <CardContent className="py-4">
+                    <p>{event.event}</p>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 py-8 md:grid-cols-3">
+      <div className="grid grid-cols-1 gap-6 py-8 md:grid-cols-3">
         <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
-            <CardTitle className="text-[#70FFAF]">Siswa</CardTitle>
+            <CardTitle className="text-green-500">Siswa</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">200+</p>
@@ -65,7 +70,7 @@ export default function SchoolHistory() {
         </Card>
         <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
-            <CardTitle className="text-[#70FFAF]">Major</CardTitle>
+            <CardTitle className="text-green-500">Jurusan</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">7</p>
@@ -76,7 +81,7 @@ export default function SchoolHistory() {
         </Card>
         <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
           <CardHeader>
-            <CardTitle className="text-[#70FFAF]">Alumni</CardTitle>
+            <CardTitle className="text-green-500">Alumni</CardTitle>
           </CardHeader>
           <CardContent>
             <p className="text-4xl font-bold">5,000+</p>
