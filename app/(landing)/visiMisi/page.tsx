@@ -1,5 +1,8 @@
+// ui lib
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+
+// icons
 import { BookOpen, Eye, Target } from "lucide-react";
 
 export default function MissionVisionGoals() {
@@ -33,7 +36,7 @@ export default function MissionVisionGoals() {
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
+            <CardTitle className="flex items-center gap-2 bg-emerald-300 p-2 dark:text-background">
               <BookOpen className="h-6 w-6" />
               Misi Kami
             </CardTitle>
@@ -53,7 +56,7 @@ export default function MissionVisionGoals() {
         </Card>
         <Card className="flex flex-col">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
+            <CardTitle className="flex items-center gap-2 bg-emerald-300 p-2 dark:text-background">
               <Eye className="h-6 w-6" />
               Visi Kami
             </CardTitle>
@@ -66,7 +69,7 @@ export default function MissionVisionGoals() {
         </Card>
         <Card className="flex flex-col md:col-span-2 lg:col-span-1">
           <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
+            <CardTitle className="bg-emerald-300p-2 ga flex items-center p-2 dark:text-background">
               <Target className="h-6 w-6" />
               Tujuan Kami
             </CardTitle>

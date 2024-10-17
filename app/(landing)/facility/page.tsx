@@ -1,3 +1,7 @@
+import Image from "next/image";
+import Link from "next/link";
+
+// ui lib
 import {
   Card,
   CardContent,
@@ -5,6 +9,8 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+// icons
 import {
   School,
   Book,
@@ -16,8 +22,6 @@ import {
   Users,
   Cross,
 } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function Facility() {
   const facilities = [
@@ -97,7 +101,7 @@ export default function Facility() {
   ];
 
   return (
-    <div className="container mx-auto p-4">
+    <div className="container mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:pt-12">
       <h1 className="mb-8 text-center text-3xl font-bold">Fasilitas Sekolah</h1>
       <h2 className="pb-8 text-xl">
         Temukan berbagai ruang dan sumber daya yang dirancang untuk meningkatkan
