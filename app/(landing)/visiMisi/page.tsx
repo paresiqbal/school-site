@@ -20,7 +20,7 @@ export default function MissionVisionGoals() {
   ];
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="mx-auto mb-48 mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">
           SMK Negeri 1 Rejang Lebong
@@ -30,7 +30,7 @@ export default function MissionVisionGoals() {
         </p>
       </div>
 
-      <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
         <Card className="flex flex-col">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 bg-[#70FFAF] p-2 dark:text-background">
@@ -86,24 +86,22 @@ export default function MissionVisionGoals() {
         </Card>
       </div>
 
-      <div>
-        <Card className="mt-12 bg-[#121417] text-background dark:bg-background dark:text-foreground">
-          <CardContent className="py-6">
-            <blockquote className="border-l-4 border-[#70FFAF] pl-4 italic">
-              <p className="text-lg">
-                Education is the passport to the future, for tomorrow belongs to
-                those who prepare for it today.
-              </p>
-              <footer className="mt-2 text-right text-muted-foreground">
-                — Malcolm X
-              </footer>
-            </blockquote>
-          </CardContent>
-        </Card>
-      </div>
+      <Card className="bg-[#F0FFF1]">
+        <CardContent className="py-6">
+          <blockquote className="border-l-4 border-[#09DC8B] pl-4 italic">
+            <p className="text-lg">
+              Education is the passport to the future, for tomorrow belongs to
+              those who prepare for it today.
+            </p>
+            <footer className="mt-2 text-right text-muted-foreground">
+              — Malcolm X
+            </footer>
+          </blockquote>
+        </CardContent>
+      </Card>
 
-      <div className="mt-12 py-8 text-center">
-        <h2 className="mb-4 pb-4 text-4xl font-semibold">
+      <div className="mt-12 space-y-4 text-center">
+        <h2 className="text-4xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
         <p className="text-base text-muted-foreground">
