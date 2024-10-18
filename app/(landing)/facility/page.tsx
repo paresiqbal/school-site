@@ -143,7 +143,7 @@ export default function Facility() {
               />
               <Link
                 href={`/facility/${facility.slug}`}
-                className="flex items-center justify-center decoration-emerald-500 underline-offset-2 hover:underline"
+                className="flex items-center justify-center decoration-yellow-500 underline-offset-2 hover:underline"
               >
                 Pelajari Lebih Lanjut
                 <ArrowRight className="ml-1 h-4 w-4" />

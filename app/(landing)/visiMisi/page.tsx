@@ -103,7 +103,7 @@ export default function MissionVisionGoals() {
         </CardContent>
       </Card>
 
-      <div className="mt-12 space-y-4 text-center">
+      <div className="mt-12 space-y-4 pb-8 text-center">
         <h2 className="text-4xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
