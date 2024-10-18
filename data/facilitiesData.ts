@@ -54,8 +54,8 @@ export const facilitiesData = [
     },
   },
   {
-    slug: "science-lab",
-    name: "Science Laboratory",
+    slug: "Laboratorium Sains",
+    name: "Laboratorium Sains",
     description:
       "A state-of-the-art science laboratory equipped with modern instruments and safety features.",
     images: [
@@ -81,8 +81,8 @@ export const facilitiesData = [
     },
   },
   {
-    slug: "music-room",
-    name: "Music Room",
+    slug: "Studio",
+    name: "Studio",
     description:
       "A creative space for students to practice instruments and participate in music classes.",
     images: [
