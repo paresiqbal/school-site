@@ -1,9 +1,9 @@
 export const facilitiesData = [
   {
-    slug: "classrooms",
-    name: "Classrooms",
+    slug: "kelas",
+    name: "Kelas",
     description:
-      "Spacious classrooms designed to foster a conducive learning environment.",
+      "Siswa dapat mengikuti pelajaran harian dan terlibat dalam kegiatan pembelajaran di kelas.",
     images: [
       "/assets/facility/class.svg",
       "/assets/facility/class.svg",
@@ -27,8 +27,8 @@ export const facilitiesData = [
     },
   },
   {
-    slug: "library",
-    name: "Library",
+    slug: "perpustakaan",
+    name: "Perpustakaan",
     description:
       "A modern library filled with a vast collection of books and resources for research.",
     images: [
