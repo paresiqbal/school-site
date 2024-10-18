@@ -108,8 +108,8 @@ export const facilitiesData = [
     },
   },
   {
-    slug: "gymnasium",
-    name: "Gymnasium",
+    slug: "lapangan",
+    name: "Lapangan",
     description:
       "A large gymnasium for physical education and various sports activities.",
     images: [
