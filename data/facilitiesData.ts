@@ -110,8 +110,7 @@ export const facilitiesData = [
   {
     slug: "lapangan",
     name: "Lapangan",
-    description:
-      "A large gymnasium for physical education and various sports activities.",
+    description: "Olahraga.",
     images: [
       "/assets/facility/gym.svg",
       "/assets/facility/gym.svg",
@@ -137,8 +136,7 @@ export const facilitiesData = [
   {
     slug: "cafeteria",
     name: "Cafeteria",
-    description:
-      "A dining area where students can enjoy healthy meals and socialize.",
+    description: "Makan",
     images: [
       "/assets/facility/cafe.svg",
       "/assets/facility/cafe.svg",
