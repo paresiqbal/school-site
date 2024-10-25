@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState, use } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
@@ -42,7 +42,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-type DetailAnnouncementProps = { params: Promise<{ slug: string }> };
+type DetailAnnouncementProps = { params: { slug: string } }; // Changed to synchronous
 
 interface AnnouncementDetail {
   id: number;
@@ -60,8 +60,7 @@ const formSchema = z.object({
   image: z.any().optional(),
 });
 
-export default function EditAnnouncement(props: DetailAnnouncementProps) {
-  const params = use(props.params);
+export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
   const { token } = useContext(AppContext);
   const [announcementDetail, setAnnouncementDetail] =
     useState<AnnouncementDetail | null>(null);
@@ -85,7 +84,7 @@ export default function EditAnnouncement(props: DetailAnnouncementProps) {
 
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/announcement/${params.slug}`,
+          `http://127.0.0.1:8000/api/announcement/${params.slug}`, // Directly use params.slug
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -134,7 +133,6 @@ export default function EditAnnouncement(props: DetailAnnouncementProps) {
         {
           method: "PUT",
           headers: {
-            "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
           body: formData,
