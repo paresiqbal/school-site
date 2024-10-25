@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
@@ -42,7 +42,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-type DetailAnnouncementProps = { params: { slug: string } };
+type DetailAnnouncementProps = { params: Promise<{ slug: string }> };
 
 interface AnnouncementDetail {
   id: number;
@@ -60,7 +60,8 @@ const formSchema = z.object({
   image: z.any().optional(),
 });
 
-export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
+export default function EditAnnouncement(props: DetailAnnouncementProps) {
+  const params = use(props.params);
   const { token } = useContext(AppContext);
   const [announcementDetail, setAnnouncementDetail] =
     useState<AnnouncementDetail | null>(null);

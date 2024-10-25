@@ -10,7 +10,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { School, Users } from "lucide-react";
 import Image from "next/image";
 
-type DetailFacilityProps = { params: { slug: string } };
+type DetailFacilityProps = { params: Promise<{ slug: string }> };
 
 export default function FacilityDetails(props: DetailFacilityProps) {
   const { params } = props;

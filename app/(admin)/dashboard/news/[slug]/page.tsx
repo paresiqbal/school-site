@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, use } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AppContext } from "@/context/AppContext";
@@ -42,7 +42,7 @@ import { Textarea } from "@/components/ui/textarea";
 // icons
 import { Paperclip } from "lucide-react";
 
-type DetailNewsProps = { params: { slug: string } };
+type DetailNewsProps = { params: Promise<{ slug: string }> };
 
 interface NewsDetail {
   id: number;
@@ -60,7 +60,8 @@ const formSchema = z.object({
   image: z.any().optional(),
 });
 
-export default function EditNews({ params }: DetailNewsProps) {
+export default function EditNews(props: DetailNewsProps) {
+  const params = use(props.params);
   const { token } = useContext(AppContext);
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
   const [error, setError] = useState<string | null>(null);
