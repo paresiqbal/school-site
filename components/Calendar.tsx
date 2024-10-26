@@ -48,8 +48,8 @@ export default function CalendarComps() {
           <PopoverContent className="w-auto p-0" align="start">
             <Calendar
               mode="single"
-              selected={undefined}
-              onSelect={() => {}}
+              selected={currentDate}
+              onSelect={(date) => date && setCurrentDate(date)}
               initialFocus
             />
           </PopoverContent>
