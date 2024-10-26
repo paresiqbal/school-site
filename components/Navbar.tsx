@@ -85,7 +85,7 @@ export default function Navbar() {
                 <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
-                      href="/about/history"
+                      href="/berita"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Berita
@@ -93,7 +93,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/about/team"
+                      href="/pengumuman"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Pengumuman
@@ -101,7 +101,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/about/team"
+                      href="/agenda"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Agenda
