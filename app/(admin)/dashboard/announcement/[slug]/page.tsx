@@ -42,7 +42,10 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 
-type DetailAnnouncementProps = { params: { slug: string } }; // Changed to synchronous
+// Define the type with `slug` parameter only
+interface DetailAnnouncementProps {
+  params: { slug: string };
+}
 
 interface AnnouncementDetail {
   id: number;
@@ -84,7 +87,7 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
 
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/announcement/${params.slug}`, // Directly use params.slug
+          `http://127.0.0.1:8000/api/announcement/${params.slug}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -192,7 +195,6 @@ export default function EditAnnouncement({ params }: DetailAnnouncementProps) {
         </BreadcrumbList>
       </Breadcrumb>
 
-      {/* Edit form */}
       <Toaster />
       <Card>
         <CardHeader>
