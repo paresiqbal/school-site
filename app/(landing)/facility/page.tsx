@@ -119,7 +119,7 @@ export default function Facility() {
         {facilities.map((facility, index) => (
           <Card
             key={index}
-            className="bg-yellow-50 transition-shadow duration-300 hover:scale-105 hover:shadow-lg"
+            className="bg-yellow-50 transition-shadow duration-300 hover:scale-105 hover:shadow-lg dark:bg-card"
           >
             <CardHeader className="flex flex-row items-center space-x-4 pb-2">
               <facility.icon
