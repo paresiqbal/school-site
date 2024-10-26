@@ -12,9 +12,10 @@ import Image from "next/image";
 
 type DetailFacilityProps = { params: { slug: string } };
 
-export default function FacilityDetails({ params }: DetailFacilityProps) {
+export default async function FacilityDetails({ params }: DetailFacilityProps) {
+  const { slug } = await params; // Await `params` to resolve it properly
   const facilityDetails = facilitiesData.find(
-    (facility) => facility.slug === params.slug,
+    (facility) => facility.slug === slug,
   );
 
   return (
