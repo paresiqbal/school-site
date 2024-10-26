@@ -13,7 +13,7 @@ import Image from "next/image";
 type DetailFacilityProps = { params: { slug: string } };
 
 export default async function FacilityDetails({ params }: DetailFacilityProps) {
-  const { slug } = await params; // Await `params` to resolve it properly
+  const { slug } = await params;
   const facilityDetails = facilitiesData.find(
     (facility) => facility.slug === slug,
   );
