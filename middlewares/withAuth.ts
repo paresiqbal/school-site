@@ -8,7 +8,7 @@ import {
 
 export default function withAuth(
   middleware: NextMiddleware,
-  requireAuth: string[] = []
+  requireAuth: string[] = [],
 ) {
   return async (req: NextRequest, next: NextFetchEvent) => {
     const pathname = req.nextUrl.pathname;
@@ -20,7 +20,7 @@ export default function withAuth(
       });
 
       if (!token) {
-        const url = new URL("/login", req.nextUrl);
+        const url = new URL("/auth/login", req.nextUrl);
         url.searchParams.set("callbackUrl", encodeURI(req.url));
         return NextResponse.redirect(url);
       }
