@@ -10,24 +10,24 @@ import Topbar from "@/components/Topbar";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
 } from "@/components/ui/breadcrumb";
 
 export default function Dashboard() {
   const { data: session } = useSession();
 
   return (
-    <div>
-      <div className="flex items-center justify-between">
+    <div className="container mx-auto">
+      <div className="flex items-center justify-between pb-4">
         <div className="flex">
           <Topbar />
           <Breadcrumb className="hidden md:flex">
             <BreadcrumbList>
               <BreadcrumbItem>
-                <BreadcrumbLink asChild>
+                <BreadcrumbPage>
                   <p>Dashboard</p>
-                </BreadcrumbLink>
+                </BreadcrumbPage>
               </BreadcrumbItem>
             </BreadcrumbList>
           </Breadcrumb>

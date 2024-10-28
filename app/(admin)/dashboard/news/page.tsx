@@ -116,7 +116,6 @@ export default function ListNews() {
       <div className="flex items-center justify-between pb-4">
         <div className="flex">
           <Topbar />
-
           <Breadcrumb className="hidden md:flex">
             <BreadcrumbList>
               <BreadcrumbItem>
