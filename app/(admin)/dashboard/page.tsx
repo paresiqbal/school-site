@@ -11,12 +11,14 @@ import AgendaComps from "@/components/Agenda";
 // ui lib
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 export default function Dashboard() {
   const { data: session } = useSession();
 
   return (
-    <div className="py-4">
+    <div className="">
+      <SidebarTrigger className="-ml-1" />
       <div className="flex flex-col items-center justify-between sm:flex-row">
         {session?.user && (
           <>
