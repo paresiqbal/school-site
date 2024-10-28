@@ -35,7 +35,6 @@ export function TeamSwitcher({
               <span className="truncate font-semibold">{activeTeam.name}</span>
               <span className="truncate text-xs">{activeTeam.plan}</span>
             </div>
-
             <SidebarTrigger className="-ml-1" />
           </SidebarMenuButton>
         </div>
