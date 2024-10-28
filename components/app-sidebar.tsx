@@ -2,12 +2,10 @@
 
 import * as React from "react";
 import {
-  AudioWaveform,
   BookOpen,
   Bot,
-  Command,
   Frame,
-  GalleryVerticalEnd,
+  Hexagon,
   Map,
   PieChart,
   Settings2,
@@ -35,19 +33,9 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
-      plan: "Enterprise",
-    },
-    {
-      name: "Acme Corp.",
-      logo: AudioWaveform,
-      plan: "Startup",
-    },
-    {
-      name: "Evil Corp.",
-      logo: Command,
-      plan: "Free",
+      name: "SMKN 1 RL",
+      logo: Hexagon,
+      plan: "School",
     },
   ],
   navMain: [
@@ -158,7 +146,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} variant="sidebar">
       <SidebarHeader>
         <TeamSwitcher teams={data.teams} />
       </SidebarHeader>
