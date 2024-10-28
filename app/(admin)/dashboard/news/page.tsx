@@ -56,6 +56,7 @@ export default function ListNews() {
         if (!res.ok) {
           throw new Error("Failed to fetch news.");
         }
+
         const data = await res.json();
         setNews(data);
         toast.success("News loaded successfully");
