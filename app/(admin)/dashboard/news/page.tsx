@@ -127,14 +127,8 @@ export default function ListNews() {
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="/dashboard/news">Daftar Berita</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
               <BreadcrumbPage>
-                <p>Buat Berita</p>
+                <p>Daftar Berita</p>
               </BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
