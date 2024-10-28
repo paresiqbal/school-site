@@ -12,6 +12,7 @@ import {
   SidebarMenuButton,
   SidebarRail,
 } from "@/components/ui/sidebar";
+import Link from "next/link";
 
 const data = {
   user: {
@@ -82,7 +83,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               <Hexagon size={20} />
             </div>
             <div className="grid flex-1 text-left text-sm leading-tight">
-              <p>SMKN 1 RL</p>
+              <Link href={"/"}>SMKN 1 RL</Link>
             </div>
           </SidebarMenuButton>
         </div>
