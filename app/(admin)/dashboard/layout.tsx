@@ -1,6 +1,8 @@
 "use client";
 
+import { AppSidebar } from "@/components/app-sidebar";
 import { ModeToggle } from "@/components/ModeToggle";
+import { SidebarProvider } from "@/components/ui/sidebar";
 
 export default function DashboardLayout({
   children,
@@ -9,8 +11,10 @@ export default function DashboardLayout({
 }) {
   return (
     <section className="flex bg-background">
-      <div></div>
-      <div className="w-full bg-muted/40 p-6">{children}</div>
+      <SidebarProvider>
+        <AppSidebar />
+        <div className="w-full bg-muted/40 p-6">{children}</div>
+      </SidebarProvider>
       <div className="fixed bottom-4 right-4 z-50">
         <ModeToggle />
       </div>
