@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Pencil, RotateCcw, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
 import Topbar from "@/components/Topbar";
 
 interface NewsData {
@@ -47,10 +47,12 @@ export default function ListNews() {
       setError(null);
       try {
         const res = await fetch("http://127.0.0.1:8000/api/news", {
-          headers: {
-            Authorization: `Bearer ${token}`,
+          cache: "force-cache",
+          next: {
+            revalidate: 60,
           },
         });
+
         if (!res.ok) {
           throw new Error("Failed to fetch news.");
         }
@@ -66,10 +68,6 @@ export default function ListNews() {
 
     fetchNews();
   }, [token]);
-
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
 
   const handleDelete = async (id: number) => {
     if (!token) {
@@ -95,6 +93,10 @@ export default function ListNews() {
       console.error("Error deleting news:", error);
       toast.error("Failed to delete news.");
     }
+  };
+
+  const graphingText = (text: string, limit: number) => {
+    return text.length > limit ? text.substring(0, limit) + "..." : text;
   };
 
   const formatDate = (dateString?: string | null): string => {
@@ -185,9 +187,6 @@ export default function ListNews() {
           </div>
         </Card>
       ))}
-      <Button className="mt-2" onClick={() => toast.success("Refreshed")}>
-        <RotateCcw className="h-4 w-4" />
-      </Button>
     </div>
   );
 }
