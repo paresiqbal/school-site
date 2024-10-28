@@ -80,7 +80,7 @@ export default function Sidebar() {
       {/* Desktop Sidebar */}
       <aside
         className={cn(
-          "hidden overflow-hidden transition-[width] duration-500 ease-in-out md:flex",
+          "hidden transition-all duration-300 ease-in-out md:flex",
           isShrunk ? "w-16" : "w-64",
         )}
       >
@@ -127,7 +127,7 @@ function SidebarContent({
   return (
     <div
       className={cn(
-        "flex h-screen flex-col border-r transition-all duration-300 ease-in-out",
+        "flex h-screen flex-col border-r transition-all duration-300 ease-in-out", // h-screen ensures it takes full screen height
         isDesktop ? (isShrunk ? "w-16" : "w-64") : "w-full",
       )}
     >
