@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { NavDashboard } from "./nav-dashboard";
 
 const data = {
   navMain: [
@@ -87,6 +88,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </div>
       </SidebarHeader>
       <SidebarContent>
+        <NavDashboard />
         <NavMain items={data.navMain} />
       </SidebarContent>
       <SidebarFooter>
