@@ -6,7 +6,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { LayoutDashboardIcon } from "lucide-react";
+import { LayoutDashboardIcon, House } from "lucide-react";
 import Link from "next/link";
 
 export function NavDashboard() {
@@ -14,7 +14,11 @@ export function NavDashboard() {
     <SidebarGroup>
       <SidebarMenu>
         <SidebarMenuItem>
-          <SidebarMenuButton>
+          <SidebarMenuButton tooltip={"Halaman Utama"}>
+            <House className="h-6 w-6" />
+            <Link href={"/dashboard"}>Halaman Utama</Link>
+          </SidebarMenuButton>
+          <SidebarMenuButton tooltip={"Dashboard"}>
             <LayoutDashboardIcon className="h-6 w-6" />
             <Link href={"/dashboard"}>Dashboard</Link>
           </SidebarMenuButton>
