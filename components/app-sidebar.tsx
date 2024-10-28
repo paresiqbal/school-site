@@ -1,6 +1,6 @@
 "use client";
 
-import { BookOpen, Bot, Hexagon, SquareTerminal } from "lucide-react";
+import { CalendarPlus, Volume2, Hexagon, Newspaper } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -23,11 +23,11 @@ const data = {
     {
       title: "Berita",
       url: "#",
-      icon: SquareTerminal,
+      icon: Newspaper,
       isActive: true,
       items: [
         {
-          title: "List Berita",
+          title: "Daftar Berita",
           url: "/dashboard/news",
         },
         {
@@ -37,44 +37,32 @@ const data = {
       ],
     },
     {
-      title: "Models",
+      title: "Pengumuman",
       url: "#",
-      icon: Bot,
+      icon: Volume2,
       items: [
         {
-          title: "Genesis",
-          url: "#",
+          title: "Daftar Pengumuman",
+          url: "/dashboard/announcement",
         },
         {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
+          title: "Buat Pengumuman",
+          url: "/dashboard/announcement/createAnnouncement",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Agenda",
       url: "#",
-      icon: BookOpen,
+      icon: CalendarPlus,
       items: [
         {
-          title: "Introduction",
-          url: "#",
+          title: "Daftar Agenda",
+          url: "/dashboard/agenda",
         },
         {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
+          title: "Buat Agenda",
+          url: "/dashboard/agenda/createAgenda",
         },
       ],
     },
