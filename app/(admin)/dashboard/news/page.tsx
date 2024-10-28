@@ -153,26 +153,25 @@ export default function ListNews() {
               <Image
                 src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
-                width={300}
-                height={250}
+                width={400}
+                height={350}
                 className="h-auto w-full rounded-lg object-cover"
               />
             </div>
           )}
           <div className="w-full md:w-3/4">
             <CardHeader>
-              <CardTitle className="text-lg md:text-xl">
+              <CardTitle className="text-lg hover:underline md:text-xl">
                 <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
               </CardTitle>
               <CardDescription>{formatDate(item.created_at)}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>{graphingText(item.content, 200)}</p>
+              <p className="italic">{graphingText(item.content, 120)}</p>
             </CardContent>
             <CardFooter className="flex gap-4">
               <Link href={`/dashboard/news/${item.id}`}>
                 <Button className="flex items-center gap-2">
-                  Edit
                   <Pencil className="h-4 w-4" />
                 </Button>
               </Link>
@@ -181,7 +180,6 @@ export default function ListNews() {
                 onClick={() => handleDelete(item.id)}
                 className="flex items-center gap-2"
               >
-                Delete
                 <Trash2 className="h-4 w-4" />
               </Button>
             </CardFooter>
