@@ -13,7 +13,7 @@ export default function DashboardLayout({
     <section className="flex bg-background">
       <SidebarProvider>
         <AppSidebar />
-        <div className="w-full bg-muted/40 p-6">{children}</div>
+        <div className="w-full bg-muted/40 p-4">{children}</div>
       </SidebarProvider>
       <div className="fixed bottom-4 right-4 z-50">
         <ModeToggle />
