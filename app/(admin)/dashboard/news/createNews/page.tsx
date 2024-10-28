@@ -84,9 +84,9 @@ export default function CreateNews() {
     if (!token) {
       form.setError("title", {
         type: "server",
-        message: "Authentication token is missing. Please log in.",
+        message: "Silahkan login terlebih dahulu.",
       });
-      toast.error("Authentication token is missing. Please log in.");
+      toast.error("Silahkan login terlebih dahulu.");
       setIsSubmitting(false);
       return;
     }
@@ -113,9 +113,9 @@ export default function CreateNews() {
       if (res.status === 401) {
         form.setError("title", {
           type: "server",
-          message: "Unauthorized. Please log in again.",
+          message: "Unauthorized. Silakan masuk lagi.",
         });
-        toast.error("Unauthorized. Please log in again.");
+        toast.error("Unauthorized. Silakan masuk lagi.");
         return;
       }
 
@@ -126,15 +126,17 @@ export default function CreateNews() {
             message: result.errors[key][0],
           });
         });
-        toast.error("Error creating news. Please check the form.");
+        toast.error(
+          "Terjadi kesalahan saat membuat berita. Harap periksa formulir.",
+        );
       } else {
-        toast.success("News created successfully.");
+        toast.success("Berita berhasil dibuat.");
         form.reset();
       }
     } catch (error) {
-      console.error("Error creating news:", error);
-      setServerError("Network error. Please try again later.");
-      toast.error("Network error. Please try again later.");
+      console.error("Terjadi kesalahan saat membuat berita:", error);
+      setServerError("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
+      toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
     } finally {
       setIsSubmitting(false);
     }
@@ -171,8 +173,10 @@ export default function CreateNews() {
       <Toaster />
       <Card>
         <CardHeader>
-          <CardTitle>Create News</CardTitle>
-          <CardDescription>Fill this form to create a news.</CardDescription>
+          <CardTitle>Buat Berita</CardTitle>
+          <CardDescription>
+            Isi formulir ini untuk membuat berita.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -182,10 +186,10 @@ export default function CreateNews() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>Judul</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="News title"
+                        placeholder="Judul berita"
                         {...field}
                         className="w-full rounded-lg"
                         disabled={isSubmitting}
@@ -200,12 +204,12 @@ export default function CreateNews() {
                 name="content"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Content</FormLabel>
+                    <FormLabel>Konten</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Textarea
                           rows={10}
-                          placeholder="News content"
+                          placeholder="Konten berita"
                           {...field}
                           className="w-full rounded border bg-background p-2"
                           disabled={isSubmitting}
@@ -241,7 +245,7 @@ export default function CreateNews() {
                 className="mt-4 w-full rounded p-2 font-bold"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Creating..." : "Create News"}
+                {isSubmitting ? "Membuat..." : "Buat Berita"}
               </Button>
             </form>
           </Form>
