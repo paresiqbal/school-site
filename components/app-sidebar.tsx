@@ -36,22 +36,18 @@ const data = {
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Berita",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "List Berita",
+          url: "/news",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
+          title: "Buat Berita",
+          url: "/news/createNews",
         },
       ],
     },
