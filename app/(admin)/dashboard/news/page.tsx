@@ -49,7 +49,7 @@ export default function ListNews() {
         const res = await fetch("http://127.0.0.1:8000/api/news", {
           cache: "force-cache",
           next: {
-            revalidate: 60,
+            revalidate: 30,
           },
         });
 
