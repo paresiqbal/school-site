@@ -180,10 +180,10 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
                   <Image
                     src={imagePreviewUrl}
                     alt="Selected"
-                    width={400}
-                    height={200}
+                    width={500}
+                    height={500}
                     priority
-                    className="h-auto w-full rounded-lg"
+                    className="h-auto w-1/2 rounded-lg"
                   />
                 </div>
               )}
