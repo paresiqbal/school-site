@@ -40,6 +40,7 @@ import {
 
 // icons
 import { Paperclip } from "lucide-react";
+import Topbar from "@/components/Topbar";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -83,9 +84,9 @@ export default function CreateAnnouncement() {
     if (!token) {
       form.setError("title", {
         type: "server",
-        message: "Authentication token is missing. Please log in.",
+        message: "Silahkan login terlebih dahulu.",
       });
-      toast.error("Authentication token is missing. Please log in.");
+      toast.error("Silahkan login terlebih dahulu.");
       setIsSubmitting(false);
       return;
     }
@@ -112,9 +113,9 @@ export default function CreateAnnouncement() {
       if (res.status === 401) {
         form.setError("title", {
           type: "server",
-          message: "Unauthorized. Please log in again.",
+          message: "Unauthorized. Silakan masuk lagi.",
         });
-        toast.error("Unauthorized. Please log in again.");
+        toast.error("Unauthorized. Silakan masuk lagi.");
         return;
       }
 
@@ -125,15 +126,17 @@ export default function CreateAnnouncement() {
             message: result.errors[key][0],
           });
         });
-        toast.error("Error creating announcement. Please check the form.");
+        toast.error(
+          "Terjadi kesalahan saat membuat pengumuman. Harap periksa formulir.",
+        );
       } else {
-        toast.success("Announcement created successfully.");
+        toast.success("Pengumuman berhasil dibuat.");
         form.reset();
       }
     } catch (error) {
-      console.error("Error creating announcement:", error);
-      setServerError("Network error. Please try again later.");
-      toast.error("Network error. Please try again later.");
+      console.error("Terjadi kesalahan saat membuat pengumuman:", error);
+      setServerError("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
+      toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
     } finally {
       setIsSubmitting(false);
     }
@@ -141,27 +144,38 @@ export default function CreateAnnouncement() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden pb-4 md:flex">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Create Announcement</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <div className="flex items-center justify-between pb-4">
+        <div className="flex">
+          <Topbar />
+          <Breadcrumb className="hidden md:flex">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dasboard">Dashboard</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dashboard/announcement">Daftar Pengumuman</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbPage>
+                <p>Buat Pengumuman</p>
+              </BreadcrumbPage>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       {/* Form create announcement */}
       <Toaster />
       <Card>
         <CardHeader>
-          <CardTitle>Create Announcement</CardTitle>
+          <CardTitle>Buat Pengumuman</CardTitle>
           <CardDescription>
-            Fill this form to create a announcement.
+            Isi formulir ini untuk membuat pengumuman.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -172,10 +186,10 @@ export default function CreateAnnouncement() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>Judul</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Announcement title"
+                        placeholder="Judul pengumuman"
                         {...field}
                         className="w-full rounded-lg"
                         disabled={isSubmitting}
@@ -190,12 +204,12 @@ export default function CreateAnnouncement() {
                 name="content"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Content</FormLabel>
+                    <FormLabel>Konten</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Textarea
-                          rows={6}
-                          placeholder="Announcement content"
+                          rows={10}
+                          placeholder="Konten pengumuman"
                           {...field}
                           className="w-full rounded border bg-background p-2"
                           disabled={isSubmitting}
@@ -204,9 +218,9 @@ export default function CreateAnnouncement() {
 
                       <label
                         htmlFor="fileInput"
-                        className="absolute bottom-4 left-4 cursor-pointer"
+                        className="absolute bottom-4 right-4 cursor-pointer"
                       >
-                        <Paperclip className="text-gray-500" />
+                        <Paperclip className="text-primary" />
                       </label>
                       <input
                         id="fileInput"
@@ -221,18 +235,17 @@ export default function CreateAnnouncement() {
                 )}
               />
               {selectedImage && (
-                <p className="mt-2 text-sm text-gray-600">
-                  Selected file: {selectedImage.name}
+                <p className="mt-2 text-sm text-primary underline">
+                  Selected image: {selectedImage.name}
                 </p>
               )}
-
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
                 className="mt-4 w-full rounded p-2 font-bold"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Creating..." : "Create Announcement"}
+                {isSubmitting ? "Membuat..." : "Buat Pengumuman"}
               </Button>
             </form>
           </Form>
