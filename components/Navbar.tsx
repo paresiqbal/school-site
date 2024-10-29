@@ -151,7 +151,7 @@ export default function Navbar() {
                   e.currentTarget.nextElementSibling?.classList.toggle("hidden")
                 }
               >
-                About <ChevronDown className="ml-1 inline-block h-4 w-4" />
+                Profil <ChevronDown className="ml-1 inline-block h-4 w-4" />
               </button>
               <div className="hidden pl-4">
                 <Link
@@ -185,7 +185,7 @@ export default function Navbar() {
               </button>
               <div className="hidden pl-4">
                 <Link
-                  href="/visiMisi"
+                  href="/berita"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Berita
@@ -204,12 +204,6 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
-            <Link
-              href="/services"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
-            >
-              Services
-            </Link>
             <Link
               href="/kontak"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
