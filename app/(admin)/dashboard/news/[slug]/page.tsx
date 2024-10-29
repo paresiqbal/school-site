@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 
 // components
 import Topbar from "@/components/Topbar";
+import { AppContext } from "@/context/AppContext";
 
 // external libraries
 import { z } from "zod";
@@ -54,10 +55,9 @@ const formSchema = z.object({
 });
 
 export default function EditNews(props: { params: Promise<{ slug: string }> }) {
+  const { token } = useContext(AppContext);
   const [slug, setSlug] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<File | string | null>(
-    null,
-  );
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -99,7 +99,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
     };
 
     getNewsDetail();
-  }, [slug, form.setValue, form]);
+  }, [slug, form]);
 
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files.length > 0) {
@@ -113,6 +113,35 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
       : selectedImage
         ? `http://127.0.0.1:8000/storage/${selectedImage}`
         : null;
+
+  const handleEdit = async (data: z.infer<typeof formSchema>) => {
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("content", data.content);
+
+    if (selectedImage instanceof File) {
+      formData.append("image", selectedImage);
+    }
+
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/api/news/${slug}`, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (!res.ok) {
+        throw new Error("Failed to update news.");
+      }
+
+      toast.success("News updated successfully");
+    } catch (error) {
+      console.error(error);
+      toast.error("Failed to update news.");
+    }
+  };
 
   if (!slug) {
     return <div>Loading...</div>;
@@ -156,7 +185,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit((data) => console.log(data))}>
+            <form onSubmit={form.handleSubmit(handleEdit)}>
               <FormField
                 control={form.control}
                 name="title"
