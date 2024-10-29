@@ -75,7 +75,6 @@ export default function ListAnnouncement() {
       toast.error("Unauthorized. Tolong masuk.");
       return;
     }
-    // amm
     try {
       const res = await fetch(`http://127.0.0.1:8000/api/announcement/${id}`, {
         method: "DELETE",
