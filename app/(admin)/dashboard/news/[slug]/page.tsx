@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // components
 import Topbar from "@/components/Topbar";
@@ -42,7 +43,6 @@ import {
 
 // Icon
 import { Paperclip } from "lucide-react";
-import Image from "next/image";
 
 // Validation schema
 const formSchema = z.object({
@@ -110,7 +110,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
   const imagePreviewUrl =
     selectedImage instanceof File
       ? URL.createObjectURL(selectedImage)
-      : selectedImage;
+      : `http://127.0.0.1:8000/storage/${selectedImage}`;
 
   if (!slug) {
     return <div>Loading...</div>;
@@ -179,6 +179,8 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
                     src={imagePreviewUrl}
                     alt="Selected"
                     width={400}
+                    height={200}
+                    priority
                     className="h-auto w-full rounded-lg"
                   />
                 </div>
