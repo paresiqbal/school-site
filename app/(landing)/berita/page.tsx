@@ -8,6 +8,7 @@ import { toast } from "sonner";
 
 // UI library
 import { Separator } from "@/components/ui/separator";
+import Link from "next/link";
 
 interface NewsData {
   id: number;
@@ -77,7 +78,7 @@ export default function Berita() {
         news.map((item) => (
           <div
             key={item.id}
-            className="mb-6 flex max-w-3xl flex-col gap-2 overflow-hidden md:flex-row md:gap-4"
+            className="mb-6 flex max-w-3xl flex-col gap-2 overflow-hidden py-4 md:flex-row md:gap-4"
           >
             <div className="flex w-full flex-col items-start space-y-1 md:w-1/4 md:space-y-2">
               <span className="text-sm md:text-base">
@@ -109,11 +110,14 @@ export default function Berita() {
                 </span>
               </div>
               <div className="mt-4">
-                <h2 className="mb-2 text-lg font-semibold md:text-xl">
+                <Link
+                  href={`/berita/${item.id}`}
+                  className="mb-2 text-lg font-semibold hover:underline md:text-xl"
+                >
                   {item.title}
-                </h2>
+                </Link>
                 <p className="text-sm italic md:text-base">
-                  {graphingText(item.content, 100)}
+                  {graphingText(item.content, 120)}
                 </p>
               </div>
             </div>
