@@ -47,10 +47,8 @@ import { Paperclip } from "lucide-react";
 
 // Validation schema
 const formSchema = z.object({
-  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
-  content: z
-    .string()
-    .min(10, { message: "Content must be at least 10 characters." }),
+  title: z.string().min(6, { message: "Judul minimal 6 karakter." }),
+  content: z.string().min(10, { message: "Konten minimal 10 karakter." }),
   image: z.any().optional(),
 });
 
@@ -91,10 +89,10 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
         form.setValue("content", data.content);
         form.setValue("image", data.image);
         setSelectedImage(data.image);
-        toast.success("News loaded successfully");
+        toast.success("Berita berhasil dimuat.");
       } catch (error) {
         console.error(error);
-        toast.error("Failed to load news");
+        toast.error("Gagal memuat berita.");
       }
     };
 
@@ -136,10 +134,10 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
         throw new Error("Failed to update news.");
       }
 
-      toast.success("News updated successfully");
+      toast.success("Berita berhasil diperbarui.");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update news.");
+      toast.error("Gagal perbarui berita.");
     }
   };
 
