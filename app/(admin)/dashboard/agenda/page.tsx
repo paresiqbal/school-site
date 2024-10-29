@@ -3,8 +3,11 @@
 import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
 
-// ui lib
+// components
+import Topbar from "@/components/Topbar";
 import { AppContext } from "@/context/AppContext";
+
+// ui lib
 import {
   Card,
   CardContent,
@@ -25,7 +28,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 
 // icons
-import { RotateCcw, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 interface AgendaData {
   id: number;
@@ -46,8 +49,9 @@ export default function ListAgenda() {
       setError(null);
       try {
         const res = await fetch("http://127.0.0.1:8000/api/agenda", {
-          headers: {
-            Authorization: `Bearer ${token}`,
+          cache: "force-cache",
+          next: {
+            revalidate: 30,
           },
         });
         if (!res.ok) {
@@ -55,11 +59,11 @@ export default function ListAgenda() {
         }
         const data = await res.json();
         setAgenda(data);
-        toast.success("Agenda loaded successfully");
+        toast.success("Agenda berhasil diambil");
       } catch (error) {
         console.error(error);
         setError("Failed to load agenda. Please try again.");
-        toast.error("Failed to load agenda");
+        toast.error("Gagal mengambil agenda");
       }
     }
 
@@ -72,7 +76,7 @@ export default function ListAgenda() {
 
   const handleDelete = async (id: number) => {
     if (!token) {
-      toast.error("Unauthorized. Please log in.");
+      toast.error("Unauthorized. TOlong masuk terlebihdahulu.");
       return;
     }
 
@@ -89,10 +93,10 @@ export default function ListAgenda() {
       }
 
       setAgenda((prevAgenda) => prevAgenda.filter((item) => item.id !== id));
-      toast.success("Agenda deleted successfully");
+      toast.success("Agenda berhasil dihapus");
     } catch (error) {
       console.error("Error deleting agenda:", error);
-      toast.error("Failed to delete agenda.");
+      toast.error("Gagal menghapus agenda.");
     }
   };
 
@@ -110,20 +114,24 @@ export default function ListAgenda() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden pb-4 md:flex">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>List Agenda</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
+      <div className="flex items-center justify-between pb-4">
+        <div className="flex">
+          <Topbar />
+          <Breadcrumb className="hidden md:flex">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dasboard">Dashboard</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbPage>
+                <p>Daftar Agenda</p>
+              </BreadcrumbPage>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
       {/* Form */}
       <Toaster />
       {agenda.map((item) => (
@@ -134,7 +142,7 @@ export default function ListAgenda() {
           <div className="w-full md:w-3/4">
             <CardHeader>
               <CardTitle className="text-md md:text-xl">
-                <h2 className="text-lg font-bold">{item.title}</h2>
+                <p className="text-lg font-bold">{item.title}</p>
               </CardTitle>
             </CardHeader>
             <CardContent>
@@ -164,10 +172,6 @@ export default function ListAgenda() {
           </CardFooter>
         </Card>
       ))}
-
-      <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
-        <RotateCcw className="h-4 w-4" />
-      </Button>
     </div>
   );
 }
