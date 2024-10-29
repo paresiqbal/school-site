@@ -96,7 +96,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           user={{
             name: session?.user?.name || "User",
             email: session?.user?.email || "admin@smk1rl.com",
-            avatar: session?.user?.image || "images/avatar.jpg",
           }}
         />
       </SidebarFooter>
