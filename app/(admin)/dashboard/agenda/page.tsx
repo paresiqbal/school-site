@@ -25,10 +25,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { Separator } from "@/components/ui/separator";
 
 // icons
 import { Trash2 } from "lucide-react";
+import Image from "next/image";
 
 interface AgendaData {
   id: number;
@@ -49,10 +49,7 @@ export default function ListAgenda() {
       setError(null);
       try {
         const res = await fetch("http://127.0.0.1:8000/api/agenda", {
-          cache: "force-cache",
-          next: {
-            revalidate: 30,
-          },
+          cache: "no-cache",
         });
         if (!res.ok) {
           throw new Error("Failed to fetch agenda.");
@@ -132,42 +129,49 @@ export default function ListAgenda() {
           </Breadcrumb>
         </div>
       </div>
-      {/* Form */}
+
+      {/* List */}
       <Toaster />
       {agenda.map((item) => (
         <Card
           key={item.id}
-          className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
+          className="mb-2 w-full max-w-xs rounded-md bg-gray-50 p-2 shadow-sm md:w-2/5"
         >
-          <div className="w-full md:w-3/4">
-            <CardHeader>
-              <CardTitle className="text-md md:text-xl">
-                <p className="text-lg font-bold">{item.title}</p>
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <h3 className="text-lg">{graphingText(item.description, 200)}</h3>
-            </CardContent>
+          <div className="w-full">
+            <Image
+              src="/assets/bell.png"
+              width={200}
+              height={150}
+              alt="bell"
+              className="h-40 w-full rounded-t-md bg-gray-100 object-contain"
+            />
           </div>
-          <CardFooter>
-            <div className="flex h-5 items-center space-x-4 text-sm">
-              <Separator orientation="vertical" />
+          <CardHeader className="p-2">
+            <CardTitle className="md:text-md text-sm font-semibold">
+              {item.title}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-2">
+            <p className="text-xs text-gray-700">
+              {graphingText(item.description, 100)}
+            </p>
+            <div className="mt-1 text-xs text-gray-500">
               <p>
-                <strong>Start Date:</strong> {formatDate(item.start_date)}
+                <strong>Mulai:</strong> {formatDate(item.start_date)}
               </p>
               <p>
-                <strong>End Date:</strong> {formatDate(item.end_date)}
+                <strong>Sampai:</strong> {formatDate(item.end_date)}
               </p>
             </div>
-          </CardFooter>
-          <CardFooter className="flex gap-4">
+          </CardContent>
+          <CardFooter className="mt-2 flex justify-end gap-2 p-2">
             <Button
               variant="destructive"
               onClick={() => handleDelete(item.id)}
-              className="flex items-center gap-2"
+              className="flex items-center gap-1 px-2 py-1 text-xs"
             >
               Delete
-              <Trash2 className="h-4 w-4" />
+              <Trash2 className="h-3 w-3" />
             </Button>
           </CardFooter>
         </Card>
