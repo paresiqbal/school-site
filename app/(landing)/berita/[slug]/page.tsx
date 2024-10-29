@@ -1,9 +1,33 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
+
+// external libraries
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast, Toaster } from "sonner";
+
+// Validation schema
+const formSchema = z.object({
+  title: z.string().min(6, { message: "Judul minimal 6 karakter." }),
+  content: z.string().min(10, { message: "Konten minimal 10 karakter." }),
+  image: z.any().optional(),
+});
 
 export default function Page(props: { params: Promise<{ slug: string }> }) {
   const [slug, setSlug] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      content: "",
+      image: "",
+    },
+  });
 
   useEffect(() => {
     const fetchParams = async () => {
@@ -14,9 +38,53 @@ export default function Page(props: { params: Promise<{ slug: string }> }) {
     fetchParams();
   }, [props.params]);
 
+  useEffect(() => {
+    if (!slug) return;
+
+    const getNewsDetail = async () => {
+      try {
+        const res = await fetch(`http://127.0.0.1:8000/api/news/${slug}`);
+        const data = await res.json();
+
+        if (!res.ok) throw new Error("Failed to fetch news data");
+
+        form.setValue("title", data.title);
+        form.setValue("content", data.content);
+        form.setValue("image", data.image);
+        setSelectedImage(data.image);
+        toast.success("Berita berhasil dimuat.");
+      } catch (error) {
+        console.error(error);
+        toast.error("Gagal memuat berita.");
+      }
+    };
+
+    getNewsDetail();
+  }, [slug, form]);
+
+  const imagePreviewUrl =
+    selectedImage instanceof File
+      ? URL.createObjectURL(selectedImage)
+      : selectedImage
+        ? `http://127.0.0.1:8000/storage/${selectedImage}`
+        : null;
+
   return (
     <div className="container mx-auto max-w-2xl px-4 py-8">
-      <div className="mb-6 h-64 w-full rounded-md bg-gray-300"></div>
+      <Toaster />
+
+      {imagePreviewUrl && (
+        <div className="mb-6 w-full rounded-md">
+          <Image
+            src={imagePreviewUrl}
+            alt="Selected"
+            width={500}
+            height={500}
+            priority
+            className="h-auto w-full rounded-lg"
+          />
+        </div>
+      )}
 
       <h1 className="mb-4 text-3xl font-bold">
         How to convert CommonJS to ESM
