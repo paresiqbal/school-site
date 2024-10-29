@@ -40,6 +40,10 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
+// Icon
+import { Paperclip } from "lucide-react";
+import Image from "next/image";
+
 // Validation schema
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -51,6 +55,9 @@ const formSchema = z.object({
 
 export default function EditNews(props: { params: Promise<{ slug: string }> }) {
   const [slug, setSlug] = useState<string | null>(null);
+  const [selectedImage, setSelectedImage] = useState<File | string | null>(
+    null,
+  );
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -83,6 +90,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
         form.setValue("title", data.title);
         form.setValue("content", data.content);
         form.setValue("image", data.image);
+        setSelectedImage(data.image);
         toast.success("News loaded successfully");
       } catch (error) {
         console.error(error);
@@ -92,6 +100,17 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
 
     getNewsDetail();
   }, [slug, form.setValue, form]);
+
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setSelectedImage(event.target.files[0]);
+    }
+  };
+
+  const imagePreviewUrl =
+    selectedImage instanceof File
+      ? URL.createObjectURL(selectedImage)
+      : selectedImage;
 
   if (!slug) {
     return <div>Loading...</div>;
@@ -153,24 +172,53 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
                   </FormItem>
                 )}
               />
+
+              {imagePreviewUrl && (
+                <div className="my-4">
+                  <Image
+                    src={imagePreviewUrl}
+                    alt="Selected"
+                    width={400}
+                    className="h-auto w-full rounded-lg"
+                  />
+                </div>
+              )}
+
               <FormField
                 control={form.control}
                 name="content"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Konten</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        rows={10}
-                        placeholder="Konten berita"
-                        {...field}
-                        className="w-full rounded border bg-background p-2"
+                    <div className="relative">
+                      <FormControl>
+                        <Textarea
+                          rows={10}
+                          placeholder="Konten berita"
+                          {...field}
+                          className="w-full rounded border bg-background p-2"
+                        />
+                      </FormControl>
+
+                      <label
+                        htmlFor="fileInput"
+                        className="absolute bottom-4 right-4 cursor-pointer"
+                      >
+                        <Paperclip className="text-primary" />
+                      </label>
+                      <input
+                        id="fileInput"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleFileChange}
                       />
-                    </FormControl>
+                    </div>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               <Button
                 type="submit"
                 className="mt-4 w-full rounded p-2 font-bold"
