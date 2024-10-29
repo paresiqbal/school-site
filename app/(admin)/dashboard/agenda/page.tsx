@@ -111,14 +111,14 @@ export default function ListAgenda() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex items-center justify-between pb-4">
-        <div className="flex">
+      <div className="flex flex-col items-center justify-between pb-4 md:flex-row">
+        <div className="mb-4 flex items-center md:mb-0">
           <Topbar />
-          <Breadcrumb className="hidden md:flex">
+          <Breadcrumb className="ml-4 hidden md:flex">
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dasboard">Dashboard</Link>
+                  <Link href="/dashboard">Dashboard</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -130,52 +130,53 @@ export default function ListAgenda() {
         </div>
       </div>
 
-      {/* List */}
       <Toaster />
-      {agenda.map((item) => (
-        <Card
-          key={item.id}
-          className="mb-2 w-full max-w-xs rounded-md bg-gray-50 p-2 shadow-sm md:w-2/5"
-        >
-          <div className="w-full">
-            <Image
-              src="/assets/bell.png"
-              width={200}
-              height={150}
-              alt="bell"
-              className="h-40 w-full rounded-t-md bg-gray-100 object-contain"
-            />
-          </div>
-          <CardHeader className="p-2">
-            <CardTitle className="md:text-md text-sm font-semibold">
-              {item.title}
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="p-2">
-            <p className="text-xs text-gray-700">
-              {graphingText(item.description, 100)}
-            </p>
-            <div className="mt-1 text-xs text-gray-500">
-              <p>
-                <strong>Mulai:</strong> {formatDate(item.start_date)}
-              </p>
-              <p>
-                <strong>Sampai:</strong> {formatDate(item.end_date)}
-              </p>
+
+      {/* List of Cards */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        {agenda.map((item) => (
+          <Card key={item.id} className="rounded-md bg-gray-50 p-2 shadow-sm">
+            <div className="w-full">
+              <Image
+                src="/assets/bell.png"
+                width={200}
+                height={150}
+                alt="bell"
+                priority
+                className="h-40 w-full rounded-t-md bg-gray-100 object-contain"
+              />
             </div>
-          </CardContent>
-          <CardFooter className="mt-2 flex justify-end gap-2 p-2">
-            <Button
-              variant="destructive"
-              onClick={() => handleDelete(item.id)}
-              className="flex items-center gap-1 px-2 py-1 text-xs"
-            >
-              Delete
-              <Trash2 className="h-3 w-3" />
-            </Button>
-          </CardFooter>
-        </Card>
-      ))}
+            <CardHeader className="p-2">
+              <CardTitle className="text-sm font-semibold md:text-base">
+                {item.title}
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="p-2">
+              <p className="text-xs text-gray-700 md:text-sm">
+                {graphingText(item.description, 100)}
+              </p>
+              <div className="mt-1 text-xs text-gray-500 md:text-sm">
+                <p>
+                  <strong>Mulai:</strong> {formatDate(item.start_date)}
+                </p>
+                <p>
+                  <strong>Sampai:</strong> {formatDate(item.end_date)}
+                </p>
+              </div>
+            </CardContent>
+            <CardFooter className="mt-2 flex justify-end gap-2 p-2">
+              <Button
+                variant="destructive"
+                onClick={() => handleDelete(item.id)}
+                className="flex items-center gap-1 px-2 py-1 text-xs md:text-sm"
+              >
+                Delete
+                <Trash2 className="h-3 w-3" />
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
