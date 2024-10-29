@@ -48,12 +48,13 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import Topbar from "@/components/Topbar";
 
 const formSchema = z.object({
-  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
+  title: z.string().min(6, { message: "Judul minimal 6 karakter." }),
   description: z
     .string()
-    .min(10, { message: "Description must be at least 10 characters." }),
+    .min(10, { message: "Deskripsi minimal 10 karekter." }),
   image: z.any().optional(),
 });
 
@@ -90,7 +91,7 @@ export default function CreateAgenda() {
         type: "server",
         message: "Authentication token is missing. Please log in.",
       });
-      toast.error("Authentication token is missing. Please log in.");
+      toast.error("Silahkan login terlebih dahulu.");
       setIsSubmitting(false);
       return;
     }
@@ -122,7 +123,7 @@ export default function CreateAgenda() {
           type: "server",
           message: "Unauthorized. Please log in again.",
         });
-        toast.error("Unauthorized. Please log in again.");
+        toast.error("Unauthorized. Silahkan login terlebih dahulu..");
         return;
       }
 
@@ -133,15 +134,15 @@ export default function CreateAgenda() {
             message: result.errors[key][0],
           });
         });
-        toast.error("Error creating agenda. Please check the form.");
+        toast.error("Kesalahan dalam membuat agenda.");
       } else {
-        toast.success("Agenda created successfully.");
+        toast.success("Agenda berhasil dibuat.");
         form.reset();
       }
     } catch (error) {
       console.error("Error creating agenda:", error);
       setServerError("Network error. Please try again later.");
-      toast.error("Network error. Please try again later.");
+      toast.error("Network error. Coba lagi nanti");
     } finally {
       setIsSubmitting(false);
     }
@@ -149,26 +150,39 @@ export default function CreateAgenda() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden pb-4 md:flex">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Create Agenda</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <div className="flex items-center justify-between pb-4">
+        <div className="flex">
+          <Topbar />
+          <Breadcrumb className="hidden md:flex">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dasboard">Dashboard</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dashboard/agenda">Daftar Agenda</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbPage>
+                <p>Buat Agenda</p>
+              </BreadcrumbPage>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       {/* Form create agenda */}
       <Toaster />
       <Card>
         <CardHeader>
-          <CardTitle>Create Agenda</CardTitle>
-          <CardDescription>Fill this form to create a agenda.</CardDescription>
+          <CardTitle>Buat agenda</CardTitle>
+          <CardDescription>
+            Isi form di bawah untuk membuat agenda.
+          </CardDescription>
         </CardHeader>
         <CardContent>
           <Form {...form}>
@@ -178,7 +192,7 @@ export default function CreateAgenda() {
                 name="title"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Title</FormLabel>
+                    <FormLabel>Judul</FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Agenda title"
@@ -196,7 +210,7 @@ export default function CreateAgenda() {
                 name="description"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Description</FormLabel>
+                    <FormLabel>Deskripsi</FormLabel>
                     <div className="relative">
                       <FormControl>
                         <Textarea
@@ -215,7 +229,7 @@ export default function CreateAgenda() {
 
               {/* Date Range Picker inside the Form */}
               <FormItem>
-                <FormLabel>Date Range</FormLabel>
+                <FormLabel>Tanggal</FormLabel>
                 <Popover>
                   <PopoverTrigger asChild>
                     <Button
@@ -237,7 +251,7 @@ export default function CreateAgenda() {
                           format(date.from, "LLL dd, y")
                         )
                       ) : (
-                        <span>Pick a date</span>
+                        <span>Pilih tanggal</span>
                       )}
                     </Button>
                   </PopoverTrigger>
@@ -261,7 +275,7 @@ export default function CreateAgenda() {
                 className="mt-4 w-full rounded p-2 font-bold"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Creating..." : "Create Agenda"}
+                {isSubmitting ? "Membuat..." : "Buat Agenda"}
               </Button>
             </form>
           </Form>
