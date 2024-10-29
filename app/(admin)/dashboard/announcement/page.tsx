@@ -59,11 +59,11 @@ export default function ListAnnouncement() {
 
         const data = await res.json();
         setAnnouncement(data);
-        toast.success("Announcement loaded successfully");
+        toast.success("Pengumuman berhasil dimuat");
       } catch (error) {
         console.error(error);
         setError("Failed to load announcement. Please try again.");
-        toast.error("Failed to load announcement");
+        toast.error("Gagal memuat pengumuman. Silahkan coba lagi.");
       }
     }
 
@@ -72,7 +72,7 @@ export default function ListAnnouncement() {
 
   const handleDelete = async (id: number) => {
     if (!token) {
-      toast.error("Unauthorized. Please log in.");
+      toast.error("Unauthorized. Tolong masuk.");
       return;
     }
     // amm
@@ -91,10 +91,10 @@ export default function ListAnnouncement() {
       setAnnouncement((prevAnnouncement) =>
         prevAnnouncement.filter((item) => item.id !== id),
       );
-      toast.success("Announcement deleted successfully");
+      toast.success("Pengumuman berhasil dihapus.");
     } catch (error) {
       console.error("Error deleting announcement:", error);
-      toast.error("Failed to delete announcement.");
+      toast.error("Gagal menghapus pengumuman.");
     }
   };
 
@@ -130,7 +130,7 @@ export default function ListAnnouncement() {
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbPage>
-                <p>Daftar Berita</p>
+                <p>Daftar Pengumuman</p>
               </BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
