@@ -1,19 +1,36 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import Link from "next/link";
 
 // components
 import Topbar from "@/components/Topbar";
 
-// ex lib
+// external libraries
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast } from "sonner";
+import { toast, Toaster } from "sonner";
 
-// ui lib
+// UI library components
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import {
+  Card,
+  CardHeader,
+  CardContent,
+  CardDescription,
+  CardTitle,
+} from "@/components/ui/card";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -23,6 +40,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 
+// Validation schema
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
   content: z
@@ -43,7 +61,6 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
     },
   });
 
-  // get slug asynchronously
   useEffect(() => {
     const fetchParams = async () => {
       const params = await props.params;
@@ -53,18 +70,15 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
     fetchParams();
   }, [props.params]);
 
-  // fetch news detail after slug is set
   useEffect(() => {
     if (!slug) return;
 
-    async function getNewsDetail() {
+    const getNewsDetail = async () => {
       try {
         const res = await fetch(`http://127.0.0.1:8000/api/news/${slug}`);
         const data = await res.json();
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch news data");
-        }
+        if (!res.ok) throw new Error("Failed to fetch news data");
 
         form.setValue("title", data.title);
         form.setValue("content", data.content);
@@ -74,10 +88,10 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
         console.error(error);
         toast.error("Failed to load news");
       }
-    }
+    };
 
     getNewsDetail();
-  }, [slug]);
+  }, [slug, form.setValue, form]);
 
   if (!slug) {
     return <div>Loading...</div>;
@@ -92,7 +106,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dasboard">Dashboard</Link>
+                  <Link href="/dashboard">Dashboard</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -109,6 +123,64 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
           </Breadcrumb>
         </div>
       </div>
+
+      {/* Form for editing news */}
+      <Toaster />
+      <Card>
+        <CardHeader>
+          <CardTitle>Edit Berita</CardTitle>
+          <CardDescription>
+            Ubah informasi berita melalui formulir ini.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit((data) => console.log(data))}>
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Judul</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Judul berita"
+                        {...field}
+                        className="w-full rounded-lg"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="content"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Konten</FormLabel>
+                    <FormControl>
+                      <Textarea
+                        rows={10}
+                        placeholder="Konten berita"
+                        {...field}
+                        className="w-full rounded border bg-background p-2"
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <Button
+                type="submit"
+                className="mt-4 w-full rounded p-2 font-bold"
+              >
+                Update Berita
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
