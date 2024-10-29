@@ -110,7 +110,9 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
   const imagePreviewUrl =
     selectedImage instanceof File
       ? URL.createObjectURL(selectedImage)
-      : `http://127.0.0.1:8000/storage/${selectedImage}`;
+      : selectedImage
+        ? `http://127.0.0.1:8000/storage/${selectedImage}`
+        : null;
 
   if (!slug) {
     return <div>Loading...</div>;
