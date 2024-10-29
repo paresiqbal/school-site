@@ -59,11 +59,11 @@ export default function ListNews() {
 
         const data = await res.json();
         setNews(data);
-        toast.success("News loaded successfully");
+        toast.success("Berita berhasil diambil");
       } catch (error) {
         console.error(error);
-        setError("Failed to load news. Please try again.");
-        toast.error("Failed to load news");
+        setError("Gagal mengambil berita. Coba lagi nanti.");
+        toast.error("Gagal mengambil berita");
       }
     }
 
@@ -85,14 +85,14 @@ export default function ListNews() {
       });
 
       if (!res.ok) {
-        throw new Error("Failed to delete news.");
+        throw new Error("Gagal menghapus berita.");
       }
 
       setNews((prevNews) => prevNews.filter((item) => item.id !== id));
-      toast.success("News deleted successfully");
+      toast.success("Berita berhasil dihapus");
     } catch (error) {
-      console.error("Error deleting news:", error);
-      toast.error("Failed to delete news.");
+      console.error("Error menghapus berita:", error);
+      toast.error("Gagal menghapus berita.");
     }
   };
 

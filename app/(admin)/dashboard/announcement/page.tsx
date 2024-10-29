@@ -26,7 +26,8 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Pencil, RotateCcw, Trash2 } from "lucide-react";
+import { Pencil, Trash2 } from "lucide-react";
+import Topbar from "@/components/Topbar";
 
 interface AnnouncementData {
   id: number;
@@ -46,13 +47,16 @@ export default function ListAnnouncement() {
       setError(null);
       try {
         const res = await fetch("http://127.0.0.1:8000/api/announcement", {
-          headers: {
-            Authorization: `Bearer ${token}`,
+          cache: "force-cache",
+          next: {
+            revalidate: 60,
           },
         });
+
         if (!res.ok) {
           throw new Error("Failed to fetch announcement.");
         }
+
         const data = await res.json();
         setAnnouncement(data);
         toast.success("Announcement loaded successfully");
@@ -66,16 +70,12 @@ export default function ListAnnouncement() {
     fetchAnnouncement();
   }, [token]);
 
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
   const handleDelete = async (id: number) => {
     if (!token) {
       toast.error("Unauthorized. Please log in.");
       return;
     }
-
+    // amm
     try {
       const res = await fetch(`http://127.0.0.1:8000/api/announcement/${id}`, {
         method: "DELETE",
@@ -98,6 +98,10 @@ export default function ListAnnouncement() {
     }
   };
 
+  const graphingText = (text: string, limit: number) => {
+    return text.length > limit ? text.substring(0, limit) + "..." : text;
+  };
+
   const formatDate = (dateString?: string | null): string => {
     if (!dateString) return "Date not available";
 
@@ -114,19 +118,24 @@ export default function ListAnnouncement() {
 
   return (
     <div className="container mx-auto">
-      <Breadcrumb className="hidden pb-4 md:flex">
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>List Announcement</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <div className="flex items-center justify-between pb-4">
+        <div className="flex">
+          <Topbar />
+          <Breadcrumb className="hidden md:flex">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dasboard">Dashboard</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbPage>
+                <p>Daftar Berita</p>
+              </BreadcrumbPage>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
 
       {/* Form */}
       <Toaster />
@@ -140,28 +149,27 @@ export default function ListAnnouncement() {
               <Image
                 src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
-                width={300}
-                height={250}
+                width={400}
+                height={350}
                 className="h-auto w-full rounded-lg object-cover"
               />
             </div>
           )}
           <div className="w-full md:w-3/4">
             <CardHeader>
-              <CardTitle className="text-lg md:text-xl">
-                <Link href={`/dashboard/announcement/${item.id}`}>
+              <CardTitle className="text-lg hover:underline md:text-xl">
+                <Link href={`/dashboard/announcements/${item.id}`}>
                   {item.title}
                 </Link>
               </CardTitle>
               <CardDescription>{formatDate(item.created_at)}</CardDescription>
             </CardHeader>
             <CardContent>
-              <p>{graphingText(item.content, 200)}</p>
+              <p className="italic">{graphingText(item.content, 120)}</p>
             </CardContent>
             <CardFooter className="flex gap-4">
-              <Link href={`/dashboard/announcement/${item.id}`}>
+              <Link href={`/dashboard/announcements/${item.id}`}>
                 <Button className="flex items-center gap-2">
-                  Edit
                   <Pencil className="h-4 w-4" />
                 </Button>
               </Link>
@@ -170,16 +178,12 @@ export default function ListAnnouncement() {
                 onClick={() => handleDelete(item.id)}
                 className="flex items-center gap-2"
               >
-                Delete
                 <Trash2 className="h-4 w-4" />
               </Button>
             </CardFooter>
           </div>
         </Card>
       ))}
-      <Button className="mt-4" onClick={() => toast.success("Refreshed")}>
-        <RotateCcw className="h-4 w-4" />
-      </Button>
     </div>
   );
 }
