@@ -104,7 +104,7 @@ export default function Page(props: { params: Promise<{ slug: string }> }) {
           </div>
         </>
       ) : (
-        <p className="text-center text-gray-500">Loading news details...</p>
+        <p className="text-center text-gray-500">Loading berita...</p>
       )}
     </div>
   );
