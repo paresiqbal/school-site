@@ -69,7 +69,7 @@ export default function MissionVisionGoals() {
         </Card>
         <Card className="flex flex-col md:col-span-2 lg:col-span-1">
           <CardHeader>
-            <CardTitle className="bg-emerald-300p-2 ga flex items-center p-2 dark:text-background">
+            <CardTitle className="ga flex items-center bg-emerald-300 p-2 dark:text-background">
               <Target className="h-6 w-6" />
               Tujuan Kami
             </CardTitle>
@@ -92,7 +92,7 @@ export default function MissionVisionGoals() {
       <Card className="bg-emerald-50">
         <CardContent className="py-6">
           <blockquote className="border-l-4 border-emerald-600 pl-4 italic">
-            <p className="text-lg">
+            <p className="text-lg text-gray-800">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
             </p>
@@ -108,7 +108,7 @@ export default function MissionVisionGoals() {
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
         <p className="text-base text-muted-foreground">
-          Di SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
+          SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama -sama, kita
           bisa membuat perbedaan.
         </p>
