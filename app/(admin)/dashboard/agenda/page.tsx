@@ -111,7 +111,7 @@ export default function ListAgenda() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex flex-col items-center justify-between pb-4 md:flex-row">
+      <div className="flex flex-col justify-between pb-4 md:flex-row">
         <div className="mb-4 flex items-center md:mb-0">
           <Topbar />
           <Breadcrumb className="ml-4 hidden md:flex">
@@ -135,7 +135,7 @@ export default function ListAgenda() {
       {/* List of Cards */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {agenda.map((item) => (
-          <Card key={item.id} className="rounded-md bg-gray-50 p-2 shadow-sm">
+          <Card key={item.id} className="rounded-md bg-card p-2 shadow-sm">
             <div className="w-full">
               <Image
                 src="/assets/bell.png"
@@ -143,19 +143,15 @@ export default function ListAgenda() {
                 height={150}
                 alt="bell"
                 priority
-                className="h-40 w-full rounded-t-md bg-gray-100 object-contain"
+                className="h-40 w-full rounded-t-md bg-gray-100 object-contain dark:bg-white"
               />
             </div>
             <CardHeader className="p-2">
-              <CardTitle className="text-sm font-semibold md:text-base">
-                {item.title}
-              </CardTitle>
+              <CardTitle>{item.title}</CardTitle>
             </CardHeader>
             <CardContent className="p-2">
-              <p className="text-xs text-gray-700 md:text-sm">
-                {graphingText(item.description, 100)}
-              </p>
-              <div className="mt-1 text-xs text-gray-500 md:text-sm">
+              <p>{graphingText(item.description, 100)}</p>
+              <div className="space-y-1 py-2 text-sm">
                 <p>
                   <strong>Mulai:</strong> {formatDate(item.start_date)}
                 </p>
@@ -170,7 +166,6 @@ export default function ListAgenda() {
                 onClick={() => handleDelete(item.id)}
                 className="flex items-center gap-1 px-2 py-1 text-xs md:text-sm"
               >
-                Delete
                 <Trash2 className="h-3 w-3" />
               </Button>
             </CardFooter>
