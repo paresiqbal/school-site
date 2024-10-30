@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Registration() {
   return (
     <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-0 md:pt-12">
