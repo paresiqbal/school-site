@@ -116,7 +116,7 @@ export default function Navbar() {
                 <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
-                      href="/"
+                      href="/guide/registration"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Pendaftaran
@@ -124,7 +124,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/"
+                      href="/guide/school-fee"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Biaya Sekolah
@@ -132,7 +132,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/"
+                      href="/guide/academic"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Panduan Akademik
@@ -148,7 +148,7 @@ export default function Navbar() {
                 <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
-                      href="/"
+                      href="/other/faq"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       FAQ
@@ -156,7 +156,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/"
+                      href="/other/download"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Download
@@ -270,19 +270,19 @@ export default function Navbar() {
               </button>
               <div className="hidden pl-4">
                 <Link
-                  href="/"
+                  href="/guide/registration"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Pendaftaran
                 </Link>
                 <Link
-                  href="/"
+                  href="/guide/school-fee"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Biaya Sekolah
                 </Link>
                 <Link
-                  href="/"
+                  href="/guide/academic"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Panduan Akademik
@@ -301,13 +301,13 @@ export default function Navbar() {
               </button>
               <div className="hidden pl-4">
                 <Link
-                  href="/"
+                  href="/other/faq"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   FAQ
                 </Link>
                 <Link
-                  href="/"
+                  href="/other/download"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Download
