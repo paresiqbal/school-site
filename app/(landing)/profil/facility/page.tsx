@@ -88,9 +88,9 @@ export default function Facility() {
       name: "Unit Kesehatan Sekolah",
       icon: FlaskConical,
       images: [
-        "/assets/facility/parkir1.jpg",
-        "/assets/facility/parkir2.jpg",
-        "/assets/facility/parkir3.jpg",
+        "/assets/facility/medical1.jpg",
+        "/assets/facility/medical2.jpg",
+        "/assets/facility/medical3.jpg",
       ],
       description:
         "Ruangan yang disediakan di sekolah untuk mengelola dan menangani masalah kesehatan siswa..",
