@@ -144,19 +144,19 @@ export default function Facility() {
           onClick={() => setSelectedImages(null)}
         >
           <div
-            className="relative w-full max-w-lg rounded-lg bg-background"
+            className="relative w-full max-w-4xl rounded-lg bg-background"
             onClick={(e) => e.stopPropagation()}
           >
             <Carousel className="w-full">
               <CarouselContent>
                 {selectedImages.map((image, idx) => (
                   <CarouselItem key={idx}>
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center">
+                    <Card className="p-2">
+                      <CardContent className="flex items-center justify-center p-2">
                         <Image
                           src={image}
                           alt={`Facility image ${idx + 1}`}
-                          width={500}
+                          width={700}
                           height={500}
                           className="h-auto w-full rounded-md"
                         />
