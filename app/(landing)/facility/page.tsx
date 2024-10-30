@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 
 // ui lib
 import {
@@ -8,27 +11,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 // icons
-import {
-  School,
-  Book,
-  FlaskConical,
-  Camera,
-  Dumbbell,
-  Utensils,
-  Monitor,
-  Users,
-  Cross,
-} from "lucide-react";
+import { School, Book, FlaskConical } from "lucide-react";
 
 export default function Facility() {
+  const [selectedImages, setSelectedImages] = useState<string[] | null>(null);
+
   const facilities = [
     {
       id: 1,
       name: "Kelas",
       icon: School,
-      image: "/assets/facility/class.svg",
+      images: ["/assets/facility/class.svg", "/assets/facility/class.svg"],
       description:
         "Siswa dapat mengikuti pelajaran harian dan terlibat dalam kegiatan pembelajaran di kelas.",
     },
@@ -36,7 +38,7 @@ export default function Facility() {
       id: 2,
       name: "Perpustakaan",
       icon: Book,
-      image: "/assets/facility/library.svg",
+      images: ["/assets/facility/library.svg", "/assets/facility/library.svg"],
       description:
         "Membaca buku, belajar, dan melakukan penelitian di perpustakaan.",
     },
@@ -44,51 +46,8 @@ export default function Facility() {
       id: 3,
       name: "Laboratorium Sains",
       icon: FlaskConical,
-      image: "/assets/facility/lab.svg",
+      images: ["/assets/facility/lab.svg", "/assets/facility/lab.svg"],
       description: "Melakukan eksperimen dan mempelajari konsep ilmiah.",
-    },
-    {
-      id: 4,
-      name: "Studio",
-      icon: Camera,
-      image: "/assets/facility/studio.svg",
-      description: "Belajar fotografi, dan videografi.",
-    },
-    {
-      id: 5,
-      name: "Lapangan",
-      icon: Dumbbell,
-      image: "/assets/facility/gym.svg",
-      description: "Kegiatan pendidikan jasmani dan olahraga",
-    },
-    {
-      id: 6,
-      name: "Kantin",
-      icon: Utensils,
-      image: "/assets/facility/cafe.svg",
-      description: "Makan dan bersosialisasi selama jam istirahat makan siang",
-    },
-    {
-      id: 7,
-      name: "Lab Komputer",
-      icon: Monitor,
-      image: "/assets/facility/computer.svg",
-      description:
-        "Mempelajari keterampilan komputer dan mengerjakan proyek digital",
-    },
-    {
-      id: 8,
-      name: "Lab Bahasa",
-      icon: Users,
-      image: "/assets/facility/audit.svg",
-      description: "Mempelajari bahasa asing dan berlatih berbicara",
-    },
-    {
-      id: 9,
-      name: "Usaha Kesehatan Sekolah",
-      icon: Cross,
-      image: "/assets/facility/hospital.svg",
-      description: "Menerima perhatian medis dan layanan kesehatan",
     },
   ];
 
@@ -121,16 +80,51 @@ export default function Facility() {
             </CardContent>
             <CardFooter className="flex flex-col pt-2">
               <Image
-                src={facility.image}
+                src={facility.images[0]}
                 alt={`Image of ${facility.name}`}
                 width={200}
                 height={100}
-                className="h-auto w-full rounded-md md:p-2"
+                className="h-auto w-full cursor-pointer rounded-md md:p-2"
+                onClick={() => setSelectedImages(facility.images)}
               />
             </CardFooter>
           </Card>
         ))}
       </div>
+
+      {selectedImages && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          onClick={() => setSelectedImages(null)}
+        >
+          <div
+            className="relative w-full max-w-lg rounded-lg bg-background"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Carousel className="w-full">
+              <CarouselContent>
+                {selectedImages.map((image, idx) => (
+                  <CarouselItem key={idx}>
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center">
+                        <Image
+                          src={image}
+                          alt={`Facility image ${idx + 1}`}
+                          width={500}
+                          height={500}
+                          className="h-auto w-full rounded-md"
+                        />
+                      </CardContent>
+                    </Card>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious />
+              <CarouselNext />
+            </Carousel>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
