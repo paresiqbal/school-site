@@ -71,7 +71,9 @@ export default function Berita() {
   return (
     <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-0 md:pt-12">
       <div className="space-y-2">
-        <h1 className="mb-2 text-3xl font-bold md:mb-6 md:text-5xl">Berita</h1>
+        <h1 className="mb-2 text-3xl font-bold underline decoration-emerald-500 underline-offset-8 md:mb-6 md:text-5xl">
+          Berita
+        </h1>
       </div>
 
       {news.length > 0 ? (

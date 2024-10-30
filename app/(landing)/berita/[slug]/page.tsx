@@ -89,7 +89,7 @@ export default function NewsDetail(props: {
             />
           </div>
 
-          <h1 className="col-span-7 text-4xl font-bold text-gray-800 sm:text-6xl">
+          <h1 className="col-span-7 text-4xl font-bold sm:text-6xl">
             {news.title}
           </h1>
 
