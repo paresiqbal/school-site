@@ -100,7 +100,9 @@ export default function Page(props: { params: Promise<{ slug: string }> }) {
           <hr className="my-4 border-t border-gray-400" />
 
           <div className="space-y-4 leading-relaxed">
-            <p>{news.content}</p>
+            {news.content.split("\n").map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
         </>
       ) : (
