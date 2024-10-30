@@ -89,22 +89,22 @@ export default function Page(props: { params: Promise<{ slug: string }> }) {
 
           <h1 className="mb-4 text-3xl font-bold">{news.title}</h1>
 
-          <div className="mb-4 flex items-center space-x-2 text-gray-500">
+          <div className="mb-4 flex items-center space-x-2">
             <span className="text-sm">{formatDate(news.created_at)}</span>
             <span>•</span>
-            <span className="rounded-md bg-gray-200 px-3 py-1 text-xs text-gray-600">
+            <span className="rounded-md bg-foreground px-3 py-1 text-xs text-background">
               Berita
             </span>
           </div>
 
-          <hr className="my-4 border-t border-gray-300" />
+          <hr className="my-4 border-t border-gray-400" />
 
-          <div className="space-y-4 leading-relaxed text-gray-800">
+          <div className="space-y-4 leading-relaxed">
             <p>{news.content}</p>
           </div>
         </>
       ) : (
-        <p className="text-center text-gray-500">Loading berita...</p>
+        <p className="text-center">Loading berita...</p>
       )}
     </div>
   );
