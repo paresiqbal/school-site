@@ -191,13 +191,13 @@ export default function Navbar() {
                   Berita
                 </Link>
                 <Link
-                  href="/about/team"
+                  href="/pengumuman"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Pengumuman
                 </Link>
                 <Link
-                  href="/about/team"
+                  href="/agenda"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Agenda
