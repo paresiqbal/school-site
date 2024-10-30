@@ -20,7 +20,14 @@ import {
 } from "@/components/ui/carousel";
 
 // icons
-import { School, Book, FlaskConical } from "lucide-react";
+import {
+  School,
+  Book,
+  Computer,
+  LoaderPinwheel,
+  CircleParking,
+  Cross,
+} from "lucide-react";
 
 export default function Facility() {
   const [selectedImages, setSelectedImages] = useState<string[] | null>(null);
@@ -53,7 +60,7 @@ export default function Facility() {
     {
       id: 3,
       name: "Laboratorium Komputer",
-      icon: FlaskConical,
+      icon: Computer,
       images: [
         "/assets/facility/classroom1.jpg",
         "/assets/facility/classroom2.jpg",
@@ -64,7 +71,7 @@ export default function Facility() {
     {
       id: 4,
       name: "Lapangan Basket",
-      icon: FlaskConical,
+      icon: LoaderPinwheel,
       images: [
         "/assets/facility/basketcourt1.jpg",
         "/assets/facility/basketcourt2.jpg",
@@ -75,7 +82,7 @@ export default function Facility() {
     {
       id: 5,
       name: "Area Parkir",
-      icon: FlaskConical,
+      icon: CircleParking,
       images: [
         "/assets/facility/parkir1.jpg",
         "/assets/facility/parkir2.jpg",
@@ -86,7 +93,7 @@ export default function Facility() {
     {
       id: 6,
       name: "Unit Kesehatan Sekolah",
-      icon: FlaskConical,
+      icon: Cross,
       images: [
         "/assets/facility/medical1.jpg",
         "/assets/facility/medical2.jpg",
