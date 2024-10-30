@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 
 // ui lib
 import {
@@ -21,7 +20,6 @@ import {
   Monitor,
   Users,
   Cross,
-  ArrowRight,
 } from "lucide-react";
 
 export default function Facility() {
@@ -33,7 +31,6 @@ export default function Facility() {
       image: "/assets/facility/class.svg",
       description:
         "Siswa dapat mengikuti pelajaran harian dan terlibat dalam kegiatan pembelajaran di kelas.",
-      slug: "kelas",
     },
     {
       id: 2,
@@ -42,7 +39,6 @@ export default function Facility() {
       image: "/assets/facility/library.svg",
       description:
         "Membaca buku, belajar, dan melakukan penelitian di perpustakaan.",
-      slug: "perpustakaan",
     },
     {
       id: 3,
@@ -50,7 +46,6 @@ export default function Facility() {
       icon: FlaskConical,
       image: "/assets/facility/lab.svg",
       description: "Melakukan eksperimen dan mempelajari konsep ilmiah.",
-      slug: "laboratorium-sains",
     },
     {
       id: 4,
@@ -58,7 +53,6 @@ export default function Facility() {
       icon: Camera,
       image: "/assets/facility/studio.svg",
       description: "Belajar fotografi, dan videografi.",
-      slug: "studio",
     },
     {
       id: 5,
@@ -66,7 +60,6 @@ export default function Facility() {
       icon: Dumbbell,
       image: "/assets/facility/gym.svg",
       description: "Kegiatan pendidikan jasmani dan olahraga",
-      slug: "lapangan",
     },
     {
       id: 6,
@@ -74,7 +67,6 @@ export default function Facility() {
       icon: Utensils,
       image: "/assets/facility/cafe.svg",
       description: "Makan dan bersosialisasi selama jam istirahat makan siang",
-      slug: "kantin",
     },
     {
       id: 7,
@@ -83,7 +75,6 @@ export default function Facility() {
       image: "/assets/facility/computer.svg",
       description:
         "Mempelajari keterampilan komputer dan mengerjakan proyek digital",
-      slug: "lab-komputer",
     },
     {
       id: 8,
@@ -91,7 +82,6 @@ export default function Facility() {
       icon: Users,
       image: "/assets/facility/audit.svg",
       description: "Mempelajari bahasa asing dan berlatih berbicara",
-      slug: "lab-bahasa",
     },
     {
       id: 9,
@@ -99,7 +89,6 @@ export default function Facility() {
       icon: Cross,
       image: "/assets/facility/hospital.svg",
       description: "Menerima perhatian medis dan layanan kesehatan",
-      slug: "uks",
     },
   ];
 
@@ -138,13 +127,6 @@ export default function Facility() {
                 height={100}
                 className="h-auto w-full rounded-md md:p-2"
               />
-              <Link
-                href={`/facility/${facility.slug}`}
-                className="flex items-center justify-center text-primary decoration-primary underline-offset-2 hover:underline"
-              >
-                Pelajari Lebih Lanjut
-                <ArrowRight className="ml-1 h-4 w-4" />
-              </Link>
             </CardFooter>
           </Card>
         ))}
