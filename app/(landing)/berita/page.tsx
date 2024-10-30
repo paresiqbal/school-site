@@ -69,7 +69,7 @@ export default function Berita() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="container mx-auto mb-8 mt-4 flex max-w-[1200px] flex-col px-4 pt-6 md:px-0 md:pt-12">
+    <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-0 md:pt-12">
       <div className="space-y-2">
         <h1 className="mb-2 text-3xl font-bold md:mb-6 md:text-5xl">Berita</h1>
       </div>
@@ -81,7 +81,7 @@ export default function Berita() {
             className="mb-6 flex max-w-3xl flex-col gap-2 overflow-hidden py-4 md:flex-row md:gap-4"
           >
             <div className="flex w-full flex-col items-start space-y-1 md:w-1/4 md:space-y-2">
-              <span className="text-sm md:text-base">
+              <span className="text-sm text-muted-foreground md:text-base">
                 {formatDate(item.created_at)}
               </span>
               <span className="rounded-md bg-primary px-2 py-1 text-xs text-background md:text-sm">
