@@ -52,14 +52,25 @@ export default function Facility() {
     },
     {
       id: 3,
-      name: "Laboratorium Sains",
+      name: "Laboratorium Komputer",
       icon: FlaskConical,
       images: [
         "/assets/facility/classroom1.jpg",
         "/assets/facility/classroom2.jpg",
         "/assets/facility/classroom3.jpg",
       ],
-      description: "Melakukan eksperimen dan mempelajari konsep ilmiah.",
+      description: "Pembelajaran teknologi komputer dan informasi.",
+    },
+    {
+      id: 4,
+      name: "Lapangan Basket",
+      icon: FlaskConical,
+      images: [
+        "/assets/facility/basketcourt1.jpg",
+        "/assets/facility/basketcourt2.jpg",
+        "/assets/facility/basketcourt3.jpg",
+      ],
+      description: "Lapangan basket.",
     },
   ];
 
