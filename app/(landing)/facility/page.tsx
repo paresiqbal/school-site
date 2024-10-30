@@ -109,7 +109,7 @@ export default function Facility() {
         <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">
           Fasilitas Sekolah
         </h1>
-        <p className="text-md mb-12 text-muted-foreground md:text-lg">
+        <p className="mb-12 text-sm text-muted-foreground md:text-lg">
           Temukan berbagai ruang dan sumber daya yang dirancang untuk
           meningkatkan pembelajaran dan kesejahteraan siswa.
         </p>
@@ -117,10 +117,7 @@ export default function Facility() {
 
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {facilities.map((facility, index) => (
-          <Card
-            key={index}
-            className="bg-yellow-50 transition-shadow duration-300 hover:scale-105 hover:shadow-lg dark:bg-card"
-          >
+          <Card key={index} className="border-2 bg-card hover:border-primary">
             <CardHeader className="flex flex-row items-center space-x-4 pb-2">
               <facility.icon
                 className="h-10 w-10 rounded-full bg-foreground p-2 text-background"
@@ -143,7 +140,7 @@ export default function Facility() {
               />
               <Link
                 href={`/facility/${facility.slug}`}
-                className="flex items-center justify-center decoration-yellow-500 underline-offset-2 hover:underline"
+                className="flex items-center justify-center text-primary decoration-primary underline-offset-2 hover:underline"
               >
                 Pelajari Lebih Lanjut
                 <ArrowRight className="ml-1 h-4 w-4" />
