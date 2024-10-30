@@ -87,14 +87,19 @@ export default function Page(props: { params: Promise<{ slug: string }> }) {
             />
           </div>
 
-          <h1 className="mb-4 text-3xl font-bold">{news.title}</h1>
+          <h1 className="col-span-7 text-4xl font-bold text-gray-800 sm:text-6xl">
+            {news.title}
+          </h1>
 
-          <div className="mb-4 flex items-center space-x-2">
+          <div className="mb-4 flex flex-col gap-2 space-x-4 text-muted-foreground">
             <span className="text-sm">{formatDate(news.created_at)}</span>
-            <span>•</span>
-            <span className="rounded-md bg-foreground px-3 py-1 text-xs text-background">
-              Berita
-            </span>
+
+            <span className="text-sm">Admin</span>
+            <div>
+              <span className="rounded-md bg-foreground px-3 py-1 text-xs text-background">
+                Berita
+              </span>
+            </div>
           </div>
 
           <hr className="my-4 border-t border-gray-400" />
