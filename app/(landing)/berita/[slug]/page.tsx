@@ -91,14 +91,15 @@ export default function Page(props: { params: Promise<{ slug: string }> }) {
             {news.title}
           </h1>
 
-          <div className="mb-4 flex flex-col gap-2 space-x-4 text-muted-foreground">
-            <span className="text-sm">{formatDate(news.created_at)}</span>
+          <div className="mb-4 flex flex-col gap-4 pt-4 text-muted-foreground">
+            <span>{formatDate(news.created_at)}</span>
 
-            <span className="text-sm">Admin</span>
+            <span className="flex items-center space-x-2">
+              <div className="h-6 w-6 rounded-full bg-gray-500"></div>
+              <p>Admin</p>
+            </span>
             <div>
-              <span className="rounded-md bg-foreground px-3 py-1 text-xs text-background">
-                Berita
-              </span>
+              <span className="rounded-md border px-4 py-2">Berita</span>
             </div>
           </div>
 
