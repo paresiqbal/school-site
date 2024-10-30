@@ -12,7 +12,9 @@ interface AnnouncementData {
   created_at: string;
 }
 
-export default function Page(props: { params: Promise<{ slug: string }> }) {
+export default function AnnouncementDetails(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const [slug, setSlug] = useState<string | null>(null);
   const [announcement, setAnnouncement] = useState<AnnouncementData | null>(
     null,

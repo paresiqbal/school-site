@@ -38,7 +38,7 @@ interface AgendaData {
   end_date: string;
 }
 
-export default function ListAgenda() {
+export default function Agenda() {
   const { token } = useContext(AppContext);
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
 

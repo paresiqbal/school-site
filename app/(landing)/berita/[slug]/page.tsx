@@ -12,7 +12,9 @@ interface NewsData {
   created_at: string;
 }
 
-export default function Page(props: { params: Promise<{ slug: string }> }) {
+export default function NewsDetail(props: {
+  params: Promise<{ slug: string }>;
+}) {
   const [slug, setSlug] = useState<string | null>(null);
   const [news, setNews] = useState<NewsData | null>(null);
   const [error, setError] = useState<string | null>(null);
