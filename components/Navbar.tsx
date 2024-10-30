@@ -85,7 +85,7 @@ export default function Navbar() {
                 <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
-                      href="/berita"
+                      href="/article/berita"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Berita
@@ -93,7 +93,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/pengumuman"
+                      href="/article/pengumuman"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Pengumuman
@@ -101,7 +101,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/agenda"
+                      href="/article/agenda"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Agenda
@@ -185,19 +185,19 @@ export default function Navbar() {
               </button>
               <div className="hidden pl-4">
                 <Link
-                  href="/berita"
+                  href="/article/berita"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Berita
                 </Link>
                 <Link
-                  href="/pengumuman"
+                  href="/article/pengumuman"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Pengumuman
                 </Link>
                 <Link
-                  href="/agenda"
+                  href="/article/agenda"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Agenda
