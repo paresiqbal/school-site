@@ -30,7 +30,11 @@ export default function Facility() {
       id: 1,
       name: "Kelas",
       icon: School,
-      images: ["/assets/facility/class.svg", "/assets/facility/class.svg"],
+      images: [
+        "/assets/facility/classroom1.jpg",
+        "/assets/facility/classroom2.jpg",
+        "/assets/facility/classroom3.jpg",
+      ],
       description:
         "Siswa dapat mengikuti pelajaran harian dan terlibat dalam kegiatan pembelajaran di kelas.",
     },
@@ -38,7 +42,11 @@ export default function Facility() {
       id: 2,
       name: "Perpustakaan",
       icon: Book,
-      images: ["/assets/facility/library.svg", "/assets/facility/library.svg"],
+      images: [
+        "/assets/facility/library1.jpg",
+        "/assets/facility/library2.jpg",
+        "/assets/facility/library3.jpg",
+      ],
       description:
         "Membaca buku, belajar, dan melakukan penelitian di perpustakaan.",
     },
@@ -46,7 +54,11 @@ export default function Facility() {
       id: 3,
       name: "Laboratorium Sains",
       icon: FlaskConical,
-      images: ["/assets/facility/lab.svg", "/assets/facility/lab.svg"],
+      images: [
+        "/assets/facility/classroom1.jpg",
+        "/assets/facility/classroom2.jpg",
+        "/assets/facility/classroom3.jpg",
+      ],
       description: "Melakukan eksperimen dan mempelajari konsep ilmiah.",
     },
   ];
