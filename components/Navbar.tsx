@@ -54,7 +54,7 @@ export default function Navbar() {
                 <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
-                      href="/visiMisi"
+                      href="/profil/visiMisi"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Visi Dan Misi
@@ -62,7 +62,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/facility"
+                      href="/profil/facility"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Fasilitas
@@ -70,7 +70,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/sejarah"
+                      href="/profil/history"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Sejarah
@@ -155,19 +155,19 @@ export default function Navbar() {
               </button>
               <div className="hidden pl-4">
                 <Link
-                  href="/visiMisi"
+                  href="/profil/visiMisi"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Visi dan Misi
                 </Link>
                 <Link
-                  href="/facility"
+                  href="/profil/facility"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Fasilitas
                 </Link>
                 <Link
-                  href="/sejarah"
+                  href="/profil/history"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Sejarah
