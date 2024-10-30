@@ -110,7 +110,7 @@ export default function Navbar() {
                 </DropdownMenuContent>
               </DropdownMenu>
               <Link
-                href="/kontak"
+                href="/contact"
                 className="text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 Kontak
@@ -205,7 +205,7 @@ export default function Navbar() {
               </div>
             </div>
             <Link
-              href="/kontak"
+              href="/contact"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
             >
               Kontak
