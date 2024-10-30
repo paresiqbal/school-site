@@ -1,34 +1,11 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
-import Link from "next/link";
-
-// components
-import Topbar from "@/components/Topbar";
-import { AppContext } from "@/context/AppContext";
-
-// ui lib
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Toaster, toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-
-// icons
-import { Trash2 } from "lucide-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
+// ui
+import { toast, Toaster } from "sonner";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 interface AgendaData {
   id: number;
@@ -39,9 +16,7 @@ interface AgendaData {
 }
 
 export default function Agenda() {
-  const { token } = useContext(AppContext);
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
-
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -65,36 +40,10 @@ export default function Agenda() {
     }
 
     fetchAgenda();
-  }, [token]);
+  }, []);
 
   const graphingText = (text: string, limit: number) => {
     return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
-  const handleDelete = async (id: number) => {
-    if (!token) {
-      toast.error("Unauthorized. TOlong masuk terlebihdahulu.");
-      return;
-    }
-
-    try {
-      const res = await fetch(`http://127.0.0.1:8000/api/agenda/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error("Failed to delete agenda.");
-      }
-
-      setAgenda((prevAgenda) => prevAgenda.filter((item) => item.id !== id));
-      toast.success("Agenda berhasil dihapus");
-    } catch (error) {
-      console.error("Error deleting agenda:", error);
-      toast.error("Gagal menghapus agenda.");
-    }
   };
 
   const formatDate = (dateString: string) => {
@@ -110,26 +59,10 @@ export default function Agenda() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="container mx-auto">
-      <div className="flex flex-col justify-between pb-4 md:flex-row">
-        <div className="mb-4 flex items-center md:mb-0">
-          <Topbar />
-          <Breadcrumb className="ml-4 hidden md:flex">
-            <BreadcrumbList>
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="/dashboard">Dashboard</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
-              <BreadcrumbPage>
-                <p>Daftar Agenda</p>
-              </BreadcrumbPage>
-            </BreadcrumbList>
-          </Breadcrumb>
-        </div>
+    <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-0 md:pt-12">
+      <div className="space-y-2">
+        <h1 className="mb-2 text-3xl font-bold md:mb-6 md:text-5xl">Agenda</h1>
       </div>
-
       <Toaster />
 
       {/* List of Cards */}
@@ -160,15 +93,6 @@ export default function Agenda() {
                 </p>
               </div>
             </CardContent>
-            <CardFooter className="mt-2 flex justify-end gap-2 p-2">
-              <Button
-                variant="destructive"
-                onClick={() => handleDelete(item.id)}
-                className="flex items-center gap-1 px-2 py-1 text-xs md:text-sm"
-              >
-                <Trash2 className="h-3 w-3" />
-              </Button>
-            </CardFooter>
           </Card>
         ))}
       </div>
