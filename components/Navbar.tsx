@@ -31,8 +31,9 @@ export default function Navbar() {
               <Image
                 src="/Next.js.png"
                 width={100}
-                height={50}
+                height={100}
                 alt="next js logo"
+                style={{ width: "auto", height: "auto" }}
               />
               <span className="text-2xl font-bold text-foreground">
                 SMK Negeri 1
