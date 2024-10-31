@@ -73,6 +73,7 @@ export default function ListAnnouncement() {
       return;
     }
     try {
+      // automatic into plular 's' need to change
       const res = await fetch(`http://127.0.0.1:8000/api/announcement/${id}`, {
         method: "DELETE",
         headers: {
