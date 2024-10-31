@@ -48,7 +48,7 @@ export default function ListAgenda() {
     async function fetchAgenda() {
       setError(null);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/agenda", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_AGENDA}`, {
           cache: "no-cache",
         });
         if (!res.ok) {
@@ -78,7 +78,7 @@ export default function ListAgenda() {
     }
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/agenda/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_AGENDA}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
