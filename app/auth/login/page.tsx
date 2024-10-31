@@ -60,7 +60,7 @@ export default function Login() {
 
   async function handleLogin(data: FormData) {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/login", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_LOGIN}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -74,10 +74,9 @@ export default function Login() {
       if (response.ok) {
         if (result.token) {
           localStorage.setItem("token", result.token);
-
           setToken(result.token);
         }
-        console.log("Login error:", result);
+
         await signIn("credentials", {
           redirect: false,
           username: data.username,
