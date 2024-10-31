@@ -1,8 +1,26 @@
 export default function Download() {
-  const downloads = [
-    { title: "Document 1", link: "/path/to/document1.pdf" },
-    { title: "Document 2", link: "/path/to/document2.pdf" },
-    { title: "Document 3", link: "/path/to/document3.pdf" },
+  const downloadGroups = [
+    {
+      category: "Journal",
+      items: [
+        { title: "Journal 1", link: "/path/to/journal1.pdf" },
+        { title: "Journal 2", link: "/path/to/journal2.pdf" },
+      ],
+    },
+    {
+      category: "School Guide",
+      items: [
+        { title: "Student Handbook", link: "/path/to/handbook.pdf" },
+        { title: "Admission Guide", link: "/path/to/admission-guide.pdf" },
+      ],
+    },
+    {
+      category: "Other Resources",
+      items: [
+        { title: "School Calendar", link: "/path/to/calendar.pdf" },
+        { title: "Events Brochure", link: "/path/to/brochure.pdf" },
+      ],
+    },
   ];
 
   return (
@@ -13,19 +31,25 @@ export default function Download() {
         </h1>
       </div>
 
-      <div className="flex flex-col gap-2">
-        <p>Materi Pembelajaran</p>
-        {downloads.map((download, index) => (
-          <a
-            key={index}
-            href={download.link}
-            download
-            className="text-blue-500 hover:underline"
-          >
-            {download.title}
-          </a>
-        ))}
-      </div>
+      {downloadGroups.map((group, index) => (
+        <div key={index} className="mb-4">
+          <h2 className="text-2xl font-semibold text-gray-800">
+            {group.category}
+          </h2>
+          <div className="mt-2 flex flex-col gap-1">
+            {group.items.map((item, itemIndex) => (
+              <a
+                key={itemIndex}
+                href={item.link}
+                download
+                className="hover:underline"
+              >
+                {item.title}
+              </a>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
