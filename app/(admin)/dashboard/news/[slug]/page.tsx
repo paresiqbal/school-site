@@ -80,7 +80,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
 
     const getNewsDetail = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/news/${slug}`);
+        const res = await fetch(`${process.env.LARAVEL_API_NEWS}/${slug}`);
         const data = await res.json();
 
         if (!res.ok) throw new Error("Failed to fetch news data");
@@ -109,7 +109,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
     selectedImage instanceof File
       ? URL.createObjectURL(selectedImage)
       : selectedImage
-        ? `http://127.0.0.1:8000/storage/${selectedImage}`
+        ? `${process.env.LARAVEL_API_STORAGE}/${selectedImage}`
         : null;
 
   const handleEdit = async (data: z.infer<typeof formSchema>) => {
@@ -122,7 +122,7 @@ export default function EditNews(props: { params: Promise<{ slug: string }> }) {
     }
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/news/${slug}`, {
+      const res = await fetch(`${process.env.LARAVEL_API_NEWS}/${slug}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

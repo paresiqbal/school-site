@@ -46,7 +46,7 @@ export default function ListNews() {
     async function fetchNews() {
       setError(null);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/news", {
+        const res = await fetch(`${process.env.LARAVEL_API_NEWS}`, {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -77,7 +77,7 @@ export default function ListNews() {
     }
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/news/${id}`, {
+      const res = await fetch(`${process.env.LARAVEL_API_NEWS}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
