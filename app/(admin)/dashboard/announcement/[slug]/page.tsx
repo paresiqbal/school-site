@@ -85,7 +85,7 @@ export default function EditAnnouncement(props: {
     const getAnnouncementDetail = async () => {
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/announcement/${slug}`,
+          `${process.env.LARAVEL_API_ANNOUNCEMENT}/${slug}`,
         );
         const data = await res.json();
 
