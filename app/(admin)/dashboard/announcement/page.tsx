@@ -74,12 +74,15 @@ export default function ListAnnouncement() {
     }
     try {
       // automatic into plular 's' need to change
-      const res = await fetch(`http://127.0.0.1:8000/api/announcement/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-      });
+      );
 
       if (!res.ok) {
         throw new Error("Failed to delete announcement.");
@@ -155,7 +158,7 @@ export default function ListAnnouncement() {
           <div className="w-full md:w-3/4">
             <CardHeader>
               <CardTitle className="text-lg hover:underline md:text-xl">
-                <Link href={`/dashboard/announcements/${item.id}`}>
+                <Link href={`/dashboard/announcement/${item.id}`}>
                   {item.title}
                 </Link>
               </CardTitle>
@@ -165,7 +168,7 @@ export default function ListAnnouncement() {
               <p className="italic">{graphingText(item.content, 120)}</p>
             </CardContent>
             <CardFooter className="flex gap-4">
-              <Link href={`/dashboard/announcements/${item.id}`}>
+              <Link href={`/dashboard/announcement/${item.id}`}>
                 <Button className="flex items-center gap-2">
                   <Pencil className="h-4 w-4" />
                 </Button>
