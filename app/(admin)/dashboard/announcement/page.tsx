@@ -46,7 +46,7 @@ export default function ListAnnouncement() {
     async function fetchAnnouncement() {
       setError(null);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/announcement", {
+        const res = await fetch(`${process.env.LARAVEL_API_ANNOUNCEMENT}`, {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -76,7 +76,7 @@ export default function ListAnnouncement() {
       return;
     }
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/announcement/${id}`, {
+      const res = await fetch(`${process.env.LARAVEL_API_ANNOUNCEMENT}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,

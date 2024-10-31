@@ -100,7 +100,7 @@ export default function CreateAnnouncement() {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/announcement", {
+      const res = await fetch(`${process.env.LARAVEL_API_ANNOUNCEMENT}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
