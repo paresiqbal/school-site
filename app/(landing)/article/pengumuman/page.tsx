@@ -26,7 +26,7 @@ export default function Pengumuman() {
     async function fetchAnnouncement() {
       setError(null);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/announcement", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}`, {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -101,7 +101,7 @@ export default function Pengumuman() {
             <div className="flex w-full flex-col md:w-3/4">
               <div className="relative">
                 <Image
-                  src={`http://localhost:8000/storage/${item.image}`}
+                  src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
                   width={500}
                   height={500}
                   alt={item.title}

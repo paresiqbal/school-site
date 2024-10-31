@@ -37,7 +37,7 @@ export default function AnnouncementDetails(props: {
       setError(null);
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/announcement/${slug}`,
+          `${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}/${slug}`,
           {
             cache: "force-cache",
             next: {
@@ -85,7 +85,7 @@ export default function AnnouncementDetails(props: {
         <>
           <div className="mb-6 w-full rounded-md">
             <Image
-              src={`http://localhost:8000/storage/${announcement.image}`}
+              src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${announcement.image}`}
               alt={announcement.title}
               width={500}
               height={500}
