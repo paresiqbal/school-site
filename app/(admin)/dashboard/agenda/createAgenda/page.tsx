@@ -108,7 +108,7 @@ export default function CreateAgenda() {
     }
 
     try {
-      const res = await fetch(`${process.env.LARAVEL_API_AGENDA}`, {
+      const res = await fetch("http://127.0.0.1:8000/api/agenda", {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -26,7 +26,7 @@ export default function Pengumuman() {
     async function fetchAnnouncement() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.LARAVEL_API_ANNOUNCEMENT}`, {
+        const res = await fetch("http://127.0.0.1:8000/api/announcement", {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -101,7 +101,7 @@ export default function Pengumuman() {
             <div className="flex w-full flex-col md:w-3/4">
               <div className="relative">
                 <Image
-                  src={`${process.env.LARAVEL_API_STORAGE}/${item.image}`}
+                  src={`http://localhost:8000/storage/${item.image}`}
                   width={500}
                   height={500}
                   alt={item.title}

@@ -23,7 +23,7 @@ export default function Agenda() {
     async function fetchAgenda() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.LARAVEL_API_AGENDA}`, {
+        const res = await fetch("http://127.0.0.1:8000/api/agenda", {
           cache: "no-cache",
         });
         if (!res.ok) {

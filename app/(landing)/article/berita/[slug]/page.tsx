@@ -34,9 +34,11 @@ export default function NewsDetail(props: {
     async function fetchNewsDetail() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}/${slug}`, {
+        const res = await fetch(`http://127.0.0.1:8000/api/news/${slug}`, {
           cache: "force-cache",
-          next: { revalidate: 30 },
+          next: {
+            revalidate: 30,
+          },
         });
 
         if (!res.ok) {
@@ -78,7 +80,7 @@ export default function NewsDetail(props: {
         <>
           <div className="mb-6 w-full rounded-md">
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${news.image}`}
+              src={`http://localhost:8000/storage/${news.image}`}
               alt={news.title}
               width={500}
               height={500}

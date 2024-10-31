@@ -37,7 +37,7 @@ export default function AnnouncementDetails(props: {
       setError(null);
       try {
         const res = await fetch(
-          `${process.env.LARAVEL_API_ANNOUNCEMENT}/${slug}`,
+          `http://127.0.0.1:8000/api/announcement/${slug}`,
           {
             cache: "force-cache",
             next: {
@@ -85,7 +85,7 @@ export default function AnnouncementDetails(props: {
         <>
           <div className="mb-6 w-full rounded-md">
             <Image
-              src={`${process.env.LARAVEL_API_STORAGE}/${announcement.image}`}
+              src={`http://localhost:8000/storage/${announcement.image}`}
               alt={announcement.title}
               width={500}
               height={500}

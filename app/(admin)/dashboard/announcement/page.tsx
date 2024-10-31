@@ -46,7 +46,7 @@ export default function ListAnnouncement() {
     async function fetchAnnouncement() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.LARAVEL_API_ANNOUNCEMENT}`, {
+        const res = await fetch("http://127.0.0.1:8000/api/announcement", {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -76,7 +76,7 @@ export default function ListAnnouncement() {
       return;
     }
     try {
-      const res = await fetch(`${process.env.LARAVEL_API_ANNOUNCEMENT}/${id}`, {
+      const res = await fetch(`http://127.0.0.1:8000/api/announcement/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -146,7 +146,7 @@ export default function ListAnnouncement() {
           {item.image && (
             <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
               <Image
-                src={`${process.env.LARAVEL_API_STORAGE}/${item.image}`}
+                src={`http://localhost:8000/storage/${item.image}`}
                 alt={item.title}
                 width={400}
                 height={350}

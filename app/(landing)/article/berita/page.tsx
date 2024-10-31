@@ -26,7 +26,7 @@ export default function Berita() {
     async function fetchNews() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
+        const res = await fetch("http://127.0.0.1:8000/api/news", {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -101,11 +101,10 @@ export default function Berita() {
             <div className="flex w-full flex-col md:w-3/4">
               <div className="relative">
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
+                  src={`http://localhost:8000/storage/${item.image}`}
                   width={500}
                   height={500}
                   alt={item.title}
-                  priority
                   className="h-40 w-full rounded-md object-cover md:h-48"
                 />
                 <span className="absolute bottom-2 right-2 rounded-md bg-primary bg-opacity-60 px-2 py-1 text-xs text-background md:text-sm">
