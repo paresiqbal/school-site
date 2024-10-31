@@ -34,7 +34,7 @@ export default function NewsDetail(props: {
     async function fetchNewsDetail() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.LARAVEL_API_NEWS}/${slug}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}/${slug}`, {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -80,7 +80,7 @@ export default function NewsDetail(props: {
         <>
           <div className="mb-6 w-full rounded-md">
             <Image
-              src={`${process.env.LARAVEL_API_STORAGE}/${news.image}`}
+              src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${news.image}`}
               alt={news.title}
               width={500}
               height={500}
