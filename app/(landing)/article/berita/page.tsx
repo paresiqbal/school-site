@@ -26,7 +26,7 @@ export default function Berita() {
     async function fetchNews() {
       setError(null);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/news", {
+        const res = await fetch(`${process.env.LARAVEL_API_NEWS}`, {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -101,7 +101,7 @@ export default function Berita() {
             <div className="flex w-full flex-col md:w-3/4">
               <div className="relative">
                 <Image
-                  src={`http://localhost:8000/storage/${item.image}`}
+                  src={`${process.env.LARAVEL_API_STORAGE}/${item.image}`}
                   width={500}
                   height={500}
                   alt={item.title}
