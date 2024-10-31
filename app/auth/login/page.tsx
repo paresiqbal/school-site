@@ -60,7 +60,7 @@ export default function Login() {
 
   async function handleLogin(data: FormData) {
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_LOGIN}`, {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_LOGIN}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

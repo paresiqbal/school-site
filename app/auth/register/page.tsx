@@ -72,7 +72,7 @@ export default function Register() {
     setServerError(null);
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/register", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_REGISTER}`, {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -86,7 +86,7 @@ export default function Register() {
       if (res.ok) {
         localStorage.setItem("token", result.token);
         setToken(result.token);
-        router.push("/login");
+        router.push("/auth/login");
       } else {
         if (result.errors) {
           Object.keys(result.errors).forEach((key) => {
