@@ -8,11 +8,11 @@ export default function CostSchool() {
           Biaya Sekolah
         </h1>
       </div>
-
       <Image
         src="/assets/biaya.jpeg"
         width={1800}
         height={1500}
+        quality={100}
         priority
         alt="Biaya Sekolah SMK N 1 Rl"
       />
