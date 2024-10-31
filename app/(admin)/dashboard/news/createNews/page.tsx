@@ -100,7 +100,7 @@ export default function CreateNews() {
     }
 
     try {
-      const res = await fetch("http://127.0.0.1:8000/api/news", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

@@ -46,11 +46,8 @@ export default function ListNews() {
     async function fetchNews() {
       setError(null);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/news", {
-          cache: "force-cache",
-          next: {
-            revalidate: 30,
-          },
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
+          cache: "no-cache",
         });
 
         if (!res.ok) {
@@ -77,7 +74,7 @@ export default function ListNews() {
     }
 
     try {
-      const res = await fetch(`http://127.0.0.1:8000/api/news/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}/${id}`, {
         method: "DELETE",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -137,49 +134,53 @@ export default function ListNews() {
 
       {/* Form */}
       <Toaster />
-      {news.map((item) => (
-        <Card
-          key={item.id}
-          className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
-        >
-          {item.image && (
-            <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
-              <Image
-                src={`http://localhost:8000/storage/${item.image}`}
-                alt={item.title}
-                width={400}
-                height={350}
-                className="h-auto w-full rounded-lg object-cover"
-              />
-            </div>
-          )}
-          <div className="w-full md:w-3/4">
-            <CardHeader>
-              <CardTitle className="text-lg hover:underline md:text-xl">
-                <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
-              </CardTitle>
-              <CardDescription>{formatDate(item.created_at)}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="italic">{graphingText(item.content, 120)}</p>
-            </CardContent>
-            <CardFooter className="flex gap-4">
-              <Link href={`/dashboard/news/${item.id}`}>
-                <Button className="flex items-center gap-2">
-                  <Pencil className="h-4 w-4" />
+      {news.length === 0 ? (
+        <p className="text-center text-gray-500">No news available.</p>
+      ) : (
+        news.map((item) => (
+          <Card
+            key={item.id}
+            className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
+          >
+            {item.image && (
+              <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
+                  alt={item.title}
+                  width={400}
+                  height={350}
+                  className="h-auto w-full rounded-lg object-cover"
+                />
+              </div>
+            )}
+            <div className="w-full md:w-3/4">
+              <CardHeader>
+                <CardTitle className="text-lg hover:underline md:text-xl">
+                  <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
+                </CardTitle>
+                <CardDescription>{formatDate(item.created_at)}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="italic">{graphingText(item.content, 120)}</p>
+              </CardContent>
+              <CardFooter className="flex gap-4">
+                <Link href={`/dashboard/news/${item.id}`}>
+                  <Button className="flex items-center gap-2">
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Button
+                  variant="destructive"
+                  onClick={() => handleDelete(item.id)}
+                  className="flex items-center gap-2"
+                >
+                  <Trash2 className="h-4 w-4" />
                 </Button>
-              </Link>
-              <Button
-                variant="destructive"
-                onClick={() => handleDelete(item.id)}
-                className="flex items-center gap-2"
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </CardFooter>
-          </div>
-        </Card>
-      ))}
+              </CardFooter>
+            </div>
+          </Card>
+        ))
+      )}
     </div>
   );
 }
