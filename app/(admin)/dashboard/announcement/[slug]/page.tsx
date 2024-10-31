@@ -85,7 +85,7 @@ export default function EditAnnouncement(props: {
     const getAnnouncementDetail = async () => {
       try {
         const res = await fetch(
-          `http://127.0.0.1:8000/api/announcement/${slug}`,
+          `${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}/${slug}`,
         );
         const data = await res.json();
 
@@ -115,7 +115,7 @@ export default function EditAnnouncement(props: {
     selectedImage instanceof File
       ? URL.createObjectURL(selectedImage)
       : selectedImage
-        ? `http://127.0.0.1:8000/storage/${selectedImage}`
+        ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${selectedImage}`
         : null;
 
   const handleEdit = async (data: z.infer<typeof formSchema>) => {
@@ -129,7 +129,7 @@ export default function EditAnnouncement(props: {
 
     try {
       const res = await fetch(
-        `http://127.0.0.1:8000/api/announcement/${slug}`,
+        `${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}/${slug}`,
         {
           method: "POST",
           headers: {

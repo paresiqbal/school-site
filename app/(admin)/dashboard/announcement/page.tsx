@@ -46,11 +46,8 @@ export default function ListAnnouncement() {
     async function fetchAnnouncement() {
       setError(null);
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/announcement", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}`, {
           cache: "force-cache",
-          next: {
-            revalidate: 30,
-          },
         });
 
         if (!res.ok) {
@@ -146,7 +143,7 @@ export default function ListAnnouncement() {
           {item.image && (
             <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
               <Image
-                src={`http://localhost:8000/storage/${item.image}`}
+                src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
                 alt={item.title}
                 width={400}
                 height={350}
