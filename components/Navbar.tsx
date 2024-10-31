@@ -132,10 +132,10 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/guide/academic"
+                      href="/guide/calendar-academic"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
-                      Panduan Akademik
+                      Kalender Akademik
                     </Link>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
@@ -282,10 +282,10 @@ export default function Navbar() {
                   Biaya Sekolah
                 </Link>
                 <Link
-                  href="/guide/academic"
+                  href="/guide/calendar-academic"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
-                  Panduan Akademik
+                  Kalender Akademik
                 </Link>
               </div>
             </div>
