@@ -43,7 +43,7 @@ export default function AppProvider({
 
     async function getUser() {
       try {
-        const res = await fetch("http://127.0.0.1:8000/api/user", {
+        const res = await fetch(`${process.env.NEXT_AUTH_USER}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -66,7 +66,7 @@ export default function AppProvider({
 
   const contextValue = useMemo(
     () => ({ token, setToken, user }),
-    [token, user]
+    [token, user],
   );
 
   return (
