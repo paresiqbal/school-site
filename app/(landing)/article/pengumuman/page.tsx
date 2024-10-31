@@ -113,7 +113,7 @@ export default function Pengumuman() {
               </div>
               <div className="mt-4">
                 <Link
-                  href={`/pengumuman/${item.id}`}
+                  href={`/article/pengumuman/${item.id}`}
                   className="mb-2 text-lg font-semibold hover:underline md:text-xl"
                 >
                   {item.title}

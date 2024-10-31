@@ -113,7 +113,7 @@ export default function Berita() {
               </div>
               <div className="mt-4">
                 <Link
-                  href={`/berita/${item.id}`}
+                  href={`/article/berita/${item.id}`}
                   className="mb-2 text-lg font-semibold hover:underline md:text-xl"
                 >
                   {item.title}
