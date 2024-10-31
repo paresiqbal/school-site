@@ -36,9 +36,7 @@ export default function NewsDetail(props: {
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}/${slug}`, {
           cache: "force-cache",
-          next: {
-            revalidate: 30,
-          },
+          next: { revalidate: 30 },
         });
 
         if (!res.ok) {
