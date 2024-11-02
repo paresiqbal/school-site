@@ -1,3 +1,7 @@
+"use client";
+import * as React from "react";
+import Autoplay from "embla-carousel-autoplay";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -6,12 +10,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@/components/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
 export default function ComputerScienceMajorPage() {
+  const plugin = React.useRef(
+    Autoplay({ delay: 2000, stopOnInteraction: true }),
+  );
+
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="grid gap-6 lg:grid-cols-3">
@@ -22,13 +33,30 @@ export default function ComputerScienceMajorPage() {
           <p className="mb-6 text-lg text-muted-foreground md:text-xl">
             Selami dunia komputasi, internet dan jaringan.
           </p>
-          <Image
-            src="/placeholder.svg?height=400&width=800"
-            alt="Computer Science students working on a project"
-            width={800}
-            height={400}
-            className="mb-6 w-full rounded-lg"
-          />
+
+          <Carousel
+            plugins={[plugin.current]}
+            className="w-full max-w-xl"
+            onMouseEnter={plugin.current.stop}
+            onMouseLeave={plugin.current.reset}
+          >
+            <CarouselContent>
+              {Array.from({ length: 5 }).map((_, index) => (
+                <CarouselItem key={index}>
+                  <div className="p-1">
+                    <Card>
+                      <CardContent className="flex aspect-square items-center justify-center p-6">
+                        <span className="text-4xl font-semibold">
+                          {index + 1}
+                        </span>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
           <div className="prose max-w-none">
             <p>
               Program Teknik Komputer & Jaringan (TKJ) adalah program studi yang
