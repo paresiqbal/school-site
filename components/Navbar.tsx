@@ -77,6 +77,14 @@ export default function Navbar() {
                       Sejarah
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/profil/major"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Jurusan
+                    </Link>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
@@ -227,6 +235,12 @@ export default function Navbar() {
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Sejarah
+                </Link>
+                <Link
+                  href="/profil/major"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Jurusan
                 </Link>
               </div>
             </div>
