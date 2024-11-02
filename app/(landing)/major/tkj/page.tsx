@@ -25,7 +25,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // icons
 import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 
-export default function ComputerScienceMajorPage() {
+export default function Tkj() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
