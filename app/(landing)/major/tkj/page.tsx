@@ -16,10 +16,11 @@ export default function ComputerScienceMajorPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <h1 className="mb-4 text-4xl font-bold">Computer Science</h1>
+          <h1 className="mb-4 text-4xl font-bold">
+            Teknik Komputer & Jaringan
+          </h1>
           <p className="mb-6 text-xl text-muted-foreground">
-            Dive into the world of algorithms, software development, and
-            computational theory.
+            Selami dunia komputasi, internet dan jaringan.
           </p>
           <Image
             src="/placeholder.svg?height=400&width=800"
@@ -30,11 +31,10 @@ export default function ComputerScienceMajorPage() {
           />
           <div className="prose max-w-none">
             <p>
-              Our Computer Science program equips students with the fundamental
-              knowledge and practical skills needed to excel in the
-              ever-evolving tech industry. From crafting efficient algorithms to
-              developing cutting-edge software, youll be at the forefront of
-              technological innovation.
+              Program Teknik Komputer & Jaringan (TKJ) adalah program studi yang
+              mempelajari tentang teknologi komputer, jaringan, dan internet.
+              Program ini dirancang untuk mempersiapkan siswa menjadi
+              profesional di bidang teknologi informasi dan komunikasi.
             </p>
           </div>
         </div>
