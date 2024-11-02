@@ -81,6 +81,69 @@ export default function Navbar() {
               </DropdownMenu>
               <DropdownMenu>
                 <DropdownMenuTrigger className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+                  Jurusan <ChevronDown className="ml-1 inline-block h-4 w-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/major/tkj"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Komputer & Jaringan
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/major/tbsm"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Bisnis Sepeda Motor
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/major/tkr"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Kendaraan Ringan
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/major/tei"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Elektronika
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/major/dpib"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Desain Permodelan
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/major/titl"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Instalasti Tenaga Listrik
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/major/las"
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Pengelasan
+                    </Link>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-sm text-muted-foreground transition-colors hover:text-foreground">
                   Artikel <ChevronDown className="ml-1 inline-block h-4 w-4" />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
