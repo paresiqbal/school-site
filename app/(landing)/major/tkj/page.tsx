@@ -7,7 +7,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { BookOpen, BriefcaseIcon, GraduationCap, Users } from "lucide-react";
+import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -40,27 +40,27 @@ export default function ComputerScienceMajorPage() {
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>Program Highlights</CardTitle>
+            <CardTitle>Program Sorotan</CardTitle>
             <CardDescription>
-              Key features of our Computer Science major
+              Program Teknik Komputer & Jaringan menawarkan:
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-4">
             <div className="flex items-center gap-4">
               <BookOpen className="h-4 w-4" />
-              <div className="font-medium">Comprehensive Curriculum</div>
+              <div className="font-medium">Kurikulum Komprehensif</div>
             </div>
             <div className="flex items-center gap-4">
               <Users className="h-4 w-4" />
-              <div className="font-medium">Collaborative Projects</div>
+              <div className="font-medium">Proyek Kolaboratif</div>
             </div>
             <div className="flex items-center gap-4">
               <BriefcaseIcon className="h-4 w-4" />
-              <div className="font-medium">Industry Internships</div>
+              <div className="font-medium">Magang Industri</div>
             </div>
             <div className="flex items-center gap-4">
-              <GraduationCap className="h-4 w-4" />
-              <div className="font-medium">Research Opportunities</div>
+              <Hammer className="h-4 w-4" />
+              <div className="font-medium">Peluang Kerja</div>
             </div>
           </CardContent>
         </Card>
