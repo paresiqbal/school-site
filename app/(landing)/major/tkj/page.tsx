@@ -16,10 +16,10 @@ export default function ComputerScienceMajorPage() {
     <div className="container mx-auto px-4 py-8">
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <h1 className="mb-4 text-4xl font-bold">
+          <h1 className="mb-4 text-3xl font-bold md:text-4xl">
             Teknik Komputer & Jaringan
           </h1>
-          <p className="mb-6 text-xl text-muted-foreground">
+          <p className="mb-6 text-lg text-muted-foreground md:text-xl">
             Selami dunia komputasi, internet dan jaringan.
           </p>
           <Image
@@ -27,7 +27,7 @@ export default function ComputerScienceMajorPage() {
             alt="Computer Science students working on a project"
             width={800}
             height={400}
-            className="mb-6 rounded-lg"
+            className="mb-6 w-full rounded-lg"
           />
           <div className="prose max-w-none">
             <p>
@@ -72,7 +72,7 @@ export default function ComputerScienceMajorPage() {
           <TabsTrigger value="careers">Prospek Karir</TabsTrigger>
         </TabsList>
         <TabsContent value="courses" className="mt-6">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               "Dasar-dasar Komputer",
               "Jaringan Komputer",
@@ -93,7 +93,7 @@ export default function ComputerScienceMajorPage() {
           </div>
         </TabsContent>
         <TabsContent value="careers" className="mt-6">
-          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               "Teknisi Komputer",
               "Network Administrator",
@@ -116,11 +116,11 @@ export default function ComputerScienceMajorPage() {
       </Tabs>
 
       <div className="mt-12 text-center">
-        <h2 className="mb-4 text-2xl font-bold">
+        <h2 className="mb-4 text-xl font-bold md:text-2xl">
           Siap untuk memulai karir Anda di dunia teknologi?
         </h2>
         <Button asChild size="lg">
-          <Link href="/other/register">Daftar Sekarang</Link>
+          <Link href="/guide/registration">Daftar Sekarang</Link>
         </Button>
       </div>
     </div>
