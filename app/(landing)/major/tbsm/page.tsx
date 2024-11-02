@@ -34,10 +34,10 @@ export default function Tbsm() {
     <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-6 md:pt-12 lg:px-0">
       <div>
         <h1 className="mb-2 text-2xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
-          Teknik Komputer & Jaringan
+          Teknik Bisnis Sepeda Motor
         </h1>
         <p className="mb-6 text-base text-muted-foreground md:text-lg lg:text-xl">
-          Selami dunia komputasi, internet dan jaringan.
+          Selami dunia teknik sepeda motor dan bisnisnya
         </p>
       </div>
       <div className="grid gap-6 lg:grid-cols-3">
@@ -68,10 +68,10 @@ export default function Tbsm() {
 
           <div className="prose mt-4 max-w-none text-sm md:text-base lg:text-lg">
             <p>
-              Program Teknik Komputer & Jaringan (TKJ) adalah program studi yang
-              mempelajari tentang teknologi komputer, jaringan, dan internet.
-              Program ini dirancang untuk mempersiapkan siswa menjadi
-              profesional di bidang teknologi informasi dan komunikasi.
+              Teknik Bisnis Sepeda Motor adalah program keahlian yang
+              mempelajari teknik sepeda motor dan bisnisnya. Program ini
+              mempersiapkan siswa untuk menjadi teknisi sepeda motor yang handal
+              dan juga wirausahawan yang mampu membangun bisnis sepeda motor.
             </p>
           </div>
         </div>
