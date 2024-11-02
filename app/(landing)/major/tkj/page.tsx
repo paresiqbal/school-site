@@ -1,7 +1,12 @@
 "use client";
+
 import * as React from "react";
-import Autoplay from "embla-carousel-autoplay";
 import Link from "next/link";
+
+// ex lib
+import Autoplay from "embla-carousel-autoplay";
+
+// ui lib
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -16,6 +21,8 @@ import {
   CarouselItem,
 } from "@/components/ui/carousel";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+// icons
 import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 
 export default function ComputerScienceMajorPage() {
