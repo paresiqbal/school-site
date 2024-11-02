@@ -43,7 +43,7 @@ export default function AppProvider({
 
     async function getUser() {
       try {
-        const res = await fetch(`${process.env.NEXT_AUTH_USER}`, {
+        const res = await fetch(`http://127.0.0.1:8000/api/user`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -53,7 +53,6 @@ export default function AppProvider({
           const data = await res.json();
           setUser(data);
         } else {
-          // Handle invalid token or unauthorized access
           setUser(null);
         }
       } catch (error) {

@@ -77,14 +77,6 @@ export default function Navbar() {
                       Sejarah
                     </Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem>
-                    <Link
-                      href="/profil/major"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-                    >
-                      Jurusan
-                    </Link>
-                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
@@ -147,14 +139,6 @@ export default function Navbar() {
                       Kalender Akademik
                     </Link>
                   </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <DropdownMenu>
-                <DropdownMenuTrigger className="text-sm text-muted-foreground transition-colors hover:text-foreground">
-                  Lainnya
-                  <ChevronDown className="ml-1 inline-block h-4 w-4" />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
                   <DropdownMenuItem>
                     <Link
                       href="/other/faq"
@@ -236,12 +220,6 @@ export default function Navbar() {
                 >
                   Sejarah
                 </Link>
-                <Link
-                  href="/profil/major"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
-                >
-                  Jurusan
-                </Link>
               </div>
             </div>
             <div className="space-y-1">
@@ -302,19 +280,6 @@ export default function Navbar() {
                 >
                   Kalender Akademik
                 </Link>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
-                onClick={(e) =>
-                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
-                }
-              >
-                Lainnya
-                <ChevronDown className="ml-1 inline-block h-4 w-4" />
-              </button>
-              <div className="hidden pl-4">
                 <Link
                   href="/other/faq"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
@@ -329,6 +294,7 @@ export default function Navbar() {
                 </Link>
               </div>
             </div>
+
             <Link
               href="/contact"
               className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
