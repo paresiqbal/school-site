@@ -120,7 +120,7 @@ export default function ComputerScienceMajorPage() {
           Siap untuk memulai karir Anda di dunia teknologi?
         </h2>
         <Button asChild size="lg">
-          <Link href="/apply">Daftar Sekarang</Link>
+          <Link href="/guide/registration">Daftar Sekarang</Link>
         </Button>
       </div>
     </div>
