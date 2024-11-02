@@ -24,19 +24,20 @@ export default function ComputerScienceMajorPage() {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-6 md:pt-12 lg:px-0">
+      <div>
+        <h1 className="mb-2 text-2xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
+          Teknik Komputer & Jaringan
+        </h1>
+        <p className="mb-6 text-base text-muted-foreground md:text-lg lg:text-xl">
+          Selami dunia komputasi, internet dan jaringan.
+        </p>
+      </div>
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
-          <h1 className="mb-4 text-3xl font-bold md:text-4xl">
-            Teknik Komputer & Jaringan
-          </h1>
-          <p className="mb-6 text-lg text-muted-foreground md:text-xl">
-            Selami dunia komputasi, internet dan jaringan.
-          </p>
-
           <Carousel
             plugins={[plugin.current]}
-            className="w-full max-w-xl"
+            className="w-full"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
           >
@@ -44,9 +45,10 @@ export default function ComputerScienceMajorPage() {
               {Array.from({ length: 5 }).map((_, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1">
-                    <Card>
-                      <CardContent className="flex aspect-square items-center justify-center p-6">
-                        <span className="text-4xl font-semibold">
+                    <Card className="aspect-[4/3] w-full">
+                      {/* Set a 4:3 aspect ratio */}
+                      <CardContent className="flex h-full items-center justify-center p-4 md:p-6">
+                        <span className="text-3xl font-semibold md:text-4xl lg:text-5xl">
                           {index + 1}
                         </span>
                       </CardContent>
@@ -57,7 +59,7 @@ export default function ComputerScienceMajorPage() {
             </CarouselContent>
           </Carousel>
 
-          <div className="prose max-w-none">
+          <div className="prose mt-4 max-w-none text-sm md:text-base lg:text-lg">
             <p>
               Program Teknik Komputer & Jaringan (TKJ) adalah program studi yang
               mempelajari tentang teknologi komputer, jaringan, dan internet.
@@ -68,38 +70,48 @@ export default function ComputerScienceMajorPage() {
         </div>
         <Card>
           <CardHeader>
-            <CardTitle>Program Sorotan</CardTitle>
-            <CardDescription>
+            <CardTitle className="text-lg md:text-xl lg:text-2xl">
+              Program Sorotan
+            </CardTitle>
+            <CardDescription className="text-sm md:text-base">
               Program Teknik Komputer & Jaringan menawarkan:
             </CardDescription>
           </CardHeader>
-          <CardContent className="grid gap-4">
-            <div className="flex items-center gap-4">
-              <BookOpen className="h-4 w-4" />
-              <div className="font-medium">Kurikulum Komprehensif</div>
+          <CardContent className="grid gap-3 md:gap-4">
+            <div className="flex items-center gap-3 md:gap-4">
+              <BookOpen className="h-5 w-5 md:h-6 md:w-6" />
+              <div className="text-sm font-medium md:text-base">
+                Kurikulum Komprehensif
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Users className="h-4 w-4" />
-              <div className="font-medium">Proyek Kolaboratif</div>
+            <div className="flex items-center gap-3 md:gap-4">
+              <Users className="h-5 w-5 md:h-6 md:w-6" />
+              <div className="text-sm font-medium md:text-base">
+                Proyek Kolaboratif
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              <BriefcaseIcon className="h-4 w-4" />
-              <div className="font-medium">Magang Industri</div>
+            <div className="flex items-center gap-3 md:gap-4">
+              <BriefcaseIcon className="h-5 w-5 md:h-6 md:w-6" />
+              <div className="text-sm font-medium md:text-base">
+                Magang Industri
+              </div>
             </div>
-            <div className="flex items-center gap-4">
-              <Hammer className="h-4 w-4" />
-              <div className="font-medium">Peluang Kerja</div>
+            <div className="flex items-center gap-3 md:gap-4">
+              <Hammer className="h-5 w-5 md:h-6 md:w-6" />
+              <div className="text-sm font-medium md:text-base">
+                Peluang Kerja
+              </div>
             </div>
           </CardContent>
         </Card>
       </div>
 
-      <Tabs defaultValue="courses" className="mt-12">
+      <Tabs defaultValue="courses" className="mt-8 md:mt-12">
         <TabsList>
           <TabsTrigger value="courses">Materi Utama</TabsTrigger>
           <TabsTrigger value="careers">Prospek Karir</TabsTrigger>
         </TabsList>
-        <TabsContent value="courses" className="mt-6">
+        <TabsContent value="courses" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               "Dasar-dasar Komputer",
@@ -114,13 +126,13 @@ export default function ComputerScienceMajorPage() {
             ].map((course) => (
               <Card key={course}>
                 <CardHeader>
-                  <CardTitle className="text-lg">{course}</CardTitle>
+                  <CardTitle className="text-sm md:text-lg">{course}</CardTitle>
                 </CardHeader>
               </Card>
             ))}
           </div>
         </TabsContent>
-        <TabsContent value="careers" className="mt-6">
+        <TabsContent value="careers" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               "Teknisi Komputer",
@@ -135,7 +147,7 @@ export default function ComputerScienceMajorPage() {
             ].map((career) => (
               <Card key={career}>
                 <CardHeader>
-                  <CardTitle className="text-lg">{career}</CardTitle>
+                  <CardTitle className="text-sm md:text-lg">{career}</CardTitle>
                 </CardHeader>
               </Card>
             ))}
@@ -143,8 +155,8 @@ export default function ComputerScienceMajorPage() {
         </TabsContent>
       </Tabs>
 
-      <div className="mt-12 text-center">
-        <h2 className="mb-4 text-xl font-bold md:text-2xl">
+      <div className="mt-8 text-center md:mt-12">
+        <h2 className="mb-4 text-lg font-bold md:text-xl lg:text-2xl">
           Siap untuk memulai karir Anda di dunia teknologi?
         </h2>
         <Button asChild size="lg">
