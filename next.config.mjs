@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["laravel.smkn1rl.sch.id"],
+    domains: ["127.0.0.1", "localhost"],
   },
 };
 
