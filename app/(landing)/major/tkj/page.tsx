@@ -68,21 +68,21 @@ export default function ComputerScienceMajorPage() {
 
       <Tabs defaultValue="courses" className="mt-12">
         <TabsList>
-          <TabsTrigger value="courses">Key Courses</TabsTrigger>
-          <TabsTrigger value="careers">Career Prospects</TabsTrigger>
+          <TabsTrigger value="courses">Materi Utama</TabsTrigger>
+          <TabsTrigger value="careers">Prospek Karir</TabsTrigger>
         </TabsList>
         <TabsContent value="courses" className="mt-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[
-              "Data Structures and Algorithms",
-              "Object-Oriented Programming",
-              "Database Systems",
-              "Computer Networks",
-              "Artificial Intelligence",
-              "Web Development",
-              "Machine Learning",
-              "Cybersecurity",
-              "Software Engineering",
+              "Dasar-dasar Komputer",
+              "Jaringan Komputer",
+              "Administrasi Server",
+              "Teknologi Jaringan Nirkabel",
+              "Keamanan Jaringan",
+              "Pengelolaan Jaringan",
+              "Pemrograman Dasar",
+              "Cloud Computing",
+              "Internet of Things (IoT)",
             ].map((course) => (
               <Card key={course}>
                 <CardHeader>
@@ -95,15 +95,15 @@ export default function ComputerScienceMajorPage() {
         <TabsContent value="careers" className="mt-6">
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
             {[
-              "Software Developer",
-              "Data Scientist",
-              "Cybersecurity Analyst",
-              "AI/ML Engineer",
-              "Cloud Computing Specialist",
-              "DevOps Engineer",
-              "Mobile App Developer",
-              "Database Administrator",
-              "UX/UI Designer",
+              "Teknisi Komputer",
+              "Network Administrator",
+              "IT Support",
+              "Administrator Server",
+              "Teknisi Jaringan Nirkabel",
+              "Spesialis Keamanan Jaringan",
+              "Administrator Cloud",
+              "Teknisi IoT",
+              "Web Developer atau Programmer",
             ].map((career) => (
               <Card key={career}>
                 <CardHeader>
@@ -117,10 +117,10 @@ export default function ComputerScienceMajorPage() {
 
       <div className="mt-12 text-center">
         <h2 className="mb-4 text-2xl font-bold">
-          Ready to Shape the Future of Technology?
+          Siap untuk memulai karir Anda di dunia teknologi?
         </h2>
         <Button asChild size="lg">
-          <Link href="/apply">Apply Now</Link>
+          <Link href="/apply">Daftar Sekarang</Link>
         </Button>
       </div>
     </div>
