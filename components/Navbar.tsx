@@ -292,6 +292,61 @@ export default function Navbar() {
                   e.currentTarget.nextElementSibling?.classList.toggle("hidden")
                 }
               >
+                Jurusan
+                <ChevronDown className="ml-1 inline-block h-4 w-4" />
+              </button>
+              <div className="hidden pl-4">
+                <Link
+                  href="/major/tkj"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Komputer & Jaringan
+                </Link>
+                <Link
+                  href="/major/tbsm"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Bisnis Sepeda Motor
+                </Link>
+                <Link
+                  href="/major/tkr"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Kendaraan Ringan
+                </Link>
+                <Link
+                  href="/major/tei"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Elektronika
+                </Link>
+                <Link
+                  href="/major/dpib"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Desain Permodelan
+                </Link>
+                <Link
+                  href="/major/titl"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Instalasi Tenaga Listrik
+                </Link>
+                <Link
+                  href="/major/las"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                >
+                  Pengelasan
+                </Link>
+              </div>
+            </div>
+            <div className="space-y-1">
+              <button
+                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                onClick={(e) =>
+                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
+                }
+              >
                 Artikel <ChevronDown className="ml-1 inline-block h-4 w-4" />
               </button>
               <div className="hidden pl-4">
