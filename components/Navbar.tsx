@@ -204,7 +204,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/other/faq"
+                      href="/guide/faq"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       FAQ
@@ -212,7 +212,7 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
-                      href="/other/download"
+                      href="/guide/download"
                       className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Download
@@ -399,13 +399,13 @@ export default function Navbar() {
                   Kalender Akademik
                 </Link>
                 <Link
-                  href="/other/faq"
+                  href="/guide/faq"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   FAQ
                 </Link>
                 <Link
-                  href="/other/download"
+                  href="/guide/download"
                   className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
                 >
                   Download
