@@ -25,7 +25,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // icons
 import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 
-export default function Tbsm() {
+export default function Tkr() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
@@ -121,15 +121,18 @@ export default function Tbsm() {
         <TabsContent value="courses" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Pemeliharaan & Perbaikan Sepeda Motor",
-              "Teknologi Otomotif",
-              "Diagnostik & Pengujian Mesin",
-              "Manajemen Bengkel",
-              "Bisnis & Kewirausahaan",
+              "Dasar-dasar Mesin Otomotif",
+              "Sistem Bahan Bakar",
+              "Sistem Kelistrikan Otomotif",
+              "Sistem Transmisi",
+              "Sistem Suspensi dan Kemudi",
+              "Sistem Rem",
+              "Sistem Pendingin dan Pelumasan",
+              "Diagnostik Kendaraan",
+              "Manajemen Bengkel Otomotif",
               "Keselamatan dan Kesehatan Kerja",
-              "Pelayanan Pelanggan & Etika Profesi",
+              "Kewirausahaan",
               "Praktik Kerja Lapangan (PKL)",
-              "Over Houl Engine",
             ].map((course) => (
               <Card key={course}>
                 <CardHeader>
@@ -142,12 +145,18 @@ export default function Tbsm() {
         <TabsContent value="careers" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Teknisi Sepeda Motor",
+              "Mekanik atau Teknisi Kendaraan",
               "Service Advisor",
-              "Manajer Bengkel",
-              "Wirausaha Bengkel",
-              "Sales & Marketing",
+              "Quality Control di Pabrik Otomotif",
+              "Manajer Bengkel atau Supervisor",
+              "Pengusaha Bengkel",
               "Teknisi Field Service",
+              "Pemasaran dan Sales Otomotif",
+              "Instruktur atau Pengajar",
+              "Spesialis Diagnostik",
+              "Teknisi di Perusahaan Logistik atau Transportasi",
+              "Modifikator Mobil",
+              "Bagian Suku Cadang atau Sparepart",
             ].map((career) => (
               <Card key={career}>
                 <CardHeader>
@@ -161,7 +170,7 @@ export default function Tbsm() {
 
       <div className="mt-8 text-center md:mt-12">
         <h2 className="mb-4 text-lg font-bold md:text-xl lg:text-2xl">
-          Siap untuk memulai karir Anda di dunia sepeda motor?
+          Siap untuk memulai karir Anda di dunia permobilan?
         </h2>
         <Button asChild size="lg">
           <Link href="/guide/registration">Daftar Sekarang</Link>
