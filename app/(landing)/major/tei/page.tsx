@@ -25,7 +25,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // icons
 import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 
-export default function Tkr() {
+export default function Elektronika() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
@@ -34,7 +34,7 @@ export default function Tkr() {
     <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-6 md:pt-12 lg:px-0">
       <div>
         <h1 className="mb-2 text-2xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
-          Teknik Kendaraan Ringan
+          Teknik Elektronika
         </h1>
         <p className="mb-6 text-base text-muted-foreground md:text-lg lg:text-xl">
           Selami dunia teknik sepeda motor dan bisnisnya
@@ -154,7 +154,7 @@ export default function Tkr() {
               "Pemasaran dan Sales Otomotif",
               "Instruktur atau Pengajar",
               "Spesialis Diagnostik",
-              "Teknisi Logistik atau Transportasi",
+              "Teknisi di Perusahaan Logistik atau Transportasi",
               "Modifikator Mobil",
               "Bagian Suku Cadang atau Sparepart",
             ].map((career) => (
