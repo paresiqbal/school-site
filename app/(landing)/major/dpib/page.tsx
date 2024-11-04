@@ -85,7 +85,7 @@ export default function DesainPemodelan() {
               Program Sorotan
             </CardTitle>
             <CardDescription className="text-sm md:text-base">
-              Program Teknik Komputer & Jaringan menawarkan:
+              Program Teknik Desain Pemodelan menawarkan:
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 md:gap-4">
@@ -125,17 +125,17 @@ export default function DesainPemodelan() {
         <TabsContent value="courses" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Dasar-dasar Elektronika",
-              "Komponen Elektronika",
-              "Rangkaian Elektronika Analog",
-              "Rangkaian Elektronika Digital",
-              "Mikrokontroler dan Pemrograman",
-              "Sistem Kontrol dan Otomasi",
-              "Elektronika Daya",
-              "Telekomunikasi dan Sistem Komunikasi",
-              "Sistem Embedded",
-              "Perbaikan dan Pemeliharaan Perangkat Elektronik",
-              "Robotika Dasar",
+              "Penggambaran Teknik",
+              "Desain Berbantuan Komputer",
+              "Pemodelan 3D",
+              "Teknik Pemodelan dan Rendering",
+              "Gambar Mesin dan Komponen Teknik",
+              "Desain Produk",
+              "Teknologi Material",
+              "Proses Manufaktur dan Produksi",
+              "Pemahaman Struktur dan Konstruksi:",
+              "Analisis dan Simulasi",
+              "Teknik Presentasi Desain",
               "Praktik Kerja Lapangan (PKL)",
             ].map((course) => (
               <Card key={course}>
@@ -149,18 +149,18 @@ export default function DesainPemodelan() {
         <TabsContent value="careers" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Teknisi Elektronika",
-              "Teknisi Telekomunikasi",
-              "Teknisi dan Analis Sistem Kontrol Industri",
-              "Teknisi Elektronika Daya",
-              "Teknisi Embedded System",
-              "Teknisi Robotika dan Otomasi",
-              "Pengembangan Produk Elektronika Konsumen",
-              "Teknisi atau Teknolog Audio dan Video",
-              "Instruktur atau Pengajar Elektronika",
-              "Wirausaha di Bidang Elektronika",
-              "Analis Kualitas",
-              "Pengembang Perangkat IoT",
+              "Desainer Produk",
+              "Desainer CAD",
+              "Drafter Teknik",
+              "Teknisi Pemodelan 3D",
+              "Desainer Arsitektur dan Interior",
+              "Pengembang Prototipe",
+              "Operator CNC",
+              "Inspektor atau Quality Control",
+              "Desainer Industri",
+              "Pengajar atau Instruktur Desain",
+              "Desainer Proyek Infrastruktur",
+              "Desainer Visualisasi untuk Real Estate",
             ].map((career) => (
               <Card key={career}>
                 <CardHeader>
@@ -174,7 +174,7 @@ export default function DesainPemodelan() {
 
       <div className="mt-8 text-center md:mt-12">
         <h2 className="mb-4 text-lg font-bold md:text-xl lg:text-2xl">
-          Siap untuk memulai karir Anda di bidang Teknik Elektronika?
+          Siap untuk memulai karir Anda di bidang desain pemodelan?
         </h2>
         <Button asChild size="lg">
           <Link href="/guide/registration">Daftar Sekarang</Link>
