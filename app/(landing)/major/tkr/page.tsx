@@ -68,10 +68,11 @@ export default function Tkr() {
 
           <div className="prose mt-4 max-w-none text-sm md:text-base lg:text-lg">
             <p>
-              Teknik Bisnis Sepeda Motor adalah program keahlian yang
-              mempelajari teknik sepeda motor dan bisnisnya. Program ini
-              mempersiapkan siswa untuk menjadi teknisi sepeda motor yang handal
-              dan juga wirausahawan yang mampu membangun bisnis sepeda motor.
+              Teknik kendaraan ringan adalah program pendidikan yang mempelajari
+              tentang teknik perbaikan dan pemeliharaan kendaraan bermotor.
+              Program ini mengajarkan siswa tentang dasar-dasar mesin otomotif,
+              sistem bahan bakar, sistem kelistrikan otomotif, sistem transmisi,
+              dan lain-lain.
             </p>
           </div>
         </div>

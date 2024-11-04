@@ -68,10 +68,12 @@ export default function Elektronika() {
 
           <div className="prose mt-4 max-w-none text-sm md:text-base lg:text-lg">
             <p>
-              Teknik Bisnis Sepeda Motor adalah program keahlian yang
-              mempelajari teknik sepeda motor dan bisnisnya. Program ini
-              mempersiapkan siswa untuk menjadi teknisi sepeda motor yang handal
-              dan juga wirausahawan yang mampu membangun bisnis sepeda motor.
+              Teknik Elektronika adalah program studi yang mempelajari tentang
+              perancangan, perakitan, dan perbaikan perangkat elektronik.
+              Program ini mengajarkan siswa tentang dasar-dasar elektronika,
+              sirkuit listrik, dan komponen elektronik. Selain itu, siswa juga
+              akan mempelajari tentang sistem kontrol, pemrograman
+              mikrokontroler, dan teknik pemrograman.
             </p>
           </div>
         </div>
