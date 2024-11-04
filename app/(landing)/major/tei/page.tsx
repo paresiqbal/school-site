@@ -37,7 +37,7 @@ export default function Elektronika() {
           Teknik Elektronika
         </h1>
         <p className="mb-6 text-base text-muted-foreground md:text-lg lg:text-xl">
-          Selami dunia teknik sepeda motor dan bisnisnya
+          Pelajari teknik elektronika dan siapkan diri Anda untuk menjadi ahli.
         </p>
       </div>
       <div className="grid gap-6 lg:grid-cols-3">
