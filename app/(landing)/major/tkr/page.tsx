@@ -82,7 +82,7 @@ export default function Tkr() {
               Program Sorotan
             </CardTitle>
             <CardDescription className="text-sm md:text-base">
-              Program Teknik Komputer & Jaringan menawarkan:
+              Program Teknik Kendaraan Ringan menawarkan:
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 md:gap-4">

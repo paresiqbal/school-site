@@ -25,7 +25,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // icons
 import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 
-export default function Tbsm() {
+export default function DesainPemodelan() {
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
@@ -34,10 +34,11 @@ export default function Tbsm() {
     <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-6 md:pt-12 lg:px-0">
       <div>
         <h1 className="mb-2 text-2xl font-bold md:mb-6 md:text-4xl lg:text-5xl">
-          Teknik Bisnis Sepeda Motor
+          Desain Pemodelan
         </h1>
         <p className="mb-6 text-base text-muted-foreground md:text-lg lg:text-xl">
-          Selami dunia teknik sepeda motor dan bisnisnya
+          Pelajari teknik desain pemodelan dan siapkan diri Anda untuk menjadi
+          arsitek.
         </p>
       </div>
       <div className="grid gap-6 lg:grid-cols-3">
@@ -68,10 +69,13 @@ export default function Tbsm() {
 
           <div className="prose mt-4 max-w-none text-sm md:text-base lg:text-lg">
             <p>
-              Teknik Bisnis Sepeda Motor adalah program keahlian yang
-              mempelajari teknik sepeda motor dan bisnisnya. Program ini
-              mempersiapkan siswa untuk menjadi teknisi sepeda motor yang handal
-              dan juga wirausahawan yang mampu membangun bisnis sepeda motor.
+              Teknik desain pemodelan adalah salah satu program studi yang
+              menawarkan kurikulum komprehensif, proyek kolaboratif, magang
+              industri, dan peluang kerja. Program ini menawarkan materi utama
+              seperti dasar-dasar desain, pemodelan 3D, desain interior, desain
+              eksterior, desain produk, desain grafis, desain web, dan desain
+              game. Lulusan program ini memiliki prospek karir sebagai arsitek,
+              desainer interior, dan desainer produk.
             </p>
           </div>
         </div>
@@ -81,7 +85,7 @@ export default function Tbsm() {
               Program Sorotan
             </CardTitle>
             <CardDescription className="text-sm md:text-base">
-              Program Teknik Bisnis Sepeda Motor menawarkan:
+              Program Teknik Komputer & Jaringan menawarkan:
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 md:gap-4">
@@ -121,15 +125,18 @@ export default function Tbsm() {
         <TabsContent value="courses" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Pemeliharaan & Perbaikan Sepeda Motor",
-              "Teknologi Otomotif",
-              "Diagnostik & Pengujian Mesin",
-              "Manajemen Bengkel",
-              "Bisnis & Kewirausahaan",
-              "Keselamatan dan Kesehatan Kerja",
-              "Pelayanan Pelanggan & Etika Profesi",
+              "Dasar-dasar Elektronika",
+              "Komponen Elektronika",
+              "Rangkaian Elektronika Analog",
+              "Rangkaian Elektronika Digital",
+              "Mikrokontroler dan Pemrograman",
+              "Sistem Kontrol dan Otomasi",
+              "Elektronika Daya",
+              "Telekomunikasi dan Sistem Komunikasi",
+              "Sistem Embedded",
+              "Perbaikan dan Pemeliharaan Perangkat Elektronik",
+              "Robotika Dasar",
               "Praktik Kerja Lapangan (PKL)",
-              "Over Houl Engine",
             ].map((course) => (
               <Card key={course}>
                 <CardHeader>
@@ -142,12 +149,18 @@ export default function Tbsm() {
         <TabsContent value="careers" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Teknisi Sepeda Motor",
-              "Service Advisor",
-              "Manajer Bengkel",
-              "Wirausaha Bengkel",
-              "Sales & Marketing",
-              "Teknisi Field Service",
+              "Teknisi Elektronika",
+              "Teknisi Telekomunikasi",
+              "Teknisi dan Analis Sistem Kontrol Industri",
+              "Teknisi Elektronika Daya",
+              "Teknisi Embedded System",
+              "Teknisi Robotika dan Otomasi",
+              "Pengembangan Produk Elektronika Konsumen",
+              "Teknisi atau Teknolog Audio dan Video",
+              "Instruktur atau Pengajar Elektronika",
+              "Wirausaha di Bidang Elektronika",
+              "Analis Kualitas",
+              "Pengembang Perangkat IoT",
             ].map((career) => (
               <Card key={career}>
                 <CardHeader>
@@ -161,7 +174,7 @@ export default function Tbsm() {
 
       <div className="mt-8 text-center md:mt-12">
         <h2 className="mb-4 text-lg font-bold md:text-xl lg:text-2xl">
-          Siap untuk memulai karir Anda di dunia sepeda motor?
+          Siap untuk memulai karir Anda di bidang Teknik Elektronika?
         </h2>
         <Button asChild size="lg">
           <Link href="/guide/registration">Daftar Sekarang</Link>

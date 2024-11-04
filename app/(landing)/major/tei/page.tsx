@@ -83,7 +83,7 @@ export default function Elektronika() {
               Program Sorotan
             </CardTitle>
             <CardDescription className="text-sm md:text-base">
-              Program Teknik Komputer & Jaringan menawarkan:
+              Program Teknik Elektronika menawarkan:
             </CardDescription>
           </CardHeader>
           <CardContent className="grid gap-3 md:gap-4">
