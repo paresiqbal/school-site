@@ -123,17 +123,17 @@ export default function Elektronika() {
         <TabsContent value="courses" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Dasar-dasar Mesin Otomotif",
-              "Sistem Bahan Bakar",
-              "Sistem Kelistrikan Otomotif",
-              "Sistem Transmisi",
-              "Sistem Suspensi dan Kemudi",
-              "Sistem Rem",
-              "Sistem Pendingin dan Pelumasan",
-              "Diagnostik Kendaraan",
-              "Manajemen Bengkel Otomotif",
-              "Keselamatan dan Kesehatan Kerja",
-              "Kewirausahaan",
+              "Dasar-dasar Elektronika",
+              "Komponen Elektronika",
+              "Rangkaian Elektronika Analog",
+              "Rangkaian Elektronika Digital",
+              "Mikrokontroler dan Pemrograman",
+              "Sistem Kontrol dan Otomasi",
+              "Elektronika Daya",
+              "Telekomunikasi dan Sistem Komunikasi",
+              "Sistem Embedded",
+              "Perbaikan dan Pemeliharaan Perangkat Elektronik",
+              "Robotika Dasar",
               "Praktik Kerja Lapangan (PKL)",
             ].map((course) => (
               <Card key={course}>
