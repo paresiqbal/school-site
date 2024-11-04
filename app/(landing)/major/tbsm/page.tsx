@@ -121,15 +121,15 @@ export default function Tbsm() {
         <TabsContent value="courses" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Dasar-dasar Komputer",
-              "Jaringan Komputer",
-              "Administrasi Server",
-              "Teknologi Jaringan Nirkabel",
-              "Keamanan Jaringan",
-              "Pengelolaan Jaringan",
-              "Pemrograman Dasar",
-              "Cloud Computing",
-              "Internet of Things (IoT)",
+              "Pemeliharaan & Perbaikan Sepeda Motor",
+              "Teknologi Otomotif",
+              "Diagnostik & Pengujian Mesin",
+              "Manajemen Bengkel",
+              "Bisnis & Kewirausahaan",
+              "Keselamatan dan Kesehatan Kerja",
+              "Pelayanan Pelanggan & Etika Profesi",
+              "Praktik Kerja Lapangan (PKL)",
+              "Over Houl Engine",
             ].map((course) => (
               <Card key={course}>
                 <CardHeader>
@@ -142,15 +142,12 @@ export default function Tbsm() {
         <TabsContent value="careers" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Teknisi Komputer",
-              "Network Administrator",
-              "IT Support",
-              "Administrator Server",
-              "Teknisi Jaringan Nirkabel",
-              "Spesialis Keamanan Jaringan",
-              "Administrator Cloud",
-              "Teknisi IoT",
-              "Web Developer atau Programmer",
+              "Teknisi Sepeda Motor",
+              "Service Advisor",
+              "Manajer Bengkel",
+              "Wirausaha Bengkel",
+              "Sales & Marketing",
+              "Teknisi Field Service",
             ].map((career) => (
               <Card key={career}>
                 <CardHeader>
