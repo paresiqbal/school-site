@@ -147,18 +147,18 @@ export default function Elektronika() {
         <TabsContent value="careers" className="mt-4 md:mt-6">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
-              "Mekanik atau Teknisi Kendaraan",
-              "Service Advisor",
-              "Quality Control di Pabrik Otomotif",
-              "Manajer Bengkel atau Supervisor",
-              "Pengusaha Bengkel",
-              "Teknisi Field Service",
-              "Pemasaran dan Sales Otomotif",
-              "Instruktur atau Pengajar",
-              "Spesialis Diagnostik",
-              "Teknisi di Perusahaan Logistik atau Transportasi",
-              "Modifikator Mobil",
-              "Bagian Suku Cadang atau Sparepart",
+              "Teknisi Elektronika",
+              "Teknisi Telekomunikasi",
+              "Teknisi dan Analis Sistem Kontrol Industri",
+              "Teknisi Elektronika Daya",
+              "Teknisi Embedded System",
+              "Teknisi Robotika dan Otomasi",
+              "Pengembangan Produk Elektronika Konsumen",
+              "Teknisi atau Teknolog Audio dan Video",
+              "Instruktur atau Pengajar Elektronika",
+              "Wirausaha di Bidang Elektronika",
+              "Analis Kualitas",
+              "Pengembang Perangkat IoT",
             ].map((career) => (
               <Card key={career}>
                 <CardHeader>
@@ -172,7 +172,7 @@ export default function Elektronika() {
 
       <div className="mt-8 text-center md:mt-12">
         <h2 className="mb-4 text-lg font-bold md:text-xl lg:text-2xl">
-          Siap untuk memulai karir Anda di dunia permobilan?
+          Siap untuk memulai karir Anda di bidang Teknik Elektronika?
         </h2>
         <Button asChild size="lg">
           <Link href="/guide/registration">Daftar Sekarang</Link>
