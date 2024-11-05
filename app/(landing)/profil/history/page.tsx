@@ -1,6 +1,3 @@
-// ui lib
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 export default function SchoolHistory() {
   const timelineEvents = [
     { year: 1950, event: "Sekolah didirikan" },
@@ -15,7 +12,7 @@ export default function SchoolHistory() {
     <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
-          Sejarah
+          SEJARAH
         </h1>
         <p className="text-md mb-12 text-muted-foreground md:text-lg">
           Sejarah SMKN 1 Rejang Lebong
@@ -27,7 +24,7 @@ export default function SchoolHistory() {
           <h2 className="mb-8 text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
             Tentang Sekolah
           </h2>
-          <p className="max-w-prose text-balance text-lg text-gray-700 dark:text-gray-600">
+          <p className="text-xl text-gray-700 dark:text-gray-600">
             <span className="font-semibold text-primary">
               SMK Negeri 1 Rejang Lebong
             </span>{" "}
@@ -39,7 +36,7 @@ export default function SchoolHistory() {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="justify-center space-y-4">
           <h2 className="mb-8 text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
             Sejarah
           </h2>
@@ -58,37 +55,21 @@ export default function SchoolHistory() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 py-8 md:grid-cols-3">
-        <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
-          <CardHeader>
-            <CardTitle className="text-green-500">Siswa</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">200+</p>
-            <p className="text-sm text-muted-foreground">
-              Terdaftar setiap tahun
-            </p>
-          </CardContent>
-        </Card>
-        <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
-          <CardHeader>
-            <CardTitle className="text-green-500">Jurusan</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">7</p>
-            <p className="text-sm text-muted-foreground">
-              Pendidik yang berdedikasi
-            </p>
-          </CardContent>
-        </Card>
-        <Card className="bg-[#121417] text-background dark:bg-background dark:text-foreground">
-          <CardHeader>
-            <CardTitle className="text-green-500">Alumni</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-4xl font-bold">5,000+</p>
-            <p className="text-sm text-muted-foreground">Lulusan Terbaik</p>
-          </CardContent>
-        </Card>
+        <div className="flex flex-col rounded-md border-2 border-black bg-primary p-4 hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <h3 className="text-2xl font-bold">Siswa</h3>
+          <p className="mt-2 text-4xl font-bold">200+</p>
+          <p className="text-sm">Terdaftar setiap tahun</p>
+        </div>
+        <div className="flex flex-col rounded-md border-2 border-black bg-primary p-4 hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <h3 className="text-2xl font-bold">Jurusan</h3>
+          <p className="mt-2 text-4xl font-bold">7</p>
+          <p className="text-sm">Pendidik yang berdedikasi</p>
+        </div>
+        <div className="flex flex-col rounded-md border-2 border-black bg-primary p-4 hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <h3 className="text-2xl font-bold">Akumi</h3>
+          <p className="mt-2 text-4xl font-bold">5,000+</p>
+          <p className="text-sm">Lulusan terbaik</p>
+        </div>
       </div>
     </div>
   );
