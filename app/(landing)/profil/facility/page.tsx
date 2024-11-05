@@ -122,7 +122,7 @@ export default function Facility() {
                 alt={`Image of ${facility.name}`}
                 width={400}
                 height={250}
-                className="h-auto w-full cursor-pointer rounded-t-md border-b-4 border-black hover:opacity-80"
+                className="h-auto w-full cursor-pointer rounded-t-md border-b-4 border-black hover:opacity-80 dark:border-white"
                 onClick={() => setSelectedImages(facility.images)}
               />
               <div className="h-2 w-full bg-primary"></div>
