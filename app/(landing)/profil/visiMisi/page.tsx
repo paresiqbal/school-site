@@ -108,7 +108,7 @@ export default function MissionVisionGoals() {
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama-sama, kita bisa
           membuat perbedaan.
         </p>
-        <Button className="mt-4 rounded-lg bg-primary px-6 py-3 font-semibold shadow-md transition hover:bg-primary/90">
+        <Button className="mt-4 rounded-lg bg-primary/80 px-6 py-3 font-semibold shadow-md transition hover:bg-primary/90">
           Pelajari Jurusan
         </Button>
       </div>
