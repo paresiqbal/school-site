@@ -53,13 +53,13 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-lg border p-6 shadow-lg transition hover:shadow-2xl">
-          <div className="mb-6 flex items-center gap-2 rounded-lg bg-primary/80 p-3 font-semibold text-background">
+        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:border-white dark:hover:shadow-[8px_8px_0px_rgba(255,255,255,1)]">
+          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
             <Eye className="h-6 w-6" />
             Visi Kami
           </div>
-          <div className="flex-grow text-gray-700 dark:text-gray-300">
-            <p>
+          <div className="flex-grow text-black dark:text-gray-300">
+            <p className="font-sans text-lg">
               Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
           </div>
