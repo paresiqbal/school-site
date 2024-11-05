@@ -1,5 +1,5 @@
 // ui lib
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 // icons
@@ -34,14 +34,12 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
-        <Card className="flex flex-col">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-emerald-300 p-2 dark:text-background">
-              <BookOpen className="h-6 w-6" />
-              Misi Kami
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex-grow">
+        <div className="flex flex-col rounded-sm border p-4">
+          <div className="mb-6 flex items-center gap-2 bg-primary p-2 font-semibold">
+            <BookOpen className="h-6 w-6" />
+            Misi Kami
+          </div>
+          <div className="flex-grow">
             <ul className="space-y-2">
               {missions.map((mission, index) => (
                 <li key={index} className="flex items-start">
@@ -52,29 +50,28 @@ export default function MissionVisionGoals() {
                 </li>
               ))}
             </ul>
-          </CardContent>
-        </Card>
-        <Card className="flex flex-col">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 bg-emerald-300 p-2 dark:text-background">
-              <Eye className="h-6 w-6" />
-              Visi Kami
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex-grow">
-            <p className="text-lg">
+          </div>
+        </div>
+
+        <div className="flex flex-col rounded-sm border p-4">
+          <div className="mb-6 flex items-center gap-2 bg-primary p-2 dark:text-background">
+            <Eye className="h-6 w-6" />
+            Visi Kami
+          </div>
+
+          <div className="flex-grow">
+            <p>
               Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
-          </CardContent>
-        </Card>
-        <Card className="flex flex-col md:col-span-2 lg:col-span-1">
-          <CardHeader>
-            <CardTitle className="ga flex items-center bg-emerald-300 p-2 dark:text-background">
-              <Target className="h-6 w-6" />
-              Tujuan Kami
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex-grow">
+          </div>
+        </div>
+
+        <div className="flex flex-col rounded-sm border p-4 md:col-span-2 lg:col-span-1">
+          <div className="mb-6 flex items-center bg-primary p-2 dark:text-background">
+            <Target className="h-6 w-6" />
+            Tujuan Kami
+          </div>
+          <div className="flex-grow">
             <ul className="space-y-2">
               {goals.map((goal, index) => (
                 <li key={index} className="flex items-start">
@@ -85,8 +82,8 @@ export default function MissionVisionGoals() {
                 </li>
               ))}
             </ul>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
 
       <Card className="bg-emerald-50">
@@ -102,7 +99,6 @@ export default function MissionVisionGoals() {
           </blockquote>
         </CardContent>
       </Card>
-
       <div className="mt-12 space-y-4 pb-8 text-center">
         <h2 className="text-4xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
