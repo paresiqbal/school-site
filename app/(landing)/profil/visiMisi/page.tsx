@@ -97,7 +97,7 @@ export default function MissionVisionGoals() {
         </div>
       </div>
       <div className="mt-12 space-y-4 pb-8 text-center">
-        <h2 className="text-balance text-4xl font-semibold">
+        <h2 className="text-pretty text-3xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
         <p className="text-base text-gray-700 dark:text-gray-600">
