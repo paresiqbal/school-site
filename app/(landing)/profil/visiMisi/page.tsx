@@ -85,7 +85,7 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="rounded-lg border-4 border-black bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8">
+      <div className="rounded-lg border-4 border-black bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 dark:border-white">
         <div className="py-6">
           <blockquote className="border-l-4 border-primary pl-4 text-gray-800">
             <p className="text-xl font-bold">

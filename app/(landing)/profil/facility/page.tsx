@@ -4,13 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 // ui lib
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -105,33 +99,36 @@ export default function Facility() {
   ];
 
   return (
-    <div className="container mx-auto mb-8 mt-4 flex max-w-[1200px] flex-col pt-6 md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
-        <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">
+        <h1 className="mb-2 text-balance text-4xl font-bold dark:text-gray-300 md:mb-6 md:text-5xl">
           Fasilitas Sekolah
         </h1>
-        <p className="mb-12 text-sm text-muted-foreground md:text-lg">
+        <p className="text-md mb-12 text-muted-foreground md:text-lg">
           Temukan berbagai ruang dan sumber daya yang dirancang untuk
           meningkatkan pembelajaran dan kesejahteraan siswa.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+      <div className="mb-8 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {facilities.map((facility, index) => (
-          <Card key={index} className="border-2 bg-card hover:border-primary">
-            <CardHeader className="flex flex-row items-center space-x-4 pb-2">
+          <div
+            key={index}
+            className="dak:border-white rounded-md border-2 border-black bg-card p-4 hover:shadow-card dark:border-white dark:hover:shadow-card"
+          >
+            <div className="flex flex-row items-center space-x-4 pb-2">
               <facility.icon
                 className="h-10 w-10 rounded-full bg-foreground p-2 text-background"
                 aria-label={facility.name}
               />
-              <CardTitle>{facility.name}</CardTitle>
-            </CardHeader>
-            <CardContent>
+              <p>{facility.name}</p>
+            </div>
+            <div>
               <p className="text-sm text-muted-foreground">
                 {facility.description}.
               </p>
-            </CardContent>
-            <CardFooter className="flex flex-col pt-2">
+            </div>
+            <div className="flex flex-col pt-2">
               <Image
                 src={facility.images[0]}
                 alt={`Image of ${facility.name}`}
@@ -140,8 +137,8 @@ export default function Facility() {
                 className="h-auto w-full cursor-pointer rounded-md md:p-2"
                 onClick={() => setSelectedImages(facility.images)}
               />
-            </CardFooter>
-          </Card>
+            </div>
+          </div>
         ))}
       </div>
 
@@ -151,7 +148,7 @@ export default function Facility() {
           onClick={() => setSelectedImages(null)}
         >
           <div
-            className="relative w-full max-w-4xl rounded-lg bg-background"
+            className="relative w-full max-w-4xl rounded-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <Carousel className="w-full">
