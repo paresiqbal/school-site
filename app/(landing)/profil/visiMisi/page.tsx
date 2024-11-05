@@ -1,5 +1,4 @@
 // ui lib
-import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
 // icons
@@ -34,7 +33,7 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="flex flex-col rounded-sm border p-4">
+        <div className="flex flex-col rounded-sm border p-4 shadow-md">
           <div className="mb-6 flex items-center gap-2 bg-primary p-2 font-semibold">
             <BookOpen className="h-6 w-6" />
             Misi Kami
@@ -53,8 +52,8 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-sm border p-4">
-          <div className="mb-6 flex items-center gap-2 bg-primary p-2 dark:text-background">
+        <div className="flex flex-col rounded-sm border p-4 shadow-md">
+          <div className="mb-6 flex items-center gap-2 bg-primary p-2 font-semibold dark:text-background">
             <Eye className="h-6 w-6" />
             Visi Kami
           </div>
@@ -66,8 +65,8 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-sm border p-4 md:col-span-2 lg:col-span-1">
-          <div className="mb-6 flex items-center bg-primary p-2 dark:text-background">
+        <div className="flex flex-col rounded-sm border p-4 shadow-md md:col-span-2 lg:col-span-1">
+          <div className="mb-6 flex items-center bg-primary p-2 font-semibold dark:text-background">
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
@@ -86,10 +85,10 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <Card className="bg-emerald-50">
-        <CardContent className="py-6">
-          <blockquote className="border-l-4 border-emerald-600 pl-4 italic">
-            <p className="text-lg text-gray-800">
+      <div className="rounded-sm border bg-rose-50 px-8 shadow-md">
+        <div className="py-6">
+          <blockquote className="border-l-4 border-primary pl-4 italic">
+            <p className="text-lg">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
             </p>
@@ -97,8 +96,8 @@ export default function MissionVisionGoals() {
               — Malcolm X
             </footer>
           </blockquote>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
       <div className="mt-12 space-y-4 pb-8 text-center">
         <h2 className="text-4xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
