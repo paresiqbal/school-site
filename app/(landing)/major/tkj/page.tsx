@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 // ex lib
 import Autoplay from "embla-carousel-autoplay";
@@ -23,6 +24,14 @@ export default function Tkj() {
     Autoplay({ delay: 2000, stopOnInteraction: true }),
   );
 
+  const images = [
+    "/assets/major/tkj/tkj1.jpg",
+    "/assets/major/tkj/tkj2.jpg",
+    "/assets/major/tkj/tkj3.jpg",
+    "/assets/major/tkj/tkj4.jpg",
+    "/assets/major/tkj/tkj5.jpg",
+  ];
+
   return (
     <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:pt-12">
       <div className="space-y-2 pb-8">
@@ -43,15 +52,17 @@ export default function Tkj() {
             onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
-              {Array.from({ length: 5 }).map((_, index) => (
+              {images.map((src, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1">
-                    <div className="aspect-[4/3] w-full border-4 border-black bg-gray-100 p-4 shadow-card dark:border-white">
-                      <div className="flex h-full items-center justify-center">
-                        <span className="text-3xl font-semibold md:text-4xl lg:text-5xl">
-                          {index + 1}
-                        </span>
-                      </div>
+                    <div className="aspect-[4/3] w-full border-4 border-black shadow-card dark:border-white">
+                      <Image
+                        src={src}
+                        alt={`TKJ Image ${index + 1}`}
+                        width={800}
+                        height={600}
+                        className="h-full w-full rounded-md object-cover"
+                      />
                     </div>
                   </div>
                 </CarouselItem>
