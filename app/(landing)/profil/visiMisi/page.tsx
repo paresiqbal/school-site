@@ -34,8 +34,8 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="flex flex-col rounded-lg border p-6 shadow-lg transition hover:shadow-2xl">
-          <div className="mb-6 flex items-center gap-2 rounded-lg bg-primary/80 p-3 font-semibold text-background">
+        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
             <BookOpen className="h-6 w-6" />
             Misi Kami
           </div>
@@ -53,7 +53,7 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:border-white dark:hover:shadow-[8px_8px_0px_rgba(255,255,255,1)]">
+        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
           <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
             <Eye className="h-6 w-6" />
             Visi Kami
@@ -65,8 +65,8 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-lg border p-6 shadow-lg transition hover:shadow-2xl md:col-span-2 lg:col-span-1">
-          <div className="mb-6 flex items-center gap-2 rounded-lg bg-primary/80 p-3 font-semibold text-background">
+        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
@@ -85,14 +85,14 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="rounded-lg border bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 shadow-md">
+      <div className="rounded-lg border-4 border-black bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8">
         <div className="py-6">
-          <blockquote className="border-l-4 border-primary pl-4 italic text-gray-700 dark:text-gray-600">
-            <p className="text-lg">
+          <blockquote className="border-l-4 border-primary pl-4 text-gray-800">
+            <p className="text-xl font-bold">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
             </p>
-            <footer className="mt-2 text-right font-semibold text-gray-700 dark:text-gray-600">
+            <footer className="font-semibol mt-2 text-right">
               — Malcolm X
             </footer>
           </blockquote>
@@ -108,7 +108,7 @@ export default function MissionVisionGoals() {
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama-sama, kita bisa
           membuat perbedaan.
         </p>
-        <Button className="mt-4 rounded-lg bg-primary/80 px-6 py-3 font-semibold shadow-md transition hover:bg-primary/90">
+        <Button className="hover:shadow-button h-12 border-2 border-black bg-primary/80 p-2.5 dark:border-white">
           Pelajari Jurusan
         </Button>
       </div>

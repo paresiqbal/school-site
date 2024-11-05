@@ -10,6 +10,25 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+
+  .shadow-card {
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 1);
+  }
+
+  .shadow-button {
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 1);
+  }
+}
+
+/* Dark mode shadow variation */
+@layer utilities {
+  .dark .shadow-card {
+    box-shadow: 8px 8px 0px rgba(255, 255, 255, 1);
+  }
+
+  .dark .shadow-button {
+    box-shadow: 2px 2px 0px rgba(255, 255, 255, 1);
+  }
 }
 
 @layer base {
