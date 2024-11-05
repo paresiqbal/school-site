@@ -13,7 +13,7 @@ export default function LandingLayout({
       <div className="sticky top-0 z-50">
         <Navbar />
       </div>
-      <div className="w-full px-4 md:px-10 lg:px-40">{children}</div>
+      <div className="w-full px-6 md:px-10 lg:px-40">{children}</div>
       <div>
         <Footer />
       </div>
