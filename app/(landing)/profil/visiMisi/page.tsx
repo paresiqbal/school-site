@@ -87,12 +87,12 @@ export default function MissionVisionGoals() {
 
       <div className="rounded-lg border bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 shadow-md">
         <div className="py-6">
-          <blockquote className="border-l-4 border-primary pl-4 italic text-gray-700 dark:text-gray-300">
+          <blockquote className="border-l-4 border-primary pl-4 italic text-gray-700 dark:text-gray-600">
             <p className="text-lg">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
             </p>
-            <footer className="mt-2 text-right font-semibold text-gray-600 dark:text-gray-400">
+            <footer className="mt-2 text-right font-semibold text-gray-700 dark:text-gray-600">
               — Malcolm X
             </footer>
           </blockquote>
@@ -108,7 +108,7 @@ export default function MissionVisionGoals() {
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama-sama, kita bisa
           membuat perbedaan.
         </p>
-        <Button className="mt-4 rounded-lg bg-primary px-6 py-3 font-semibold text-white shadow-md transition hover:bg-primary/90">
+        <Button className="mt-4 rounded-lg bg-primary px-6 py-3 font-semibold shadow-md transition hover:bg-primary/90">
           Pelajari Jurusan
         </Button>
       </div>
