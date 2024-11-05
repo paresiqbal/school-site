@@ -151,7 +151,7 @@ export default function Facility() {
           onClick={() => setSelectedImages(null)}
         >
           <div
-            className="relative w-full max-w-4xl rounded-lg"
+            className="relative w-full max-w-4xl"
             onClick={(e) => e.stopPropagation()}
           >
             <Carousel className="w-full">
