@@ -9,7 +9,7 @@ export default function SchoolHistory() {
   ];
 
   return (
-    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 dark:text-gray-300 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
           SEJARAH
@@ -20,11 +20,11 @@ export default function SchoolHistory() {
       </div>
 
       <div className="space-y-4">
-        <div className="my-8 text-center">
-          <h2 className="mb-8 text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
+        <div className="my-8">
+          <h2 className="mb-8 text-center text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
             Tentang Sekolah
           </h2>
-          <p className="text-xl text-gray-700 dark:text-gray-600">
+          <p className="text-xl text-gray-700 dark:text-white">
             <span className="font-semibold text-primary">
               SMK Negeri 1 Rejang Lebong
             </span>{" "}
@@ -36,8 +36,8 @@ export default function SchoolHistory() {
           </p>
         </div>
 
-        <div className="justify-center space-y-4">
-          <h2 className="mb-8 text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
+        <div className="space-y-4">
+          <h2 className="mb-8 text-center text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
             Sejarah
           </h2>
           <div className="relative border-l-2 border-gray-300 pl-6">
@@ -54,8 +54,8 @@ export default function SchoolHistory() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 py-8 md:grid-cols-3">
-        <div className="flex flex-col rounded-md border-2 border-black bg-primary p-4 hover:shadow-card dark:border-white dark:hover:shadow-card">
+      <div className="grid grid-cols-1 gap-6 py-8 dark:text-white md:grid-cols-3">
+        <div className="flex flex-col rounded-md border-2 border-black bg-primary p-4 hover:shadow-card dark:border-white dark:hover:shadow-card lg:w-72">
           <h3 className="text-2xl font-bold">Siswa</h3>
           <p className="mt-2 text-4xl font-bold">200+</p>
           <p className="text-sm">Terdaftar setiap tahun</p>
@@ -66,7 +66,7 @@ export default function SchoolHistory() {
           <p className="text-sm">Pendidik yang berdedikasi</p>
         </div>
         <div className="flex flex-col rounded-md border-2 border-black bg-primary p-4 hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <h3 className="text-2xl font-bold">Akumi</h3>
+          <h3 className="text-2xl font-bold">Alumi</h3>
           <p className="mt-2 text-4xl font-bold">5,000+</p>
           <p className="text-sm">Lulusan terbaik</p>
         </div>
