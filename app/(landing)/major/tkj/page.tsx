@@ -55,7 +55,7 @@ export default function Tkj() {
               {images.map((src, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1">
-                    <div className="aspect-[4/3] w-full border-4 border-black shadow-card dark:border-white">
+                    <div className="aspect-[4/3] w-full border-4 border-black dark:border-white">
                       <Image
                         src={src}
                         alt={`TKJ Image ${index + 1}`}
@@ -172,7 +172,7 @@ export default function Tkj() {
         <Button
           asChild
           size="lg"
-          className="hover:shadow-button border-4 border-black"
+          className="hover:shadow-button border-4 border-black dark:border-white"
         >
           <Link href="/guide/registration">Daftar Sekarang</Link>
         </Button>

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 
 // icons
 import { BookOpen, Eye, Target } from "lucide-react";
+import Link from "next/link";
 
 export default function MissionVisionGoals() {
   const missions = [
@@ -108,8 +109,12 @@ export default function MissionVisionGoals() {
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama-sama, kita bisa
           membuat perbedaan.
         </p>
-        <Button className="hover:shadow-button h-12 border-2 border-black bg-primary/80 p-2.5 dark:border-white">
-          Pelajari Jurusan
+        <Button
+          asChild
+          size="lg"
+          className="hover:shadow-button border-4 border-black dark:border-white"
+        >
+          <Link href="/guide/registration">Daftar Sekarang</Link>
         </Button>
       </div>
     </div>
