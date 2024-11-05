@@ -39,7 +39,7 @@ export default function MissionVisionGoals() {
             <BookOpen className="h-6 w-6" />
             Misi Kami
           </div>
-          <div className="flex-grow text-gray-700 dark:text-gray-300">
+          <div className="flex-grow dark:text-gray-300">
             <ul className="space-y-2">
               {missions.map((mission, index) => (
                 <li key={index} className="flex items-start">
@@ -58,7 +58,7 @@ export default function MissionVisionGoals() {
             <Eye className="h-6 w-6" />
             Visi Kami
           </div>
-          <div className="flex-grow text-black dark:text-gray-300">
+          <div className="flex-grow dark:text-gray-300">
             <p className="font-sans text-lg">
               Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
@@ -66,11 +66,11 @@ export default function MissionVisionGoals() {
         </div>
 
         <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
+          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold dark:border-white dark:text-gray-300">
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
-          <div className="flex-grow text-gray-700 dark:text-gray-300">
+          <div className="flex-grow dark:text-gray-300">
             <ul className="space-y-2">
               {goals.map((goal, index) => (
                 <li key={index} className="flex items-start">
@@ -87,7 +87,7 @@ export default function MissionVisionGoals() {
 
       <div className="rounded-lg border-4 border-black bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 dark:border-white">
         <div className="py-6">
-          <blockquote className="border-l-4 border-primary pl-4 text-gray-800">
+          <blockquote className="border-l-4 border-primary pl-4 dark:text-gray-700">
             <p className="text-xl font-bold">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
@@ -103,7 +103,7 @@ export default function MissionVisionGoals() {
         <h2 className="text-pretty text-3xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
-        <p className="text-base text-gray-700 dark:text-gray-300">
+        <p className="text-base dark:text-gray-300">
           SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama-sama, kita bisa
           membuat perbedaan.
