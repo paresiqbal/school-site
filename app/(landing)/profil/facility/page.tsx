@@ -114,29 +114,32 @@ export default function Facility() {
         {facilities.map((facility, index) => (
           <div
             key={index}
-            className="dak:border-white rounded-md border-2 border-black bg-card p-4 hover:shadow-card dark:border-white dark:hover:shadow-card"
+            className="relative rounded-md border-4 border-black hover:shadow-card dark:border-white dark:hover:shadow-card"
           >
-            <div className="flex flex-row items-center space-x-4 pb-2">
-              <facility.icon
-                className="h-10 w-10 rounded-full bg-foreground p-2 text-background"
-                aria-label={facility.name}
-              />
-              <p>{facility.name}</p>
-            </div>
-            <div>
-              <p className="text-sm text-muted-foreground">
-                {facility.description}.
-              </p>
-            </div>
-            <div className="flex flex-col pt-2">
+            <div className="flex flex-col">
               <Image
                 src={facility.images[0]}
                 alt={`Image of ${facility.name}`}
-                width={200}
-                height={100}
-                className="h-auto w-full cursor-pointer rounded-md md:p-2"
+                width={400}
+                height={250}
+                className="h-auto w-full cursor-pointer rounded-t-md border-b-4 border-black"
                 onClick={() => setSelectedImages(facility.images)}
               />
+              <div className="h-2 w-full bg-primary"></div>
+              <div className="p-4">
+                <div className="flex items-center space-x-4 pb-2">
+                  <facility.icon
+                    className="h-8 w-8 rounded-full bg-foreground p-1 text-background"
+                    aria-label={facility.name}
+                  />
+                  <h3 className="text-2xl font-bold text-black dark:text-white">
+                    {facility.name}
+                  </h3>
+                </div>
+                <p className="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  {facility.description}
+                </p>
+              </div>
             </div>
           </div>
         ))}
