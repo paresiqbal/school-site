@@ -24,12 +24,12 @@ export default function Tkj() {
   );
 
   return (
-    <div className="container mx-auto mb-8 flex max-w-[1200px] flex-col px-4 pt-6 md:px-6 md:pt-12 lg:px-0">
-      <div>
-        <h1 className="mb-2 text-4xl font-bold md:mb-6 lg:text-5xl">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
+      <div className="space-y-2 pb-8">
+        <h1 className="mb-2 text-balance text-4xl font-bold dark:text-gray-300 md:mb-6 md:text-5xl">
           Teknik Komputer & Jaringan
         </h1>
-        <p className="mb-6 text-base md:text-lg lg:text-xl">
+        <p className="text-md mb-12 text-muted-foreground md:text-lg">
           Selami dunia komputasi, internet, dan jaringan.
         </p>
       </div>
@@ -46,7 +46,7 @@ export default function Tkj() {
               {Array.from({ length: 5 }).map((_, index) => (
                 <CarouselItem key={index}>
                   <div className="p-1">
-                    <div className="aspect-[4/3] w-full border-4 border-black bg-gray-100 p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+                    <div className="aspect-[4/3] w-full border-4 border-black bg-gray-100 p-4 shadow-card dark:border-white">
                       <div className="flex h-full items-center justify-center">
                         <span className="text-3xl font-semibold md:text-4xl lg:text-5xl">
                           {index + 1}
@@ -69,7 +69,7 @@ export default function Tkj() {
           </div>
         </div>
 
-        <div className="border-4 border-black bg-white p-4 shadow-[8px_8px_0px_rgba(0,0,0,1)]">
+        <div className="rounded-md border-4 border-black bg-emerald-300/80 p-4 text-gray-800 hover:bg-emerald-400 hover:shadow-card dark:border-white">
           <h3 className="mb-2 text-2xl font-bold">Program Sorotan</h3>
           <p className="mb-4 text-base font-medium">
             Program Teknik Komputer & Jaringan menawarkan:
@@ -101,10 +101,10 @@ export default function Tkj() {
 
       <Tabs defaultValue="courses" className="mt-8 md:mt-12">
         <TabsList className="border-4 border-black">
-          <TabsTrigger value="courses" className="text-lg font-bold">
+          <TabsTrigger value="courses" className="font-bold">
             Materi Utama
           </TabsTrigger>
-          <TabsTrigger value="careers" className="text-lg font-bold">
+          <TabsTrigger value="careers" className="font-bold">
             Prospek Karir
           </TabsTrigger>
         </TabsList>
@@ -123,7 +123,7 @@ export default function Tkj() {
             ].map((course) => (
               <div
                 key={course}
-                className="border-4 border-black bg-white p-4 text-sm font-semibold shadow-[8px_8px_0px_rgba(0,0,0,1)] md:text-lg"
+                className="border-4 border-black bg-emerald-300/80 bg-white p-4 text-sm font-semibold shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:bg-emerald-300 md:text-lg"
               >
                 {course}
               </div>
@@ -154,7 +154,7 @@ export default function Tkj() {
         </TabsContent>
       </Tabs>
 
-      <div className="mt-8 text-center md:mt-12">
+      <div className="mb-8 mt-8 text-center md:mt-12">
         <h2 className="mb-4 text-lg font-bold md:text-xl lg:text-2xl">
           Siap untuk memulai karir Anda di dunia teknologi?
         </h2>
