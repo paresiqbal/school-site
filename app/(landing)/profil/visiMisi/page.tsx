@@ -1,5 +1,6 @@
 // ui lib
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
 // icons
 import { BookOpen, Eye, Target } from "lucide-react";
@@ -33,12 +34,12 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="flex flex-col rounded-sm border p-4 shadow-md">
-          <div className="mb-6 flex items-center gap-2 bg-primary p-2 font-semibold">
+        <div className="flex flex-col rounded-lg border p-6 shadow-lg transition hover:shadow-2xl">
+          <div className="mb-6 flex items-center gap-2 rounded-lg bg-primary/80 p-3 font-semibold text-background">
             <BookOpen className="h-6 w-6" />
             Misi Kami
           </div>
-          <div className="flex-grow text-gray-700 dark:text-gray-600">
+          <div className="flex-grow text-gray-700 dark:text-gray-300">
             <ul className="space-y-2">
               {missions.map((mission, index) => (
                 <li key={index} className="flex items-start">
@@ -52,25 +53,24 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-sm border p-4 shadow-md">
-          <div className="mb-6 flex items-center gap-2 bg-primary p-2 font-semibold dark:text-background">
+        <div className="flex flex-col rounded-lg border p-6 shadow-lg transition hover:shadow-2xl">
+          <div className="mb-6 flex items-center gap-2 rounded-lg bg-primary/80 p-3 font-semibold text-background">
             <Eye className="h-6 w-6" />
             Visi Kami
           </div>
-
-          <div className="flex-grow text-gray-700 dark:text-gray-600">
+          <div className="flex-grow text-gray-700 dark:text-gray-300">
             <p>
               Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
           </div>
         </div>
 
-        <div className="flex flex-col rounded-sm border p-4 shadow-md md:col-span-2 lg:col-span-1">
-          <div className="mb-6 flex items-center bg-primary p-2 font-semibold dark:text-background">
+        <div className="flex flex-col rounded-lg border p-6 shadow-lg transition hover:shadow-2xl md:col-span-2 lg:col-span-1">
+          <div className="mb-6 flex items-center gap-2 rounded-lg bg-primary/80 p-3 font-semibold text-background">
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
-          <div className="flex-grow text-gray-700 dark:text-gray-600">
+          <div className="flex-grow text-gray-700 dark:text-gray-300">
             <ul className="space-y-2">
               {goals.map((goal, index) => (
                 <li key={index} className="flex items-start">
@@ -85,26 +85,32 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="rounded-sm border bg-rose-50 px-8 shadow-md">
+      <div className="rounded-lg border bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 shadow-md">
         <div className="py-6">
-          <blockquote className="border-l-4 border-primary pl-4 italic dark:text-gray-600">
+          <blockquote className="border-l-4 border-primary pl-4 italic text-gray-700 dark:text-gray-300">
             <p className="text-lg">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
             </p>
-            <footer className="mt-2 text-right">— Malcolm X</footer>
+            <footer className="mt-2 text-right font-semibold text-gray-600 dark:text-gray-400">
+              — Malcolm X
+            </footer>
           </blockquote>
         </div>
       </div>
+
       <div className="mt-12 space-y-4 pb-8 text-center">
         <h2 className="text-pretty text-3xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
-        <p className="text-base text-gray-700 dark:text-gray-600">
+        <p className="text-base text-gray-700 dark:text-gray-300">
           SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
-          berikutnya para pemimpin, pemikir, dan pelaku. Bersama -sama, kita
-          bisa membuat perbedaan.
+          berikutnya para pemimpin, pemikir, dan pelaku. Bersama-sama, kita bisa
+          membuat perbedaan.
         </p>
+        <Button className="mt-4 rounded-lg bg-primary px-6 py-3 font-semibold text-white shadow-md transition hover:bg-primary/90">
+          Pelajari Jurusan
+        </Button>
       </div>
     </div>
   );
