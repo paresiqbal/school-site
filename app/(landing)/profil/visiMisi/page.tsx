@@ -24,7 +24,7 @@ export default function MissionVisionGoals() {
   return (
     <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
-        <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">
+        <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
           SMK Negeri 1 Rejang Lebong
         </h1>
         <p className="text-md mb-12 text-muted-foreground md:text-lg">
@@ -38,7 +38,7 @@ export default function MissionVisionGoals() {
             <BookOpen className="h-6 w-6" />
             Misi Kami
           </div>
-          <div className="flex-grow">
+          <div className="flex-grow text-gray-700 dark:text-gray-600">
             <ul className="space-y-2">
               {missions.map((mission, index) => (
                 <li key={index} className="flex items-start">
@@ -58,7 +58,7 @@ export default function MissionVisionGoals() {
             Visi Kami
           </div>
 
-          <div className="flex-grow">
+          <div className="flex-grow text-gray-700 dark:text-gray-600">
             <p>
               Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
@@ -70,7 +70,7 @@ export default function MissionVisionGoals() {
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
-          <div className="flex-grow">
+          <div className="flex-grow text-gray-700 dark:text-gray-600">
             <ul className="space-y-2">
               {goals.map((goal, index) => (
                 <li key={index} className="flex items-start">
@@ -87,22 +87,20 @@ export default function MissionVisionGoals() {
 
       <div className="rounded-sm border bg-rose-50 px-8 shadow-md">
         <div className="py-6">
-          <blockquote className="border-l-4 border-primary pl-4 italic">
+          <blockquote className="border-l-4 border-primary pl-4 italic dark:text-gray-600">
             <p className="text-lg">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.
             </p>
-            <footer className="mt-2 text-right text-muted-foreground">
-              — Malcolm X
-            </footer>
+            <footer className="mt-2 text-right">— Malcolm X</footer>
           </blockquote>
         </div>
       </div>
       <div className="mt-12 space-y-4 pb-8 text-center">
-        <h2 className="text-4xl font-semibold">
+        <h2 className="text-balance text-4xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
-        <p className="text-base text-muted-foreground">
+        <p className="text-base text-gray-700 dark:text-gray-600">
           SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama -sama, kita
           bisa membuat perbedaan.
