@@ -1,6 +1,5 @@
 // ui lib
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 
 export default function SchoolHistory() {
   const timelineEvents = [
@@ -22,33 +21,34 @@ export default function SchoolHistory() {
       </div>
 
       <div className="space-y-4">
-        <div>
-          <h2 className="mb-6 text-3xl font-semibold underline decoration-emerald-600 underline-offset-8 md:text-4xl">
+        <div className="my-8 text-center">
+          <h2 className="mb-8 text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
             Tentang Sekolah
           </h2>
-          <p className="text-md md:text-lg">
-            SMKN 1 Rejang Lebong telah menjadi pilar keunggulan pendidikan
-            selama lebih dari tujuh dekade. Didirikan pada tahun 1950, sekolah
-            kami terus berkembang untuk memenuhi kebutuhan siswa yang terus
-            berubah sambil mempertahankan nilai-nilai inti kami, yaitu
-            integritas, inovasi, dan komunitas.
+          <p className="max-w-prose text-balance text-lg text-gray-700 dark:text-gray-600">
+            <span className="font-semibold text-primary">
+              SMK Negeri 1 Rejang Lebong
+            </span>{" "}
+            telah menjadi pilar keunggulan pendidikan selama lebih dari tujuh
+            dekade. Didirikan pada tahun 1950, sekolah kami terus berkembang
+            untuk memenuhi kebutuhan siswa yang terus berubah sambil
+            mempertahankan nilai-nilai inti kami, yaitu integritas, inovasi, dan
+            komunitas.
           </p>
         </div>
-        <div>
-          <h2 className="mb-6 text-3xl font-semibold underline decoration-emerald-600 underline-offset-8 md:text-4xl">
+
+        <div className="space-y-4">
+          <h2 className="mb-8 text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
             Sejarah
           </h2>
-          <div className="space-y-8">
+          <div className="relative border-l-2 border-gray-300 pl-6">
             {timelineEvents.map((event, index) => (
-              <div key={index} className="flex items-center">
-                <Badge variant="outline" className="mr-4 px-3 py-1 text-lg">
-                  {event.year}
-                </Badge>
-                <Card className="flex-grow">
-                  <CardContent className="py-4">
-                    <p>{event.event}</p>
-                  </CardContent>
-                </Card>
+              <div key={index} className="mb-8 flex items-start">
+                <div className="absolute -left-[9px] mt-1 h-4 w-4 rounded-full bg-primary"></div>
+                <div>
+                  <span className="font-semibol text-sm">{event.year}</span>
+                  <p className="text-md">{event.event}</p>
+                </div>
               </div>
             ))}
           </div>
