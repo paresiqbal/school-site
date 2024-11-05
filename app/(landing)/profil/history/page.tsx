@@ -12,11 +12,13 @@ export default function SchoolHistory() {
   ];
 
   return (
-    <div className="container mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
-        <h1 className="mb-2 text-4xl font-bold md:mb-6 md:text-5xl">Sejarah</h1>
+        <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
+          Sejarah
+        </h1>
         <p className="text-md mb-12 text-muted-foreground md:text-lg">
-          Didirikan 1950
+          Sejarah SMKN 1 Rejang Lebong
         </p>
       </div>
 
