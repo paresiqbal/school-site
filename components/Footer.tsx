@@ -11,64 +11,64 @@ import {
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 bg-foreground px-8 py-12 text-background dark:bg-background dark:text-foreground lg:px-40">
+    <footer className="border-t-2 border-black bg-background px-8 py-12 dark:border-white lg:px-40">
       <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-4">
-            <h2 className="text-lg font-bold text-[#70FFAF]">
+          <div className="space-y-4 border-black pb-4">
+            <h2 className="text-lg font-bold text-primary">
               SMK Negeri 1 Rejang Lebong
             </h2>
             <div className="flex space-x-4">
-              <Link href="#" className="">
+              <Link href="#" className="border-2 border-black p-1">
                 <Facebook className="h-6 w-6" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="">
+              <Link href="#" className="border-2 border-black p-1">
                 <Instagram className="h-6 w-6" />
                 <span className="sr-only">Instagram</span>
               </Link>
-              <Link href="#" className="">
+              <Link href="#" className="border-2 border-black p-1">
                 <Twitter className="h-6 w-6" />
                 <span className="sr-only">Twitter</span>
               </Link>
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-base font-bold text-[#70FFAF]">
+          <div className="space-y-4 border-black pb-4">
+            <h3 className="text-base font-bold text-primary">
               Jam Operasional
             </h3>
-            <ul className="space-y-2 text-sm font-semibold">
+            <ul className="space-y-2 text-sm font-bold">
               <li className="flex items-center">
                 <Clock className="mr-2 h-5 w-5" />
                 <span>Senin - Jumat: 7:00 AM - 2:00 PM</span>
               </li>
-              <li className="flex items-center text-sm">
+              <li className="flex items-center">
                 <Clock className="mr-2 h-5 w-5" />
                 <span>Sabtu: Ekstrakulikuler</span>
               </li>
-              <li className="flex items-center text-sm">
+              <li className="flex items-center">
                 <Clock className="mr-2 h-5 w-5" />
                 <span>Minggu: Tutup</span>
               </li>
             </ul>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-base font-bold text-[#70FFAF]">Kontak Kami</h3>
-            <ul className="space-y-2 text-sm font-semibold">
-              <li className="flex items-center text-sm">
+          <div className="space-y-4 border-black pb-4">
+            <h3 className="text-base font-bold text-primary">Kontak Kami</h3>
+            <ul className="space-y-2 text-sm font-bold">
+              <li className="flex items-center">
                 <Phone className="mr-2 h-5 w-5" />
                 <span>+62732 21258</span>
               </li>
-              <li className="flex items-center text-sm">
+              <li className="flex items-center">
                 <Mail className="mr-2 h-5 w-5" />
                 <span>mail@smkn1rl.sch.id</span>
               </li>
             </ul>
             <div>
-              <h3 className="text-base font-bold text-[#70FFAF]">Address</h3>
-              <address className="mt-2 flex items-start text-sm font-semibold not-italic">
+              <h3 className="text-base font-bold text-primary">Alamat</h3>
+              <address className="mt-2 flex items-start text-sm font-bold not-italic">
                 <MapPin className="mr-2 mt-1 h-5 w-5" />
                 <span>
                   Jalan Ahmad Marzuki No 105
@@ -83,56 +83,83 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="space-y-4">
-            <h3 className="text-base font-bold text-[#70FFAF]">Tautan</h3>
-            <ul className="space-y-2 text-sm font-semibold">
+          <div className="space-y-4 border-black pb-4">
+            <h3 className="text-base font-bold text-primary">Tautan</h3>
+            <ul className="space-y-2 text-sm font-bold">
               <li>
-                <Link href="#" className="hover:underline">
+                <Link
+                  href="#"
+                  className="border-b-2 border-black hover:underline"
+                >
                   Tentang Kami
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link
+                  href="#"
+                  className="border-b-2 border-black hover:underline"
+                >
                   Administrasi
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link
+                  href="#"
+                  className="border-b-2 border-black hover:underline"
+                >
                   Akademik
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link
+                  href="#"
+                  className="border-b-2 border-black hover:underline"
+                >
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
+                <Link
+                  href="#"
+                  className="border-b-2 border-black hover:underline"
+                >
                   Rute
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
-                  Oportunisan Karir
+                <Link
+                  href="#"
+                  className="border-b-2 border-black hover:underline"
+                >
+                  Oportunitas Karir
                 </Link>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between border-t border-gray-200 pt-8 md:flex-row">
-          <p>
+        <div className="mt-8 flex flex-col items-center justify-between border-t-4 border-black pt-8 md:flex-row">
+          <p className="text-sm font-bold">
             &copy; {new Date().getFullYear()} SMK Negeri 1 Rejang Lebong. All
             rights reserved.
           </p>
           <div className="mt-4 space-x-4 md:mt-0">
-            <Link href="#" className="text-sm hover:underline">
+            <Link
+              href="#"
+              className="border-b-2 border-black text-sm font-bold hover:underline"
+            >
               Privacy Policy
             </Link>
-            <Link href="#" className="text-sm hover:underline">
+            <Link
+              href="#"
+              className="border-b-2 border-black text-sm font-bold hover:underline"
+            >
               Terms of Service
             </Link>
-            <Link href="#" className="text-sm hover:underline">
+            <Link
+              href="#"
+              className="border-b-2 border-black text-sm font-bold hover:underline"
+            >
               Accessibility
             </Link>
           </div>
