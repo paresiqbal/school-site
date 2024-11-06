@@ -54,7 +54,7 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 shadow-none transition hover:shadow-card dark:hover:shadow-card">
+        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
           <div className="mb-4 flex items-center gap-2 border-2 border-foreground bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary">
             <Eye className="h-6 w-6" />
             Visi Kami
@@ -66,7 +66,7 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 shadow-none transition hover:shadow-card dark:hover:shadow-card">
+        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
           <div className="mb-4 flex items-center gap-2 border-2 border-foreground bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary">
             <Target className="h-6 w-6" />
             Tujuan Kami
