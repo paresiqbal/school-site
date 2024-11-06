@@ -83,7 +83,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="space-y-4 border-black pb-4">
+          <div className="space-y-4 pb-4">
             <h3 className="text-base font-bold text-primary">Tautan</h3>
             <ul className="space-y-2 text-sm font-bold">
               <li>
