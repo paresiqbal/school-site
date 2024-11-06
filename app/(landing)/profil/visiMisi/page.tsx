@@ -35,8 +35,8 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
+        <div className="group flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary dark:border-white">
             <BookOpen className="h-6 w-6" />
             Misi Kami
           </div>
@@ -54,8 +54,8 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
+        <div className="group flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary dark:border-white">
             <Eye className="h-6 w-6" />
             Visi Kami
           </div>
@@ -66,8 +66,8 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background dark:border-white">
+        <div className="group flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary dark:border-white">
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
