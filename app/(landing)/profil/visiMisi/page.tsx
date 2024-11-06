@@ -35,8 +35,8 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="group flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary dark:border-white">
+        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 shadow-none transition hover:shadow-card dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-foreground bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary">
             <BookOpen className="h-6 w-6" />
             Misi Kami
           </div>
@@ -54,8 +54,8 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="group flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary dark:border-white">
+        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 shadow-none transition hover:shadow-card dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-foreground bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary">
             <Eye className="h-6 w-6" />
             Visi Kami
           </div>
@@ -66,8 +66,8 @@ export default function MissionVisionGoals() {
           </div>
         </div>
 
-        <div className="group flex flex-col rounded-md border-2 border-black p-4 shadow-none transition hover:shadow-card dark:border-white dark:hover:shadow-card">
-          <div className="mb-4 flex items-center gap-2 border-2 border-black bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary dark:border-white">
+        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 shadow-none transition hover:shadow-card dark:hover:shadow-card">
+          <div className="mb-4 flex items-center gap-2 border-2 border-foreground bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary">
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
@@ -86,7 +86,7 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="rounded-md border-2 border-black bg-primary-foreground px-8 transition hover:shadow-card dark:border-white">
+      <div className="rounded-md border-2 border-foreground bg-primary-foreground px-8 transition hover:shadow-card">
         <div className="py-6">
           <blockquote className="border-l-4 border-primary pl-4 dark:text-gray-700">
             <p className="text-xl font-bold">
@@ -112,7 +112,7 @@ export default function MissionVisionGoals() {
         <Button
           asChild
           size="lg"
-          className="hover:shadow-button border-2 border-black dark:border-white"
+          className="hover:shadow-button border-2 border-foreground"
         >
           <Link href="/guide/registration">Daftar Sekarang</Link>
         </Button>
