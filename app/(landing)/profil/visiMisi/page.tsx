@@ -25,7 +25,7 @@ export default function MissionVisionGoals() {
 
   return (
     <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
-      <div className="space-y-2 pb-8">
+      <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-balance text-4xl font-bold dark:text-gray-300 md:mb-6 md:text-5xl">
           SMK Negeri 1 Rejang Lebong
         </h1>
@@ -86,7 +86,7 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="rounded-lg border-4 border-black bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 dark:border-white">
+      <div className="rounded-md border-2 border-black bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 transition hover:shadow-card dark:border-white">
         <div className="py-6">
           <blockquote className="border-l-4 border-primary pl-4 dark:text-gray-700">
             <p className="text-xl font-bold">
@@ -112,7 +112,7 @@ export default function MissionVisionGoals() {
         <Button
           asChild
           size="lg"
-          className="hover:shadow-button border-4 border-black dark:border-white"
+          className="hover:shadow-button border-2 border-black dark:border-white"
         >
           <Link href="/guide/registration">Daftar Sekarang</Link>
         </Button>
