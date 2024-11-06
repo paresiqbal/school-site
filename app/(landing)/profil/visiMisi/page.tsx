@@ -26,7 +26,7 @@ export default function MissionVisionGoals() {
   return (
     <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
-        <h1 className="mb-2 text-balance text-4xl font-bold dark:text-gray-300 md:mb-6 md:text-5xl">
+        <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
           SMK Negeri 1 Rejang Lebong
         </h1>
         <p className="text-md mb-12 text-muted-foreground md:text-lg">
@@ -40,7 +40,7 @@ export default function MissionVisionGoals() {
             <BookOpen className="h-6 w-6" />
             Misi Kami
           </div>
-          <div className="flex-grow dark:text-gray-300">
+          <div className="flex-grow">
             <ul className="space-y-2">
               {missions.map((mission, index) => (
                 <li key={index} className="flex items-start">
@@ -59,7 +59,7 @@ export default function MissionVisionGoals() {
             <Eye className="h-6 w-6" />
             Visi Kami
           </div>
-          <div className="flex-grow dark:text-gray-300">
+          <div className="flex-grow">
             <p className="font-sans text-lg">
               Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
@@ -71,7 +71,7 @@ export default function MissionVisionGoals() {
             <Target className="h-6 w-6" />
             Tujuan Kami
           </div>
-          <div className="flex-grow dark:text-gray-300">
+          <div className="flex-grow">
             <ul className="space-y-2">
               {goals.map((goal, index) => (
                 <li key={index} className="flex items-start">
@@ -86,7 +86,7 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="rounded-md border-2 border-black bg-gradient-to-r from-rose-100 via-pink-50 to-rose-100 px-8 transition hover:shadow-card dark:border-white">
+      <div className="rounded-md border-2 border-black bg-primary-foreground px-8 transition hover:shadow-card dark:border-white">
         <div className="py-6">
           <blockquote className="border-l-4 border-primary pl-4 dark:text-gray-700">
             <p className="text-xl font-bold">
@@ -100,11 +100,11 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="mt-12 space-y-4 pb-8 text-center dark:text-gray-300">
+      <div className="mt-12 space-y-4 pb-8 text-center">
         <h2 className="text-pretty text-3xl font-semibold">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
-        <p className="text-base dark:text-gray-300">
+        <p className="text-base">
           SMK Negeri 1 Rejang Lebong, berkomitmen untuk memelihara generasi
           berikutnya para pemimpin, pemikir, dan pelaku. Bersama-sama, kita bisa
           membuat perbedaan.
