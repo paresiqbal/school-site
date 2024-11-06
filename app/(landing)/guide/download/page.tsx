@@ -1,21 +1,23 @@
+import { DownloadIcon } from "lucide-react";
+
 export default function Download() {
   const downloadGroups = [
     {
-      category: "Journal",
+      category: "Jurnal",
       items: [
         { title: "Journal 1", link: "/path/to/journal1.pdf" },
         { title: "Journal 2", link: "/path/to/journal2.pdf" },
       ],
     },
     {
-      category: "School Guide",
+      category: "Panduan Sekolah",
       items: [
         { title: "Student Handbook", link: "/path/to/handbook.pdf" },
         { title: "Admission Guide", link: "/path/to/admission-guide.pdf" },
       ],
     },
     {
-      category: "Other Resources",
+      category: "Lainya ",
       items: [
         { title: "School Calendar", link: "/path/to/calendar.pdf" },
         { title: "Events Brochure", link: "/path/to/brochure.pdf" },
@@ -45,9 +47,12 @@ export default function Download() {
                 key={itemIndex}
                 href={item.link}
                 download
-                className="block border-2 border-black bg-indigo-500/80 px-4 py-2 font-semibold active:bg-indigo-500 dark:border-white"
+                className="flex items-center justify-between border-2 border-black bg-indigo-500/80 px-4 py-2 font-semibold active:bg-indigo-500 dark:border-white"
               >
                 {item.title}
+                <span>
+                  <DownloadIcon className="h-4 w-4 font-bold" />
+                </span>
               </a>
             ))}
           </div>
