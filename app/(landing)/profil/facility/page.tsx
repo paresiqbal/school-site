@@ -114,7 +114,7 @@ export default function Facility() {
         {facilities.map((facility, index) => (
           <div
             key={index}
-            className="relative rounded-md border-4 border-black hover:shadow-card dark:border-white dark:hover:shadow-card"
+            className="group relative rounded-md border-2 border-foreground transition hover:shadow-card"
           >
             <div className="flex flex-col">
               <Image
@@ -122,14 +122,14 @@ export default function Facility() {
                 alt={`Image of ${facility.name}`}
                 width={400}
                 height={250}
-                className="h-auto w-full cursor-pointer rounded-t-md border-b-4 border-black hover:opacity-80 dark:border-white"
+                className="h-auto w-full cursor-pointer border-b-4 border-foreground hover:opacity-80"
                 onClick={() => setSelectedImages(facility.images)}
               />
               <div className="h-2 w-full bg-primary"></div>
               <div className="p-4">
-                <div className="flex items-center space-x-4 pb-2">
+                <div className="flex items-center space-x-2 pb-2">
                   <facility.icon
-                    className="h-8 w-8 rounded-full bg-foreground p-1 text-background"
+                    className="group-hover:shadow-button h-8 w-8 rounded-full border-2 border-foreground bg-primary p-1.5 text-foreground"
                     aria-label={facility.name}
                   />
                   <h3 className="text-2xl font-bold text-black dark:text-white">
