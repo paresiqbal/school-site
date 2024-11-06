@@ -41,13 +41,13 @@ export default function Download() {
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
             {group.category}
           </h2>
-          <div className="mt-4 space-y-2">
+          <div className="mt-4 space-y-4">
             {group.items.map((item, itemIndex) => (
               <a
                 key={itemIndex}
                 href={item.link}
                 download
-                className="flex items-center justify-between border-2 border-black bg-indigo-500/80 px-4 py-2 font-semibold active:bg-indigo-500 dark:border-white"
+                className="shadow-button flex transform items-center justify-between border-4 border-black bg-indigo-500/80 px-4 py-2 font-semibold transition-all duration-150 ease-in-out hover:translate-y-1 active:bg-indigo-500 dark:border-white"
               >
                 {item.title}
                 <span>
