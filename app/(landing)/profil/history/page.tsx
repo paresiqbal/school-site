@@ -9,19 +9,19 @@ export default function SchoolHistory() {
   ];
 
   return (
-    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 text-gray-800 dark:text-gray-300 md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
-          SEJARAH
+          Sejarah
         </h1>
         <p className="text-md mb-12 text-muted-foreground md:text-lg">
-          Sejarah SMKN 1 Rejang Lebong
+          Sejarah SMK Negeri 1 Rejang Lebong
         </p>
       </div>
 
       <div className="space-y-4">
         <div className="my-8">
-          <h2 className="mb-8 text-center text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
+          <h2 className="mb-8 text-center text-2xl font-semibold md:text-4xl">
             Tentang Sekolah
           </h2>
           <p className="text-xl dark:text-white">
@@ -37,10 +37,10 @@ export default function SchoolHistory() {
         </div>
 
         <div className="space-y-4">
-          <h2 className="mb-8 text-center text-2xl font-semibold underline decoration-primary underline-offset-8 md:text-4xl">
+          <h2 className="mb-8 text-center text-2xl font-semibold md:text-4xl">
             Sejarah
           </h2>
-          <div className="relative border-l-2 border-gray-300 pl-6">
+          <div className="relative border-l-2 border-foreground pl-6">
             {timelineEvents.map((event, index) => (
               <div key={index} className="mb-8 flex items-start">
                 <div className="absolute -left-[9px] mt-1 h-4 w-4 rounded-full bg-primary"></div>
