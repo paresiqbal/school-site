@@ -35,7 +35,7 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="grid gap-8 pb-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 shadow-none transition hover:shadow-card dark:hover:shadow-card">
+        <div className="group flex flex-col rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
           <div className="mb-4 flex items-center gap-2 border-2 border-foreground bg-primary/80 p-3 font-bold text-background transition group-hover:bg-primary">
             <BookOpen className="h-6 w-6" />
             Misi Kami
@@ -101,7 +101,7 @@ export default function MissionVisionGoals() {
       </div>
 
       <div className="mt-12 space-y-4 pb-8 text-center">
-        <h2 className="text-pretty text-3xl font-semibold">
+        <h2 className="text-2xl font-semibold md:text-3xl">
           Bergabunglah dengan kami dalam membentuk masa depan
         </h2>
         <p className="text-base">
