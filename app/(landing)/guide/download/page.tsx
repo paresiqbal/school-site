@@ -28,15 +28,13 @@ export default function Download() {
   return (
     <div className="mx-auto mb-8 max-w-[1200px] pt-6 md:pt-12">
       <div className="pb-4 text-center">
-        <h1 className="mb-4 text-3xl font-bold md:text-5xl">
-          Download & Links
-        </h1>
+        <h1 className="mb-4 text-3xl font-bold md:text-5xl">Downloads</h1>
       </div>
 
       {downloadGroups.map((group, index) => (
         <div
           key={index}
-          className="mb-6 border-4 border-black p-4 hover:shadow-card dark:border-white"
+          className="mb-6 border-2 border-foreground p-4 hover:shadow-card"
         >
           <h2 className="text-2xl font-bold text-gray-800 dark:text-white">
             {group.category}
@@ -47,7 +45,7 @@ export default function Download() {
                 key={itemIndex}
                 href={item.link}
                 download
-                className="shadow-button flex transform items-center justify-between border-4 border-black bg-indigo-500/80 px-4 py-2 font-semibold transition-all duration-150 ease-in-out hover:translate-y-1 active:bg-indigo-500 dark:border-white"
+                className="shadow-button flex transform items-center justify-between border-4 border-foreground bg-indigo-500/90 px-4 py-2 text-sm transition-all duration-150 ease-in-out hover:translate-y-1 active:bg-indigo-500"
               >
                 {item.title}
                 <span>
