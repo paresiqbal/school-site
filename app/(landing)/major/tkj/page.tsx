@@ -47,23 +47,21 @@ export default function Tkj() {
         <div className="lg:col-span-2">
           <Carousel
             plugins={[plugin.current]}
-            className="w-full"
+            className="w-full hover:shadow-card"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
               {images.map((src, index) => (
                 <CarouselItem key={index}>
-                  <div className="p-1">
-                    <div className="aspect-[4/3] w-full border-4 border-black dark:border-white">
-                      <Image
-                        src={src}
-                        alt={`TKJ Image ${index + 1}`}
-                        width={800}
-                        height={600}
-                        className="h-full w-full rounded-md object-cover"
-                      />
-                    </div>
+                  <div className="aspect-[4/3] w-full border-4 border-foreground">
+                    <Image
+                      src={src}
+                      alt={`TKJ Image ${index + 1}`}
+                      width={800}
+                      height={600}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </CarouselItem>
               ))}
@@ -72,15 +70,19 @@ export default function Tkj() {
 
           <div className="my-8 max-w-none text-sm md:text-base lg:text-lg">
             <p className="text-lg">
-              Program Teknik Komputer & Jaringan (TKJ) adalah program studi yang
-              mempelajari tentang teknologi komputer, jaringan, dan internet.
-              Program ini dirancang untuk mempersiapkan siswa menjadi
-              profesional di bidang teknologi informasi dan komunikasi.
+              Program{" "}
+              <span className="text-primary">
+                Teknik Komputer & Jaringan (TKJ)
+              </span>{" "}
+              adalah program studi yang mempelajari tentang teknologi komputer,
+              jaringan, dan internet. Program ini dirancang untuk mempersiapkan
+              siswa menjadi profesional di bidang teknologi informasi dan
+              komunikasi.
             </p>
           </div>
         </div>
 
-        <div className="rounded-md border-4 border-black bg-emerald-300/80 p-4 text-gray-800 hover:bg-emerald-400 hover:shadow-card dark:border-white">
+        <div className="rounded-md border-2 border-foreground bg-emerald-300/90 p-4 transition hover:bg-emerald-400 hover:shadow-card">
           <h3 className="mb-2 text-2xl font-bold">Program Sorotan</h3>
           <p className="mb-4 text-base font-medium">
             Program Teknik Komputer & Jaringan menawarkan:
@@ -134,7 +136,7 @@ export default function Tkj() {
             ].map((course) => (
               <div
                 key={course}
-                className="transform border-4 border-black bg-emerald-300/80 p-4 text-sm font-semibold text-gray-800 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)] dark:hover:shadow-[4px_4px_0px_rgba(255,255,255,1)] dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
+                className="transform border-4 border-black bg-emerald-300/80 p-4 text-sm font-semibold shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)] dark:hover:shadow-[4px_4px_0px_rgba(255,255,255,1)] dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
               >
                 {course}
               </div>
@@ -156,7 +158,7 @@ export default function Tkj() {
             ].map((career) => (
               <div
                 key={career}
-                className="transform border-4 border-black bg-emerald-300/80 p-4 text-sm font-semibold text-gray-800 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)] dark:hover:shadow-[4px_4px_0px_rgba(255,255,255,1)] dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
+                className="transform border-4 border-black bg-emerald-300/80 p-4 text-sm font-semibold shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)] dark:hover:shadow-[4px_4px_0px_rgba(255,255,255,1)] dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
               >
                 {career}
               </div>
