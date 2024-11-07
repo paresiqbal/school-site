@@ -81,7 +81,7 @@ export default function Tkj() {
           </div>
         </div>
 
-        <div className="rounded-md border-2 border-foreground bg-emerald-300/90 p-4 transition hover:bg-emerald-400 hover:shadow-card dark:text-background">
+        <div className="max-h-[530px] rounded-md border-2 border-foreground bg-emerald-300/90 p-4 transition hover:bg-emerald-400 hover:shadow-card dark:text-background">
           <h3 className="mb-2 text-2xl font-bold">Program Sorotan</h3>
           <p className="mb-4 text-base font-medium">
             Program Teknik Komputer & Jaringan menawarkan:
