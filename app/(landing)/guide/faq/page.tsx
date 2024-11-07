@@ -9,9 +9,12 @@ import {
 
 export default function Faq() {
   return (
-    <div className="mx-auto my-8 max-w-[1200px] pt-6 text-gray-800 dark:text-gray-300 md:pt-12">
+    <div className="mx-auto my-8 max-w-[1200px] pt-6 md:pt-12">
       <div className="pb-4 text-center">
         <h1 className="mb-4 text-3xl font-bold md:text-5xl">FAQ</h1>
+        <p className="text-md mb-4 text-muted-foreground md:text-lg">
+          Pertanyaan yang sering ditanyakan seputar SMK.
+        </p>
       </div>
 
       <Accordion type="single" collapsible className="w-full">
@@ -91,7 +94,7 @@ export default function Faq() {
           <AccordionItem
             key={index}
             value={`item-${index + 1}`}
-            className="border-2 border-black p-4 shadow-card dark:border-white dark:shadow-card"
+            className="border-2 border-foreground p-4 transition hover:shadow-card"
           >
             <AccordionTrigger className="text-base font-bold">
               {item.question}
