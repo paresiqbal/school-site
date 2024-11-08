@@ -2,14 +2,17 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function Contact() {
   return (
-    <div className="container mx-auto my-4 max-w-[1200px] p-6 md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
-        <h1 className="inline-block border-b-8 border-black px-2 text-4xl font-extrabold md:text-5xl">
+        <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
           Kontak
         </h1>
+        <p className="text-md mb-12 text-muted-foreground md:text-lg">
+          Hubungi kami jika ada yang perlu ditanyakan
+        </p>
       </div>
 
-      <div className="mb-4 flex items-start border-b-4 border-black p-4">
+      <div className="mb-4 flex">
         <MapPin className="mr-4 h-6 w-6 text-black" />
         <div>
           <p className="text-lg font-bold">Alamat Sekolah</p>
@@ -22,7 +25,7 @@ export default function Contact() {
       </div>
 
       {/* Phone Number */}
-      <div className="mb-4 flex items-start border-b-4 border-black p-4">
+      <div className="mb-4 flex border-b-4 border-black p-4">
         <Phone className="mr-4 h-6 w-6 text-black" />
         <div>
           <p className="text-lg font-bold">No Telp</p>
@@ -31,7 +34,7 @@ export default function Contact() {
       </div>
 
       {/* Email Address */}
-      <div className="mb-4 flex items-start border-b-4 border-black p-4">
+      <div className="mb-4 flex border-b-4 border-black p-4">
         <Mail className="mr-4 h-6 w-6 text-black" />
         <div>
           <p className="text-lg font-bold">Email</p>
@@ -40,7 +43,7 @@ export default function Contact() {
       </div>
 
       {/* Office Hours */}
-      <div className="mb-4 flex items-start border-b-4 border-black p-4">
+      <div className="mb-4 flex border-b-4 border-black p-4">
         <Clock className="mr-4 h-6 w-6 text-black" />
         <div>
           <p className="text-lg font-bold">Jam Sekolah</p>
