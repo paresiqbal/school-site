@@ -18,60 +18,72 @@ export default function Home() {
         <CarouselPlugin />
         <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
           <div className="w-screen bg-rose-50 py-8">
-            <div className="mx-auto max-w-5xl">
-              <div>
-                <h2 className="mb-4 text-3xl font-bold">
+            <div className="mx-auto max-w-5xl px-4">
+              <div className="mb-8 text-center md:text-left">
+                <h2 className="mb-2 text-2xl font-bold md:text-3xl">
                   SMK Negeri 1 Rejang Lebong
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-gray-600">
                   Membangun generasi muda cerdas dan berakhlak.
                 </p>
               </div>
-              <div className="flex items-center justify-between">
-                <div className="flex justify-between space-x-4">
+
+              <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
+                <div className="flex justify-center space-x-4 md:justify-start">
                   <Link
                     href="/guide/registration"
-                    className="hover:shadow-button rounded-md border-2 border-foreground px-6 py-2 transition"
+                    className="hover:shadow-button rounded-md border-2 border-gray-800 px-6 py-2 transition"
                   >
                     Daftar
                   </Link>
                   <Link
                     href="/guide/registration"
-                    className="hover:shadow-button rounded-md border-2 border-foreground bg-primary px-6 py-2 text-background transition"
+                    className="hover:shadow-button rounded-md border-2 border-gray-800 bg-primary px-6 py-2 text-white transition"
                   >
                     Brosur PPDB
                   </Link>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4 text-center">
-                  <div className="flex flex-col items-center rounded-md border-2 border-foreground bg-primary p-4 text-background transition hover:shadow-card">
-                    <p className="text-2xl font-bold">B</p>
-                    <p className="text-sm">Akreditasi</p>
+                <div className="grid w-full grid-cols-3 gap-4 text-center md:w-auto">
+                  <div className="flex flex-col items-center rounded-md border-2 border-gray-800 bg-primary p-4 text-white transition hover:shadow-card md:p-6">
+                    <p className="text-2xl font-bold md:text-3xl">B</p>
+                    <p className="text-sm md:text-base">Akreditasi</p>
                   </div>
-                  <div className="flex flex-col items-center rounded-md border-2 border-foreground bg-primary p-4 text-background transition hover:shadow-card">
-                    <p className="text-2xl font-bold">200+</p>
-                    <p className="text-sm">Siswa</p>
+                  <div className="flex flex-col items-center rounded-md border-2 border-gray-800 bg-primary p-4 text-white transition hover:shadow-card md:p-6">
+                    <p className="text-2xl font-bold md:text-3xl">200+</p>
+                    <p className="text-sm md:text-base">Siswa</p>
                   </div>
-                  <div className="flex flex-col items-center rounded-md border-2 border-foreground bg-primary p-4 text-background transition hover:shadow-card">
-                    <p className="text-2xl font-bold">7</p>
-                    <p className="text-sm">Jurusan</p>
+                  <div className="flex flex-col items-center rounded-md border-2 border-gray-800 bg-primary p-4 text-white transition hover:shadow-card md:p-6">
+                    <p className="text-2xl font-bold md:text-3xl">7</p>
+                    <p className="text-sm md:text-base">Jurusan</p>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="mx-auto my-6 flex max-w-5xl flex-col items-center justify-center gap-2">
-              <section className="flex justify-between space-x-20">
-                <p>Teknik Komputer & Jaringan</p>
-                <p>Teknik Bisnis Sepeda Motor</p>
-                <p>Teknik Kendaraan Ringan</p>
-                <p>Teknik Elektronika</p>
-              </section>
-              <section className="flex justify-between space-x-11">
-                <p>Teknik Desain Pemodelan</p>
-                <p>Teknik Instalasi Tenaga Listrik</p>
-                <p>Teknik Pengelasan</p>
-                <p>Teknik Mesin</p>
-              </section>
+
+              <div className="mx-auto my-6 flex max-w-5xl flex-col items-center justify-center gap-4 px-4 md:px-0">
+                <section className="grid grid-cols-2 text-center md:flex md:justify-between md:space-x-20 md:text-left">
+                  <p className="text-sm md:text-base">
+                    Teknik Komputer & Jaringan
+                  </p>
+                  <p className="text-sm md:text-base">
+                    Teknik Bisnis Sepeda Motor
+                  </p>
+                  <p className="text-sm md:text-base">
+                    Teknik Kendaraan Ringan
+                  </p>
+                  <p className="text-sm md:text-base">Teknik Elektronika</p>
+                </section>
+                <section className="grid grid-cols-2 text-center md:flex md:justify-between md:space-x-11 md:text-left">
+                  <p className="text-sm md:text-base">
+                    Teknik Desain Pemodelan
+                  </p>
+                  <p className="text-sm md:text-base">
+                    Teknik Instalasi Tenaga Listrik
+                  </p>
+                  <p className="text-sm md:text-base">Teknik Pengelasan</p>
+                  <p className="text-sm md:text-base">Teknik Mesin</p>
+                </section>
+              </div>
             </div>
           </div>
         </main>
