@@ -73,39 +73,39 @@ export default function NewsDetail(props: {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="container mx-auto max-w-2xl px-4 py-8">
+    <div className="container mx-auto max-w-2xl py-8">
       <Toaster />
 
       {news ? (
         <>
-          <div className="mb-6 w-full rounded-md">
+          <div className="mb-6 w-full rounded-md border-2 border-foreground shadow-card">
             <Image
               src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${news.image}`}
               alt={news.title}
-              width={500}
-              height={500}
+              width={800}
+              height={800}
               priority
-              className="h-auto w-full rounded-lg"
+              className="h-auto w-full"
             />
           </div>
 
-          <h1 className="col-span-7 text-4xl font-bold sm:text-6xl">
-            {news.title}
-          </h1>
+          <h1 className="text-3xl font-bold lg:text-4xl">{news.title}</h1>
 
           <div className="mb-4 flex flex-col gap-4 pt-4 text-muted-foreground">
             <span>{formatDate(news.created_at)}</span>
 
             <span className="flex items-center space-x-2">
-              <div className="h-6 w-6 rounded-full bg-gray-500"></div>
+              <div className="h-6 w-6 rounded-full bg-primary/80"></div>
               <p>Admin</p>
             </span>
             <div>
-              <span className="rounded-md border px-4 py-2">Berita</span>
+              <span className="hover:shadow-button rounded-md border-2 border-foreground px-4 py-2 transition">
+                Berita
+              </span>
             </div>
           </div>
 
-          <hr className="my-4 border-t border-gray-400" />
+          <hr className="my-4 border-2 border-t border-foreground" />
 
           <div className="space-y-4 leading-relaxed">
             {news.content.split("\n").map((paragraph, index) => (
