@@ -68,9 +68,12 @@ export default function Agenda() {
       <Toaster />
 
       {/* List of Cards */}
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {agenda.map((item) => (
-          <Card key={item.id} className="rounded-md bg-card p-2 shadow-sm">
+          <Card
+            key={item.id}
+            className="rounded-md border-2 border-foreground bg-card p-2 hover:shadow-card"
+          >
             <div className="w-full">
               <Image
                 src="/assets/bell.png"
@@ -84,8 +87,8 @@ export default function Agenda() {
             <CardHeader className="p-2">
               <CardTitle>{item.title}</CardTitle>
             </CardHeader>
-            <CardContent className="p-2">
-              <p>{graphingText(item.description, 100)}</p>
+            <CardContent className="p-2 text-sm">
+              <p className="py-2">{graphingText(item.description, 100)}</p>
               <div className="space-y-1 py-2 text-sm">
                 <p>
                   <strong>Mulai:</strong> {formatDate(item.start_date)}
