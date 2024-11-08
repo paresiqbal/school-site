@@ -8,8 +8,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 
 export function CarouselPlugin() {
@@ -34,16 +32,16 @@ export function CarouselPlugin() {
   return (
     <Carousel
       plugins={[autoScrollPlugin.current]}
-      className="w-full max-w-lg"
+      className="w-full max-w-2xl lg:max-w-5xl"
       onMouseEnter={autoScrollPlugin.current.stop}
       onMouseLeave={autoScrollPlugin.current.reset}
     >
       <CarouselContent>
         {slides.map((slide) => (
           <CarouselItem key={slide.id}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
+            <div className="p-2">
+              <Card className="h-48 w-full">
+                <CardContent className="flex h-full items-center justify-center p-4">
                   <span className="text-4xl font-semibold">
                     {slide.content}
                   </span>
@@ -53,8 +51,6 @@ export function CarouselPlugin() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious aria-label="Previous Slide" />
-      <CarouselNext aria-label="Next Slide" />
     </Carousel>
   );
 }
