@@ -23,7 +23,7 @@ export default function Footer() {
                 width={60}
                 height={60}
               />
-              <h2 className="text-lg font-bold text-primary">
+              <h2 className="font-bold text-primary">
                 SMK Negeri 1 Rejang Lebong
               </h2>
             </div>
