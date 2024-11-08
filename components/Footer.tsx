@@ -121,8 +121,8 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#" className="hover:underline">
-                  Oportunitas Karir
+                <Link href="/auth/login" className="hover:underline">
+                  Dashboard
                 </Link>
               </li>
             </ul>
