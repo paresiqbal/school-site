@@ -96,50 +96,32 @@ export default function Footer() {
             <h3 className="text-base font-bold text-primary">Tautan</h3>
             <ul className="space-y-2 text-sm font-bold">
               <li>
-                <Link
-                  href="#"
-                  className="border-b-2 border-black hover:underline"
-                >
+                <Link href="#" className="hover:underline">
                   Tentang Kami
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="border-b-2 border-black hover:underline"
-                >
+                <Link href="#" className="hover:underline">
                   Administrasi
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="border-b-2 border-black hover:underline"
-                >
+                <Link href="#" className="hover:underline">
                   Akademik
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="border-b-2 border-black hover:underline"
-                >
+                <Link href="#" className="hover:underline">
                   FAQ
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="border-b-2 border-black hover:underline"
-                >
+                <Link href="#" className="hover:underline">
                   Rute
                 </Link>
               </li>
               <li>
-                <Link
-                  href="#"
-                  className="border-b-2 border-black hover:underline"
-                >
+                <Link href="#" className="hover:underline">
                   Oportunitas Karir
                 </Link>
               </li>
