@@ -2,7 +2,7 @@ import Link from "next/link";
 import {
   Facebook,
   Instagram,
-  Twitter,
+  Youtube,
   Clock,
   Phone,
   Mail,
@@ -20,25 +20,31 @@ export default function Footer() {
             </h2>
             <div className="flex space-x-4">
               <Link
-                href="#"
+                href="https://www.facebook.com/smknsatu.rejanglebong"
                 className="hover:shadow-button rounded-full border-2 border-foreground bg-primary/90 p-1 hover:bg-primary"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Facebook className="r h-8 w-8 p-1 text-foreground" />
                 <span className="sr-only">Facebook</span>
               </Link>
               <Link
-                href="#"
+                href="https://www.instagram.com/smkn1_rejang_lebong/"
                 className="hover:shadow-button rounded-full border-2 border-foreground bg-primary/90 p-1 hover:bg-primary"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 <Instagram className="r h-8 w-8 p-1 text-foreground" />
-                <span className="sr-only">Facebook</span>
+                <span className="sr-only">Instagram</span>
               </Link>
               <Link
-                href="#"
+                href="https://www.youtube.com/@smkn1_rejang_lebong"
                 className="hover:shadow-button rounded-full border-2 border-foreground bg-primary/90 p-1 hover:bg-primary"
+                target="_blank"
+                rel="noopener noreferrer"
               >
-                <Twitter className="r h-8 w-8 p-1 text-foreground" />
-                <span className="sr-only">Facebook</span>
+                <Youtube className="r h-8 w-8 p-1 text-foreground" />
+                <span className="sr-only">Youtube</span>
               </Link>
             </div>
           </div>
@@ -50,7 +56,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm font-bold">
               <li className="flex items-center">
                 <Clock className="mr-2 h-5 w-5" />
-                <span>Senin - Jumat: 7:00 AM - 2:00 PM</span>
+                <span>Senin - Jumat: 7:30 AM - 16:00 PM</span>
               </li>
               <li className="flex items-center">
                 <Clock className="mr-2 h-5 w-5" />
