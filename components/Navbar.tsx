@@ -29,9 +29,9 @@ export default function Navbar() {
               className="flex flex-shrink-0 items-center justify-center"
             >
               <Image
-                src="/Next.js.png"
-                width={100}
-                height={100}
+                src="/blud.png"
+                width={40}
+                height={40}
                 alt="next js logo"
                 style={{ width: "auto", height: "auto" }}
               />
@@ -251,13 +251,13 @@ export default function Navbar() {
           <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
             <Link
               href="/"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
             >
               Home
             </Link>
             <div className="space-y-1">
               <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
                 onClick={(e) =>
                   e.currentTarget.nextElementSibling?.classList.toggle("hidden")
                 }
@@ -267,19 +267,19 @@ export default function Navbar() {
               <div className="hidden pl-4">
                 <Link
                   href="/profil/visiMisi"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Visi dan Misi
                 </Link>
                 <Link
                   href="/profil/facility"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Fasilitas
                 </Link>
                 <Link
                   href="/profil/history"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Sejarah
                 </Link>
@@ -287,7 +287,7 @@ export default function Navbar() {
             </div>
             <div className="space-y-1">
               <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
                 onClick={(e) =>
                   e.currentTarget.nextElementSibling?.classList.toggle("hidden")
                 }
@@ -298,43 +298,43 @@ export default function Navbar() {
               <div className="hidden pl-4">
                 <Link
                   href="/major/tkj"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Komputer & Jaringan
                 </Link>
                 <Link
                   href="/major/tbsm"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Bisnis Sepeda Motor
                 </Link>
                 <Link
                   href="/major/tkr"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Kendaraan Ringan
                 </Link>
                 <Link
                   href="/major/tei"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Elektronika
                 </Link>
                 <Link
                   href="/major/dpib"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Desain Permodelan
                 </Link>
                 <Link
                   href="/major/titl"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Instalasi Tenaga Listrik
                 </Link>
                 <Link
                   href="/major/las"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Pengelasan
                 </Link>
@@ -342,7 +342,7 @@ export default function Navbar() {
             </div>
             <div className="space-y-1">
               <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
                 onClick={(e) =>
                   e.currentTarget.nextElementSibling?.classList.toggle("hidden")
                 }
@@ -352,19 +352,19 @@ export default function Navbar() {
               <div className="hidden pl-4">
                 <Link
                   href="/article/berita"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Berita
                 </Link>
                 <Link
                   href="/article/pengumuman"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Pengumuman
                 </Link>
                 <Link
                   href="/article/agenda"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Agenda
                 </Link>
@@ -372,7 +372,7 @@ export default function Navbar() {
             </div>
             <div className="space-y-1">
               <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
                 onClick={(e) =>
                   e.currentTarget.nextElementSibling?.classList.toggle("hidden")
                 }
@@ -382,31 +382,31 @@ export default function Navbar() {
               <div className="hidden pl-4">
                 <Link
                   href="/guide/registration"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Pendaftaran
                 </Link>
                 <Link
                   href="/guide/school-fee"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Biaya Sekolah
                 </Link>
                 <Link
                   href="/guide/calendar-academic"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Kalender Akademik
                 </Link>
                 <Link
                   href="/guide/faq"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   FAQ
                 </Link>
                 <Link
                   href="/guide/download"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
                 >
                   Download
                 </Link>
@@ -415,7 +415,7 @@ export default function Navbar() {
 
             <Link
               href="/contact"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-primary transition-all hover:bg-muted hover:text-primary"
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
             >
               Kontak
             </Link>
