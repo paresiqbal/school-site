@@ -12,21 +12,23 @@ export default function Contact() {
         </p>
       </div>
 
-      <div className="mb-4 flex">
-        <MapPin className="mr-4 h-6 w-6" />
-        <div>
-          <p className="text-lg font-bold">Alamat Sekolah</p>
-          <p>Jalan Ahmad Marzuki No 105</p>
-          <p>Kelurahan Air Rambai - Kecamatan</p>
-          <p>Curup</p>
-          <p>Kabupaten Rejang Lebong</p>
-          <p>Bengkulu - Indonesia</p>
+      <div className="group mb-4 flex">
+        <MapPin className="group-hover:shadow-button mr-4 h-8 w-8 rounded-full border-2 border-foreground bg-primary p-1.5 text-foreground" />
+        <div className="space-y-2">
+          <p className="font-bold">Alamat Sekolah</p>
+          <div className="text-sm">
+            <p>Jalan Ahmad Marzuki No 105</p>
+            <p>Kelurahan Air Rambai - Kecamatan</p>
+            <p>Curup</p>
+            <p>Kabupaten Rejang Lebong</p>
+            <p>Bengkulu - Indonesia</p>
+          </div>
         </div>
       </div>
 
       {/* Phone Number */}
-      <div className="mb-4 flex">
-        <Phone className="mr-4 h-6 w-6" />
+      <div className="group mb-4 flex">
+        <Phone className="group-hover:shadow-button mr-4 h-8 w-8 rounded-full border-2 border-foreground bg-primary p-1.5 text-foreground" />
         <div>
           <p className="text-lg font-bold">No Telp</p>
           <p>+62732 21258</p>
@@ -34,8 +36,8 @@ export default function Contact() {
       </div>
 
       {/* Email Address */}
-      <div className="mb-4 flex">
-        <Mail className="mr-4 h-6 w-6" />
+      <div className="group mb-4 flex">
+        <Mail className="group-hover:shadow-button mr-4 h-8 w-8 rounded-full border-2 border-foreground bg-primary p-1.5 text-foreground" />
         <div>
           <p className="text-lg font-bold">Email</p>
           <p>mail@smkn1rl.sch.id</p>
@@ -43,8 +45,8 @@ export default function Contact() {
       </div>
 
       {/* Office Hours */}
-      <div className="mb-4 flex">
-        <Clock className="mr-4 h-6 w-6" />
+      <div className="group mb-4 flex">
+        <Clock className="group-hover:shadow-button mr-4 h-8 w-8 rounded-full border-2 border-foreground bg-primary p-1.5 text-foreground" />
         <div>
           <p className="text-lg font-bold">Jam Sekolah</p>
           <p>Senin - Jumat: 7:00 AM - 2:00 PM</p>
