@@ -19,17 +19,26 @@ export default function Footer() {
               SMK Negeri 1 Rejang Lebong
             </h2>
             <div className="flex space-x-4">
-              <Link href="#" className="border-2 border-black p-1">
-                <Facebook className="h-6 w-6" />
+              <Link
+                href="#"
+                className="hover:shadow-button rounded-full border-2 border-foreground bg-primary/90 p-1 hover:bg-primary"
+              >
+                <Facebook className="r h-8 w-8 p-1 text-foreground" />
                 <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="border-2 border-black p-1">
-                <Instagram className="h-6 w-6" />
-                <span className="sr-only">Instagram</span>
+              <Link
+                href="#"
+                className="hover:shadow-button rounded-full border-2 border-foreground bg-primary/90 p-1 hover:bg-primary"
+              >
+                <Instagram className="r h-8 w-8 p-1 text-foreground" />
+                <span className="sr-only">Facebook</span>
               </Link>
-              <Link href="#" className="border-2 border-black p-1">
-                <Twitter className="h-6 w-6" />
-                <span className="sr-only">Twitter</span>
+              <Link
+                href="#"
+                className="hover:shadow-button rounded-full border-2 border-foreground bg-primary/90 p-1 hover:bg-primary"
+              >
+                <Twitter className="r h-8 w-8 p-1 text-foreground" />
+                <span className="sr-only">Facebook</span>
               </Link>
             </div>
           </div>
