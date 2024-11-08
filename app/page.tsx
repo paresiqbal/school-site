@@ -60,8 +60,8 @@ export default function Home() {
                 </div>
               </div>
 
-              <div className="mx-auto my-6 flex max-w-5xl flex-col items-center justify-center gap-4 px-4 md:px-0">
-                <section className="grid grid-cols-2 text-center md:flex md:justify-between md:space-x-20 md:text-left">
+              <div className="mx-auto my-6 flex max-w-5xl flex-col items-center justify-center gap-4 px-2 md:px-0">
+                <section className="grid grid-cols-2 gap-y-4 space-x-2 text-center md:flex md:justify-between md:space-x-20 md:text-left">
                   <p className="text-sm md:text-base">
                     Teknik Komputer & Jaringan
                   </p>
@@ -73,7 +73,7 @@ export default function Home() {
                   </p>
                   <p className="text-sm md:text-base">Teknik Elektronika</p>
                 </section>
-                <section className="grid grid-cols-2 text-center md:flex md:justify-between md:space-x-11 md:text-left">
+                <section className="grid grid-cols-2 gap-y-4 text-center md:flex md:justify-between md:space-x-11 md:text-left">
                   <p className="text-sm md:text-base">
                     Teknik Desain Pemodelan
                   </p>
