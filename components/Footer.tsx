@@ -67,18 +67,18 @@ export default function Footer() {
             <h3 className="text-base font-bold text-primary">Kontak Kami</h3>
             <ul className="space-y-2 text-sm font-bold">
               <li className="flex items-center">
-                <Phone className="mr-2 h-5 w-5" />
+                <Phone className="border-1 mr-2 h-7 w-7 rounded-full border-2 border-foreground bg-primary/90 p-1" />
                 <span>+62732 21258</span>
               </li>
               <li className="flex items-center">
-                <Mail className="mr-2 h-5 w-5" />
+                <Mail className="border-1 mr-2 h-7 w-7 rounded-full border-2 border-foreground bg-primary/90 p-1" />
                 <span>mail@smkn1rl.sch.id</span>
               </li>
             </ul>
             <div>
               <h3 className="text-base font-bold text-primary">Alamat</h3>
               <address className="mt-2 flex items-start text-sm font-bold not-italic">
-                <MapPin className="mr-2 mt-1 h-5 w-5" />
+                <MapPin className="border-1 mr-2 h-7 w-7 rounded-full border-2 border-foreground bg-primary/90 p-1" />
                 <span>
                   Jalan Ahmad Marzuki No 105
                   <br />
