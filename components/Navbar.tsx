@@ -332,12 +332,122 @@ export default function Navbar() {
                 >
                   Kendaraan Ringan
                 </Link>
-                {/* Add other Jurusan items here as needed */}
+                <Link
+                  href="/major/tei"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Elektronika
+                </Link>
+                <Link
+                  href="/major/dpib"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Desain Pemodelan
+                </Link>
+                <Link
+                  href="/major/titl"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Instalasi Tenaga Listrik
+                </Link>
+                <Link
+                  href="/major/las"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Pengelasan
+                </Link>
               </div>
             )}
           </div>
 
-          {/* Single Link for Kontak */}
+          {/* Dropdown for Artikel */}
+          <div>
+            <button
+              onClick={() => handleDropdownToggle("artikel")}
+              className="w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted"
+            >
+              Artikel <ChevronDown className="ml-1 inline-block h-4 w-4" />
+            </button>
+            {openDropdown === "artikel" && (
+              <div className="space-y-1 pl-4">
+                <Link
+                  href="/article/berita"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Berita
+                </Link>
+                <Link
+                  href="/article/pengumuman"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Pengumuman
+                </Link>
+                <Link
+                  href="/article/agenda"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Agenda
+                </Link>
+              </div>
+            )}
+          </div>
+
+          {/* Dropdown for Panduan */}
+          <div>
+            <button
+              onClick={() => handleDropdownToggle("panduan")}
+              className="w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted"
+            >
+              Panduan <ChevronDown className="ml-1 inline-block h-4 w-4" />
+            </button>
+            {openDropdown === "panduan" && (
+              <div className="space-y-1 pl-4">
+                <Link
+                  href="/guide/registration"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Pendaftaran
+                </Link>
+                <Link
+                  href="/guide/school-fee"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Biaya Sekolah
+                </Link>
+                <Link
+                  href="/guide/calendar-academic"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Kalender Akademik
+                </Link>
+                <Link
+                  href="/guide/faq"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  FAQ
+                </Link>
+                <Link
+                  href="/guide/download"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Download
+                </Link>
+              </div>
+            )}
+          </div>
+
           <Link
             href="/contact"
             className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
@@ -345,8 +455,6 @@ export default function Navbar() {
           >
             Kontak
           </Link>
-
-          {/* Mode Toggle */}
           <ModeToggle />
         </div>
       )}
