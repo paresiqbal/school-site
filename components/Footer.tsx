@@ -8,6 +8,7 @@ import {
   Mail,
   MapPin,
 } from "lucide-react";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -15,9 +16,17 @@ export default function Footer() {
       <div className="container mx-auto">
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
           <div className="space-y-4 border-black pb-4">
-            <h2 className="text-lg font-bold text-primary">
-              SMK Negeri 1 Rejang Lebong
-            </h2>
+            <div className="flex items-center">
+              <Image
+                src="/blud.png"
+                alt="SMKN 1 Rejang Lebong"
+                width={60}
+                height={60}
+              />
+              <h2 className="text-lg font-bold text-primary">
+                SMK Negeri 1 Rejang Lebong
+              </h2>
+            </div>
             <div className="flex space-x-4">
               <Link
                 href="https://www.facebook.com/smknsatu.rejanglebong"
@@ -143,19 +152,19 @@ export default function Footer() {
           <div className="mt-4 space-x-4 md:mt-0">
             <Link
               href="#"
-              className="border-b-2 border-black text-sm font-bold hover:underline"
+              className="border-b-2 border-black text-sm font-bold"
             >
               Privacy Policy
             </Link>
             <Link
               href="#"
-              className="border-b-2 border-black text-sm font-bold hover:underline"
+              className="border-b-2 border-black text-sm font-bold"
             >
               Terms of Service
             </Link>
             <Link
               href="#"
-              className="border-b-2 border-black text-sm font-bold hover:underline"
+              className="border-b-2 border-black text-sm font-bold"
             >
               Accessibility
             </Link>
