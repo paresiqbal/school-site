@@ -86,7 +86,7 @@ export default function Berita() {
               <span className="text-sm text-muted-foreground md:text-base">
                 {formatDate(item.created_at)}
               </span>
-              <span className="hover:shadow-button rounded-md border-2 border-foreground px-2 py-1 text-xs md:text-sm">
+              <span className="hover:shadow-button cursor-pointer rounded-md border-2 border-foreground px-2 py-1 text-xs hover:bg-primary md:text-sm">
                 tags
               </span>
             </div>
@@ -107,7 +107,7 @@ export default function Berita() {
                   alt={item.title}
                   className="h-40 w-full object-cover md:h-48"
                 />
-                <span className="absolute bottom-2 right-2 rounded-md bg-primary bg-opacity-60 px-2 py-1 text-xs text-background md:text-sm">
+                <span className="absolute bottom-2 right-2 rounded-md border-2 border-foreground bg-primary/90 px-2 py-1 text-xs text-white">
                   blog
                 </span>
               </div>
