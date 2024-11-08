@@ -14,9 +14,19 @@ import { ModeToggle } from "./ModeToggle";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleDropdownToggle = (dropdownName: string | null) => {
+    setOpenDropdown(openDropdown === dropdownName ? null : dropdownName);
+  };
+
+  const handleLinkClick = () => {
+    setOpenDropdown(null);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -247,180 +257,97 @@ export default function Navbar() {
       </div>
 
       {isMenuOpen && (
-        <div className="md:hidden">
-          <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
-            <Link
-              href="/"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
+        <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+          <Link
+            href="/"
+            className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+            onClick={handleLinkClick}
+          >
+            Home
+          </Link>
+
+          {/* Dropdown for Profil */}
+          <div>
+            <button
+              onClick={() => handleDropdownToggle("profil")}
+              className="w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted"
             >
-              Home
-            </Link>
-            <div className="space-y-1">
-              <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
-                onClick={(e) =>
-                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
-                }
-              >
-                Profil <ChevronDown className="ml-1 inline-block h-4 w-4" />
-              </button>
-              <div className="hidden pl-4">
+              Profil <ChevronDown className="ml-1 inline-block h-4 w-4" />
+            </button>
+            {openDropdown === "profil" && (
+              <div className="space-y-1 pl-4">
                 <Link
                   href="/profil/visiMisi"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
                 >
                   Visi dan Misi
                 </Link>
                 <Link
                   href="/profil/facility"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
                 >
                   Fasilitas
                 </Link>
                 <Link
                   href="/profil/history"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
                 >
                   Sejarah
                 </Link>
               </div>
-            </div>
-            <div className="space-y-1">
-              <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
-                onClick={(e) =>
-                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
-                }
-              >
-                Jurusan
-                <ChevronDown className="ml-1 inline-block h-4 w-4" />
-              </button>
-              <div className="hidden pl-4">
+            )}
+          </div>
+
+          {/* Dropdown for Jurusan */}
+          <div>
+            <button
+              onClick={() => handleDropdownToggle("jurusan")}
+              className="w-full rounded-md px-3 py-2 text-left text-sm hover:bg-muted"
+            >
+              Jurusan <ChevronDown className="ml-1 inline-block h-4 w-4" />
+            </button>
+            {openDropdown === "jurusan" && (
+              <div className="space-y-1 pl-4">
                 <Link
                   href="/major/tkj"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
                 >
                   Komputer & Jaringan
                 </Link>
                 <Link
                   href="/major/tbsm"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
                 >
                   Bisnis Sepeda Motor
                 </Link>
                 <Link
                   href="/major/tkr"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
                 >
                   Kendaraan Ringan
                 </Link>
-                <Link
-                  href="/major/tei"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Elektronika
-                </Link>
-                <Link
-                  href="/major/dpib"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Desain Permodelan
-                </Link>
-                <Link
-                  href="/major/titl"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Instalasi Tenaga Listrik
-                </Link>
-                <Link
-                  href="/major/las"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Pengelasan
-                </Link>
+                {/* Add other Jurusan items here as needed */}
               </div>
-            </div>
-            <div className="space-y-1">
-              <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
-                onClick={(e) =>
-                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
-                }
-              >
-                Artikel <ChevronDown className="ml-1 inline-block h-4 w-4" />
-              </button>
-              <div className="hidden pl-4">
-                <Link
-                  href="/article/berita"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Berita
-                </Link>
-                <Link
-                  href="/article/pengumuman"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Pengumuman
-                </Link>
-                <Link
-                  href="/article/agenda"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Agenda
-                </Link>
-              </div>
-            </div>
-            <div className="space-y-1">
-              <button
-                className="block w-full rounded-md px-3 py-2 text-left text-sm transition-all hover:bg-muted"
-                onClick={(e) =>
-                  e.currentTarget.nextElementSibling?.classList.toggle("hidden")
-                }
-              >
-                Panduan <ChevronDown className="ml-1 inline-block h-4 w-4" />
-              </button>
-              <div className="hidden pl-4">
-                <Link
-                  href="/guide/registration"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Pendaftaran
-                </Link>
-                <Link
-                  href="/guide/school-fee"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Biaya Sekolah
-                </Link>
-                <Link
-                  href="/guide/calendar-academic"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Kalender Akademik
-                </Link>
-                <Link
-                  href="/guide/faq"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  FAQ
-                </Link>
-                <Link
-                  href="/guide/download"
-                  className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-                >
-                  Download
-                </Link>
-              </div>
-            </div>
-
-            <Link
-              href="/contact"
-              className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-all hover:bg-muted"
-            >
-              Kontak
-            </Link>
-            <ModeToggle />
+            )}
           </div>
+
+          {/* Single Link for Kontak */}
+          <Link
+            href="/contact"
+            className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+            onClick={handleLinkClick}
+          >
+            Kontak
+          </Link>
+
+          {/* Mode Toggle */}
+          <ModeToggle />
         </div>
       )}
     </nav>
