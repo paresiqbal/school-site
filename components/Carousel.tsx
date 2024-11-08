@@ -40,7 +40,7 @@ export function CarouselPlugin() {
         {slides.map((slide) => (
           <CarouselItem key={slide.id}>
             <div className="p-2">
-              <Card className="h-48 w-full">
+              <Card className="no-shadow h-48">
                 <CardContent className="flex h-full items-center justify-center p-4">
                   <span className="text-4xl font-semibold">
                     {slide.content}
