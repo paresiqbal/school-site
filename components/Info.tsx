@@ -123,9 +123,6 @@ export default function InfoPlugin() {
                 <p className="mb-2 text-sm">
                   {graphingText(item.description, 50)}
                 </p>
-                <p className="text-sm text-muted-foreground">
-                  {formatDate(item.start_date)} - {formatDate(item.end_date)}
-                </p>
               </div>
             </Link>
           ))}

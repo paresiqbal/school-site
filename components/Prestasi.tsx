@@ -22,7 +22,7 @@ interface NewsData {
   created_at: string;
 }
 
-export default function NewsPlugin() {
+export default function PrestasiPlugin() {
   const [news, setNews] = useState<NewsData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -69,7 +69,7 @@ export default function NewsPlugin() {
   return (
     <div className="mx-auto w-full max-w-full justify-center overflow-hidden bg-rose-50 px-4 py-8 dark:bg-accent">
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
-        BERITA TERBARU
+        PRESTASI SISWA
       </h2>
 
       <div className="flex justify-center">
