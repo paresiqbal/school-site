@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { Button } from "./ui/button";
 
 interface NewsData {
   id: number;
@@ -66,7 +67,7 @@ export default function NewsPlugin() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="mx-auto my-8 w-full max-w-full justify-center overflow-hidden">
+    <div className="mx-auto my-8 w-full max-w-full justify-center overflow-hidden px-4">
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
         BERITA TERBARU
       </h2>
@@ -76,7 +77,7 @@ export default function NewsPlugin() {
           opts={{
             align: "start",
           }}
-          className="mx-auto w-full max-w-7xl"
+          className="mx-auto w-full max-w-6xl"
         >
           <CarouselContent className="flex gap-4">
             {news.map((item) => (
@@ -88,7 +89,7 @@ export default function NewsPlugin() {
                 >
                   <div className="overflow-hidden rounded-md border-2 border-foreground transition hover:shadow-card">
                     <div className="flex flex-col sm:flex-row">
-                      <div className="relative h-48 w-full sm:h-auto sm:w-2/5">
+                      <div className="relative h-60 w-full sm:h-auto sm:w-2/5">
                         <Image
                           src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
                           alt="gambar"
@@ -97,10 +98,13 @@ export default function NewsPlugin() {
                           className="absolute inset-0 h-full w-full object-cover"
                         />
                       </div>
-                      <div className="flex-1 p-2">
-                        <h2 className="mb-2 text-sm">{item.title}</h2>
-                        <div className="flex items-center text-sm text-muted-foreground">
-                          <time> {formatDate(item.created_at)}</time>
+
+                      <div className="flex-1 p-4">
+                        <h2 className="mb-2 text-sm font-semibold">
+                          {item.title}
+                        </h2>
+                        <div className="flex items-center text-sm text-gray-500">
+                          <time>{formatDate(item.created_at)}</time>
                         </div>
                       </div>
                     </div>
@@ -112,6 +116,11 @@ export default function NewsPlugin() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
+      </div>
+      <div className="mt-8 flex justify-center">
+        <Button className="hover:shadow-button border-2 border-foreground">
+          Lihat Semua
+        </Button>
       </div>
     </div>
   );
