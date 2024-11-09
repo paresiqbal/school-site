@@ -1,7 +1,17 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
+
+// ui comps
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 interface NewsData {
   id: number;
@@ -41,10 +51,6 @@ export default function NewsPlugin() {
     fetchNews();
   }, []);
 
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
   const formatDate = (dateString?: string | null): string => {
     if (!dateString) return "Date not available";
 
@@ -60,20 +66,52 @@ export default function NewsPlugin() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div>
-      <h1>BERITA TERBARU</h1>
-      <div>
-        {news.map((item) => (
-          <div key={item.id}>
-            <Link href={`/berita/${item.id}`}>
-              <a>
-                <h2>{item.title}</h2>
-                <p>{graphingText(item.content, 100)}</p>
-                <p>{formatDate(item.created_at)}</p>
-              </a>
-            </Link>
-          </div>
-        ))}
+    <div className="mx-auto w-full justify-center overflow-hidden py-8">
+      <h2 className="mb-4 text-center text-sm text-muted-foreground">
+        BERITA TERBARU
+      </h2>
+
+      <div className="flex justify-center">
+        <Carousel
+          opts={{
+            align: "start",
+          }}
+          className="mx-auto w-full max-w-5xl"
+        >
+          <CarouselContent className="flex gap-4">
+            {news.map((item) => (
+              <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
+                <Link
+                  href={`/article/berita/${item.id}`}
+                  key={item.id}
+                  passHref
+                >
+                  <div className="overflow-hidden">
+                    <div className="flex flex-col sm:flex-row">
+                      <div className="relative h-48 w-full sm:h-auto sm:w-2/5">
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
+                          alt="gambar"
+                          width={500}
+                          height={500}
+                          className="absolute inset-0 h-full w-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 p-2">
+                        <h2 className="mb-2 text-sm">{item.title}</h2>
+                        <div className="flex items-center text-sm text-muted-foreground">
+                          <time> {formatDate(item.created_at)}</time>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
       </div>
     </div>
   );

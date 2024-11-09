@@ -98,7 +98,11 @@ export default function InfoPlugin() {
             Informasi dan Pengumuman Terbaru
           </p>
           {announcement.slice(0, 3).map((item) => (
-            <Link href={`/article/berita/${item.id}`} key={item.id} passHref>
+            <Link
+              href={`/article/pengumuman/${item.id}`}
+              key={item.id}
+              passHref
+            >
               <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
                 <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
                 <p className="mb-2 text-sm">{graphingText(item.content, 80)}</p>
