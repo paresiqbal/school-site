@@ -17,28 +17,25 @@ export default function Home() {
       <div className="min-h-screen items-center justify-items-center px-6 font-[family-name:var(--font-geist-sans)]">
         <CarouselPlugin />
         <main className="row-start-2 flex flex-col items-center gap-8 sm:items-start">
-          <div className="w-screen bg-rose-50 py-8">
+          <div className="w-screen bg-rose-50 py-8 dark:bg-accent">
             <div className="mx-auto max-w-5xl px-4">
               <div className="mb-8 text-center md:text-left">
                 <h2 className="mb-2 text-2xl font-bold md:text-3xl">
                   SMK Negeri 1 Rejang Lebong
                 </h2>
-                <p className="text-gray-600">
-                  Membangun generasi muda cerdas dan berakhlak.
-                </p>
+                <p>Membangun generasi muda cerdas dan berakhlak.</p>
               </div>
-
               <div className="flex flex-col items-center justify-between gap-8 md:flex-row">
                 <div className="flex justify-center space-x-4 md:justify-start">
                   <Link
                     href="/guide/registration"
-                    className="hover:shadow-button rounded-md border-2 border-gray-800 px-6 py-2 transition"
+                    className="hover:shadow-button rounded-md border-2 border-foreground px-6 py-2 transition"
                   >
                     Daftar
                   </Link>
                   <Link
                     href="/guide/registration"
-                    className="hover:shadow-button rounded-md border-2 border-gray-800 bg-primary px-6 py-2 text-white transition"
+                    className="hover:shadow-button rounded-md border-2 border-foreground bg-primary px-6 py-2 text-white transition"
                   >
                     Brosur PPDB
                   </Link>
