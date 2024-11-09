@@ -66,7 +66,7 @@ export default function NewsPlugin() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="mx-auto w-full justify-center overflow-hidden py-8">
+    <div className="mx-auto my-8 w-full max-w-full justify-center overflow-hidden">
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
         BERITA TERBARU
       </h2>
@@ -76,7 +76,7 @@ export default function NewsPlugin() {
           opts={{
             align: "start",
           }}
-          className="mx-auto w-full max-w-5xl"
+          className="mx-auto w-full max-w-7xl"
         >
           <CarouselContent className="flex gap-4">
             {news.map((item) => (
@@ -86,7 +86,7 @@ export default function NewsPlugin() {
                   key={item.id}
                   passHref
                 >
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden rounded-md border-2 border-foreground transition hover:shadow-card">
                     <div className="flex flex-col sm:flex-row">
                       <div className="relative h-48 w-full sm:h-auto sm:w-2/5">
                         <Image
