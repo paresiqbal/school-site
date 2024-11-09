@@ -12,6 +12,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { CircleChevronRightIcon } from "lucide-react";
 
 interface NewsData {
   id: number;
@@ -76,8 +77,12 @@ export default function NewsPlugin() {
       </h2>
       <div className="mx-auto my-4 flex max-w-6xl justify-between">
         <p className="text-lg font-semibold">Update Berita Terbaru</p>
-        <Link href="/article/berita" className="text-primary">
+        <Link
+          href="/article/berita"
+          className="flex items-center justify-center text-primary"
+        >
           Lebih Banyak
+          <CircleChevronRightIcon size={18} className="ml-2 inline-block" />
         </Link>
       </div>
 
@@ -92,7 +97,6 @@ export default function NewsPlugin() {
             {news.map((item) => (
               <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
                 <div className="flex h-full flex-col overflow-hidden rounded-md border-2 border-foreground transition hover:shadow-lg">
-                  {/* Image Section with Fixed Height */}
                   <div className="relative h-48 w-full">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
@@ -103,7 +107,6 @@ export default function NewsPlugin() {
                     />
                   </div>
 
-                  {/* Content Section with Minimum Height */}
                   <div className="flex flex-1 flex-col justify-between p-4">
                     <div>
                       <div className="text-sm text-muted-foreground">
