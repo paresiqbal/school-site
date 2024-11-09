@@ -103,7 +103,7 @@ export default function NewsPlugin() {
                         <h2 className="mb-2 text-sm font-semibold">
                           {item.title}
                         </h2>
-                        <div className="flex items-center text-sm text-gray-500">
+                        <div className="flex items-center text-sm">
                           <time>{formatDate(item.created_at)}</time>
                         </div>
                       </div>
