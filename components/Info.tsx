@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
-interface NewsData {
+interface AnnouncementData {
   id: number;
   title: string;
   content: string;
@@ -20,15 +20,15 @@ interface AgendaData {
 }
 
 export default function InfoPlugin() {
-  const [news, setNews] = useState<NewsData[]>([]);
+  const [announcement, setAnnouncement] = useState<AnnouncementData[]>([]);
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchNews() {
+    async function fetchAnnouncement() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}`, {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -36,18 +36,18 @@ export default function InfoPlugin() {
         });
 
         if (!res.ok) {
-          throw new Error("Failed to fetch news.");
+          throw new Error("Failed to fetch announcement.");
         }
 
         const data = await res.json();
-        setNews(data);
+        setAnnouncement(data);
       } catch (error) {
         console.error(error);
-        setError("Gagal mengambil berita. Coba lagi nanti.");
+        setError("Gagal mengambil pengumuman. Coba lagi nanti.");
       }
     }
 
-    fetchNews();
+    fetchAnnouncement();
   }, []);
 
   useEffect(() => {
@@ -97,7 +97,7 @@ export default function InfoPlugin() {
           <p className="text-lg font-semibold">
             Informasi dan Pengumuman Terbaru
           </p>
-          {news.slice(0, 3).map((item) => (
+          {announcement.slice(0, 3).map((item) => (
             <Link href={`/article/berita/${item.id}`} key={item.id} passHref>
               <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
                 <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
