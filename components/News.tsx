@@ -12,7 +12,6 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Button } from "./ui/button";
 
 interface NewsData {
   id: number;
@@ -71,12 +70,18 @@ export default function NewsPlugin() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="mx-auto w-full max-w-full justify-center overflow-hidden bg-rose-50 px-4 py-8 dark:bg-accent">
+    <div className="mx-auto w-full max-w-full justify-center overflow-hidden px-4 py-8">
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
-        PRESTASI SISWA
+        BERITA TERBARU
       </h2>
+      <div className="mx-auto my-4 flex max-w-6xl justify-between">
+        <p className="text-lg font-semibold">Update Berita Terbaru</p>
+        <Link href="/article/berita" className="text-primary">
+          Lebih Banyak
+        </Link>
+      </div>
 
-      <div className="flex justify-center">
+      <div className="justify-center">
         <Carousel
           opts={{
             align: "start",
@@ -125,13 +130,6 @@ export default function NewsPlugin() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-      </div>
-      <div className="mt-8 flex justify-center">
-        <Link href="/article/berita">
-          <Button className="hover:shadow-button border-2 border-foreground">
-            Lihat Semua
-          </Button>
-        </Link>
       </div>
     </div>
   );
