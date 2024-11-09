@@ -118,9 +118,11 @@ export default function NewsPlugin() {
         </Carousel>
       </div>
       <div className="mt-8 flex justify-center">
-        <Button className="hover:shadow-button border-2 border-foreground">
-          Lihat Semua
-        </Button>
+        <Link href="/article/berita">
+          <Button className="hover:shadow-button border-2 border-foreground">
+            Lihat Semua
+          </Button>
+        </Link>
       </div>
     </div>
   );
