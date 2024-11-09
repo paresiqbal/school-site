@@ -111,7 +111,7 @@ export default function InfoPlugin() {
         </div>
 
         <div className="mt-8 flex flex-col gap-4">
-          <p className="text-lg font-semibold">Agenda Terbaru</p>
+          <p className="text-lg font-semibold">Jadwal dan Agenda Terdekat</p>
           {agenda.slice(0, 4).map((item) => (
             <Link href={`/article/agenda/${item.id}`} key={item.id} passHref>
               <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
