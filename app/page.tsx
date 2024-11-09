@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { CarouselPlugin } from "@/components/Carousel";
 import Sambutan from "@/components/Sambutan";
+import InfoPlugin from "@/components/Info";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
@@ -18,8 +19,9 @@ export default function Home() {
       <Navbar />
       <div className="min-h-screen items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
         <CarouselPlugin />
-        <main className="row-start-2 flex w-full flex-col items-center justify-center gap-8 sm:items-start">
+        <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
           <Sambutan />
+          <InfoPlugin />
         </main>
         <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6"></footer>
       </div>

@@ -60,21 +60,18 @@ export default function InfoPlugin() {
   if (error) return <p className="text-red-600">{error}</p>;
 
   return (
-    <div className="rounded-lg bg-gray-100 p-6 shadow-sm">
-      <h2 className="mb-4 text-2xl font-bold text-gray-800">
-        Informasi dan Berita Terbaru
-      </h2>
+    <div className="mx-auto w-full max-w-5xl overflow-hidden px-4 py-8">
+      <h2 className="mb-4 text-sm text-muted-foreground">INFO & PENGUMUMAN</h2>
       <div className="flex flex-col gap-4">
-        {news.map((item) => (
-          <Link href={`/news/${item.id}`} key={item.id} passHref>
-            <div className="group transform cursor-pointer rounded-lg border-2 border-gray-300 bg-white p-6 transition-transform hover:scale-105 hover:shadow-lg">
-              <h3 className="mb-2 text-xl font-semibold text-gray-800 group-hover:text-blue-600">
-                {item.title}
-              </h3>
-              <p className="mb-2 text-gray-700">
-                {graphingText(item.content, 50)}
-              </p>
-              <p className="text-sm text-gray-500">
+        <p className="text-lg font-semibold">
+          Informasi dan Pengumuman Terbaru
+        </p>
+        {news.slice(0, 3).map((item) => (
+          <Link href={`/article/berita/${item.id}`} key={item.id} passHref>
+            <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
+              <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
+              <p className="mb-2 text-sm">{graphingText(item.content, 90)}</p>
+              <p className="text-sm text-muted-foreground">
                 {formatDate(item.created_at)}
               </p>
             </div>
