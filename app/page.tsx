@@ -9,6 +9,7 @@ import PrestasiPlugin from "@/components/Prestasi";
 import NewsPlugin from "@/components/News";
 import SambutanPlugin from "@/components/Sambutan";
 import KepsekPlugin from "@/components/Kepsek";
+import GalleryPlugin from "@/components/GalleryPlugin";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
@@ -25,6 +26,7 @@ export default function Home() {
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
           <SambutanPlugin />
           <KepsekPlugin />
+          <GalleryPlugin />
           <InfoPlugin />
           <PrestasiPlugin />
           <NewsPlugin />
