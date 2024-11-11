@@ -121,6 +121,12 @@ export default function PrestasiPlugin() {
           </Button>
         </Link>
       </div>
+
+      {error && (
+        <div className="mb-4 rounded-md bg-red-100 p-4 text-center text-red-700 dark:bg-red-200">
+          {error}
+        </div>
+      )}
     </div>
   );
 }

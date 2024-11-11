@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface AnnouncementData {
   id: number;
@@ -43,7 +44,7 @@ export default function InfoPlugin() {
         setAnnouncement(data);
       } catch (error) {
         console.error(error);
-        setError("Gagal mengambil pengumuman. Coba lagi nanti.");
+        setError("Server sedang error coba lagi nanti.");
       }
     }
 
@@ -64,7 +65,7 @@ export default function InfoPlugin() {
         setAgenda(data);
       } catch (error) {
         console.error(error);
-        setError("Failed to load agenda. Please try again.");
+        setError("Server sedang error coba lagi nanti.");
       }
     }
 
@@ -87,7 +88,19 @@ export default function InfoPlugin() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  if (error) return <p className="text-red-600">{error}</p>;
+  if (error)
+    return (
+      <div className="mx-auto flex max-w-sm flex-col items-center py-2">
+        <Image
+          src="/assets/500error.svg"
+          width={200}
+          height={200}
+          alt="error"
+          className="mb-4 opacity-90"
+        />
+        <p className="text-center text-lg font-bold text-red-600">{error}</p>
+      </div>
+    );
 
   return (
     <div className="mx-auto w-full max-w-6xl overflow-hidden px-4 py-8">
