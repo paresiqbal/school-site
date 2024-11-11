@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Kepsek() {
   return (
-    <section className="mx-auto w-full max-w-5xl px-4 py-12 font-[family-name:var(--font-geist-sans)]">
+    <section className="mx-auto w-full max-w-7xl px-4 py-12 font-[family-name:var(--font-geist-sans)]">
       <h2 className="mb-4 text-sm text-muted-foreground">
         Sambutan Kepala Sekolah
       </h2>
