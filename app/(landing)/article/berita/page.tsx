@@ -69,7 +69,7 @@ export default function Berita() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 font-[family-name:var(--font-geist-sans)] md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8">
         <h1 className="scroll-m-20 text-balance text-4xl font-bold tracking-tight lg:text-5xl">
           Berita
