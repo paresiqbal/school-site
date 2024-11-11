@@ -78,7 +78,7 @@ export default function AnnouncementDetails(props: {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="container mx-auto max-w-2xl py-8">
+    <div className="container mx-auto max-w-2xl py-8 font-[family-name:var(--font-geist-sans)]">
       <Toaster />
 
       {announcement ? (
