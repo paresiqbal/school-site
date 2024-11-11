@@ -13,8 +13,8 @@ import {
 export function CarouselPlugin() {
   const autoScrollPlugin = React.useRef(
     AutoScroll({
-      speed: 2,
-      startDelay: 1000,
+      speed: 3,
+      startDelay: 0,
       direction: "forward",
       stopOnInteraction: false,
       stopOnMouseEnter: false,
@@ -32,15 +32,18 @@ export function CarouselPlugin() {
   return (
     <Carousel
       plugins={[autoScrollPlugin.current]}
-      className="w-full max-w-2xl lg:max-w-7xl"
+      className="w-full max-w-2xl lg:max-w-6xl"
       onMouseEnter={autoScrollPlugin.current.stop}
       onMouseLeave={autoScrollPlugin.current.reset}
+      opts={{
+        loop: true,
+      }}
     >
       <CarouselContent>
         {slides.map((slide) => (
           <CarouselItem key={slide.id}>
             <div className="p-2">
-              <Card className="no-shadow h-48">
+              <Card className="no-shadow h-[400px]">
                 <CardContent className="flex h-full items-center justify-center p-4">
                   <span className="text-4xl font-semibold">
                     {slide.content}
