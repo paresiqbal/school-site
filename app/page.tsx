@@ -26,10 +26,10 @@ export default function Home() {
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
           <SambutanPlugin />
           <KepsekPlugin />
-          <GalleryPlugin />
           <InfoPlugin />
           <PrestasiPlugin />
           <NewsPlugin />
+          <GalleryPlugin />
         </main>
         <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6"></footer>
       </div>
