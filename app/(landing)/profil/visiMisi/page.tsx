@@ -24,7 +24,7 @@ export default function MissionVisionGoals() {
   ];
 
   return (
-    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 font-[family-name:var(--font-geist-sans)] md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="scroll-m-20 text-balance text-4xl font-bold tracking-tight lg:text-5xl">
           SMK Negeri 1 Rejang Lebong
@@ -60,7 +60,7 @@ export default function MissionVisionGoals() {
             Visi Kami
           </div>
           <div className="flex-grow">
-            <p className="font-sans text-lg">
+            <p className="text-lg">
               Menjadi SMK Unggul dan Berdaya Saing di Tingkat Global tahun 2033
             </p>
           </div>
