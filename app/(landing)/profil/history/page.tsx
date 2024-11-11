@@ -9,7 +9,7 @@ export default function SchoolHistory() {
   ];
 
   return (
-    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:items-center md:justify-center md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 font-[family-name:var(--font-geist-sans)] md:items-center md:justify-center md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
           Sejarah
@@ -24,7 +24,7 @@ export default function SchoolHistory() {
           <h2 className="mb-8 text-center text-2xl font-semibold md:text-4xl">
             Tentang Sekolah
           </h2>
-          <p className="text-xl dark:text-white">
+          <p className="text-xl">
             <span className="font-semibold text-primary">
               SMK Negeri 1 Rejang Lebong
             </span>{" "}
@@ -54,7 +54,7 @@ export default function SchoolHistory() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 gap-6 py-8 text-white md:grid-cols-3 lg:w-full">
+      <div className="grid grid-cols-1 gap-6 py-8 md:grid-cols-3 lg:w-full">
         <div className="flex flex-col rounded-md border-2 border-foreground bg-primary/90 p-4 transition hover:bg-primary hover:shadow-card">
           <h3 className="text-2xl font-bold">Siswa</h3>
           <p className="mt-2 text-4xl font-bold">200+</p>
