@@ -32,7 +32,7 @@ export function CarouselPlugin() {
   return (
     <Carousel
       plugins={[autoScrollPlugin.current]}
-      className="w-full max-w-2xl lg:max-w-5xl"
+      className="w-full max-w-2xl lg:max-w-7xl"
       onMouseEnter={autoScrollPlugin.current.stop}
       onMouseLeave={autoScrollPlugin.current.reset}
     >

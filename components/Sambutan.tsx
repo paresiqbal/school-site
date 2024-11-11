@@ -3,7 +3,7 @@ import Link from "next/link";
 export default function Sambutan() {
   return (
     <div className="w-full overflow-hidden bg-rose-50 py-8 dark:bg-accent">
-      <div className="mx-auto max-w-5xl px-4">
+      <div className="mx-auto max-w-7xl px-4">
         <div className="mb-8 text-center md:text-left">
           <h2 className="mb-2 text-2xl font-bold md:text-3xl">
             SMK Negeri 1 Rejang Lebong

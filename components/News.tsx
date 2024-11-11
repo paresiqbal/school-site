@@ -71,7 +71,7 @@ export default function NewsPlugin() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="mx-auto w-full max-w-full justify-center overflow-hidden px-4 py-8">
+    <div className="mx-auto w-full max-w-7xl justify-center overflow-hidden px-4 py-8">
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
         BERITA TERBARU
       </h2>
