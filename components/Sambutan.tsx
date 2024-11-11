@@ -1,9 +1,9 @@
 import Link from "next/link";
 
-export default function Sambutan() {
+export default function SambutanPlugin() {
   return (
     <div className="w-full overflow-hidden bg-rose-50 py-8 dark:bg-accent">
-      <div className="mx-auto max-w-7xl px-4">
+      <div className="mx-auto max-w-6xl px-4">
         <div className="mb-8 text-center md:text-left">
           <h2 className="mb-2 text-2xl font-bold md:text-3xl">
             SMK Negeri 1 Rejang Lebong
@@ -44,18 +44,56 @@ export default function Sambutan() {
 
         <div className="mx-auto my-6 flex max-w-5xl flex-col items-center justify-center gap-4 px-2 md:px-0">
           <section className="grid grid-cols-2 gap-y-4 space-x-2 text-center md:flex md:justify-between md:space-x-20 md:text-left">
-            <p className="text-sm md:text-base">Teknik Komputer & Jaringan</p>
-            <p className="text-sm md:text-base">Teknik Bisnis Sepeda Motor</p>
-            <p className="text-sm md:text-base">Teknik Kendaraan Ringan</p>
-            <p className="text-sm md:text-base">Teknik Elektronika</p>
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
+              Teknik Komputer & Jaringan
+            </Link>
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
+              Teknik Kendaraan Ringan
+            </Link>
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
+              Teknik Bisnis Sepeda Motor
+            </Link>
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
+              Teknik Elektronika
+            </Link>
           </section>
           <section className="grid grid-cols-2 gap-y-4 text-center md:flex md:justify-between md:space-x-11 md:text-left">
-            <p className="text-sm md:text-base">Teknik Desain Pemodelan</p>
-            <p className="text-sm md:text-base">
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
+              Teknik Desain Pemodelan
+            </Link>
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
               Teknik Instalasi Tenaga Listrik
-            </p>
-            <p className="text-sm md:text-base">Teknik Pengelasan</p>
-            <p className="text-sm md:text-base">Teknik Mesin</p>
+            </Link>
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
+              Teknik Pengelasan
+            </Link>
+            <Link
+              href="/major/tkj"
+              className="cursor-pointer text-sm decoration-primary decoration-2 underline-offset-4 hover:underline md:text-base"
+            >
+              Teknik Mesin
+            </Link>
           </section>
         </div>
       </div>
