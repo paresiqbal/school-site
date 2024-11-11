@@ -7,8 +7,8 @@ import { CarouselPlugin } from "@/components/Carousel";
 import InfoPlugin from "@/components/Info";
 import PrestasiPlugin from "@/components/Prestasi";
 import NewsPlugin from "@/components/News";
-import Kepsek from "@/components/Kepsek";
 import SambutanPlugin from "@/components/Sambutan";
+import KepsekPlugin from "@/components/Kepsek";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
@@ -24,7 +24,7 @@ export default function Home() {
         <CarouselPlugin />
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
           <SambutanPlugin />
-          <Kepsek />
+          <KepsekPlugin />
           <InfoPlugin />
           <PrestasiPlugin />
           <NewsPlugin />

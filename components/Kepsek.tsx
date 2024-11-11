@@ -1,11 +1,9 @@
 import Image from "next/image";
 
-export default function Kepsek() {
+export default function KepsekPlugin() {
   return (
     <section className="mx-auto w-full max-w-7xl px-4 py-12 font-[family-name:var(--font-geist-sans)]">
-      <h2 className="mb-4 text-sm text-muted-foreground">
-        Sambutan Kepala Sekolah
-      </h2>
+      <h2 className="text-sm text-muted-foreground">SAMBUTAN</h2>
       <div className="lg:flex lg:gap-10">
         <div className="flex-shrink-0">
           <Image
@@ -13,14 +11,14 @@ export default function Kepsek() {
             width={500}
             height={800}
             alt="Kepala Sekolah"
-            className="rounded-lg shadow-md"
+            className="rounded-md"
           />
         </div>
-        <div className="mt-6 lg:mt-0 lg:flex lg:flex-col lg:justify-center">
+        <div className="mt-6 lg:mt-0 lg:flex lg:flex-col">
           <h3 className="mb-4 text-lg font-semibold text-primary">
-            Informasi dan Pengumuman Terbaru
+            Sambutan Kepala Sekolah
           </h3>
-          <p className="space-y-4 leading-relaxed text-gray-700">
+          <p className="space-y-4 leading-relaxed">
             Assalamualaikum Warahmatullah Wabarakatuh. Alhamdulillah, kami
             bersyukur kepada Allah SWT karena dengan rahmat dan karunia-Nya,
             akhirnya kami dapat memperbarui Website SMK Negeri 1 Rejang Lebong.
@@ -30,7 +28,7 @@ export default function Kepsek() {
             berharap semua pihak dapat mengakses informasi mengenai profil
             sekolah, kegiatan, dan fasilitas kami.
           </p>
-          <p className="space-y-4 leading-relaxed text-gray-700">
+          <p className="space-y-4 leading-relaxed">
             Sebagai pimpinan sekolah, kami juga ingin menyampaikan terima kasih
             kepada tim pembuat website ini yang telah berusaha keras untuk
             memperkenalkan segala hal yang dimiliki oleh sekolah kami. Tentu
@@ -39,7 +37,7 @@ export default function Kepsek() {
             seluruh civitas akademika dan masyarakat umum untuk kemajuan Website
             SMK Negeri 1 Rejang Lebong ke depannya.
           </p>
-          <p className="space-y-4 leading-relaxed text-gray-700">
+          <p className="space-y-4 leading-relaxed">
             Kami berkomitmen untuk terus meningkatkan kualitas dan mengatasi
             kelemahan-kelemahan yang ada. Kami berharap Website SMK Negeri 1
             Rejang Lebong dapat menjadi wadah interaksi yang positif, baik antar
@@ -48,7 +46,7 @@ export default function Kepsek() {
             kita bekerja dan berkarya dengan harapan ridho dari Allah SWT dan
             keikhlasan yang tulus dalam hati, demi kemajuan anak bangsa.
           </p>
-          <p className="space-y-4 leading-relaxed text-gray-700">
+          <p className="space-y-4 leading-relaxed">
             Dengan semangat{" "}
             <strong>
               SMK BISA - SMK HEBAT - VOKASI KUAT - MENGUATKAN INDONESIA
@@ -59,10 +57,8 @@ export default function Kepsek() {
           <p className="mt-6 text-sm font-medium">
             Wassalammualaikum Warahmatullah Wabarakatuh
           </p>
-          <p className="mt-1 text-sm font-medium text-gray-700">
-            Dr. Asep Suparman, M.Pd.
-          </p>
-          <p className="text-sm font-medium text-gray-700">Kepala Sekolah</p>
+          <p className="mt-1 text-sm font-medium">Dr. Asep Suparman, M.Pd.</p>
+          <p className="text-sm font-medium">Kepala Sekolah</p>
         </div>
       </div>
     </section>
