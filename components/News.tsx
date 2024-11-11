@@ -79,7 +79,7 @@ export default function NewsPlugin() {
         <p className="text-lg font-semibold">Update Berita Terbaru</p>
         <Link
           href="/article/berita"
-          className="flex items-center justify-center text-primary"
+          className="flex items-center justify-center text-primary/80 hover:text-primary hover:underline"
         >
           Lebih Banyak
           <CircleChevronRightIcon size={18} className="ml-2 inline-block" />
