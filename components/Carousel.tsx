@@ -17,7 +17,7 @@ export function CarouselPlugin() {
       startDelay: 1000,
       direction: "forward",
       stopOnInteraction: false,
-      stopOnMouseEnter: true,
+      stopOnMouseEnter: false,
     }),
   );
 
