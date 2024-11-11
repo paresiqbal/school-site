@@ -71,7 +71,7 @@ export default function NewsPlugin() {
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
-    <div className="mx-auto w-full max-w-7xl justify-center overflow-hidden px-4 py-8">
+    <div className="mx-auto w-full justify-center bg-rose-50 px-4 py-8">
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
         BERITA TERBARU
       </h2>
@@ -96,7 +96,7 @@ export default function NewsPlugin() {
           <CarouselContent className="flex gap-4">
             {news.map((item) => (
               <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                <div className="flex h-full flex-col overflow-hidden rounded-md border-2 border-foreground transition hover:shadow-lg">
+                <div className="flex h-full flex-col rounded-md border-2 border-foreground transition hover:shadow-card">
                   <div className="relative h-48 w-full">
                     <Image
                       src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
@@ -121,7 +121,7 @@ export default function NewsPlugin() {
                     </div>
                     <Link
                       href={`/article/berita/${item.id}`}
-                      className="mt-4 inline-block font-semibold text-primary"
+                      className="mt-4 inline-block font-semibold text-primary hover:underline"
                     >
                       Baca selengkapnya
                     </Link>
