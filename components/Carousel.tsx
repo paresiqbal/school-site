@@ -43,11 +43,13 @@ export function CarouselPlugin() {
         {slides.map((slide) => (
           <CarouselItem key={slide.id}>
             <div className="p-2">
-              <div className="no-shadow h-[300px] rounded-md border-foreground">
+              <div className="no-shadow h-[300px] border-foreground">
                 <Image
                   src={slide.image}
                   alt={slide.content}
-                  className="h-full w-full object-cover"
+                  className="h-full w-full rounded-md object-cover"
+                  quality={100}
+                  priority
                   width={1000}
                   height={1000}
                 />
