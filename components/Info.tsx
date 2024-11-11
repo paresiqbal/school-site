@@ -90,7 +90,7 @@ export default function InfoPlugin() {
   if (error) return <p className="text-red-600">{error}</p>;
 
   return (
-    <div className="mx-auto w-full max-w-7xl overflow-hidden px-4 py-8">
+    <div className="mx-auto w-full max-w-6xl overflow-hidden px-4 py-8">
       <h2 className="text-sm text-muted-foreground">INFO & PENGUMUMAN</h2>
       <div className="items-baseline justify-between lg:flex lg:flex-row lg:gap-10">
         <div className="flex flex-col gap-4">
