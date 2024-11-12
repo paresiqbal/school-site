@@ -140,7 +140,7 @@ export default function Tkj() {
             ].map((course) => (
               <div
                 key={course}
-                className="transform rounded-md border-4 border-foreground bg-emerald-300/90 p-4 text-sm font-semibold shadow-card transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:text-background dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
+                className="transform rounded-md border-2 border-foreground bg-emerald-300/90 p-4 text-sm font-semibold shadow-card transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:text-background dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
               >
                 {course}
               </div>
@@ -162,7 +162,7 @@ export default function Tkj() {
             ].map((career) => (
               <div
                 key={career}
-                className="transform border-4 border-black bg-emerald-300/80 p-4 text-sm font-semibold shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)] dark:hover:shadow-[4px_4px_0px_rgba(255,255,255,1)] dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
+                className="transform rounded-md border-2 border-foreground bg-emerald-300/90 p-4 text-sm font-semibold shadow-card transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:text-background dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
               >
                 {career}
               </div>
