@@ -66,7 +66,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/profil/visiMisi"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Visi Dan Misi
                     </Link>
@@ -74,7 +74,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/profil/facility"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Fasilitas
                     </Link>
@@ -82,7 +82,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/profil/history"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Sejarah
                     </Link>
@@ -97,7 +97,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/major/tkj"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Komputer & Jaringan
                     </Link>
@@ -105,7 +105,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/major/tbsm"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Bisnis Sepeda Motor
                     </Link>
@@ -113,7 +113,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/major/tkr"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Kendaraan Ringan
                     </Link>
@@ -121,7 +121,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/major/tei"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Elektronika
                     </Link>
@@ -129,7 +129,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/major/dpib"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Desain Permodelan
                     </Link>
@@ -137,7 +137,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/major/titl"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Instalasti Tenaga Listrik
                     </Link>
@@ -145,7 +145,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/major/las"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Pengelasan
                     </Link>
@@ -160,7 +160,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/article/berita"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Berita
                     </Link>
@@ -168,7 +168,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/article/pengumuman"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Pengumuman
                     </Link>
@@ -176,7 +176,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/article/agenda"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Agenda
                     </Link>
@@ -191,7 +191,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/guide/registration"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Pendaftaran
                     </Link>
@@ -199,7 +199,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/guide/school-fee"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Biaya Sekolah
                     </Link>
@@ -207,7 +207,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/guide/calendar-academic"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Kalender Akademik
                     </Link>
@@ -215,7 +215,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/guide/faq"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       FAQ
                     </Link>
@@ -223,7 +223,7 @@ export default function Navbar() {
                   <DropdownMenuItem>
                     <Link
                       href="/guide/download"
-                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
                       Download
                     </Link>
@@ -232,7 +232,7 @@ export default function Navbar() {
               </DropdownMenu>
               <Link
                 href="/contact"
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 Kontak
               </Link>
