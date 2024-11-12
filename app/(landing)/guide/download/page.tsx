@@ -26,7 +26,7 @@ export default function Download() {
   ];
 
   return (
-    <div className="mx-auto mb-8 max-w-[1200px] pt-6 md:pt-12">
+    <div className="mx-auto mb-8 max-w-[1200px] pt-6 font-[family-name:var(--font-geist-sans)] md:pt-12">
       <div className="pb-4 text-center">
         <h1 className="mb-4 text-3xl font-bold md:text-5xl">Downloads</h1>
       </div>

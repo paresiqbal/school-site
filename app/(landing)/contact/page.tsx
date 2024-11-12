@@ -2,7 +2,7 @@ import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function Contact() {
   return (
-    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 md:pt-12">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 font-[family-name:var(--font-geist-sans)] md:pt-12">
       <div className="space-y-2 pb-8 text-center">
         <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
           Kontak
