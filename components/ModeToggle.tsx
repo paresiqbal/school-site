@@ -7,15 +7,25 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 
 export function ModeToggle() {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const toggleTheme = () => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
+  if (!mounted) {
+    // Render nothing on the first pass until the theme is resolved
+    return null;
+  }
+
   return (
     <Button variant="outline" size="icon" onClick={toggleTheme}>
-      {theme === "light" ? (
+      {resolvedTheme === "light" ? (
         <MoonIcon className="h-[1.2rem] w-[1.2rem]" />
       ) : (
         <SunIcon className="h-[1.2rem] w-[1.2rem]" />
