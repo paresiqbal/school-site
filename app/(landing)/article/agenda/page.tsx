@@ -72,7 +72,7 @@ export default function Agenda() {
         {agenda.map((item) => (
           <Card
             key={item.id}
-            className="rounded-md border-2 border-foreground bg-card p-2 hover:shadow-card"
+            className="rounded-md border-2 border-foreground bg-card p-2 transition hover:shadow-card"
           >
             <div className="w-full">
               <Image

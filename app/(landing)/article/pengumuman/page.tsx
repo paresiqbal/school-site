@@ -86,8 +86,8 @@ export default function Pengumuman() {
               <span className="text-sm text-muted-foreground md:text-base">
                 {formatDate(item.created_at)}
               </span>
-              <span className="hover:shadow-button cursor-pointer rounded-md border-2 border-foreground px-2 py-1 text-xs hover:bg-primary md:text-sm">
-                tags
+              <span className="hover:shadow-button cursor-pointer rounded-md border-2 border-foreground px-2 py-1 text-xs transition hover:bg-primary md:text-sm">
+                pengumuman
               </span>
             </div>
 
@@ -99,7 +99,7 @@ export default function Pengumuman() {
             </div>
 
             <div className="flex w-full flex-col md:w-3/4">
-              <div className="relative rounded-md border-2 border-foreground hover:shadow-card">
+              <div className="relative rounded-md border-2 border-foreground transition hover:shadow-card">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
                   width={500}
