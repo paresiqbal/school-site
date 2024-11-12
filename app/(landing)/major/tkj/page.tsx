@@ -21,7 +21,7 @@ import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 
 export default function Tkj() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true }),
+    Autoplay({ delay: 2000, stopOnInteraction: false }),
   );
 
   const images = [
@@ -46,15 +46,20 @@ export default function Tkj() {
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Carousel
-            plugins={[plugin.current]}
-            className="w-full hover:shadow-card"
+            plugins={[
+              plugin.current,
+              Autoplay({
+                delay: 2000,
+              }),
+            ]}
+            className="w-full transition hover:shadow-card"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
               {images.map((src, index) => (
                 <CarouselItem key={index}>
-                  <div className="aspect-[4/3] w-full border-4 border-foreground">
+                  <div className="aspect-[4/3] w-full rounded-md border-4 border-foreground">
                     <Image
                       src={src}
                       alt={`TKJ Image ${index + 1}`}
