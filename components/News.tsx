@@ -68,7 +68,19 @@ export default function NewsPlugin() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  if (error) return <p className="text-destructive">{error}</p>;
+  if (error)
+    return (
+      <div className="mx-auto flex max-w-sm flex-col items-center py-2">
+        <Image
+          src="/assets/500error.svg"
+          width={200}
+          height={200}
+          alt="error"
+          className="mb-4 opacity-90"
+        />
+        <p className="text-center text-lg font-bold text-red-600">{error}</p>
+      </div>
+    );
 
   return (
     <div className="mx-auto w-full justify-center bg-rose-50 px-4 py-8">

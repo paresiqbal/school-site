@@ -45,7 +45,7 @@ export default function PrestasiPlugin() {
         setNews(data);
       } catch (error) {
         console.error(error);
-        setError("Gagal mengambil berita. Coba lagi nanti.");
+        setError("Gagal mengambil prestasi siswa. Coba lagi nanti.");
       }
     }
 
@@ -64,7 +64,19 @@ export default function PrestasiPlugin() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  if (error) return <p className="text-destructive">{error}</p>;
+  if (error)
+    return (
+      <div className="mx-auto flex max-w-sm flex-col items-center py-2">
+        <Image
+          src="/assets/500error.svg"
+          width={200}
+          height={200}
+          alt="error"
+          className="mb-4 opacity-90"
+        />
+        <p className="text-center text-lg font-bold text-red-600">{error}</p>
+      </div>
+    );
 
   return (
     <div className="mx-auto w-full justify-center bg-rose-50 px-4 py-8 dark:bg-accent">
@@ -121,12 +133,6 @@ export default function PrestasiPlugin() {
           </Button>
         </Link>
       </div>
-
-      {error && (
-        <div className="mb-4 rounded-md bg-red-100 p-4 text-center text-red-700 dark:bg-red-200">
-          {error}
-        </div>
-      )}
     </div>
   );
 }
