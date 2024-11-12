@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function GalleryPlugin() {
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-8">
+    <div className="mx-auto w-full max-w-6xl px-4 py-8 font-[family-name:var(--font-geist-sans)]">
       <h2 className="mb-6 text-sm uppercase tracking-wide text-gray-500">
         GALLERY
       </h2>
