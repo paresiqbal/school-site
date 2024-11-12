@@ -2,6 +2,9 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
+
+// ex lib
 import Autoplay from "embla-carousel-autoplay";
 
 // ui lib
@@ -16,18 +19,26 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 // icons
 import { BookOpen, BriefcaseIcon, Hammer, Users } from "lucide-react";
 
-export default function Tkr() {
+export default function Tkj() {
   const plugin = React.useRef(
-    Autoplay({ delay: 2000, stopOnInteraction: true }),
+    Autoplay({ delay: 2000, stopOnInteraction: false }),
   );
+
+  const images = [
+    "/assets/major/tkj/tkj1.jpg",
+    "/assets/major/tkj/tkj2.jpg",
+    "/assets/major/tkj/tkj3.jpg",
+    "/assets/major/tkj/tkj4.jpg",
+    "/assets/major/tkj/tkj5.jpg",
+  ];
 
   return (
     <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 font-[family-name:var(--font-geist-sans)] md:pt-12">
       <div className="space-y-2 pb-8">
-        <h1 className="mb-2 text-4xl font-bold dark:text-gray-300 md:mb-6 lg:text-5xl">
+        <h1 className="mb-2 text-balance text-4xl font-bold md:mb-6 md:text-5xl">
           Teknik Kendaraan Ringan
         </h1>
-        <p className="text-md mb-12 text-muted-foreground md:text-lg lg:text-xl">
+        <p className="text-md mb-12 text-muted-foreground md:text-lg">
           Selami dunia teknik kendaraan ringan.
         </p>
       </div>
@@ -35,22 +46,27 @@ export default function Tkr() {
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2">
           <Carousel
-            plugins={[plugin.current]}
-            className="w-full"
+            plugins={[
+              plugin.current,
+              Autoplay({
+                delay: 2000,
+              }),
+            ]}
+            className="w-full transition hover:shadow-card"
             onMouseEnter={plugin.current.stop}
             onMouseLeave={plugin.current.reset}
           >
             <CarouselContent>
-              {Array.from({ length: 5 }).map((_, index) => (
+              {images.map((src, index) => (
                 <CarouselItem key={index}>
-                  <div className="p-1">
-                    <div className="aspect-[4/3] w-full border-4 border-black shadow-[8px_8px_0px_rgba(0,0,0,1)] dark:border-white">
-                      <div className="flex h-full items-center justify-center p-4 md:p-6">
-                        <span className="text-3xl font-semibold md:text-4xl lg:text-5xl">
-                          {index + 1}
-                        </span>
-                      </div>
-                    </div>
+                  <div className="aspect-[4/3] w-full rounded-md border-4 border-foreground">
+                    <Image
+                      src={src}
+                      alt={`TKJ Image ${index + 1}`}
+                      width={800}
+                      height={600}
+                      className="h-full w-full object-cover"
+                    />
                   </div>
                 </CarouselItem>
               ))}
@@ -58,17 +74,20 @@ export default function Tkr() {
           </Carousel>
 
           <div className="my-8 max-w-none text-sm md:text-base lg:text-lg">
-            <p>
-              Teknik kendaraan ringan adalah program pendidikan yang mempelajari
-              tentang teknik perbaikan dan pemeliharaan kendaraan bermotor.
-              Program ini mengajarkan siswa tentang dasar-dasar mesin otomotif,
-              sistem bahan bakar, sistem kelistrikan otomotif, sistem transmisi,
-              dan lain-lain.
+            <p className="text-lg">
+              <span className="text-primary">
+                Teknik kendaraan ringan (TKR)
+              </span>{" "}
+              adalah program pendidikan yang mempelajari tentang teknik
+              perbaikan dan pemeliharaan kendaraan bermotor. Program ini
+              mengajarkan siswa tentang dasar-dasar mesin otomotif, sistem bahan
+              bakar, sistem kelistrikan otomotif, sistem transmisi, dan
+              lain-lain.
             </p>
           </div>
         </div>
 
-        <div className="rounded-md border-4 border-black bg-emerald-300/80 p-4 text-gray-800 shadow-[8px_8px_0px_rgba(0,0,0,1)] hover:bg-emerald-400 dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)]">
+        <div className="max-h-[530px] rounded-md border-2 border-foreground bg-emerald-300/90 p-4 transition hover:bg-emerald-400 hover:shadow-card dark:text-background">
           <h3 className="mb-2 text-2xl font-bold">Program Sorotan</h3>
           <p className="mb-4 text-base font-medium">
             Program Teknik Kendaraan Ringan menawarkan:
@@ -99,7 +118,7 @@ export default function Tkr() {
       </div>
 
       <Tabs defaultValue="courses" className="mt-8 md:mt-12">
-        <TabsList className="border-4 border-black">
+        <TabsList className="border-4 border-foreground">
           <TabsTrigger value="courses" className="font-bold">
             Materi Utama
           </TabsTrigger>
@@ -125,7 +144,7 @@ export default function Tkr() {
             ].map((course) => (
               <div
                 key={course}
-                className="transform border-4 border-black bg-emerald-300/80 p-4 text-sm font-semibold text-gray-800 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)] dark:hover:shadow-[4px_4px_0px_rgba(255,255,255,1)] md:text-lg"
+                className="transform rounded-md border-2 border-foreground bg-emerald-300/90 p-4 text-sm font-semibold shadow-card transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:text-background dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
               >
                 {course}
               </div>
@@ -136,21 +155,17 @@ export default function Tkr() {
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               "Mekanik atau Teknisi Kendaraan",
-              "Service Advisor",
-              "Quality Control di Pabrik Otomotif",
-              "Manajer Bengkel atau Supervisor",
-              "Pengusaha Bengkel",
-              "Teknisi Field Service",
-              "Pemasaran dan Sales Otomotif",
-              "Instruktur atau Pengajar",
-              "Spesialis Diagnostik",
-              "Teknisi Logistik atau Transportasi",
               "Modifikator Mobil",
-              "Bagian Suku Cadang atau Sparepart",
+              "Teknisi Logistik atau Transportasi",
+              "Spesialis Diagnostik",
+              "Instruktur atau Pengajar",
+              "Teknisi Field Service",
+              "Manajer Bengkel",
+              "Quality Control di Pabrik Otomotif",
             ].map((career) => (
               <div
                 key={career}
-                className="transform border-4 border-black bg-emerald-300/80 p-4 text-sm font-semibold text-gray-800 shadow-[8px_8px_0px_rgba(0,0,0,1)] transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 dark:border-white dark:shadow-[8px_8px_0px_rgba(255,255,255,1)] dark:hover:shadow-[4px_4px_0px_rgba(255,255,255,1)] md:text-lg"
+                className="transform rounded-md border-2 border-foreground bg-emerald-300/90 p-4 text-sm font-semibold shadow-card transition-all duration-150 ease-in-out hover:translate-y-1 hover:bg-emerald-400 hover:shadow-[4px_4px_0px_rgba(0,0,0,1)] active:translate-y-1 active:shadow-[2px_2px_0px_rgba(0,0,0,1)] dark:text-background dark:active:shadow-[2px_2px_0px_rgba(255,255,255,1)] md:text-lg"
               >
                 {career}
               </div>
@@ -166,7 +181,7 @@ export default function Tkr() {
         <Button
           asChild
           size="lg"
-          className="hover:shadow-button border-4 border-black dark:border-white"
+          className="hover:shadow-button border-2 border-foreground transition"
         >
           <Link href="/guide/registration">Daftar Sekarang</Link>
         </Button>
