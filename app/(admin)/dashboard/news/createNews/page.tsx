@@ -1,34 +1,21 @@
 "use client";
 
+import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import { useState, useContext } from "react";
-import { AppContext } from "@/context/AppContext";
-import { useForm } from "react-hook-form";
-
-// ex lib
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Toaster, toast } from "sonner";
-import { Content } from "@tiptap/react";
+import Image from "next/image";
 
 // ui lib
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { AppContext } from "@/context/AppContext";
 import {
   Card,
-  CardHeader,
   CardContent,
   CardDescription,
+  CardFooter,
+  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Toaster, toast } from "sonner";
+import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -39,109 +26,99 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
+import { Pencil, Trash2 } from "lucide-react";
 import Topbar from "@/components/Topbar";
-import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
 
-const formSchema = z.object({
-  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
-  content: z
-    .string()
-    .min(10, { message: "Content must be at least 10 characters." }),
-  image: z.any().optional(),
-});
-
-interface FormData {
+interface AchievementData {
+  id: number;
   title: string;
   content: string;
-  image?: FileList;
+  image?: string;
+  created_at: string;
 }
 
-export default function CreateNews() {
+export default function ListAchievement() {
   const { token } = useContext(AppContext);
-  const [serverError, setServerError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [value, setValue] = useState<Content>("");
+  const [achievement, setAchievement] = useState<AchievementData[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      content: "",
-      image: "",
-    },
-  });
+  useEffect(() => {
+    async function fetchAchievement() {
+      setError(null);
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_ACHIEVEMENT}`, {
+          cache: "no-cache",
+        });
 
-  async function handleCreate(data: FormData) {
-    setServerError(null);
-    setIsSubmitting(true);
+        if (!res.ok) {
+          throw new Error("Failed to fetch achievement.");
+        }
 
+        const data = await res.json();
+        setAchievement(data);
+        toast.success("Berita berhasil diambil");
+      } catch (error) {
+        console.error(error);
+        setError("Gagal mengambil berita. Coba lagi nanti.");
+        toast.error("Gagal mengambil berita");
+      }
+    }
+
+    fetchAchievement();
+  }, [token]);
+
+  const handleDelete = async (id: number) => {
     if (!token) {
-      form.setError("title", {
-        type: "server",
-        message: "Silahkan login terlebih dahulu.",
-      });
-      toast.error("Silahkan login terlebih dahulu.");
-      setIsSubmitting(false);
+      toast.error("Unauthorized. Please log in.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("content", data.content);
-
-    if (data.image && data.image[0]) {
-      formData.append("image", data.image[0]);
-    }
-
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
+      const res = await fetch(
+        `${process.env.NEXT_PUBLIC_API_ACHIEVEMENT}/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         },
-        body: formData,
-      });
+      );
 
-      const result = await res.json();
       if (!res.ok) {
-        throw new Error(result.message || "An error occurred");
+        throw new Error("Gagal menghapus berita.");
       }
 
-      if (res.status === 401) {
-        form.setError("title", {
-          type: "server",
-          message: "Unauthorized. Silakan masuk lagi.",
-        });
-        toast.error("Unauthorized. Silakan masuk lagi.");
-        return;
-      }
-
-      if (result.errors) {
-        Object.keys(result.errors).forEach((key) => {
-          form.setError(key as keyof FormData, {
-            type: "server",
-            message: result.errors[key][0],
-          });
-        });
-        toast.error(
-          "Terjadi kesalahan saat membuat berita. Harap periksa formulir.",
-        );
-      } else {
-        toast.success("Berita berhasil dibuat.");
-        form.reset();
-      }
+      setAchievement((prevAchievement) =>
+        prevAchievement.filter((item) => item.id !== id),
+      );
+      toast.success("Berita berhasil dihapus");
     } catch (error) {
-      console.error("Error when try to create news:", error);
-      setServerError("Error when try to create news.");
-      toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
-    } finally {
-      setIsSubmitting(false);
+      console.error("Error menghapus berita:", error);
+      toast.error("Gagal menghapus berita.");
     }
-  }
+  };
+
+  const graphingText = (text: string, limit: number) => {
+    return text.length > limit ? text.substring(0, limit) + "..." : text;
+  };
+
+  const formatDate = (dateString?: string | null): string => {
+    if (!dateString) return "Date not available";
+
+    const options: Intl.DateTimeFormatOptions = {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    };
+
+    return new Date(dateString).toLocaleDateString("en-US", options);
+  };
+
+  if (error) return <p className="text-destructive">{error}</p>;
 
   return (
     <div className="container mx-auto">
-      <div>
+      <div className="flex items-center justify-between pb-4">
         <div className="flex">
           <Topbar />
           <Breadcrumb className="hidden md:flex">
@@ -152,88 +129,65 @@ export default function CreateNews() {
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbItem>
-                <BreadcrumbLink asChild>
-                  <Link href="/dashboard/news">Daftar Berita</Link>
-                </BreadcrumbLink>
-              </BreadcrumbItem>
-              <BreadcrumbSeparator />
               <BreadcrumbPage>
-                <p>Buat Berita</p>
+                <p>Daftar Prestasi Siswa</p>
               </BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
       </div>
 
-      {/* Form create news */}
+      {/* Form */}
       <Toaster />
-      <Card>
-        <CardHeader>
-          <CardTitle>Buat Berita</CardTitle>
-          <CardDescription>
-            Isi formulir ini untuk membuat berita.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleCreate)}>
-              <FormField
-                control={form.control}
-                name="title"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Judul</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="Judul berita"
-                        {...field}
-                        className="w-full rounded-lg"
-                        disabled={isSubmitting}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="content"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Konten</FormLabel>
-                    <FormControl>
-                      <MinimalTiptapEditor
-                        value={value}
-                        onChange={(content) => {
-                          setValue(content);
-                          field.onChange(content);
-                        }}
-                        className="w-full"
-                        editorContentClassName="p-5"
-                        output="html"
-                        placeholder="Type your description here..."
-                        autofocus={true}
-                        editable={true}
-                        editorClassName="focus:outline-none"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              {serverError && <p className="text-destructive">{serverError}</p>}
-              <Button
-                type="submit"
-                className="mt-4 w-full rounded p-2 font-bold"
-                disabled={isSubmitting}
-              >
-                {isSubmitting ? "Membuat..." : "Buat Berita"}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
+      {achievement.length === 0 ? (
+        <p className="text-center text-gray-500">No achievement available.</p>
+      ) : (
+        achievement.map((item) => (
+          <Card
+            key={item.id}
+            className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
+          >
+            {item.image && (
+              <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
+                  alt={item.title}
+                  width={400}
+                  height={350}
+                  className="h-auto w-full rounded-lg object-cover"
+                />
+              </div>
+            )}
+            <div className="w-full md:w-3/4">
+              <CardHeader>
+                <CardTitle className="text-lg hover:underline md:text-xl">
+                  <Link href={`/dashboard/achievement/${item.id}`}>
+                    {item.title}
+                  </Link>
+                </CardTitle>
+                <CardDescription>{formatDate(item.created_at)}</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="italic">{graphingText(item.content, 120)}</p>
+              </CardContent>
+              <CardFooter className="flex gap-4">
+                <Link href={`/dashboard/achievement/${item.id}`}>
+                  <Button className="flex items-center gap-2">
+                    <Pencil className="h-4 w-4" />
+                  </Button>
+                </Link>
+                <Button
+                  variant="destructive"
+                  onClick={() => handleDelete(item.id)}
+                  className="flex items-center gap-2"
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+              </CardFooter>
+            </div>
+          </Card>
+        ))
+      )}
     </div>
   );
 }
