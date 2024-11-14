@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Content } from "@tiptap/react";
 import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
 
-export default function Achievement() {
+export default function CreateAchievement() {
   const [value, setValue] = useState<Content>("");
   return (
     <div>
