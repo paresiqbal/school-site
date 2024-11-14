@@ -89,6 +89,10 @@ export default function CreateNews() {
     formData.append("title", data.title);
     formData.append("content", data.content);
 
+    if (data.image && data.image[0]) {
+      formData.append("image", data.image[0]);
+    }
+
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
         method: "POST",
@@ -124,8 +128,8 @@ export default function CreateNews() {
         form.reset();
       }
     } catch (error) {
-      console.error("Terjadi kesalahan saat membuat berita:", error);
-      setServerError("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
+      console.error("Error when try to create news:", error);
+      setServerError("Error when try to create news.");
       toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
     } finally {
       setIsSubmitting(false);
