@@ -56,7 +56,7 @@ interface FormData {
   image?: FileList;
 }
 
-export default function CreateNews() {
+export default function CreateAchievement() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -100,7 +100,7 @@ export default function CreateNews() {
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_ACHIEVEMENT}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -127,14 +127,14 @@ export default function CreateNews() {
           });
         });
         toast.error(
-          "Terjadi kesalahan saat membuat berita. Harap periksa formulir.",
+          "Terjadi kesalahan saat membuat prestasi. Harap periksa formulir.",
         );
       } else {
-        toast.success("Berita berhasil dibuat.");
+        toast.success("Prestasi berhasil dibuat.");
         form.reset();
       }
     } catch (error) {
-      console.error("Terjadi kesalahan saat membuat berita:", error);
+      console.error("Terjadi kesalahan saat membuat prestasi:", error);
       setServerError("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
       toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
     } finally {
@@ -157,25 +157,25 @@ export default function CreateNews() {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dashboard/news">Daftar Berita</Link>
+                  <Link href="/dashboard/achievement">Daftar Prestasi</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbPage>
-                <p>Buat Berita</p>
+                <p>Buat Prestasi</p>
               </BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
       </div>
 
-      {/* Form create news */}
+      {/* Form create achievement */}
       <Toaster />
       <Card>
         <CardHeader>
-          <CardTitle>Buat Berita</CardTitle>
+          <CardTitle>Buat Prestasi</CardTitle>
           <CardDescription>
-            Isi formulir ini untuk membuat berita.
+            Isi formulir ini untuk membuat prestasi.
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -189,7 +189,7 @@ export default function CreateNews() {
                     <FormLabel>Judul</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Judul berita"
+                        placeholder="Judul prestasi"
                         {...field}
                         className="w-full rounded-lg"
                         disabled={isSubmitting}
@@ -209,7 +209,7 @@ export default function CreateNews() {
                       <FormControl>
                         <Textarea
                           rows={10}
-                          placeholder="Konten berita"
+                          placeholder="Konten prestasi"
                           {...field}
                           className="w-full rounded border bg-background p-2"
                           disabled={isSubmitting}
@@ -245,7 +245,7 @@ export default function CreateNews() {
                 className="mt-4 w-full rounded p-2 font-bold"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? "Membuat..." : "Buat Berita"}
+                {isSubmitting ? "Membuat..." : "Buat Prestasi"}
               </Button>
             </form>
           </Form>
