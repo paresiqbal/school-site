@@ -9,11 +9,11 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Toaster, toast } from "sonner";
+import { Content } from "@tiptap/react";
 
 // ui lib
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
   FormControl,
@@ -39,8 +39,8 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Paperclip } from "lucide-react";
 import Topbar from "@/components/Topbar";
+import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -60,7 +60,8 @@ export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
+  const [value, setValue] = useState<Content>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -71,11 +72,11 @@ export default function CreateNews() {
     },
   });
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedImage(event.target.files[0]);
-    }
-  };
+  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   if (event.target.files && event.target.files.length > 0) {
+  //     setSelectedImage(event.target.files[0]);
+  //   }
+  // };
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -95,9 +96,9 @@ export default function CreateNews() {
     formData.append("title", data.title);
     formData.append("content", data.content);
 
-    if (selectedImage) {
-      formData.append("image", selectedImage);
-    }
+    // if (selectedImage) {
+    //   formData.append("image", selectedImage);
+    // }
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
@@ -205,40 +206,31 @@ export default function CreateNews() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Konten</FormLabel>
-                    <div className="relative">
-                      <FormControl>
-                        <Textarea
-                          rows={10}
-                          placeholder="Konten berita"
-                          {...field}
-                          className="w-full rounded border bg-background p-2"
-                          disabled={isSubmitting}
-                        />
-                      </FormControl>
-
-                      <label
-                        htmlFor="fileInput"
-                        className="absolute bottom-4 right-4 cursor-pointer"
-                      >
-                        <Paperclip className="text-primary" />
-                      </label>
-                      <input
-                        id="fileInput"
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleFileChange}
+                    <FormControl>
+                      <MinimalTiptapEditor
+                        value={value}
+                        onChange={(content) => {
+                          setValue(content);
+                          field.onChange(content);
+                        }}
+                        className="w-full"
+                        editorContentClassName="p-5"
+                        output="html"
+                        placeholder="Type your description here..."
+                        autofocus={true}
+                        editable={true}
+                        editorClassName="focus:outline-none"
                       />
-                    </div>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {selectedImage && (
+              {/* {selectedImage && (
                 <p className="mt-2 text-sm text-primary underline">
                   Selected image: {selectedImage.name}
                 </p>
-              )}
+              )} */}
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
