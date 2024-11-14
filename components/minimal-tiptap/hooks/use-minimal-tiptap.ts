@@ -19,7 +19,7 @@ import {
   FileHandler,
 } from "../extensions";
 import { cn } from "@/lib/utils";
-import { fileToBase64, getOutput } from "../utils";
+import { fileToBase64, getOutput, randomId } from "../utils";
 import { useThrottle } from "../hooks/use-throttle";
 import { toast } from "sonner";
 
@@ -32,23 +32,6 @@ export interface UseMinimalTiptapEditorProps extends UseEditorOptions {
   onUpdate?: (content: Content) => void;
   onBlur?: (content: Content) => void;
 }
-
-const myCustomUploadFunction = async (file: File): Promise<string> => {
-  const formData = new FormData();
-  formData.append("image", file);
-
-  const response = await fetch(`${process.env.NEXT_PUBLIC_API_IMAGE_UPLOAD}`, {
-    method: "POST",
-    body: formData,
-  });
-
-  if (!response.ok) {
-    throw new Error("Image upload failed");
-  }
-
-  const data = await response.json();
-  return data.url;
-};
 
 const createExtensions = (placeholder: string) => [
   StarterKit.configure({
@@ -67,8 +50,20 @@ const createExtensions = (placeholder: string) => [
   Image.configure({
     allowedMimeTypes: ["image/*"],
     maxFileSize: 5 * 1024 * 1024,
-    allowBase64: false,
-    uploadFn: myCustomUploadFunction,
+    allowBase64: true,
+    uploadFn: async (file) => {
+      // NOTE: This is a fake upload function. Replace this with your own upload logic.
+      // This function should return the uploaded image URL.
+
+      // wait 3s to simulate upload
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      const src = await fileToBase64(file);
+
+      // either return { id: string | number, src: string } or just src
+      // return src;
+      return { id: randomId(), src };
+    },
     onImageRemoved({ id, src }) {
       console.log("Image removed", { id, src });
     },
