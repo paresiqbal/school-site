@@ -1,8 +1,10 @@
+// minimal-tiptap.js
+
 import * as React from "react";
-import type { Editor } from "@tiptap/react";
+import { useEditor } from "@tiptap/react";
+import { Editor } from "@tiptap/react";
 import type { Content, UseEditorOptions } from "@tiptap/react";
 import { StarterKit } from "@tiptap/starter-kit";
-import { useEditor } from "@tiptap/react";
 import { Typography } from "@tiptap/extension-typography";
 import { Placeholder } from "@tiptap/extension-placeholder";
 import { Underline } from "@tiptap/extension-underline";
@@ -17,11 +19,13 @@ import {
   UnsetAllMarks,
   ResetMarksOnEnter,
   FileHandler,
-} from "../extensions";
-import { cn } from "@/lib/utils";
-import { fileToBase64, getOutput, randomId } from "../utils";
-import { useThrottle } from "../hooks/use-throttle";
-import { toast } from "sonner";
+} from "../extensions"; // Adjust the import path as needed
+import { cn } from "@/lib/utils"; // Adjust the import path as needed
+import { getOutput } from "../utils"; // Adjust the import path as needed
+import { useThrottle } from "../hooks/use-throttle"; // Adjust the import path as needed
+import { toast } from "sonner"; // Adjust the import path or use your toast library
+import { useContext } from "react";
+import { AppContext } from "@/context/AppContext";
 
 export interface UseMinimalTiptapEditorProps extends UseEditorOptions {
   value?: Content;
@@ -33,7 +37,7 @@ export interface UseMinimalTiptapEditorProps extends UseEditorOptions {
   onBlur?: (content: Content) => void;
 }
 
-const createExtensions = (placeholder: string) => [
+const createExtensions = (placeholder: string, token: string | null) => [
   StarterKit.configure({
     horizontalRule: false,
     codeBlock: false,
@@ -50,22 +54,38 @@ const createExtensions = (placeholder: string) => [
   Image.configure({
     allowedMimeTypes: ["image/*"],
     maxFileSize: 5 * 1024 * 1024,
-    allowBase64: true,
+    allowBase64: false, // Disable base64 encoding
     uploadFn: async (file) => {
-      // NOTE: This is a fake upload function. Replace this with your own upload logic.
-      // This function should return the uploaded image URL.
+      const formData = new FormData();
+      formData.append("image", file);
 
-      // wait 3s to simulate upload
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_API_IMAGE_UPLOAD}`,
+          {
+            method: "POST",
+            body: formData,
+            headers: {
+              Authorization: `Bearer ${token}`, // Include the token in the header
+            },
+          },
+        );
 
-      const src = await fileToBase64(file);
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || "Image upload failed");
+        }
 
-      // either return { id: string | number, src: string } or just src
-      // return src;
-      return { id: randomId(), src };
+        const data = await response.json();
+        return data.url; // Return the URL of the uploaded image
+      } catch (error) {
+        console.error("Upload error:", error);
+        throw error; // This will trigger onActionError
+      }
     },
     onImageRemoved({ id, src }) {
       console.log("Image removed", { id, src });
+      // Optionally, send a request to your server to delete the image
     },
     onValidationError(errors) {
       errors.forEach((error) => {
@@ -99,25 +119,35 @@ const createExtensions = (placeholder: string) => [
     },
   }),
   FileHandler.configure({
-    allowBase64: true,
+    allowBase64: false, // Disable base64 encoding
     allowedMimeTypes: ["image/*"],
     maxFileSize: 5 * 1024 * 1024,
     onDrop: (editor, files, pos) => {
       files.forEach(async (file) => {
-        const src = await fileToBase64(file);
-        editor.commands.insertContentAt(pos, {
-          type: "image",
-          attrs: { src },
-        });
+        try {
+          const src = await editor.storage.uploadFn(file);
+          editor.commands.insertContentAt(pos, {
+            type: "image",
+            attrs: { src },
+          });
+        } catch (error) {
+          console.error("Drop upload error:", error);
+          // Handle error, e.g., show a toast notification
+        }
       });
     },
     onPaste: (editor, files) => {
       files.forEach(async (file) => {
-        const src = await fileToBase64(file);
-        editor.commands.insertContent({
-          type: "image",
-          attrs: { src },
-        });
+        try {
+          const src = await editor.storage.uploadFn(file);
+          editor.commands.insertContent({
+            type: "image",
+            attrs: { src },
+          });
+        } catch (error) {
+          console.error("Paste upload error:", error);
+          // Handle error, e.g., show a toast notification
+        }
       });
     },
     onValidationError: (errors) => {
@@ -150,6 +180,8 @@ export const useMinimalTiptapEditor = ({
   onBlur,
   ...props
 }: UseMinimalTiptapEditorProps) => {
+  const { token } = useContext(AppContext); // Access the token from context
+
   const throttledSetValue = useThrottle(
     (value: Content) => onUpdate?.(value),
     throttleDelay,
@@ -175,7 +207,7 @@ export const useMinimalTiptapEditor = ({
   );
 
   const editor = useEditor({
-    extensions: createExtensions(placeholder),
+    extensions: createExtensions(placeholder, token),
     editorProps: {
       attributes: {
         autocomplete: "off",
