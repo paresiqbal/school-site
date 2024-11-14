@@ -29,7 +29,7 @@ import {
 import { Pencil, Trash2 } from "lucide-react";
 import Topbar from "@/components/Topbar";
 
-interface AchievementData {
+interface NewsData {
   id: number;
   title: string;
   content: string;
@@ -37,25 +37,25 @@ interface AchievementData {
   created_at: string;
 }
 
-export default function ListAchievement() {
+export default function ListNews() {
   const { token } = useContext(AppContext);
-  const [achievement, setAchievement] = useState<AchievementData[]>([]);
+  const [news, setNews] = useState<NewsData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchAchievement() {
+    async function fetchNews() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_ACHIEVEMENT}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
           cache: "no-cache",
         });
 
         if (!res.ok) {
-          throw new Error("Failed to fetch achievement.");
+          throw new Error("Failed to fetch news.");
         }
 
         const data = await res.json();
-        setAchievement(data);
+        setNews(data);
         toast.success("Berita berhasil diambil");
       } catch (error) {
         console.error(error);
@@ -64,7 +64,7 @@ export default function ListAchievement() {
       }
     }
 
-    fetchAchievement();
+    fetchNews();
   }, [token]);
 
   const handleDelete = async (id: number) => {
@@ -74,23 +74,18 @@ export default function ListAchievement() {
     }
 
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_ACHIEVEMENT}/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}/${id}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-      );
+      });
 
       if (!res.ok) {
         throw new Error("Gagal menghapus berita.");
       }
 
-      setAchievement((prevAchievement) =>
-        prevAchievement.filter((item) => item.id !== id),
-      );
+      setNews((prevNews) => prevNews.filter((item) => item.id !== id));
       toast.success("Berita berhasil dihapus");
     } catch (error) {
       console.error("Error menghapus berita:", error);
@@ -139,10 +134,10 @@ export default function ListAchievement() {
 
       {/* Form */}
       <Toaster />
-      {achievement.length === 0 ? (
-        <p className="text-center text-gray-500">No achievement available.</p>
+      {news.length === 0 ? (
+        <p className="text-center text-gray-500">No news available.</p>
       ) : (
-        achievement.map((item) => (
+        news.map((item) => (
           <Card
             key={item.id}
             className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
@@ -161,9 +156,7 @@ export default function ListAchievement() {
             <div className="w-full md:w-3/4">
               <CardHeader>
                 <CardTitle className="text-lg hover:underline md:text-xl">
-                  <Link href={`/dashboard/achievement/${item.id}`}>
-                    {item.title}
-                  </Link>
+                  <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
                 </CardTitle>
                 <CardDescription>{formatDate(item.created_at)}</CardDescription>
               </CardHeader>
@@ -171,7 +164,7 @@ export default function ListAchievement() {
                 <p className="italic">{graphingText(item.content, 120)}</p>
               </CardContent>
               <CardFooter className="flex gap-4">
-                <Link href={`/dashboard/achievement/${item.id}`}>
+                <Link href={`/dashboard/news/${item.id}`}>
                   <Button className="flex items-center gap-2">
                     <Pencil className="h-4 w-4" />
                   </Button>
