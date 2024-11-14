@@ -93,9 +93,9 @@ export default function ListNews() {
     }
   };
 
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
+  // const graphingText = (text: string, limit: number) => {
+  //   return text.length > limit ? text.substring(0, limit) + "..." : text;
+  // };
 
   const formatDate = (dateString?: string | null): string => {
     if (!dateString) return "Date not available";
@@ -161,7 +161,10 @@ export default function ListNews() {
                 <CardDescription>{formatDate(item.created_at)}</CardDescription>
               </CardHeader>
               <CardContent>
-                <p className="italic">{graphingText(item.content, 120)}</p>
+                <div
+                  className="italic"
+                  dangerouslySetInnerHTML={{ __html: item.content }}
+                ></div>
               </CardContent>
               <CardFooter className="flex gap-4">
                 <Link href={`/dashboard/news/${item.id}`}>
