@@ -103,6 +103,9 @@ export default function CreateNews() {
       });
 
       const result = await res.json();
+      if (!res.ok) {
+        throw new Error(result.message || "An error occurred");
+      }
 
       if (res.status === 401) {
         form.setError("title", {
