@@ -144,7 +144,7 @@ export default function CreateNews() {
 
   return (
     <div className="container mx-auto">
-      <div className="flex items-center justify-between pb-4">
+      <div>
         <div className="flex">
           <Topbar />
           <Breadcrumb className="hidden md:flex">
