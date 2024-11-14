@@ -1,21 +1,34 @@
 "use client";
 
-import { useState, useEffect, useContext } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import { useState, useContext } from "react";
+import { AppContext } from "@/context/AppContext";
+import { useForm } from "react-hook-form";
+
+// ex lib
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Toaster, toast } from "sonner";
 
 // ui lib
-import { AppContext } from "@/context/AppContext";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import {
   Card,
+  CardHeader,
   CardContent,
   CardDescription,
-  CardFooter,
-  CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Toaster, toast } from "sonner";
-import { Button } from "@/components/ui/button";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -26,90 +39,108 @@ import {
 } from "@/components/ui/breadcrumb";
 
 // icons
-import { Pencil, Trash2 } from "lucide-react";
+import { Paperclip } from "lucide-react";
 import Topbar from "@/components/Topbar";
 
-interface NewsData {
-  id: number;
+const formSchema = z.object({
+  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
+  content: z
+    .string()
+    .min(10, { message: "Content must be at least 10 characters." }),
+  image: z.any().optional(),
+});
+
+interface FormData {
   title: string;
   content: string;
-  image?: string;
-  created_at: string;
+  image?: FileList;
 }
 
-export default function ListNews() {
+export default function CreateNews() {
   const { token } = useContext(AppContext);
-  const [news, setNews] = useState<NewsData[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
-  useEffect(() => {
-    async function fetchNews() {
-      setError(null);
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
-          cache: "no-cache",
-        });
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      title: "",
+      content: "",
+      image: "",
+    },
+  });
 
-        if (!res.ok) {
-          throw new Error("Failed to fetch news.");
-        }
-
-        const data = await res.json();
-        setNews(data);
-        toast.success("Berita berhasil diambil");
-      } catch (error) {
-        console.error(error);
-        setError("Gagal mengambil berita. Coba lagi nanti.");
-        toast.error("Gagal mengambil berita");
-      }
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setSelectedImage(event.target.files[0]);
     }
+  };
 
-    fetchNews();
-  }, [token]);
+  async function handleCreate(data: FormData) {
+    setServerError(null);
+    setIsSubmitting(true);
 
-  const handleDelete = async (id: number) => {
     if (!token) {
-      toast.error("Unauthorized. Please log in.");
+      form.setError("title", {
+        type: "server",
+        message: "Silahkan login terlebih dahulu.",
+      });
+      toast.error("Silahkan login terlebih dahulu.");
+      setIsSubmitting(false);
       return;
     }
 
+    const formData = new FormData();
+    formData.append("title", data.title);
+    formData.append("content", data.content);
+
+    if (selectedImage) {
+      formData.append("image", selectedImage);
+    }
+
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}/${id}`, {
-        method: "DELETE",
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
+        method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
         },
+        body: formData,
       });
 
-      if (!res.ok) {
-        throw new Error("Gagal menghapus berita.");
+      const result = await res.json();
+
+      if (res.status === 401) {
+        form.setError("title", {
+          type: "server",
+          message: "Unauthorized. Silakan masuk lagi.",
+        });
+        toast.error("Unauthorized. Silakan masuk lagi.");
+        return;
       }
 
-      setNews((prevNews) => prevNews.filter((item) => item.id !== id));
-      toast.success("Berita berhasil dihapus");
+      if (result.errors) {
+        Object.keys(result.errors).forEach((key) => {
+          form.setError(key as keyof FormData, {
+            type: "server",
+            message: result.errors[key][0],
+          });
+        });
+        toast.error(
+          "Terjadi kesalahan saat membuat berita. Harap periksa formulir.",
+        );
+      } else {
+        toast.success("Berita berhasil dibuat.");
+        form.reset();
+      }
     } catch (error) {
-      console.error("Error menghapus berita:", error);
-      toast.error("Gagal menghapus berita.");
+      console.error("Terjadi kesalahan saat membuat berita:", error);
+      setServerError("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
+      toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
+    } finally {
+      setIsSubmitting(false);
     }
-  };
-
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
-  const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  };
-
-  if (error) return <p className="text-destructive">{error}</p>;
+  }
 
   return (
     <div className="container mx-auto">
@@ -124,63 +155,102 @@ export default function ListNews() {
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dashboard/news">Daftar Berita</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
               <BreadcrumbPage>
-                <p>Daftar Prestasi Siswa</p>
+                <p>Buat Berita</p>
               </BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
       </div>
 
-      {/* Form */}
+      {/* Form create news */}
       <Toaster />
-      {news.length === 0 ? (
-        <p className="text-center text-gray-500">No news available.</p>
-      ) : (
-        news.map((item) => (
-          <Card
-            key={item.id}
-            className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
-          >
-            {item.image && (
-              <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
-                  alt={item.title}
-                  width={400}
-                  height={350}
-                  className="h-auto w-full rounded-lg object-cover"
-                />
-              </div>
-            )}
-            <div className="w-full md:w-3/4">
-              <CardHeader>
-                <CardTitle className="text-lg hover:underline md:text-xl">
-                  <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
-                </CardTitle>
-                <CardDescription>{formatDate(item.created_at)}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="italic">{graphingText(item.content, 120)}</p>
-              </CardContent>
-              <CardFooter className="flex gap-4">
-                <Link href={`/dashboard/news/${item.id}`}>
-                  <Button className="flex items-center gap-2">
-                    <Pencil className="h-4 w-4" />
-                  </Button>
-                </Link>
-                <Button
-                  variant="destructive"
-                  onClick={() => handleDelete(item.id)}
-                  className="flex items-center gap-2"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </CardFooter>
-            </div>
-          </Card>
-        ))
-      )}
+      <Card>
+        <CardHeader>
+          <CardTitle>Buat Berita</CardTitle>
+          <CardDescription>
+            Isi formulir ini untuk membuat berita.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(handleCreate)}>
+              <FormField
+                control={form.control}
+                name="title"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Judul</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Judul berita"
+                        {...field}
+                        className="w-full rounded-lg"
+                        disabled={isSubmitting}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="content"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Konten</FormLabel>
+                    <div className="relative">
+                      <FormControl>
+                        <Textarea
+                          rows={10}
+                          placeholder="Konten berita"
+                          {...field}
+                          className="w-full rounded border bg-background p-2"
+                          disabled={isSubmitting}
+                        />
+                      </FormControl>
+
+                      <label
+                        htmlFor="fileInput"
+                        className="absolute bottom-4 right-4 cursor-pointer"
+                      >
+                        <Paperclip className="text-primary" />
+                      </label>
+                      <input
+                        id="fileInput"
+                        type="file"
+                        accept="image/*"
+                        className="hidden"
+                        onChange={handleFileChange}
+                      />
+                    </div>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              {selectedImage && (
+                <p className="mt-2 text-sm text-primary underline">
+                  Selected image: {selectedImage.name}
+                </p>
+              )}
+              {serverError && <p className="text-destructive">{serverError}</p>}
+              <Button
+                type="submit"
+                className="mt-4 w-full rounded p-2 font-bold"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Membuat..." : "Buat Berita"}
+              </Button>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
     </div>
   );
 }
