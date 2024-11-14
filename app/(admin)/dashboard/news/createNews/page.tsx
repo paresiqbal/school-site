@@ -60,7 +60,6 @@ export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [value, setValue] = useState<Content>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -71,12 +70,6 @@ export default function CreateNews() {
       image: "",
     },
   });
-
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     setSelectedImage(event.target.files[0]);
-  //   }
-  // };
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -95,10 +88,6 @@ export default function CreateNews() {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.content);
-
-    // if (selectedImage) {
-    //   formData.append("image", selectedImage);
-    // }
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
@@ -226,11 +215,6 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
-              {/* {selectedImage && (
-                <p className="mt-2 text-sm text-primary underline">
-                  Selected image: {selectedImage.name}
-                </p>
-              )} */}
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
