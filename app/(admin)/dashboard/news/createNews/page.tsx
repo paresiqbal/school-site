@@ -53,8 +53,7 @@ export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  // const [selectedImage, setSelectedImage] = useState<File | null>(null);
-  const [content, setContent] = useState<string>(""); // State to store editor content
+  const [content, setContent] = useState<string>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -65,12 +64,6 @@ export default function CreateNews() {
     },
   });
 
-  // const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   if (event.target.files && event.target.files.length > 0) {
-  //     setSelectedImage(event.target.files[0]);
-  //   }
-  // };
-
   async function handleCreate(data: FormData) {
     setServerError(null);
     setIsSubmitting(true);
@@ -78,7 +71,7 @@ export default function CreateNews() {
     if (!token) {
       form.setError("title", {
         type: "server",
-        message: "Silahkan login terlebih dahulu.",
+        message: "Please login first.",
       });
       toast.error("Silahkan login terlebih dahulu.");
       setIsSubmitting(false);
@@ -87,11 +80,7 @@ export default function CreateNews() {
 
     const formData = new FormData();
     formData.append("title", data.title);
-    formData.append("content", content); // Use editor content here
-
-    // if (selectedImage) {
-    //   formData.append("image", selectedImage);
-    // }
+    formData.append("content", content);
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
@@ -107,7 +96,7 @@ export default function CreateNews() {
       if (res.status === 401) {
         form.setError("title", {
           type: "server",
-          message: "Unauthorized. Silakan masuk lagi.",
+          message: "Unauthorized. Please sign in again.",
         });
         toast.error("Unauthorized. Silakan masuk lagi.");
         return;
@@ -128,8 +117,8 @@ export default function CreateNews() {
         form.reset();
       }
     } catch (error) {
-      console.error("Terjadi kesalahan saat membuat berita:", error);
-      setServerError("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
+      console.error("Ups there is something wrong:", error);
+      setServerError("There is some error please try again.");
       toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
     } finally {
       setIsSubmitting(false);
@@ -205,11 +194,6 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
-              {/* {selectedImage && (
-                <p className="mt-2 text-sm text-primary underline">
-                  Selected image: {selectedImage.name}
-                </p>
-              )} */}
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
