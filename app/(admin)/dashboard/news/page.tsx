@@ -37,6 +37,27 @@ interface NewsData {
   created_at: string;
 }
 
+// Utility to strip HTML tags
+const stripHtmlTags = (html: string): string => {
+  if (!html) return "";
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
+
+// Utility to truncate text
+const truncateText = (text: string, limit: number): string => {
+  if (text.length <= limit) return text;
+  return text.substring(0, limit).trimEnd() + "...";
+};
+
+// Utility to extract the first image URL from content
+const extractImageUrl = (html: string): string | null => {
+  if (!html) return null;
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const img = doc.querySelector("img");
+  return img ? img.src : null;
+};
+
 export default function ListNews() {
   const { token } = useContext(AppContext);
   const [news, setNews] = useState<NewsData[]>([]);
@@ -93,10 +114,6 @@ export default function ListNews() {
     }
   };
 
-  // const graphingText = (text: string, limit: number) => {
-  //   return text.length > limit ? text.substring(0, limit) + "..." : text;
-  // };
-
   const formatDate = (dateString?: string | null): string => {
     if (!dateString) return "Date not available";
 
@@ -132,57 +149,62 @@ export default function ListNews() {
         </div>
       </div>
 
-      {/* Form */}
       <Toaster />
       {news.length === 0 ? (
         <p className="text-center text-gray-500">No news available.</p>
       ) : (
-        news.map((item) => (
-          <Card
-            key={item.id}
-            className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
-          >
-            {item.image && (
-              <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
-                  alt={item.title}
-                  width={400}
-                  height={350}
-                  className="h-auto w-full rounded-lg object-cover"
-                />
-              </div>
-            )}
-            <div className="w-full md:w-3/4">
-              <CardHeader>
-                <CardTitle className="text-lg hover:underline md:text-xl">
-                  <Link href={`/dashboard/news/${item.id}`}>{item.title}</Link>
-                </CardTitle>
-                <CardDescription>{formatDate(item.created_at)}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div
-                  className="italic"
-                  dangerouslySetInnerHTML={{ __html: item.content }}
-                ></div>
-              </CardContent>
-              <CardFooter className="flex gap-4">
-                <Link href={`/dashboard/news/${item.id}`}>
-                  <Button className="flex items-center gap-2">
-                    <Pencil className="h-4 w-4" />
+        news.map((item) => {
+          const imageUrl = item.image
+            ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`
+            : extractImageUrl(item.content);
+
+          const contentText = truncateText(stripHtmlTags(item.content), 150);
+
+          return (
+            <Card key={item.id} className="mb-4 flex flex-row items-start p-4">
+              {imageUrl && (
+                <div className="mr-4 w-1/4">
+                  <Image
+                    src={imageUrl}
+                    alt={item.title}
+                    width={400}
+                    height={350}
+                    className="h-48 w-full rounded-lg object-cover"
+                  />
+                </div>
+              )}
+              <div className="w-3/4">
+                <CardHeader>
+                  <CardTitle className="text-lg hover:underline md:text-xl">
+                    <Link href={`/dashboard/news/${item.id}`}>
+                      {item.title}
+                    </Link>
+                  </CardTitle>
+                  <CardDescription>
+                    {formatDate(item.created_at)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="italic">{contentText}</p>
+                </CardContent>
+                <CardFooter className="flex gap-4">
+                  <Link href={`/dashboard/news/${item.id}`}>
+                    <Button className="flex items-center gap-2">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleDelete(item.id)}
+                    className="flex items-center gap-2"
+                  >
+                    <Trash2 className="h-4 w-4" />
                   </Button>
-                </Link>
-                <Button
-                  variant="destructive"
-                  onClick={() => handleDelete(item.id)}
-                  className="flex items-center gap-2"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </CardFooter>
-            </div>
-          </Card>
-        ))
+                </CardFooter>
+              </div>
+            </Card>
+          );
+        })
       )}
     </div>
   );
