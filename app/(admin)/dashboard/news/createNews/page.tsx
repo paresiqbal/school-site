@@ -33,7 +33,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Topbar from "@/components/Topbar";
-import Tiptap from "@/components/Tiptap"; // Import the Tiptap component
+import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -53,14 +53,13 @@ export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [content, setContent] = useState<string>("");
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       content: "",
-      image: "",
+      image: undefined,
     },
   });
 
@@ -80,7 +79,11 @@ export default function CreateNews() {
 
     const formData = new FormData();
     formData.append("title", data.title);
-    formData.append("content", content);
+    formData.append("content", data.content);
+
+    if (data.image && data.image.length > 0) {
+      formData.append("image", data.image[0]);
+    }
 
     try {
       const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
@@ -114,7 +117,10 @@ export default function CreateNews() {
         );
       } else {
         toast.success("Berita berhasil dibuat.");
-        form.reset();
+        form.reset({
+          title: "",
+          content: "",
+        });
       }
     } catch (error) {
       console.error("Ups there is something wrong:", error);
@@ -134,7 +140,7 @@ export default function CreateNews() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dasboard">Dashboard</Link>
+                  <Link href="/dashboard">Dashboard</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -163,6 +169,7 @@ export default function CreateNews() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleCreate)}>
+              {/* Title Field */}
               <FormField
                 control={form.control}
                 name="title"
@@ -181,19 +188,34 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
+
+              {/* Content Field */}
               <FormField
                 control={form.control}
                 name="content"
-                render={() => (
+                render={({ field }) => (
                   <FormItem>
                     <FormLabel>Konten</FormLabel>
                     <FormControl>
-                      <Tiptap setContent={setContent} />
+                      <MinimalTiptapEditor
+                        value={field.value || ""}
+                        onChange={(newValue) => {
+                          field.onChange(newValue);
+                        }}
+                        className="w-full"
+                        editorContentClassName="p-5"
+                        output="html"
+                        placeholder="Type your description here..."
+                        autofocus={true}
+                        editable={true}
+                        editorClassName="focus:outline-none"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
+
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
