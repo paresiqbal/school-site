@@ -211,9 +211,10 @@ export const useMinimalTiptapEditor = ({
 
   React.useEffect(() => {
     if (editor && editor.isEditable) {
-      // Avoid unnecessary updates
       if (editor.getHTML() !== (value || "")) {
-        editor.commands.setContent(value || "");
+        setTimeout(() => {
+          editor.commands.setContent(value || "");
+        }, 0);
       }
     }
   }, [value, editor]);
