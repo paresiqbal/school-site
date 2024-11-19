@@ -161,44 +161,49 @@ export default function ListNews() {
           const contentText = truncateText(stripHtmlTags(item.content), 150);
 
           return (
-            <Card key={item.id} className="mb-4 flex flex-row items-start p-4">
+            <Card
+              key={item.id}
+              className="mb-4 flex flex-col items-start rounded-lg p-2 shadow-md md:flex-row md:p-4"
+            >
               {imageUrl && (
-                <div className="mr-4 w-1/4">
+                <div className="mb-2 w-full md:mb-0 md:mr-4 md:w-1/4">
                   <Image
                     src={imageUrl}
                     alt={item.title}
                     width={400}
                     height={350}
-                    className="h-48 w-full rounded-lg object-cover"
+                    className="h-auto w-full rounded-lg object-cover"
                   />
                 </div>
               )}
-              <div className="w-3/4">
+              <div className="w-full md:w-3/4">
                 <CardHeader>
-                  <CardTitle className="text-lg hover:underline md:text-xl">
+                  <CardTitle className="text-base font-semibold hover:underline md:text-lg">
                     <Link href={`/dashboard/news/${item.id}`}>
                       {item.title}
                     </Link>
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className="text-sm text-gray-500">
                     {formatDate(item.created_at)}
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <p className="italic">{contentText}</p>
+                  <p className="text-sm italic md:text-base">{contentText}</p>
                 </CardContent>
-                <CardFooter className="flex gap-4">
+                <CardFooter className="mt-2 flex gap-2 md:gap-4">
                   <Link href={`/dashboard/news/${item.id}`}>
-                    <Button className="flex items-center gap-2">
-                      <Pencil className="h-4 w-4" />
+                    <Button className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2">
+                      <Pencil className="h-4 w-4 md:h-5 md:w-5" />
+                      <span className="hidden md:inline">Edit</span>
                     </Button>
                   </Link>
                   <Button
                     variant="destructive"
                     onClick={() => handleDelete(item.id)}
-                    className="flex items-center gap-2"
+                    className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2"
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="h-4 w-4 md:h-5 md:w-5" />
+                    <span className="hidden md:inline">Delete</span>
                   </Button>
                 </CardFooter>
               </div>
