@@ -215,7 +215,6 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
-
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
