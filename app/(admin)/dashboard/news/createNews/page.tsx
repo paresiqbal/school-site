@@ -34,6 +34,14 @@ import {
 } from "@/components/ui/breadcrumb";
 import Topbar from "@/components/Topbar";
 import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
+import {
+  MultiSelector,
+  MultiSelectorContent,
+  MultiSelectorInput,
+  MultiSelectorItem,
+  MultiSelectorList,
+  MultiSelectorTrigger,
+} from "@/components/ui/multi-select";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -41,6 +49,7 @@ const formSchema = z.object({
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
   image: z.any().optional(),
+  name_7593583536: z.array(z.string()).nonempty("Please at least one item"),
 });
 
 interface FormData {
@@ -60,6 +69,7 @@ export default function CreateNews() {
       title: "",
       content: "",
       image: undefined,
+      name_7593583536: ["React"],
     },
   });
 
@@ -210,6 +220,41 @@ export default function CreateNews() {
                         editable={true}
                         editorClassName="focus:outline-none"
                       />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="name_7593583536"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Select your framework</FormLabel>
+                    <FormControl>
+                      <MultiSelector
+                        values={field.value}
+                        onValuesChange={field.onChange}
+                        loop
+                        className="max-w-xs"
+                      >
+                        <MultiSelectorTrigger>
+                          <MultiSelectorInput placeholder="Select languages" />
+                        </MultiSelectorTrigger>
+                        <MultiSelectorContent>
+                          <MultiSelectorList>
+                            <MultiSelectorItem value={"React"}>
+                              React
+                            </MultiSelectorItem>
+                            <MultiSelectorItem value={"Vue"}>
+                              Vue
+                            </MultiSelectorItem>
+                            <MultiSelectorItem value={"Svelte"}>
+                              Svelte
+                            </MultiSelectorItem>
+                          </MultiSelectorList>
+                        </MultiSelectorContent>
+                      </MultiSelector>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
