@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -49,19 +49,21 @@ const formSchema = z.object({
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
   image: z.any().optional(),
-  name_7593583536: z.array(z.string()).nonempty("Please at least one item"),
+  tags: z.array(z.string()).nonempty("Please select at least one tag"),
 });
 
 interface FormData {
   title: string;
   content: string;
   image?: FileList;
+  tags: string[];
 }
 
 export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -69,9 +71,24 @@ export default function CreateNews() {
       title: "",
       content: "",
       image: undefined,
-      name_7593583536: ["React"],
+      tags: [],
     },
   });
+
+  // Fetch tags from the API
+  useEffect(() => {
+    async function fetchTags() {
+      try {
+        const res = await fetch(`http://127.0.0.1:8000/api/tag`);
+        const data = await res.json();
+        setTags(data);
+      } catch (error) {
+        console.error("Error fetching tags:", error);
+        toast.error("Failed to load tags. Please refresh.");
+      }
+    }
+    fetchTags();
+  }, [token]);
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -90,6 +107,7 @@ export default function CreateNews() {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.content);
+    formData.append("tags", JSON.stringify(data.tags));
 
     if (data.image && data.image.length > 0) {
       formData.append("image", data.image[0]);
@@ -130,6 +148,7 @@ export default function CreateNews() {
         form.reset({
           title: "",
           content: "",
+          tags: [],
         });
       }
     } catch (error) {
@@ -225,33 +244,33 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
+
+              {/* Tags Field */}
               <FormField
                 control={form.control}
-                name="name_7593583536"
+                name="tags"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Select your framework</FormLabel>
+                    <FormLabel>Tags</FormLabel>
                     <FormControl>
                       <MultiSelector
                         values={field.value}
                         onValuesChange={field.onChange}
-                        loop
                         className="max-w-xs"
                       >
                         <MultiSelectorTrigger>
-                          <MultiSelectorInput placeholder="Select languages" />
+                          <MultiSelectorInput placeholder="Select tags" />
                         </MultiSelectorTrigger>
                         <MultiSelectorContent>
                           <MultiSelectorList>
-                            <MultiSelectorItem value={"React"}>
-                              React
-                            </MultiSelectorItem>
-                            <MultiSelectorItem value={"Vue"}>
-                              Vue
-                            </MultiSelectorItem>
-                            <MultiSelectorItem value={"Svelte"}>
-                              Svelte
-                            </MultiSelectorItem>
+                            {tags.map((tag) => (
+                              <MultiSelectorItem
+                                key={tag.id}
+                                value={tag.id.toString()}
+                              >
+                                {tag.name}
+                              </MultiSelectorItem>
+                            ))}
                           </MultiSelectorList>
                         </MultiSelectorContent>
                       </MultiSelector>
@@ -260,6 +279,7 @@ export default function CreateNews() {
                   </FormItem>
                 )}
               />
+
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
