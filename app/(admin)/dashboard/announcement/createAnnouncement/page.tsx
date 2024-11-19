@@ -4,16 +4,11 @@ import Link from "next/link";
 import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
-
-// ex lib
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Toaster, toast } from "sonner";
-
-// ui lib
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
   FormControl,
@@ -37,10 +32,8 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-
-// icons
-import { Paperclip } from "lucide-react";
 import Topbar from "@/components/Topbar";
+import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -56,26 +49,19 @@ interface FormData {
   image?: FileList;
 }
 
-export default function CreateAnnouncement() {
+export default function CreateAnnouncements() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       title: "",
       content: "",
-      image: "",
+      image: undefined,
     },
   });
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedImage(event.target.files[0]);
-    }
-  };
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -84,7 +70,7 @@ export default function CreateAnnouncement() {
     if (!token) {
       form.setError("title", {
         type: "server",
-        message: "Silahkan login terlebih dahulu.",
+        message: "Please login first.",
       });
       toast.error("Silahkan login terlebih dahulu.");
       setIsSubmitting(false);
@@ -95,12 +81,12 @@ export default function CreateAnnouncement() {
     formData.append("title", data.title);
     formData.append("content", data.content);
 
-    if (selectedImage) {
-      formData.append("image", selectedImage);
+    if (data.image && data.image.length > 0) {
+      formData.append("image", data.image[0]);
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENTS}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -113,7 +99,7 @@ export default function CreateAnnouncement() {
       if (res.status === 401) {
         form.setError("title", {
           type: "server",
-          message: "Unauthorized. Silakan masuk lagi.",
+          message: "Unauthorized. Please sign in again.",
         });
         toast.error("Unauthorized. Silakan masuk lagi.");
         return;
@@ -131,11 +117,14 @@ export default function CreateAnnouncement() {
         );
       } else {
         toast.success("Pengumuman berhasil dibuat.");
-        form.reset();
+        form.reset({
+          title: "",
+          content: "",
+        });
       }
     } catch (error) {
-      console.error("Terjadi kesalahan saat membuat pengumuman:", error);
-      setServerError("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
+      console.error("Ups there is something wrong:", error);
+      setServerError("There is some error please try again.");
       toast.error("Terjadi kesalahan jaringan. Silakan coba lagi nanti.");
     } finally {
       setIsSubmitting(false);
@@ -151,13 +140,13 @@ export default function CreateAnnouncement() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dasboard">Dashboard</Link>
+                  <Link href="/dashboard">Dashboard</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dashboard/announcement">Daftar Pengumuman</Link>
+                  <Link href="/dashboard/announcements">Daftar Pengumuman</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -169,7 +158,6 @@ export default function CreateAnnouncement() {
         </div>
       </div>
 
-      {/* Form create announcement */}
       <Toaster />
       <Card>
         <CardHeader>
@@ -181,6 +169,7 @@ export default function CreateAnnouncement() {
         <CardContent>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(handleCreate)}>
+              {/* Title Field */}
               <FormField
                 control={form.control}
                 name="title"
@@ -199,46 +188,34 @@ export default function CreateAnnouncement() {
                   </FormItem>
                 )}
               />
+
+              {/* Content Field */}
               <FormField
                 control={form.control}
                 name="content"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Konten</FormLabel>
-                    <div className="relative">
-                      <FormControl>
-                        <Textarea
-                          rows={10}
-                          placeholder="Konten pengumuman"
-                          {...field}
-                          className="w-full rounded border bg-background p-2"
-                          disabled={isSubmitting}
-                        />
-                      </FormControl>
-
-                      <label
-                        htmlFor="fileInput"
-                        className="absolute bottom-4 right-4 cursor-pointer"
-                      >
-                        <Paperclip className="text-primary" />
-                      </label>
-                      <input
-                        id="fileInput"
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleFileChange}
+                    <FormControl>
+                      <MinimalTiptapEditor
+                        value={field.value || ""}
+                        onChange={(newValue) => {
+                          field.onChange(newValue);
+                        }}
+                        className="w-full"
+                        editorContentClassName="p-5"
+                        output="html"
+                        placeholder="Type your description here..."
+                        autofocus={true}
+                        editable={true}
+                        editorClassName="focus:outline-none"
                       />
-                    </div>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              {selectedImage && (
-                <p className="mt-2 text-sm text-primary underline">
-                  Selected image: {selectedImage.name}
-                </p>
-              )}
+
               {serverError && <p className="text-destructive">{serverError}</p>}
               <Button
                 type="submit"
