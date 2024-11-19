@@ -151,7 +151,7 @@ export default function ListNews() {
 
       <Toaster />
       {news.length === 0 ? (
-        <p className="text-center text-gray-500">No news available.</p>
+        <p className="text-center">No news available.</p>
       ) : (
         news.map((item) => {
           const imageUrl = item.image
