@@ -37,6 +37,27 @@ interface AnnouncementData {
   created_at: string;
 }
 
+// Utility to strip HTML tags
+const stripHtmlTags = (html: string): string => {
+  if (!html) return "";
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
+
+// Utility to truncate text
+const truncateText = (text: string, limit: number): string => {
+  if (text.length <= limit) return text;
+  return text.substring(0, limit).trimEnd() + "...";
+};
+
+// Utility to extract the first image URL from content
+const extractImageUrl = (html: string): string | null => {
+  if (!html) return null;
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const img = doc.querySelector("img");
+  return img ? img.src : null;
+};
+
 export default function ListAnnouncement() {
   const { token } = useContext(AppContext);
   const [announcement, setAnnouncement] = useState<AnnouncementData[]>([]);
@@ -47,7 +68,7 @@ export default function ListAnnouncement() {
       setError(null);
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}`, {
-          cache: "force-cache",
+          cache: "no-cache",
         });
 
         if (!res.ok) {
@@ -56,11 +77,11 @@ export default function ListAnnouncement() {
 
         const data = await res.json();
         setAnnouncement(data);
-        toast.success("Pengumuman berhasil dimuat");
+        toast.success("Pengumuman berhasil diambil");
       } catch (error) {
         console.error(error);
-        setError("Failed to load announcement. Please try again.");
-        toast.error("Gagal memuat pengumuman. Silahkan coba lagi.");
+        setError("Gagal mengambil pengumuman. Coba lagi nanti.");
+        toast.error("Gagal mengambil pengumuman");
       }
     }
 
@@ -69,11 +90,11 @@ export default function ListAnnouncement() {
 
   const handleDelete = async (id: number) => {
     if (!token) {
-      toast.error("Unauthorized. Tolong masuk.");
+      toast.error("Unauthorized. Please log in.");
       return;
     }
+
     try {
-      // automatic into plular 's' need to change
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}/${id}`,
         {
@@ -85,21 +106,17 @@ export default function ListAnnouncement() {
       );
 
       if (!res.ok) {
-        throw new Error("Failed to delete announcement.");
+        throw new Error("Gagal menghapus pengumuman.");
       }
 
       setAnnouncement((prevAnnouncement) =>
         prevAnnouncement.filter((item) => item.id !== id),
       );
-      toast.success("Pengumuman berhasil dihapus.");
+      toast.success("Pengumuman berhasil dihapus");
     } catch (error) {
-      console.error("Error deleting announcement:", error);
+      console.error("Error menghapus pengumuman:", error);
       toast.error("Gagal menghapus pengumuman.");
     }
-  };
-
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
   };
 
   const formatDate = (dateString?: string | null): string => {
@@ -137,53 +154,63 @@ export default function ListAnnouncement() {
         </div>
       </div>
 
-      {/* Form */}
       <Toaster />
-      {announcement.map((item) => (
-        <Card
-          key={item.id}
-          className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
-        >
-          {item.image && (
-            <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
-              <Image
-                src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
-                alt={item.title}
-                width={400}
-                height={350}
-                className="h-auto w-full rounded-lg object-cover"
-              />
-            </div>
-          )}
-          <div className="w-full md:w-3/4">
-            <CardHeader>
-              <CardTitle className="text-lg hover:underline md:text-xl">
-                <Link href={`/dashboard/announcement/${item.id}`}>
-                  {item.title}
-                </Link>
-              </CardTitle>
-              <CardDescription>{formatDate(item.created_at)}</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p className="italic">{graphingText(item.content, 120)}</p>
-            </CardContent>
-            <CardFooter className="flex gap-4">
-              <Link href={`/dashboard/announcement/${item.id}`}>
-                <Button className="flex items-center gap-2">
-                  <Pencil className="h-4 w-4" />
-                </Button>
-              </Link>
-              <Button
-                variant="destructive"
-                onClick={() => handleDelete(item.id)}
-                className="flex items-center gap-2"
-              >
-                <Trash2 className="h-4 w-4" />
-              </Button>
-            </CardFooter>
-          </div>
-        </Card>
-      ))}
+      {announcement.length === 0 ? (
+        <p className="text-center text-gray-500">No announcement available.</p>
+      ) : (
+        announcement.map((item) => {
+          const imageUrl = item.image
+            ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`
+            : extractImageUrl(item.content);
+
+          const contentText = truncateText(stripHtmlTags(item.content), 150);
+
+          return (
+            <Card key={item.id} className="mb-4 flex flex-row items-start p-4">
+              {imageUrl && (
+                <div className="mr-4 w-1/4">
+                  <Image
+                    src={imageUrl}
+                    alt={item.title}
+                    width={400}
+                    height={350}
+                    className="h-48 w-full rounded-lg object-cover"
+                  />
+                </div>
+              )}
+              <div className="w-3/4">
+                <CardHeader>
+                  <CardTitle className="text-lg hover:underline md:text-xl">
+                    <Link href={`/dashboard/announcement/${item.id}`}>
+                      {item.title}
+                    </Link>
+                  </CardTitle>
+                  <CardDescription>
+                    {formatDate(item.created_at)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="italic">{contentText}</p>
+                </CardContent>
+                <CardFooter className="flex gap-4">
+                  <Link href={`/dashboard/announcement/${item.id}`}>
+                    <Button className="flex items-center gap-2">
+                      <Pencil className="h-4 w-4" />
+                    </Button>
+                  </Link>
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleDelete(item.id)}
+                    className="flex items-center gap-2"
+                  >
+                    <Trash2 className="h-4 w-4" />
+                  </Button>
+                </CardFooter>
+              </div>
+            </Card>
+          );
+        })
+      )}
     </div>
   );
 }
