@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState, useEffect, useContext } from "react";
+import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -34,14 +34,6 @@ import {
 } from "@/components/ui/breadcrumb";
 import Topbar from "@/components/Topbar";
 import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
-import {
-  MultiSelector,
-  MultiSelectorContent,
-  MultiSelectorInput,
-  MultiSelectorItem,
-  MultiSelectorList,
-  MultiSelectorTrigger,
-} from "@/components/ui/multi-select";
 
 const formSchema = z.object({
   title: z.string().min(3, { message: "Title must be at least 3 characters." }),
@@ -49,21 +41,18 @@ const formSchema = z.object({
     .string()
     .min(10, { message: "Content must be at least 10 characters." }),
   image: z.any().optional(),
-  tags: z.array(z.string()).nonempty("Please select at least one tag"),
 });
 
 interface FormData {
   title: string;
   content: string;
   image?: FileList;
-  tags: string[];
 }
 
 export default function CreateNews() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [tags, setTags] = useState<{ id: number; name: string }[]>([]);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -71,24 +60,8 @@ export default function CreateNews() {
       title: "",
       content: "",
       image: undefined,
-      tags: [],
     },
   });
-
-  // Fetch tags from the API
-  useEffect(() => {
-    async function fetchTags() {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_TAG}`);
-        const data = await res.json();
-        setTags(data);
-      } catch (error) {
-        console.error("Error fetching tags:", error);
-        toast.error("Failed to load tags. Please refresh.");
-      }
-    }
-    fetchTags();
-  }, [token]);
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -107,7 +80,6 @@ export default function CreateNews() {
     const formData = new FormData();
     formData.append("title", data.title);
     formData.append("content", data.content);
-    formData.append("tags", JSON.stringify(data.tags));
 
     if (data.image && data.image.length > 0) {
       formData.append("image", data.image[0]);
@@ -148,7 +120,6 @@ export default function CreateNews() {
         form.reset({
           title: "",
           content: "",
-          tags: [],
         });
       }
     } catch (error) {
@@ -239,41 +210,6 @@ export default function CreateNews() {
                         editable={true}
                         editorClassName="focus:outline-none"
                       />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              {/* Tags Field */}
-              <FormField
-                control={form.control}
-                name="tags"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Tags</FormLabel>
-                    <FormControl>
-                      <MultiSelector
-                        values={field.value}
-                        onValuesChange={field.onChange}
-                        className="max-w-xs"
-                      >
-                        <MultiSelectorTrigger>
-                          <MultiSelectorInput placeholder="Select tags" />
-                        </MultiSelectorTrigger>
-                        <MultiSelectorContent>
-                          <MultiSelectorList>
-                            {tags.map((tag) => (
-                              <MultiSelectorItem
-                                key={tag.id}
-                                value={tag.id.toString()}
-                              >
-                                {tag.name}
-                              </MultiSelectorItem>
-                            ))}
-                          </MultiSelectorList>
-                        </MultiSelectorContent>
-                      </MultiSelector>
                     </FormControl>
                     <FormMessage />
                   </FormItem>
