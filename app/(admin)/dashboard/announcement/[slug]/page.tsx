@@ -17,7 +17,6 @@ import { toast, Toaster } from "sonner";
 // UI library components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import {
   Form,
   FormControl,
@@ -41,16 +40,12 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-
-// Icon
-import { Paperclip } from "lucide-react";
+import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
 
 // Validation schema
 const formSchema = z.object({
-  title: z.string().min(3, { message: "Title must be at least 3 characters." }),
-  content: z
-    .string()
-    .min(10, { message: "Content must be at least 10 characters." }),
+  title: z.string().min(6, { message: "Judul minimal 6 karakter." }),
+  content: z.string().min(10, { message: "Konten minimal 10 karakter." }),
   image: z.any().optional(),
 });
 
@@ -91,25 +86,23 @@ export default function EditAnnouncement(props: {
 
         if (!res.ok) throw new Error("Failed to fetch announcement data");
 
-        form.setValue("title", data.title);
-        form.setValue("content", data.content);
-        form.setValue("image", data.image);
-        setSelectedImage(data.image);
-        toast.success("Announcement loaded successfully");
+        // Only update state when it's safe to do so
+        if (data) {
+          form.setValue("title", data.title);
+          form.setValue("content", data.content); // Sets initial content
+          form.setValue("image", data.image);
+          setSelectedImage(data.image);
+        }
+
+        toast.success("Pengumuman berhasil dimuat.");
       } catch (error) {
         console.error(error);
-        toast.error("Failed to load announcement");
+        toast.error("Gagal memuat pengumuman.");
       }
     };
 
     getAnnouncementDetail();
   }, [slug, form]);
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files.length > 0) {
-      setSelectedImage(event.target.files[0]);
-    }
-  };
 
   const imagePreviewUrl =
     selectedImage instanceof File
@@ -143,10 +136,10 @@ export default function EditAnnouncement(props: {
         throw new Error("Failed to update announcement.");
       }
 
-      toast.success("Announcement updated successfully");
+      toast.success("Pengumuman berhasil diperbarui.");
     } catch (error) {
       console.error(error);
-      toast.error("Failed to update announcement.");
+      toast.error("Gagal perbarui pengumuman.");
     }
   };
 
@@ -230,30 +223,23 @@ export default function EditAnnouncement(props: {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Konten</FormLabel>
-                    <div className="relative">
-                      <FormControl>
-                        <Textarea
-                          rows={10}
-                          placeholder="Konten pengumuman"
-                          {...field}
-                          className="w-full rounded border bg-background p-2"
-                        />
-                      </FormControl>
-
-                      <label
-                        htmlFor="fileInput"
-                        className="absolute bottom-4 right-4 cursor-pointer"
-                      >
-                        <Paperclip className="text-primary" />
-                      </label>
-                      <input
-                        id="fileInput"
-                        type="file"
-                        accept="image/*"
-                        className="hidden"
-                        onChange={handleFileChange}
+                    <FormControl>
+                      <MinimalTiptapEditor
+                        value={field.value || ""}
+                        onChange={(newValue) => {
+                          Promise.resolve().then(() =>
+                            field.onChange(newValue),
+                          );
+                        }}
+                        className="w-full"
+                        editorContentClassName="p-5"
+                        output="html"
+                        placeholder="Type your description here..."
+                        autofocus={true}
+                        editable={true}
+                        editorClassName="focus:outline-none"
                       />
-                    </div>
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
