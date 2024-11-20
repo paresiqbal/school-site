@@ -79,7 +79,7 @@ export default function CreateNews() {
   useEffect(() => {
     async function fetchTags() {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/tag`);
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_TAG}`);
         const data = await res.json();
         setTags(data);
       } catch (error) {
