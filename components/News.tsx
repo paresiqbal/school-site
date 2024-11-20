@@ -96,7 +96,7 @@ export default function NewsPlugin() {
     );
 
   return (
-    <div className="mx-auto w-full justify-center bg-rose-50 px-4 py-8">
+    <div className="mx-auto w-full justify-center bg-rose-50 px-4 py-8 dark:bg-accent">
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
         BERITA TERBARU
       </h2>
