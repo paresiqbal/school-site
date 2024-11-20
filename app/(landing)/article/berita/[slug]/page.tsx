@@ -8,7 +8,7 @@ interface NewsData {
   id: number;
   title: string;
   content: string;
-  image?: string;
+  image?: string | null;
   created_at: string;
 }
 
@@ -70,6 +70,13 @@ export default function NewsDetail(props: {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  const extractImageUrl = (html: string): string | null => {
+    if (!html) return null;
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const img = doc.querySelector("img");
+    return img ? img.src : null;
+  };
+
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
@@ -80,7 +87,11 @@ export default function NewsDetail(props: {
         <>
           <div className="mb-6 w-full rounded-md border-2 border-foreground shadow-card">
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${news.image}`}
+              src={
+                news.image ||
+                extractImageUrl(news.content) ||
+                "/images/fallback.jpg" // Fallback image
+              }
               alt={news.title}
               width={800}
               height={800}
@@ -107,11 +118,10 @@ export default function NewsDetail(props: {
 
           <hr className="my-4 border-2 border-t border-foreground" />
 
-          <div className="space-y-4 leading-relaxed">
-            {news.content.split("\n").map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
+          <div
+            className="space-y-4 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: news.content }}
+          ></div>
         </>
       ) : (
         <p className="text-center">Loading berita...</p>
