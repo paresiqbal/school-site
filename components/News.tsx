@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// ui comps
+// UI components
 import {
   Carousel,
   CarouselContent,
@@ -18,7 +18,7 @@ interface NewsData {
   id: number;
   title: string;
   content: string;
-  image?: string;
+  image?: string | null;
   created_at: string;
 }
 
@@ -68,6 +68,19 @@ export default function NewsPlugin() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  const stripHtmlTags = (html: string): string => {
+    if (!html) return "";
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
+  const extractImageUrl = (html: string): string | null => {
+    if (!html) return null;
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const img = doc.querySelector("img");
+    return img ? img.src : null;
+  };
+
   if (error)
     return (
       <div className="mx-auto flex max-w-sm flex-col items-center py-2">
@@ -75,7 +88,7 @@ export default function NewsPlugin() {
           src="/assets/500error.svg"
           width={200}
           height={200}
-          alt="error"
+          alt="Error"
           className="mb-4 opacity-90"
         />
         <p className="text-center text-lg font-bold text-red-600">{error}</p>
@@ -106,41 +119,51 @@ export default function NewsPlugin() {
           className="mx-auto w-full max-w-6xl"
         >
           <CarouselContent className="flex gap-4">
-            {news.map((item) => (
-              <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                <div className="flex h-full flex-col rounded-md border-2 border-foreground transition hover:shadow-card">
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
-                      alt={item.title}
-                      width={500}
-                      height={300}
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
+            {news.map((item) => {
+              const imageUrl =
+                item.image ||
+                extractImageUrl(item.content) ||
+                "/images/fallback.jpg";
 
-                  <div className="flex flex-1 flex-col justify-between p-4">
-                    <div>
-                      <div className="text-sm text-muted-foreground">
-                        <time>{formatDate(item.created_at)}</time>
-                      </div>
-                      <h2 className="mb-2 text-base font-semibold">
-                        {item.title}
-                      </h2>
-                      <p className="mt-2 text-sm">
-                        {graphingText(item.content, 80)}
-                      </p>
+              return (
+                <CarouselItem
+                  key={item.id}
+                  className="md:basis-1/2 lg:basis-1/3"
+                >
+                  <div className="flex h-full flex-col rounded-md border-2 border-foreground transition hover:shadow-card">
+                    <div className="relative h-48 w-full">
+                      <Image
+                        src={imageUrl}
+                        alt={item.title}
+                        width={500}
+                        height={300}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
-                    <Link
-                      href={`/article/berita/${item.id}`}
-                      className="mt-4 inline-block font-semibold text-primary hover:underline"
-                    >
-                      Baca selengkapnya
-                    </Link>
+
+                    <div className="flex flex-1 flex-col justify-between p-4">
+                      <div>
+                        <div className="text-sm text-muted-foreground">
+                          <time>{formatDate(item.created_at)}</time>
+                        </div>
+                        <h2 className="mb-2 text-base font-semibold">
+                          {item.title}
+                        </h2>
+                        <p className="mt-2 text-sm">
+                          {graphingText(stripHtmlTags(item.content), 80)}
+                        </p>
+                      </div>
+                      <Link
+                        href={`/article/berita/${item.id}`}
+                        className="mt-4 inline-block font-semibold text-primary hover:underline"
+                      >
+                        Baca selengkapnya
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              </CarouselItem>
-            ))}
+                </CarouselItem>
+              );
+            })}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
