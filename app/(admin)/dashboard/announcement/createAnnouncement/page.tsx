@@ -49,7 +49,7 @@ interface FormData {
   image?: FileList;
 }
 
-export default function CreateAnnouncements() {
+export default function CreateAnnouncement() {
   const { token } = useContext(AppContext);
   const [serverError, setServerError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -86,7 +86,7 @@ export default function CreateAnnouncements() {
     }
 
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENTS}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,
@@ -146,7 +146,7 @@ export default function CreateAnnouncements() {
               <BreadcrumbSeparator />
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dashboard/announcements">Daftar Pengumuman</Link>
+                  <Link href="/dashboard/announcement">Daftar Pengumuman</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
