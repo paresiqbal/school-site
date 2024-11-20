@@ -72,11 +72,12 @@ export default function ListAnnouncement() {
         });
 
         if (!res.ok) {
-          throw new Error("Failed to fetch announcement.");
+          throw new Error("Failed to fetch announcements.");
         }
 
         const data = await res.json();
-        setAnnouncement(data);
+        console.log("API Response:", data); // Log the response to debug
+        setAnnouncement(Array.isArray(data) ? data : data.data || []);
         toast.success("Pengumuman berhasil diambil");
       } catch (error) {
         console.error(error);
@@ -133,6 +134,10 @@ export default function ListAnnouncement() {
 
   if (error) return <p className="text-destructive">{error}</p>;
 
+  if (!Array.isArray(announcement) || announcement.length === 0) {
+    return <p className="text-center">No announcements available.</p>;
+  }
+
   return (
     <div className="container mx-auto">
       <div className="flex items-center justify-between pb-4">
@@ -155,62 +160,63 @@ export default function ListAnnouncement() {
       </div>
 
       <Toaster />
-      {announcement.length === 0 ? (
-        <p className="text-center text-gray-500">No announcement available.</p>
-      ) : (
-        announcement.map((item) => {
-          const imageUrl = item.image
-            ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`
-            : extractImageUrl(item.content);
+      {announcement.map((item) => {
+        const imageUrl = item.image
+          ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`
+          : extractImageUrl(item.content);
 
-          const contentText = truncateText(stripHtmlTags(item.content), 150);
+        const contentText = truncateText(stripHtmlTags(item.content), 150);
 
-          return (
-            <Card key={item.id} className="mb-4 flex flex-row items-start p-4">
-              {imageUrl && (
-                <div className="mr-4 w-1/4">
-                  <Image
-                    src={imageUrl}
-                    alt={item.title}
-                    width={400}
-                    height={350}
-                    className="h-48 w-full rounded-lg object-cover"
-                  />
-                </div>
-              )}
-              <div className="w-3/4">
-                <CardHeader>
-                  <CardTitle className="text-lg hover:underline md:text-xl">
-                    <Link href={`/dashboard/announcement/${item.id}`}>
-                      {item.title}
-                    </Link>
-                  </CardTitle>
-                  <CardDescription>
-                    {formatDate(item.created_at)}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="italic">{contentText}</p>
-                </CardContent>
-                <CardFooter className="flex gap-4">
-                  <Link href={`/dashboard/announcement/${item.id}`}>
-                    <Button className="flex items-center gap-2">
-                      <Pencil className="h-4 w-4" />
-                    </Button>
-                  </Link>
-                  <Button
-                    variant="destructive"
-                    onClick={() => handleDelete(item.id)}
-                    className="flex items-center gap-2"
-                  >
-                    <Trash2 className="h-4 w-4" />
-                  </Button>
-                </CardFooter>
+        return (
+          <Card
+            key={item.id}
+            className="mb-4 flex flex-col items-start rounded-lg p-2 shadow-md md:flex-row md:p-4"
+          >
+            {imageUrl && (
+              <div className="mb-2 w-full md:mb-0 md:mr-4 md:w-1/4">
+                <Image
+                  src={imageUrl}
+                  alt={item.title}
+                  width={400}
+                  height={350}
+                  className="h-auto w-full rounded-lg object-cover"
+                />
               </div>
-            </Card>
-          );
-        })
-      )}
+            )}
+            <div className="w-full md:w-3/4">
+              <CardHeader>
+                <CardTitle className="text-base font-semibold hover:underline md:text-lg">
+                  <Link href={`/dashboard/announcement/${item.id}`}>
+                    {item.title}
+                  </Link>
+                </CardTitle>
+                <CardDescription className="text-sm text-gray-500">
+                  {formatDate(item.created_at)}
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <p className="text-sm italic md:text-base">{contentText}</p>
+              </CardContent>
+              <CardFooter className="mt-2 flex gap-2 md:gap-4">
+                <Link href={`/dashboard/announcement/${item.id}`}>
+                  <Button className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2">
+                    <Pencil className="h-4 w-4 md:h-5 md:w-5" />
+                    <span className="hidden md:inline">Edit</span>
+                  </Button>
+                </Link>
+                <Button
+                  variant="destructive"
+                  onClick={() => handleDelete(item.id)}
+                  className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2"
+                >
+                  <Trash2 className="h-4 w-4 md:h-5 md:w-5" />
+                  <span className="hidden md:inline">Delete</span>
+                </Button>
+              </CardFooter>
+            </div>
+          </Card>
+        );
+      })}
     </div>
   );
 }
