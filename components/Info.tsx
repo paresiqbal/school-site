@@ -25,15 +25,14 @@ export default function InfoPlugin() {
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
+  // Fetch announcements
   useEffect(() => {
     async function fetchAnnouncement() {
       setError(null);
       try {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}`, {
           cache: "force-cache",
-          next: {
-            revalidate: 30,
-          },
+          next: { revalidate: 30 },
         });
 
         if (!res.ok) {
@@ -41,16 +40,25 @@ export default function InfoPlugin() {
         }
 
         const data = await res.json();
-        setAnnouncement(data);
+        console.log("Announcement API Response:", data);
+
+        // Ensure the data is an array
+        const announcements = Array.isArray(data)
+          ? data
+          : Array.isArray(data?.data)
+            ? data.data
+            : [];
+        setAnnouncement(announcements);
       } catch (error) {
-        console.error(error);
-        setError("Server sedang error coba lagi nanti.");
+        console.error("Error fetching announcements:", error);
+        setError("Server sedang error, coba lagi nanti.");
       }
     }
 
     fetchAnnouncement();
   }, []);
 
+  // Fetch agendas
   useEffect(() => {
     async function fetchAgenda() {
       setError(null);
@@ -58,24 +66,35 @@ export default function InfoPlugin() {
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_AGENDA}`, {
           cache: "no-cache",
         });
+
         if (!res.ok) {
           throw new Error("Failed to fetch agenda.");
         }
+
         const data = await res.json();
-        setAgenda(data);
+        console.log("Agenda API Response:", data);
+
+        // Ensure the data is an array
+        const agendas = Array.isArray(data)
+          ? data
+          : Array.isArray(data?.data)
+            ? data.data
+            : [];
+        setAgenda(agendas);
       } catch (error) {
-        console.error(error);
-        setError("Server sedang error coba lagi nanti.");
+        console.error("Error fetching agendas:", error);
+        setError("Server sedang error, coba lagi nanti.");
       }
     }
 
     fetchAgenda();
   }, []);
 
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
+  // Truncate text
+  const graphingText = (text: string, limit: number) =>
+    text.length > limit ? text.substring(0, limit) + "..." : text;
 
+  // Format date
   const formatDate = (dateString?: string | null): string => {
     if (!dateString) return "Date not available";
 
@@ -88,6 +107,7 @@ export default function InfoPlugin() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  // Render error if present
   if (error)
     return (
       <div className="mx-auto flex max-w-sm flex-col items-center py-2">
@@ -106,39 +126,55 @@ export default function InfoPlugin() {
     <div className="mx-auto w-full max-w-6xl overflow-hidden px-4 py-8">
       <h2 className="text-sm text-muted-foreground">INFO & PENGUMUMAN</h2>
       <div className="items-baseline justify-between lg:flex lg:flex-row lg:gap-10">
+        {/* Announcements Section */}
         <div className="flex flex-col gap-4">
           <p className="text-lg font-semibold">
             Informasi dan Pengumuman Terbaru
           </p>
-          {announcement.slice(0, 3).map((item) => (
-            <Link
-              href={`/article/pengumuman/${item.id}`}
-              key={item.id}
-              passHref
-            >
-              <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
-                <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
-                <p className="mb-2 text-sm">{graphingText(item.content, 80)}</p>
-                <p className="text-sm text-muted-foreground">
-                  {formatDate(item.created_at)}
-                </p>
-              </div>
-            </Link>
-          ))}
+          {announcement.length > 0 ? (
+            announcement.slice(0, 3).map((item) => (
+              <Link
+                href={`/article/pengumuman/${item.id}`}
+                key={item.id}
+                passHref
+              >
+                <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
+                  <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
+                  <p className="mb-2 text-sm">
+                    {graphingText(item.content, 80)}
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    {formatDate(item.created_at)}
+                  </p>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p className="text-center text-sm text-muted-foreground">
+              Belum ada pengumuman.
+            </p>
+          )}
         </div>
 
+        {/* Agendas Section */}
         <div className="mt-8 flex flex-col gap-4">
           <p className="text-lg font-semibold">Jadwal dan Agenda Terdekat</p>
-          {agenda.slice(0, 4).map((item) => (
-            <Link href={`/article/agenda/${item.id}`} key={item.id} passHref>
-              <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
-                <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
-                <p className="mb-2 text-sm">
-                  {graphingText(item.description, 50)}
-                </p>
-              </div>
-            </Link>
-          ))}
+          {agenda.length > 0 ? (
+            agenda.slice(0, 4).map((item) => (
+              <Link href={`/article/agenda/${item.id}`} key={item.id} passHref>
+                <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
+                  <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
+                  <p className="mb-2 text-sm">
+                    {graphingText(item.description, 50)}
+                  </p>
+                </div>
+              </Link>
+            ))
+          ) : (
+            <p className="text-center text-sm text-muted-foreground">
+              Belum ada agenda.
+            </p>
+          )}
         </div>
       </div>
     </div>
