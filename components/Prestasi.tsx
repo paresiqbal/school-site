@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// ui comps
+// UI components
 import {
   Carousel,
   CarouselContent,
@@ -12,25 +12,25 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { Button } from "./ui/button";
+import { CircleChevronRightIcon } from "lucide-react";
 
-interface NewsData {
+interface AchievementData {
   id: number;
   title: string;
   content: string;
-  image?: string;
+  image?: string | null;
   created_at: string;
 }
 
-export default function PrestasiPlugin() {
-  const [news, setNews] = useState<NewsData[]>([]);
+export default function AchievementPlugin() {
+  const [achievement, setAchievement] = useState<AchievementData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    async function fetchNews() {
+    async function fetchAchievement() {
       setError(null);
       try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_ACHIEVEMENT}`, {
           cache: "force-cache",
           next: {
             revalidate: 30,
@@ -38,19 +38,23 @@ export default function PrestasiPlugin() {
         });
 
         if (!res.ok) {
-          throw new Error("Failed to fetch news.");
+          throw new Error("Failed to fetch achievement.");
         }
 
         const data = await res.json();
-        setNews(data);
+        setAchievement(data);
       } catch (error) {
         console.error(error);
-        setError("Gagal mengambil prestasi siswa. Coba lagi nanti.");
+        setError("Gagal mengambil prestasi. Coba lagi nanti.");
       }
     }
 
-    fetchNews();
+    fetchAchievement();
   }, []);
+
+  const graphingText = (text: string, limit: number) => {
+    return text.length > limit ? text.substring(0, limit) + "..." : text;
+  };
 
   const formatDate = (dateString?: string | null): string => {
     if (!dateString) return "Date not available";
@@ -64,6 +68,19 @@ export default function PrestasiPlugin() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  const stripHtmlTags = (html: string): string => {
+    if (!html) return "";
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
+  const extractImageUrl = (html: string): string | null => {
+    if (!html) return null;
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const img = doc.querySelector("img");
+    return img ? img.src : null;
+  };
+
   if (error)
     return (
       <div className="mx-auto flex max-w-sm flex-col items-center py-2">
@@ -71,7 +88,7 @@ export default function PrestasiPlugin() {
           src="/assets/500error.svg"
           width={200}
           height={200}
-          alt="error"
+          alt="Error"
           className="mb-4 opacity-90"
         />
         <p className="text-center text-lg font-bold text-red-600">{error}</p>
@@ -83,8 +100,18 @@ export default function PrestasiPlugin() {
       <h2 className="mb-4 text-center text-sm text-muted-foreground">
         PRESTASI SISWA
       </h2>
+      <div className="mx-auto my-4 flex max-w-6xl justify-between">
+        <p className="text-lg font-semibold">Prestasi siswa</p>
+        <Link
+          href="/article/prestasi"
+          className="flex items-center justify-center text-primary/80 hover:text-primary hover:underline"
+        >
+          Lebih Banyak
+          <CircleChevronRightIcon size={18} className="ml-2 inline-block" />
+        </Link>
+      </div>
 
-      <div className="flex justify-center">
+      <div className="justify-center">
         <Carousel
           opts={{
             align: "start",
@@ -92,46 +119,52 @@ export default function PrestasiPlugin() {
           className="mx-auto w-full max-w-6xl"
         >
           <CarouselContent className="flex gap-4">
-            {news.map((item) => (
-              <CarouselItem key={item.id} className="md:basis-1/2 lg:basis-1/3">
-                <Link
-                  href={`/article/berita/${item.id}`}
+            {achievement.map((item) => {
+              const imageUrl =
+                item.image ||
+                extractImageUrl(item.content) ||
+                "/images/fallback.jpg";
+
+              return (
+                <CarouselItem
                   key={item.id}
-                  passHref
+                  className="md:basis-1/2 lg:basis-1/3"
                 >
-                  <div className="flex flex-col rounded-md border-2 border-foreground transition hover:shadow-card sm:flex-row">
-                    <div className="relative h-32 w-full sm:h-auto sm:w-2/5">
-                      <Image
-                        src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
-                        alt="gambar"
-                        width={500}
-                        height={500}
-                        className="absolute inset-0 h-full w-full object-cover"
-                      />
-                    </div>
-                    <div className="flex-1 p-4">
-                      <h2 className="mb-2 text-sm font-semibold">
-                        {item.title}
-                      </h2>
-                      <div className="flex items-center text-sm">
-                        <time>{formatDate(item.created_at)}</time>
+                  <Link
+                    href={`/article/prestasi/${item.id}`}
+                    passHref
+                    className="block"
+                  >
+                    <div className="flex h-28 flex-col rounded-md border-2 border-foreground transition hover:shadow-card sm:flex-row">
+                      <div className="relative h-48 w-full sm:h-auto sm:w-2/5">
+                        <Image
+                          src={imageUrl}
+                          alt={item.title}
+                          width={500}
+                          height={300}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div className="flex-1 p-4">
+                        <div className="text-sm text-muted-foreground">
+                          <time>{formatDate(item.created_at)}</time>
+                        </div>
+                        <h2 className="mb-2 text-base font-semibold">
+                          {item.title}
+                        </h2>
+                        <p className="mt-2 text-sm">
+                          {graphingText(stripHtmlTags(item.content), 80)}
+                        </p>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </CarouselItem>
-            ))}
+                  </Link>
+                </CarouselItem>
+              );
+            })}
           </CarouselContent>
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-      </div>
-      <div className="mt-8 flex justify-center">
-        <Link href="/article/berita">
-          <Button className="hover:shadow-button border-2 border-foreground">
-            Lihat Semua
-          </Button>
-        </Link>
       </div>
     </div>
   );
