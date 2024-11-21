@@ -76,7 +76,7 @@ export default function Agenda() {
           >
             <div className="w-full">
               <Image
-                src="/assets/bell.png"
+                src="/assets/agenda.svg"
                 width={200}
                 height={150}
                 alt="bell"
