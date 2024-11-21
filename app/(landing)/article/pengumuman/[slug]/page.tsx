@@ -8,11 +8,11 @@ interface AnnouncementData {
   id: number;
   title: string;
   content: string;
-  image?: string;
+  image?: string | null;
   created_at: string;
 }
 
-export default function AnnouncementDetails(props: {
+export default function AnnouncementDetail(props: {
   params: Promise<{ slug: string }>;
 }) {
   const [slug, setSlug] = useState<string | null>(null);
@@ -75,6 +75,13 @@ export default function AnnouncementDetails(props: {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  const extractImageUrl = (html: string): string | null => {
+    if (!html) return null;
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    const img = doc.querySelector("img");
+    return img ? img.src : null;
+  };
+
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
@@ -85,10 +92,14 @@ export default function AnnouncementDetails(props: {
         <>
           <div className="mb-6 w-full rounded-md border-2 border-foreground shadow-card">
             <Image
-              src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${announcement.image}`}
+              src={
+                announcement.image ||
+                extractImageUrl(announcement.content) ||
+                "/images/fallback.jpg" // Fallback image
+              }
               alt={announcement.title}
-              width={500}
-              height={500}
+              width={800}
+              height={800}
               priority
               className="h-auto w-full"
             />
@@ -114,11 +125,10 @@ export default function AnnouncementDetails(props: {
 
           <hr className="my-4 border-2 border-t border-foreground" />
 
-          <div className="space-y-4 leading-relaxed">
-            {announcement.content.split("\n").map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
+          <div
+            className="space-y-4 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: announcement.content }}
+          ></div>
         </>
       ) : (
         <p className="text-center">Loading pengumuman...</p>
