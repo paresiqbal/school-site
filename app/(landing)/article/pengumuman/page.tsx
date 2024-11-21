@@ -28,14 +28,19 @@ export default function Pengumuman() {
         });
 
         if (!res.ok) {
-          throw new Error("Failed to fetch announcement.");
+          throw new Error(
+            `Failed to fetch announcement. Status: ${res.status}`,
+          );
         }
 
-        const data = await res.json();
-        setAnnouncement(data);
+        const responseBody = await res.text();
+
+        const data = JSON.parse(responseBody);
+
+        setAnnouncement(Array.isArray(data) ? data : data?.data || []);
         toast.success("Pengumuman berhasil diambil");
       } catch (error) {
-        console.error(error);
+        console.error("Fetch error:", error);
         setError("Gagal mengambil pengumuman. Coba lagi nanti.");
         toast.error("Gagal mengambil pengumuman");
       }
@@ -44,15 +49,14 @@ export default function Pengumuman() {
     fetchAnnouncement();
   }, []);
 
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
   const stripHtmlTags = (html: string): string => {
     if (!html) return "";
     const doc = new DOMParser().parseFromString(html, "text/html");
     return doc.body.textContent || "";
   };
+
+  const graphingText = (text: string, limit: number) =>
+    text.length > limit ? text.substring(0, limit) + "..." : text;
 
   const extractImageUrl = (html: string): string | null => {
     if (!html) return null;
