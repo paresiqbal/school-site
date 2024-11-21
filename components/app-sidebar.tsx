@@ -1,6 +1,12 @@
 "use client";
 
-import { CalendarPlus, Volume2, Hexagon, Newspaper } from "lucide-react";
+import {
+  CalendarPlus,
+  Volume2,
+  Hexagon,
+  Newspaper,
+  Trophy,
+} from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
@@ -61,6 +67,21 @@ const data = {
         {
           title: "Buat Agenda",
           url: "/dashboard/agenda/createAgenda",
+        },
+      ],
+    },
+    {
+      title: "Prestasi",
+      url: "#",
+      icon: Trophy,
+      items: [
+        {
+          title: "Daftar Prestasi",
+          url: "/dashboard/achievement",
+        },
+        {
+          title: "Buat Prestasi",
+          url: "/dashboard/achievement/createAchievement",
         },
       ],
     },
