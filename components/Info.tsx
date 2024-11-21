@@ -40,7 +40,6 @@ export default function InfoPlugin() {
         }
 
         const data = await res.json();
-        console.log("Announcement API Response:", data);
 
         const announcements = Array.isArray(data)
           ? data
@@ -71,7 +70,6 @@ export default function InfoPlugin() {
         }
 
         const data = await res.json();
-        console.log("Agenda API Response:", data);
 
         // Ensure the data is an array
         const agendas = Array.isArray(data)
