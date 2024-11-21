@@ -37,6 +37,27 @@ interface AchievementData {
   created_at: string;
 }
 
+// Utility to strip HTML tags
+const stripHtmlTags = (html: string): string => {
+  if (!html) return "";
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  return doc.body.textContent || "";
+};
+
+// Utility to truncate text
+const truncateText = (text: string, limit: number): string => {
+  if (text.length <= limit) return text;
+  return text.substring(0, limit).trimEnd() + "...";
+};
+
+// Utility to extract the first image URL from content
+const extractImageUrl = (html: string): string | null => {
+  if (!html) return null;
+  const doc = new DOMParser().parseFromString(html, "text/html");
+  const img = doc.querySelector("img");
+  return img ? img.src : null;
+};
+
 export default function ListAchievement() {
   const { token } = useContext(AppContext);
   const [achievement, setAchievement] = useState<AchievementData[]>([]);
@@ -56,11 +77,11 @@ export default function ListAchievement() {
 
         const data = await res.json();
         setAchievement(data);
-        toast.success("Berita berhasil diambil");
+        toast.success("Prestasi Siswa berhasil diambil");
       } catch (error) {
         console.error(error);
-        setError("Gagal mengambil berita. Coba lagi nanti.");
-        toast.error("Gagal mengambil berita");
+        setError("Gagal mengambil prestasi Siswa. Coba lagi nanti.");
+        toast.error("Gagal mengambil prestasi Siswa");
       }
     }
 
@@ -85,21 +106,17 @@ export default function ListAchievement() {
       );
 
       if (!res.ok) {
-        throw new Error("Gagal menghapus berita.");
+        throw new Error("Gagal menghapus prestasi Siswa.");
       }
 
       setAchievement((prevAchievement) =>
         prevAchievement.filter((item) => item.id !== id),
       );
-      toast.success("Berita berhasil dihapus");
+      toast.success("Prestasi Siswa berhasil dihapus");
     } catch (error) {
-      console.error("Error menghapus berita:", error);
-      toast.error("Gagal menghapus berita.");
+      console.error("Error menghapus prestasi Siswa:", error);
+      toast.error("Gagal menghapus prestasi Siswa.");
     }
-  };
-
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
   };
 
   const formatDate = (dateString?: string | null): string => {
@@ -137,56 +154,67 @@ export default function ListAchievement() {
         </div>
       </div>
 
-      {/* Form */}
       <Toaster />
       {achievement.length === 0 ? (
-        <p className="text-center text-gray-500">No achievement available.</p>
+        <p className="text-center">No achievement available.</p>
       ) : (
-        achievement.map((item) => (
-          <Card
-            key={item.id}
-            className="mb-4 flex flex-col p-4 md:flex-row md:items-center"
-          >
-            {item.image && (
-              <div className="mb-4 w-full md:mb-0 md:mr-4 md:w-1/4">
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`}
-                  alt={item.title}
-                  width={400}
-                  height={350}
-                  className="h-auto w-full rounded-lg object-cover"
-                />
-              </div>
-            )}
-            <div className="w-full md:w-3/4">
-              <CardHeader>
-                <CardTitle className="text-lg hover:underline md:text-xl">
+        achievement.map((item) => {
+          const imageUrl = item.image
+            ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${item.image}`
+            : extractImageUrl(item.content);
+
+          const contentText = truncateText(stripHtmlTags(item.content), 150);
+
+          return (
+            <Card
+              key={item.id}
+              className="mb-4 flex flex-col items-start rounded-lg p-2 shadow-md md:flex-row md:p-4"
+            >
+              {imageUrl && (
+                <div className="mb-2 w-full md:mb-0 md:mr-4 md:w-1/4">
+                  <Image
+                    src={imageUrl}
+                    alt={item.title}
+                    width={400}
+                    height={350}
+                    className="h-auto w-full rounded-lg object-cover"
+                  />
+                </div>
+              )}
+              <div className="w-full md:w-3/4">
+                <CardHeader>
+                  <CardTitle className="text-base font-semibold hover:underline md:text-lg">
+                    <Link href={`/dashboard/achievement/${item.id}`}>
+                      {item.title}
+                    </Link>
+                  </CardTitle>
+                  <CardDescription className="text-sm text-gray-500">
+                    {formatDate(item.created_at)}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm italic md:text-base">{contentText}</p>
+                </CardContent>
+                <CardFooter className="mt-2 flex gap-2 md:gap-4">
                   <Link href={`/dashboard/achievement/${item.id}`}>
-                    {item.title}
+                    <Button className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2">
+                      <Pencil className="h-4 w-4 md:h-5 md:w-5" />
+                      <span className="hidden md:inline">Edit</span>
+                    </Button>
                   </Link>
-                </CardTitle>
-                <CardDescription>{formatDate(item.created_at)}</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="italic">{graphingText(item.content, 120)}</p>
-              </CardContent>
-              <CardFooter className="flex gap-4">
-                <Link href={`/dashboard/achievement/${item.id}`}>
-                  <Button className="flex items-center gap-2">
-                    <Pencil className="h-4 w-4" />
+                  <Button
+                    variant="destructive"
+                    onClick={() => handleDelete(item.id)}
+                    className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2"
+                  >
+                    <Trash2 className="h-4 w-4 md:h-5 md:w-5" />
+                    <span className="hidden md:inline">Delete</span>
                   </Button>
-                </Link>
-                <Button
-                  variant="destructive"
-                  onClick={() => handleDelete(item.id)}
-                  className="flex items-center gap-2"
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
-              </CardFooter>
-            </div>
-          </Card>
-        ))
+                </CardFooter>
+              </div>
+            </Card>
+          );
+        })
       )}
     </div>
   );
