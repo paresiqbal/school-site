@@ -24,6 +24,7 @@ export default function Home() {
       <div className="min-h-screen items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
         <CarouselPlugin />
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
+          <h1>Test doang</h1>
           <SambutanPlugin />
           <KepsekPlugin />
           <InfoPlugin />
