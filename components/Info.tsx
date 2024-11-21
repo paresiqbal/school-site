@@ -90,6 +90,12 @@ export default function InfoPlugin() {
     fetchAgenda();
   }, []);
 
+  const stripHtmlTags = (html: string): string => {
+    if (!html) return "";
+    const doc = new DOMParser().parseFromString(html, "text/html");
+    return doc.body.textContent || "";
+  };
+
   // Truncate text
   const graphingText = (text: string, limit: number) =>
     text.length > limit ? text.substring(0, limit) + "..." : text;
@@ -107,7 +113,6 @@ export default function InfoPlugin() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
-  // Render error if present
   if (error)
     return (
       <div className="mx-auto flex max-w-sm flex-col items-center py-2">
@@ -141,7 +146,7 @@ export default function InfoPlugin() {
                 <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
                   <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
                   <p className="mb-2 text-sm">
-                    {graphingText(item.content, 80)}
+                    {graphingText(stripHtmlTags(item.content), 80)}
                   </p>
                   <p className="text-sm text-muted-foreground">
                     {formatDate(item.created_at)}
@@ -165,7 +170,7 @@ export default function InfoPlugin() {
                 <div className="group cursor-pointer rounded-md border-2 border-foreground p-4 transition hover:shadow-card">
                   <h3 className="mb-2 text-lg font-semibold">{item.title}</h3>
                   <p className="mb-2 text-sm">
-                    {graphingText(item.description, 50)}
+                    {graphingText(stripHtmlTags(item.description), 50)}
                   </p>
                 </div>
               </Link>
