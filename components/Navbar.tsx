@@ -175,6 +175,14 @@ export default function Navbar() {
                   </DropdownMenuItem>
                   <DropdownMenuItem>
                     <Link
+                      href="/article/prestasi"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Prestasi
+                    </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
                       href="/article/agenda"
                       className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
                     >
@@ -387,6 +395,13 @@ export default function Navbar() {
                   onClick={handleLinkClick}
                 >
                   Pengumuman
+                </Link>
+                <Link
+                  href="/article/prestasi"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Prestasi
                 </Link>
                 <Link
                   href="/article/agenda"
