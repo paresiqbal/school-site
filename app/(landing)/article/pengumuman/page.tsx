@@ -103,7 +103,7 @@ export default function Pengumuman() {
                   {formatDate(item.created_at)}
                 </span>
                 <span className="hover:shadow-button cursor-pointer rounded-md border-2 border-foreground px-2 py-1 text-xs transition hover:bg-primary md:text-sm">
-                  tags
+                  pengumuman
                 </span>
               </div>
 
