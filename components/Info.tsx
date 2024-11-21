@@ -42,7 +42,6 @@ export default function InfoPlugin() {
         const data = await res.json();
         console.log("Announcement API Response:", data);
 
-        // Ensure the data is an array
         const announcements = Array.isArray(data)
           ? data
           : Array.isArray(data?.data)
