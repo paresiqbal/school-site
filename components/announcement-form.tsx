@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 // components
 import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
-import { formSchema, FormData } from "@/lib/schemas";
+import { formSchema, FormData } from "@/lib/article-schemas";
 
 // ui lib
 import { Button } from "@/components/ui/button";

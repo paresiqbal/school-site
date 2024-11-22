@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 // components
 import { AppContext } from "@/context/AppContext";
-import { formSchema, type FormData } from "@/lib/schemas";
+import { formSchema, type FormData } from "@/lib/article-schemas";
 
 // ex lib
 import { toast } from "sonner";
