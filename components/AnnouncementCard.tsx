@@ -11,8 +11,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 
+import {
+  stripHtmlTags,
+  truncateText,
+  formatDate,
+  extractImageUrl,
+} from "@/utils/textUtils";
 import { AnnouncementData } from "@/types/articleType";
-import { stripHtmlTags, truncateText, formatDate } from "@/utils/textUtils";
 
 interface AnnouncementCardProps {
   announcement: AnnouncementData;
@@ -25,50 +30,50 @@ export function AnnouncementCard({
 }: AnnouncementCardProps) {
   const imageUrl = announcement.image
     ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${announcement.image}`
-    : null;
+    : extractImageUrl(announcement.content);
 
   const contentText = truncateText(stripHtmlTags(announcement.content), 150);
 
   return (
-    <Card className="mb-4 flex flex-col items-start rounded-lg p-2 shadow-md md:flex-row md:p-4">
+    <Card className="mb-2 flex flex-col items-start rounded-md p-2 shadow-sm md:flex-row md:p-3">
       {imageUrl && (
-        <div className="mb-2 w-full md:mb-0 md:mr-4 md:w-1/4">
+        <div className="mb-2 w-full md:mb-0 md:mr-3 md:w-1/5">
           <Image
             src={imageUrl}
             alt={announcement.title}
-            width={400}
-            height={350}
-            className="h-auto w-full rounded-lg object-cover"
+            width={300}
+            height={250}
+            className="h-auto w-full rounded-md object-cover"
           />
         </div>
       )}
-      <div className="w-full md:w-3/4">
+      <div className="w-full md:w-4/5">
         <CardHeader>
-          <CardTitle className="text-base font-semibold hover:underline md:text-lg">
+          <CardTitle className="text-sm font-medium hover:underline md:text-base">
             <Link href={`/dashboard/announcement/${announcement.id}`}>
               {announcement.title}
             </Link>
           </CardTitle>
-          <CardDescription className="text-sm text-gray-500">
+          <CardDescription className="text-xs text-gray-500">
             {formatDate(announcement.created_at)}
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm italic md:text-base">{contentText}</p>
+          <p className="text-xs italic md:text-sm">{contentText}</p>
         </CardContent>
-        <CardFooter className="mt-2 flex gap-2 md:gap-4">
+        <CardFooter className="mt-1 flex gap-2">
           <Link href={`/dashboard/announcement/${announcement.id}`}>
-            <Button className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2">
-              <Pencil className="h-4 w-4 md:h-5 md:w-5" />
+            <Button className="flex items-center gap-1 px-2 py-1 text-xs md:gap-1.5 md:px-3 md:py-1.5">
+              <Pencil className="h-3 w-3 md:h-4 md:w-4" />
               <span className="hidden md:inline">Edit</span>
             </Button>
           </Link>
           <Button
             variant="destructive"
             onClick={() => onDelete(announcement.id)}
-            className="flex items-center gap-1 px-3 py-1 text-sm md:gap-2 md:px-4 md:py-2"
+            className="flex items-center gap-1 px-2 py-1 text-xs md:gap-1.5 md:px-3 md:py-1.5"
           >
-            <Trash2 className="h-4 w-4 md:h-5 md:w-5" />
+            <Trash2 className="h-3 w-3 md:h-4 md:w-4" />
             <span className="hidden md:inline">Delete</span>
           </Button>
         </CardFooter>
