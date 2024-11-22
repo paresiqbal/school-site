@@ -5,7 +5,6 @@ import Link from "next/link";
 // components
 import Topbar from "@/components/Topbar";
 import { CreateAnnouncementForm } from "@/components/announcement-form";
-import { useCreateAnnouncement } from "@/hooks/use-createAnnouncement";
 
 // ui lib
 import {
@@ -26,8 +25,6 @@ import {
 import { Toaster } from "sonner";
 
 export default function CreateAnnouncement() {
-  const { handleCreate, isSubmitting, serverError } = useCreateAnnouncement();
-
   return (
     <div className="container mx-auto">
       <div className="flex items-center justify-between pb-4">
@@ -62,11 +59,7 @@ export default function CreateAnnouncement() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CreateAnnouncementForm
-            onSubmit={handleCreate}
-            isSubmitting={isSubmitting}
-            serverError={serverError}
-          />
+          <CreateAnnouncementForm />
         </CardContent>
       </Card>
     </div>
