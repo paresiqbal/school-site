@@ -1,20 +1,11 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import React, { use } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Toaster } from "sonner";
 
-// components
 import Topbar from "@/components/Topbar";
-import { AppContext } from "@/context/AppContext";
-
-// external libraries
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { toast, Toaster } from "sonner";
-
-// UI library components
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -41,111 +32,16 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { MinimalTiptapEditor } from "@/components/minimal-tiptap";
+import { useEditAnnouncement } from "@/hooks/use-editAnnouncement";
 
-// Validation schema
-const formSchema = z.object({
-  title: z.string().min(6, { message: "Judul minimal 6 karakter." }),
-  content: z.string().min(10, { message: "Konten minimal 10 karakter." }),
-  image: z.any().optional(),
-});
-
-export default function EditAnnouncement(props: {
+export default function EditAnnouncement({
+  params,
+}: {
   params: Promise<{ slug: string }>;
 }) {
-  const { token } = useContext(AppContext);
-  const [slug, setSlug] = useState<string | null>(null);
-  const [selectedImage, setSelectedImage] = useState<File | null>(null);
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      content: "",
-      image: "",
-    },
-  });
-
-  useEffect(() => {
-    const fetchParams = async () => {
-      const params = await props.params;
-      setSlug(params.slug);
-    };
-
-    fetchParams();
-  }, [props.params]);
-
-  useEffect(() => {
-    if (!slug) return;
-
-    const getAnnouncementDetail = async () => {
-      try {
-        const res = await fetch(
-          `${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}/${slug}`,
-        );
-        const data = await res.json();
-
-        if (!res.ok) throw new Error("Failed to fetch announcement data");
-
-        // Only update state when it's safe to do so
-        if (data) {
-          form.setValue("title", data.title);
-          form.setValue("content", data.content); // Sets initial content
-          form.setValue("image", data.image);
-          setSelectedImage(data.image);
-        }
-
-        toast.success("Pengumuman berhasil dimuat.");
-      } catch (error) {
-        console.error(error);
-        toast.error("Gagal memuat pengumuman.");
-      }
-    };
-
-    getAnnouncementDetail();
-  }, [slug, form]);
-
-  const imagePreviewUrl =
-    selectedImage instanceof File
-      ? URL.createObjectURL(selectedImage)
-      : selectedImage
-        ? `${process.env.NEXT_PUBLIC_API_STORAGE}/${selectedImage}`
-        : null;
-
-  const handleEdit = async (data: z.infer<typeof formSchema>) => {
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("content", data.content);
-
-    if (selectedImage instanceof File) {
-      formData.append("image", selectedImage);
-    }
-
-    try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_ANNOUNCEMENT}/${slug}`,
-        {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        },
-      );
-
-      if (!res.ok) {
-        throw new Error("Failed to update announcement.");
-      }
-
-      toast.success("Pengumuman berhasil diperbarui.");
-    } catch (error) {
-      console.error(error);
-      toast.error("Gagal perbarui pengumuman.");
-    }
-  };
-
-  if (!slug) {
-    return <div>Loading...</div>;
-  }
+  const { slug } = use(params);
+  const { form, handleEdit, imagePreviewUrl, handleImageChange } =
+    useEditAnnouncement(slug);
 
   return (
     <div className="container mx-auto">
@@ -166,15 +62,12 @@ export default function EditAnnouncement(props: {
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbPage>
-                <p>Edit Pengumuman</p>
-              </BreadcrumbPage>
+              <BreadcrumbPage>Edit Pengumuman</BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
       </div>
 
-      {/* Form for editing announcement */}
       <Toaster />
       <Card>
         <CardHeader>
@@ -185,7 +78,10 @@ export default function EditAnnouncement(props: {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleEdit)}>
+            <form
+              onSubmit={form.handleSubmit(handleEdit)}
+              className="space-y-4"
+            >
               <FormField
                 control={form.control}
                 name="title"
@@ -219,6 +115,29 @@ export default function EditAnnouncement(props: {
 
               <FormField
                 control={form.control}
+                name="image"
+                render={({ field: { onChange, ...field } }) => (
+                  <FormItem>
+                    <FormLabel>Gambar</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          onChange(file);
+                          handleImageChange(file);
+                        }}
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
                 name="content"
                 render={({ field }) => (
                   <FormItem>
@@ -226,11 +145,7 @@ export default function EditAnnouncement(props: {
                     <FormControl>
                       <MinimalTiptapEditor
                         value={field.value || ""}
-                        onChange={(newValue) => {
-                          Promise.resolve().then(() =>
-                            field.onChange(newValue),
-                          );
-                        }}
+                        onChange={(newValue) => field.onChange(newValue)}
                         className="w-full"
                         editorContentClassName="p-5"
                         output="html"
@@ -245,10 +160,7 @@ export default function EditAnnouncement(props: {
                 )}
               />
 
-              <Button
-                type="submit"
-                className="mt-4 w-full rounded p-2 font-bold"
-              >
+              <Button type="submit" className="w-full">
                 Update Pengumuman
               </Button>
             </form>
