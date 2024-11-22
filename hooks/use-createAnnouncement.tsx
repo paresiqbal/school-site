@@ -80,6 +80,7 @@ export function useCreateAnnouncement() {
         form.reset({
           title: "",
           content: "",
+          image: undefined,
         });
       }
     } catch (error) {
