@@ -44,6 +44,7 @@ export function AnnouncementCard({
             width={300}
             height={250}
             className="h-auto w-full rounded-md object-cover"
+            priority
           />
         </div>
       )}
