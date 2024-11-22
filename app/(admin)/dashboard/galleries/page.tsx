@@ -1,3 +1,4 @@
+import Galleries from "@/components/Gallery";
 import UploadForm from "./action/upload-form";
 
 export default function GalleryPage() {
@@ -5,6 +6,7 @@ export default function GalleryPage() {
     <div>
       <h1>Gallery</h1>
       <UploadForm />
+      <Galleries />
     </div>
   );
 }
