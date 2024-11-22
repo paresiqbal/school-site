@@ -36,7 +36,7 @@ const data = {
         },
         {
           title: "Buat Berita",
-          url: "/dashboard/news/createNews",
+          url: "/dashboard/news/create-news",
         },
       ],
     },
