@@ -51,7 +51,7 @@ const data = {
         },
         {
           title: "Buat Pengumuman",
-          url: "/dashboard/announcement/createAnnouncement",
+          url: "/dashboard/announcement/create-announcement",
         },
       ],
     },
