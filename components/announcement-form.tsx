@@ -51,6 +51,12 @@ export function CreateAnnouncementForm() {
                   value={field.value}
                   onChange={field.onChange}
                   placeholder="Isi pengumuman"
+                  className="w-full"
+                  editorContentClassName="p-4"
+                  output="html"
+                  autofocus={true}
+                  editable={true}
+                  editorClassName="focus:outline-none"
                 />
               </FormControl>
               <FormMessage />
