@@ -76,7 +76,6 @@ export default function ListAnnouncement() {
         }
 
         const data = await res.json();
-        console.log("API Response:", data); // Log the response to debug
         setAnnouncement(Array.isArray(data) ? data : data.data || []);
         toast.success("Pengumuman berhasil diambil");
       } catch (error) {
