@@ -4,7 +4,7 @@ import Link from "next/link";
 
 // components
 import Topbar from "@/components/Topbar";
-import { CreateAnnouncementForm } from "@/components/announcement-form";
+import { CreateAnnouncementForm } from "@/components/AnnouncementForm";
 
 // ui lib
 import {
