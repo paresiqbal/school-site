@@ -67,7 +67,7 @@ const data = {
         },
         {
           title: "Buat Agenda",
-          url: "/dashboard/agenda/createAgenda",
+          url: "/dashboard/agenda/create-agenda",
         },
       ],
     },
