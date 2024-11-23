@@ -34,7 +34,7 @@ export function CreateAchievementForm() {
             <FormItem>
               <FormLabel>Judul</FormLabel>
               <FormControl>
-                <Input placeholder="Judul pengumuman" {...field} />
+                <Input placeholder="Judul prestasi siswa" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -50,7 +50,7 @@ export function CreateAchievementForm() {
                 <MinimalTiptapEditor
                   value={field.value}
                   onChange={field.onChange}
-                  placeholder="Isi pengumuman"
+                  placeholder="Isi prestasi siswa"
                   className="w-full"
                   editorContentClassName="p-4"
                   output="html"
@@ -65,7 +65,7 @@ export function CreateAchievementForm() {
         />
         {serverError && <p className="text-red-500">{serverError}</p>}
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Membuat..." : "Buat Pengumuman"}
+          {isSubmitting ? "Membuat..." : "Buat Prestasi siswa"}
         </Button>
       </form>
     </Form>

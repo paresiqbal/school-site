@@ -81,10 +81,10 @@ export function useCreateAchievement() {
           });
         });
         toast.error(
-          "Terjadi kesalahan saat membuat pengumuman. Harap periksa formulir.",
+          "Terjadi kesalahan saat membuat prestasi siswa. Harap periksa formulir.",
         );
       } else {
-        toast.success("Pengumuman berhasil dibuat.");
+        toast.success("Prestasi siswa berhasil dibuat.");
         resetForm();
       }
     } catch (error) {
