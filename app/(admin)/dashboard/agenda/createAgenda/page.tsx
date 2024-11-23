@@ -1,19 +1,10 @@
 "use client";
 
-import * as React from "react";
-import { useState, useContext } from "react";
-import { useForm } from "react-hook-form";
-import { AppContext } from "@/context/AppContext";
-
-// ex lib
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { Toaster, toast } from "sonner";
-import { CalendarIcon } from "@radix-ui/react-icons";
-import { addDays, format } from "date-fns";
-import { DateRange } from "react-day-picker";
-
-// ui lib
+import Link from "next/link";
+import { Toaster } from "sonner";
+import { useCreateAgenda } from "@/hooks/use-createAgenda";
+import { DateRangePicker } from "@/components/DateRangePicker";
+import Topbar from "@/components/Topbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -33,13 +24,6 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
-import { Calendar } from "@/components/ui/calendar";
-import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -47,106 +31,10 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
-import Topbar from "@/components/Topbar";
-
-const formSchema = z.object({
-  title: z.string().min(6, { message: "Judul minimal 6 karakter." }),
-  description: z
-    .string()
-    .min(10, { message: "Deskripsi minimal 10 karekter." }),
-  image: z.any().optional(),
-});
-
-interface FormData {
-  title: string;
-  description: string;
-}
 
 export default function CreateAgenda() {
-  const { token } = useContext(AppContext);
-  const [serverError, setServerError] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-
-  const [date, setDate] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: addDays(new Date(), 7),
-  });
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      title: "",
-      description: "",
-      image: "",
-    },
-  });
-
-  async function handleCreate(data: FormData) {
-    setServerError(null);
-    setIsSubmitting(true);
-
-    if (!token) {
-      form.setError("title", {
-        type: "server",
-        message: "Authentication token is missing. Please log in.",
-      });
-      toast.error("Silahkan login terlebih dahulu.");
-      setIsSubmitting(false);
-      return;
-    }
-
-    const formData = new FormData();
-    formData.append("title", data.title);
-    formData.append("description", data.description);
-
-    if (date?.from) {
-      formData.append("start_date", format(date.from, "dd-MM-yyyy"));
-    }
-    if (date?.to) {
-      formData.append("end_date", format(date.to, "dd-MM-yyyy"));
-    }
-
-    try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_API_AGENDA}`, {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formData,
-      });
-
-      const result = await res.json();
-
-      if (res.status === 401) {
-        form.setError("title", {
-          type: "server",
-          message: "Unauthorized. Please log in again.",
-        });
-        toast.error("Unauthorized. Silahkan login terlebih dahulu..");
-        return;
-      }
-
-      if (result.errors) {
-        Object.keys(result.errors).forEach((key) => {
-          form.setError(key as keyof FormData, {
-            type: "server",
-            message: result.errors[key][0],
-          });
-        });
-        toast.error("Kesalahan dalam membuat agenda.");
-      } else {
-        toast.success("Agenda berhasil dibuat.");
-        form.reset();
-      }
-    } catch (error) {
-      console.error("Error creating agenda:", error);
-      setServerError("Network error. Please try again later.");
-      toast.error("Network error. Coba lagi nanti");
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
+  const { form, handleCreate, date, setDate, isSubmitting, serverError } =
+    useCreateAgenda();
 
   return (
     <div className="container mx-auto">
@@ -157,7 +45,7 @@ export default function CreateAgenda() {
             <BreadcrumbList>
               <BreadcrumbItem>
                 <BreadcrumbLink asChild>
-                  <Link href="/dasboard">Dashboard</Link>
+                  <Link href="/dashboard">Dashboard</Link>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
@@ -167,15 +55,12 @@ export default function CreateAgenda() {
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbPage>
-                <p>Buat Agenda</p>
-              </BreadcrumbPage>
+              <BreadcrumbPage>Buat Agenda</BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
       </div>
 
-      {/* Form create agenda */}
       <Toaster />
       <Card>
         <CardHeader>
@@ -186,7 +71,10 @@ export default function CreateAgenda() {
         </CardHeader>
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(handleCreate)}>
+            <form
+              onSubmit={form.handleSubmit(handleCreate)}
+              className="space-y-4"
+            >
               <FormField
                 control={form.control}
                 name="title"
@@ -211,70 +99,28 @@ export default function CreateAgenda() {
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Deskripsi</FormLabel>
-                    <div className="relative">
-                      <FormControl>
-                        <Textarea
-                          rows={6}
-                          placeholder="Agenda description"
-                          {...field}
-                          className="w-full rounded border bg-background p-2"
-                          disabled={isSubmitting}
-                        />
-                      </FormControl>
-                    </div>
+                    <FormControl>
+                      <Textarea
+                        rows={6}
+                        placeholder="Agenda description"
+                        {...field}
+                        className="w-full rounded border bg-background p-2"
+                        disabled={isSubmitting}
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              {/* Date Range Picker inside the Form */}
               <FormItem>
                 <FormLabel>Tanggal</FormLabel>
-                <Popover>
-                  <PopoverTrigger asChild>
-                    <Button
-                      id="date"
-                      variant={"outline"}
-                      className={cn(
-                        "w-full justify-start text-left font-normal",
-                        !date && "text-muted-foreground",
-                      )}
-                    >
-                      <CalendarIcon className="mr-2 h-4 w-4" />
-                      {date?.from ? (
-                        date.to ? (
-                          <>
-                            {format(date.from, "LLL dd, y")} -{" "}
-                            {format(date.to, "LLL dd, y")}
-                          </>
-                        ) : (
-                          format(date.from, "LLL dd, y")
-                        )
-                      ) : (
-                        <span>Pilih tanggal</span>
-                      )}
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-auto p-0" align="start">
-                    <Calendar
-                      initialFocus
-                      mode="range"
-                      defaultMonth={date?.from}
-                      selected={date}
-                      onSelect={setDate}
-                      numberOfMonths={2}
-                    />
-                  </PopoverContent>
-                </Popover>
+                <DateRangePicker date={date} setDate={setDate} />
                 <FormMessage />
               </FormItem>
 
               {serverError && <p className="text-destructive">{serverError}</p>}
-              <Button
-                type="submit"
-                className="mt-4 w-full rounded p-2 font-bold"
-                disabled={isSubmitting}
-              >
+              <Button type="submit" className="w-full" disabled={isSubmitting}>
                 {isSubmitting ? "Membuat..." : "Buat Agenda"}
               </Button>
             </form>

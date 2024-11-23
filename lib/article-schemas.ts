@@ -7,3 +7,12 @@ export const formSchema = z.object({
 });
 
 export type FormData = z.infer<typeof formSchema>;
+
+export const agendaSchema = z.object({
+  title: z.string().min(6, { message: "Judul minimal 6 karakter." }),
+  description: z
+    .string()
+    .min(10, { message: "Deskripsi minimal 10 karekter." }),
+});
+
+export type AgendaFormData = z.infer<typeof agendaSchema>;
