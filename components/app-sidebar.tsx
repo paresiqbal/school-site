@@ -6,6 +6,7 @@ import {
   Hexagon,
   Newspaper,
   Trophy,
+  Images,
 } from "lucide-react";
 
 import { NavMain } from "@/components/nav-main";
@@ -82,6 +83,21 @@ const data = {
         {
           title: "Buat Prestasi",
           url: "/dashboard/achievement/create-achievement",
+        },
+      ],
+    },
+    {
+      title: "Gallery",
+      url: "#",
+      icon: Images,
+      items: [
+        {
+          title: "Galleries",
+          url: "/dashboard/gallery",
+        },
+        {
+          title: "Upload Gambar",
+          url: "/dashboard/gallery/create-gallery",
         },
       ],
     },
