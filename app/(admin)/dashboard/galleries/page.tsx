@@ -1,4 +1,4 @@
-import Galleries from "@/components/gallery";
+import Galleries from "@/components/GalleryCard";
 import UploadForm from "./action/upload-form";
 
 export default function GalleryPage() {

@@ -9,7 +9,7 @@ interface Gallery {
   image_path: string;
 }
 
-export default function Galleries() {
+export default function GalleryCard() {
   const { token } = useContext(AppContext);
   const [galleries, setGalleries] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState(true);
