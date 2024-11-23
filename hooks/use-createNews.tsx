@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useCallback } from "react";
 import { useForm } from "react-hook-form";
 
 // components
@@ -22,6 +22,14 @@ export function useCreateNews() {
       image: undefined,
     },
   });
+
+  const resetForm = useCallback(() => {
+    form.reset({
+      title: "",
+      content: "",
+      image: undefined,
+    });
+  }, [form]);
 
   async function handleCreate(data: FormData) {
     setServerError(null);
@@ -77,10 +85,7 @@ export function useCreateNews() {
         );
       } else {
         toast.success("Berita berhasil dibuat.");
-        form.reset({
-          title: "",
-          content: "",
-        });
+        resetForm();
       }
     } catch (error) {
       console.error("Ups there is something wrong:", error);
@@ -91,5 +96,5 @@ export function useCreateNews() {
     }
   }
 
-  return { handleCreate, isSubmitting, serverError, form };
+  return { handleCreate, isSubmitting, serverError, form, resetForm };
 }

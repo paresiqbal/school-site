@@ -4,8 +4,6 @@ import Link from "next/link";
 
 // components
 import Topbar from "@/components/Topbar";
-import { CreateNewsForm } from "@/components/news-form";
-import { useCreateNews } from "@/hooks/use-createNews";
 
 // ui lib
 import {
@@ -24,10 +22,9 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Toaster } from "sonner";
+import { CreateNewsForm } from "@/components/NewsForm";
 
 export default function CreateNews() {
-  const { handleCreate, isSubmitting, serverError } = useCreateNews();
-
   return (
     <div className="container mx-auto">
       <div className="flex items-center justify-between pb-4">
@@ -62,11 +59,7 @@ export default function CreateNews() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <CreateNewsForm
-            onSubmit={handleCreate}
-            isSubmitting={isSubmitting}
-            serverError={serverError}
-          />
+          <CreateNewsForm />
         </CardContent>
       </Card>
     </div>
