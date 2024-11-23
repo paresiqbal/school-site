@@ -81,7 +81,7 @@ const data = {
         },
         {
           title: "Buat Prestasi",
-          url: "/dashboard/achievement/createAchievement",
+          url: "/dashboard/achievement/create-achievement",
         },
       ],
     },
