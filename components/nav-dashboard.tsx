@@ -16,7 +16,7 @@ export function NavDashboard() {
         <SidebarMenuItem>
           <SidebarMenuButton tooltip={"Halaman Utama"}>
             <House className="h-6 w-6" />
-            <Link href={"/dashboard"}>Halaman Utama</Link>
+            <Link href={"/"}>Home</Link>
           </SidebarMenuButton>
           <SidebarMenuButton tooltip={"Dashboard"}>
             <LayoutDashboardIcon className="h-6 w-6" />
