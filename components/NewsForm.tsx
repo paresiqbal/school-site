@@ -34,7 +34,7 @@ export function CreateNewsForm() {
             <FormItem>
               <FormLabel>Judul</FormLabel>
               <FormControl>
-                <Input placeholder="Judul pengumuman" {...field} />
+                <Input placeholder="Judul berita" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -50,7 +50,7 @@ export function CreateNewsForm() {
                 <MinimalTiptapEditor
                   value={field.value}
                   onChange={field.onChange}
-                  placeholder="Isi pengumuman"
+                  placeholder="Isi berita"
                   className="w-full"
                   editorContentClassName="p-4"
                   output="html"
@@ -65,7 +65,7 @@ export function CreateNewsForm() {
         />
         {serverError && <p className="text-red-500">{serverError}</p>}
         <Button type="submit" disabled={isSubmitting}>
-          {isSubmitting ? "Membuat..." : "Buat Pengumuman"}
+          {isSubmitting ? "Membuat..." : "Buat Berita"}
         </Button>
       </form>
     </Form>
