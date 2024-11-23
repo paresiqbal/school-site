@@ -3,7 +3,7 @@
 import { AppContext } from "@/context/AppContext";
 import { useContext, useState } from "react";
 
-export default function UploadForm() {
+export default function CreateGallery() {
   const { token } = useContext(AppContext);
   const [image, setImage] = useState<File | null>(null);
   const [message, setMessage] = useState("");
