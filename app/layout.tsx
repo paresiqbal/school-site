@@ -2,6 +2,7 @@
 
 import localFont from "next/font/local";
 import "./globals.css";
+import "@/styles/masonry.css";
 
 import AppProvider from "@/context/AppContext";
 import { SessionProvider } from "next-auth/react";
