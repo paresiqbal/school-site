@@ -26,6 +26,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { toast, Toaster } from "sonner";
 
 export default function CreateGallery() {
   const { token } = useContext(AppContext);
@@ -34,7 +35,6 @@ export default function CreateGallery() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    // Clean up the object URL when component unmounts or when a new file is selected
     return () => {
       if (previewUrl) {
         URL.revokeObjectURL(previewUrl);
@@ -63,8 +63,7 @@ export default function CreateGallery() {
       });
 
       if (response.ok) {
-        setMessage("Image uploaded successfully.");
-        // Clear the image and preview after successful upload
+        toast.success("Gambar berhasil diunggah");
         setImage(null);
         setPreviewUrl(null);
       } else {
@@ -74,6 +73,7 @@ export default function CreateGallery() {
     } catch (error) {
       console.error("Error uploading image:", error);
       setMessage("An error occurred.");
+      toast.error("Failed to upload image. Please try again.");
     }
   };
 
@@ -81,7 +81,7 @@ export default function CreateGallery() {
     if (e.target.files && e.target.files[0]) {
       const file = e.target.files[0];
       setImage(file);
-      // Create a preview URL for the selected image
+
       const objectUrl = URL.createObjectURL(file);
       setPreviewUrl(objectUrl);
     } else {
@@ -112,6 +112,7 @@ export default function CreateGallery() {
           </Breadcrumb>
         </div>
       </div>
+      <Toaster />
       <form onSubmit={handleImageUpload}>
         <Card>
           <CardHeader>
