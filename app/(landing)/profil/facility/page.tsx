@@ -94,7 +94,7 @@ export default function Facility() {
         "/assets/facility/medical3.jpg",
       ],
       description:
-        "Ruangan yang disediakan di sekolah untuk mengelola dan menangani masalah kesehatan siswa..",
+        "Ruangan yang disediakan di sekolah untuk mengelola dan menangani masalah kesehatan siswa.",
     },
   ];
 
@@ -114,32 +114,32 @@ export default function Facility() {
         {facilities.map((facility, index) => (
           <div
             key={index}
-            className="group relative rounded-md border-2 border-foreground transition hover:shadow-card"
+            className="group relative flex flex-col overflow-hidden rounded-md border-2 border-foreground transition hover:shadow-card"
           >
-            <div className="flex flex-col">
+            <div className="relative h-0 pb-[66.67%]">
               <Image
                 src={facility.images[0]}
                 alt={`Image of ${facility.name}`}
-                width={400}
-                height={250}
-                className="h-auto w-full cursor-pointer border-b-4 border-foreground hover:opacity-80"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                className="cursor-pointer object-cover transition-opacity duration-300 hover:opacity-80"
                 onClick={() => setSelectedImages(facility.images)}
               />
-              <div className="h-2 w-full bg-primary"></div>
-              <div className="p-4">
-                <div className="flex items-center space-x-2 pb-2">
-                  <facility.icon
-                    className="group-hover:shadow-button h-8 w-8 rounded-full border-2 border-foreground bg-primary p-1.5 text-foreground"
-                    aria-label={facility.name}
-                  />
-                  <h3 className="text-2xl font-bold text-black dark:text-white">
-                    {facility.name}
-                  </h3>
-                </div>
-                <p className="mt-2 text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {facility.description}
-                </p>
+            </div>
+            <div className="h-2 w-full bg-primary"></div>
+            <div className="flex flex-grow flex-col p-4">
+              <div className="flex items-center space-x-2 pb-2">
+                <facility.icon
+                  className="group-hover:shadow-button h-8 w-8 rounded-full border-2 border-foreground bg-primary p-1.5 text-foreground"
+                  aria-label={facility.name}
+                />
+                <h3 className="text-2xl font-bold text-black dark:text-white md:text-lg lg:text-xl">
+                  {facility.name}
+                </h3>
               </div>
+              <p className="mt-2 flex-grow text-sm font-medium text-gray-700 dark:text-gray-300">
+                {facility.description}
+              </p>
             </div>
           </div>
         ))}
@@ -147,7 +147,7 @@ export default function Facility() {
 
       {selectedImages && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75"
           onClick={() => setSelectedImages(null)}
         >
           <div
@@ -159,14 +159,16 @@ export default function Facility() {
                 {selectedImages.map((image, idx) => (
                   <CarouselItem key={idx}>
                     <Card className="p-2">
-                      <CardContent className="flex items-center justify-center p-2">
-                        <Image
-                          src={image}
-                          alt={`Facility image ${idx + 1}`}
-                          width={700}
-                          height={500}
-                          className="h-auto w-full rounded-md"
-                        />
+                      <CardContent className="flex aspect-video items-center justify-center p-2">
+                        <div className="!relative h-full w-full">
+                          <Image
+                            src={image}
+                            alt={`Facility image ${idx + 1}`}
+                            fill
+                            sizes="(max-width: 1200px) 100vw, 1200px"
+                            className="rounded-md object-cover"
+                          />
+                        </div>
                       </CardContent>
                     </Card>
                   </CarouselItem>
