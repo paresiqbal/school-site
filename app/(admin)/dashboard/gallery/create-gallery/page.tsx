@@ -1,7 +1,9 @@
 "use client";
 
 import { AppContext } from "@/context/AppContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 // ui components
 import {
@@ -13,7 +15,6 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Topbar from "@/components/Topbar";
-import Link from "next/link";
 import {
   Card,
   CardContent,
@@ -23,11 +24,23 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 
 export default function CreateGallery() {
   const { token } = useContext(AppContext);
   const [image, setImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    // Clean up the object URL when component unmounts or when a new file is selected
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
   const handleImageUpload = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -51,6 +64,9 @@ export default function CreateGallery() {
 
       if (response.ok) {
         setMessage("Image uploaded successfully.");
+        // Clear the image and preview after successful upload
+        setImage(null);
+        setPreviewUrl(null);
       } else {
         const errorData = await response.json();
         setMessage(`Failed to upload image: ${errorData.message}`);
@@ -63,9 +79,14 @@ export default function CreateGallery() {
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
+      const file = e.target.files[0];
+      setImage(file);
+      // Create a preview URL for the selected image
+      const objectUrl = URL.createObjectURL(file);
+      setPreviewUrl(objectUrl);
     } else {
       setImage(null);
+      setPreviewUrl(null);
     }
   };
 
@@ -95,19 +116,41 @@ export default function CreateGallery() {
             </CardTitle>
             <CardDescription>Upload Foto</CardDescription>
           </CardHeader>
-          <CardContent>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="text-sm file:mr-5 file:border-[1px] file:bg-stone-50 file:px-3 file:py-1 file:text-xs file:font-medium file:text-stone-700 hover:file:cursor-pointer hover:file:bg-blue-50 hover:file:text-blue-700"
-            />
-            <Button type="submit">Upload</Button>
+          <CardContent className="space-y-4">
+            <div>
+              <Label htmlFor="image-upload">Select Image</Label>
+              <Input
+                id="image-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="mt-1"
+              />
+            </div>
+            {previewUrl && (
+              <div className="mt-4">
+                <h3 className="mb-2 text-sm font-medium">Image Preview:</h3>
+                <div className="relative h-64 w-full overflow-hidden rounded-lg">
+                  <Image
+                    src={previewUrl}
+                    alt="Preview"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </div>
+              </div>
+            )}
+            <Button type="submit" className="mt-4">
+              Upload
+            </Button>
           </CardContent>
-
           <CardFooter>
             {message && (
-              <p className="text-desctructive mt-4 text-sm">{message}</p>
+              <p
+                className={`mt-4 text-sm ${message.includes("Failed") || message.includes("error") ? "text-destructive" : "text-green-600"}`}
+              >
+                {message}
+              </p>
             )}
           </CardFooter>
         </Card>
