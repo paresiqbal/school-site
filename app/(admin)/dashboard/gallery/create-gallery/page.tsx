@@ -14,6 +14,15 @@ import {
 } from "@/components/ui/breadcrumb";
 import Topbar from "@/components/Topbar";
 import Link from "next/link";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 export default function CreateGallery() {
   const { token } = useContext(AppContext);
@@ -78,23 +87,30 @@ export default function CreateGallery() {
           </Breadcrumb>
         </div>
       </div>
-      <form onSubmit={handleImageUpload} className="rounded border p-4 shadow">
-        <label className="mb-2 block">
-          <span className="text-gray-700">Select Image</span>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="mt-1 block w-full text-gray-900"
-          />
-        </label>
-        <button
-          type="submit"
-          className="rounded bg-blue-600 px-4 py-2 text-white shadow hover:bg-blue-700"
-        >
-          Upload
-        </button>
-        {message && <p className="mt-4 text-sm text-green-600">{message}</p>}
+      <form onSubmit={handleImageUpload}>
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              <span>Buat Gallery</span>
+            </CardTitle>
+            <CardDescription>Upload Foto</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleFileChange}
+              className="text-sm file:mr-5 file:border-[1px] file:bg-stone-50 file:px-3 file:py-1 file:text-xs file:font-medium file:text-stone-700 hover:file:cursor-pointer hover:file:bg-blue-50 hover:file:text-blue-700"
+            />
+            <Button type="submit">Upload</Button>
+          </CardContent>
+
+          <CardFooter>
+            {message && (
+              <p className="text-desctructive mt-4 text-sm">{message}</p>
+            )}
+          </CardFooter>
+        </Card>
       </form>
     </div>
   );
