@@ -3,6 +3,18 @@
 import { AppContext } from "@/context/AppContext";
 import { useContext, useState } from "react";
 
+// ui components
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Topbar from "@/components/Topbar";
+import Link from "next/link";
+
 export default function CreateGallery() {
   const { token } = useContext(AppContext);
   const [image, setImage] = useState<File | null>(null);
@@ -49,23 +61,41 @@ export default function CreateGallery() {
   };
 
   return (
-    <form onSubmit={handleImageUpload} className="rounded border p-4 shadow">
-      <label className="mb-2 block">
-        <span className="text-gray-700">Select Image</span>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="mt-1 block w-full text-gray-900"
-        />
-      </label>
-      <button
-        type="submit"
-        className="rounded bg-blue-600 px-4 py-2 text-white shadow hover:bg-blue-700"
-      >
-        Upload
-      </button>
-      {message && <p className="mt-4 text-sm text-green-600">{message}</p>}
-    </form>
+    <div className="container mx-auto">
+      <div className="flex flex-col justify-between pb-4 md:flex-row">
+        <div className="mb-4 flex items-center md:mb-0">
+          <Topbar />
+          <Breadcrumb className="ml-4 hidden md:flex">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dashboard">Dashboard</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbPage>Gallery</BreadcrumbPage>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
+      <form onSubmit={handleImageUpload} className="rounded border p-4 shadow">
+        <label className="mb-2 block">
+          <span className="text-gray-700">Select Image</span>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="mt-1 block w-full text-gray-900"
+          />
+        </label>
+        <button
+          type="submit"
+          className="rounded bg-blue-600 px-4 py-2 text-white shadow hover:bg-blue-700"
+        >
+          Upload
+        </button>
+        {message && <p className="mt-4 text-sm text-green-600">{message}</p>}
+      </form>
+    </div>
   );
 }
