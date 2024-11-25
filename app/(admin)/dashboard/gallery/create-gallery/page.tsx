@@ -103,7 +103,11 @@ export default function CreateGallery() {
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator />
-              <BreadcrumbPage>Gallery</BreadcrumbPage>
+              <BreadcrumbLink asChild>
+                <Link href="/dashboard/gallery">Gallery</Link>
+              </BreadcrumbLink>
+              <BreadcrumbSeparator />
+              <BreadcrumbPage>Create Gallery</BreadcrumbPage>
             </BreadcrumbList>
           </Breadcrumb>
         </div>
