@@ -14,6 +14,14 @@ import {
 } from "@/components/ui/carousel";
 import { CircleChevronRightIcon } from "lucide-react";
 
+// Utility functions
+import {
+  graphingText,
+  formatDate,
+  stripHtmlTags,
+  extractImageUrl,
+} from "@/utils/textUtils";
+
 interface AchievementData {
   id: number;
   title: string;
@@ -22,7 +30,7 @@ interface AchievementData {
   created_at: string;
 }
 
-export default function AchievementPlugin() {
+export default function AchievementSection() {
   const [achievement, setAchievement] = useState<AchievementData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
@@ -52,35 +60,6 @@ export default function AchievementPlugin() {
     fetchAchievement();
   }, []);
 
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
-  const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  };
-
-  const stripHtmlTags = (html: string): string => {
-    if (!html) return "";
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  };
-
-  const extractImageUrl = (html: string): string | null => {
-    if (!html) return null;
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const img = doc.querySelector("img");
-    return img ? img.src : null;
-  };
-
   if (error)
     return (
       <div className="mx-auto flex max-w-sm flex-col items-center py-2">
@@ -97,7 +76,7 @@ export default function AchievementPlugin() {
 
   return (
     <div className="mx-auto w-full justify-center bg-rose-50 px-4 py-8 dark:bg-accent">
-      <h2 className="mb-4 text-center text-sm text-muted-foreground">
+      <h2 className="mb-4 text-center text-sm font-medium text-muted-foreground">
         PRESTASI SISWA
       </h2>
       <div className="mx-auto my-4 flex max-w-6xl justify-between">
@@ -118,7 +97,7 @@ export default function AchievementPlugin() {
           }}
           className="mx-auto w-full max-w-6xl"
         >
-          <CarouselContent className="flex gap-4">
+          <CarouselContent className="-ml-2 flex">
             {achievement.map((item) => {
               const imageUrl =
                 item.image ||
@@ -128,33 +107,35 @@ export default function AchievementPlugin() {
               return (
                 <CarouselItem
                   key={item.id}
-                  className="md:basis-1/2 lg:basis-1/3"
+                  className="pl-2 md:basis-1/2 lg:basis-1/3"
                 >
                   <Link
                     href={`/article/prestasi/${item.id}`}
                     passHref
-                    className="block"
+                    className="block h-full"
                   >
-                    <div className="flex h-28 flex-col rounded-md border-2 border-foreground transition hover:shadow-card sm:flex-row">
-                      <div className="relative h-48 w-full sm:h-auto sm:w-2/5">
+                    <div className="flex h-full flex-row overflow-hidden rounded-md border border-foreground/20 bg-white transition hover:shadow-md dark:bg-gray-800">
+                      <div className="relative h-auto w-1/3 min-w-[100px]">
                         <Image
                           src={imageUrl}
                           alt={item.title}
-                          width={500}
-                          height={300}
-                          className="h-full w-full object-cover"
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 100px, 150px"
                         />
                       </div>
-                      <div className="flex-1 p-4">
-                        <div className="text-sm text-muted-foreground">
+                      <div className="flex flex-1 flex-col justify-between p-3">
+                        <div>
+                          <h2 className="mb-2 line-clamp-2 text-sm font-semibold">
+                            {item.title}
+                          </h2>
+                          <p className="line-clamp-2 text-xs text-muted-foreground">
+                            {graphingText(stripHtmlTags(item.content), 60)}
+                          </p>
+                        </div>
+                        <div className="mt-2 text-xs text-muted-foreground">
                           <time>{formatDate(item.created_at)}</time>
                         </div>
-                        <h2 className="mb-2 text-base font-semibold">
-                          {item.title}
-                        </h2>
-                        <p className="mt-2 text-sm">
-                          {graphingText(stripHtmlTags(item.content), 80)}
-                        </p>
                       </div>
                     </div>
                   </Link>

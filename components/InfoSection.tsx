@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { stripHtmlTags, graphingText, formatDate } from "@/utils/textUtils";
 
 interface AnnouncementData {
   id: number;
@@ -20,7 +21,7 @@ interface AgendaData {
   end_date: string;
 }
 
-export default function InfoPlugin() {
+export default function InfoSection() {
   const [announcement, setAnnouncement] = useState<AnnouncementData[]>([]);
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
   const [error, setError] = useState<string | null>(null);
@@ -71,7 +72,6 @@ export default function InfoPlugin() {
 
         const data = await res.json();
 
-        // Ensure the data is an array
         const agendas = Array.isArray(data)
           ? data
           : Array.isArray(data?.data)
@@ -87,29 +87,6 @@ export default function InfoPlugin() {
     fetchAgenda();
   }, []);
 
-  const stripHtmlTags = (html: string): string => {
-    if (!html) return "";
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  };
-
-  // Truncate text
-  const graphingText = (text: string, limit: number) =>
-    text.length > limit ? text.substring(0, limit) + "..." : text;
-
-  // Format date
-  const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  };
-
   if (error)
     return (
       <div className="mx-auto flex max-w-sm flex-col items-center py-2">
@@ -120,7 +97,9 @@ export default function InfoPlugin() {
           alt="error"
           className="mb-4 opacity-90"
         />
-        <p className="text-center text-lg font-bold text-red-600">{error}</p>
+        <p className="text-center text-lg font-bold text-destructive">
+          {error}
+        </p>
       </div>
     );
 

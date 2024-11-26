@@ -1,4 +1,8 @@
+import Link from "next/link";
+
 import Galleries from "@/components/GalleryCard";
+
+// ui components
 import Topbar from "@/components/Topbar";
 import {
   Breadcrumb,
@@ -8,7 +12,6 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import Link from "next/link";
 
 export default function GalleryPage() {
   return (

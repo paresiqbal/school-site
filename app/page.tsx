@@ -3,13 +3,15 @@ import type { Metadata } from "next";
 // componentss
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CarouselPlugin } from "@/components/Carousel";
-import InfoPlugin from "@/components/Info";
-import PrestasiPlugin from "@/components/Prestasi";
-import NewsPlugin from "@/components/News";
-import SambutanPlugin from "@/components/Sambutan";
-import KepsekPlugin from "@/components/Kepsek";
-import GalleryPlugin from "@/components/GalleryPlugin";
+
+// section ui
+import { CarouselSection } from "@/components/Carousel";
+import HighlightSection from "@/components/HighlightSection";
+import KepsekSection from "@/components/KepsekSection";
+import InfoSection from "@/components/InfoSection";
+import AchievementSection from "@/components/AchievementSection";
+import NewsSection from "@/components/NewsSection";
+import GallerySection from "@/components/GallerySection";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
@@ -22,14 +24,14 @@ export default function Home() {
     <>
       <Navbar />
       <div className="min-h-screen items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
-        <CarouselPlugin />
+        <CarouselSection />
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
-          <SambutanPlugin />
-          <KepsekPlugin />
-          <InfoPlugin />
-          <PrestasiPlugin />
-          <NewsPlugin />
-          <GalleryPlugin />
+          <HighlightSection />
+          <KepsekSection />
+          <GallerySection />
+          <InfoSection />
+          <AchievementSection />
+          <NewsSection />
         </main>
         <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6"></footer>
       </div>

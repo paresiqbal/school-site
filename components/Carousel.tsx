@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/carousel";
 import Image from "next/image";
 
-export function CarouselPlugin() {
+export function CarouselSection() {
   const autoScrollPlugin = React.useRef(
     AutoScroll({
       speed: 2,

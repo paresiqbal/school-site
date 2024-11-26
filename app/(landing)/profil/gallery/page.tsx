@@ -1,19 +1,18 @@
 "use client";
 
-import { AppContext } from "@/context/AppContext";
 import Image from "next/image";
 import { useContext, useEffect, useState, useCallback } from "react";
-import { Trash2 } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { AppContext } from "@/context/AppContext";
 import { Card, CardContent } from "@/components/ui/card";
 import { toast, Toaster } from "sonner";
+import Masonry from "react-masonry-css";
 
 interface Gallery {
   id: number;
   image_path: string;
 }
 
-export default function GalleryCard() {
+export default function Gallery() {
   const { token } = useContext(AppContext);
   const [galleries, setGalleries] = useState<Gallery[]>([]);
   const [loading, setLoading] = useState(true);
@@ -42,62 +41,50 @@ export default function GalleryCard() {
     fetchGalleries();
   }, [token, fetchGalleries]);
 
-  async function handleDelete(id: number) {
-    try {
-      const response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_GALLERY}/${id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
-      );
-
-      if (!response.ok) {
-        throw new Error("Failed to delete image");
-      }
-
-      setGalleries(galleries.filter((gallery) => gallery.id !== id));
-      toast.success("Image deleted successfully");
-    } catch (error) {
-      console.error("Error deleting image:", error);
-      toast.error("Failed to delete image. Please try again.");
-    }
-  }
-
   if (loading) {
     return <div className="text-center">Loading...</div>;
   }
 
+  const breakpointColumnsObj = {
+    default: 4,
+    1100: 3,
+    700: 2,
+    500: 1,
+  };
+
   return (
-    <div className="container mx-auto">
+    <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 font-[family-name:var(--font-geist-sans)] md:items-center md:justify-center md:pt-12">
+      <div className="space-y-2 pb-8 text-center">
+        <h1 className="mb-2 text-balance text-4xl font-bold dark:text-gray-300 md:mb-6 md:text-5xl">
+          Galleri
+        </h1>
+        <p className="text-md mb-12 text-muted-foreground md:text-lg">
+          Kegiatan dan momen-momen berharga di sekolah.
+        </p>
+      </div>
       <Toaster />
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
+      <Masonry
+        breakpointCols={breakpointColumnsObj}
+        className="my-masonry-grid"
+        columnClassName="my-masonry-grid_column"
+      >
         {galleries.map((gallery) => (
-          <Card key={gallery.id} className="overflow-hidden">
+          <Card key={gallery.id} className="mb-4 overflow-hidden">
             <CardContent className="p-0">
               <div className="relative">
                 <Image
                   src={`${process.env.NEXT_PUBLIC_API_STORAGE}/${gallery.image_path}`}
                   alt="Gallery Image"
-                  className="h-48 w-full object-cover"
                   width={500}
                   height={500}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: "auto" }}
                 />
-                <Button
-                  variant="destructive"
-                  size="icon"
-                  className="absolute bottom-2 right-2"
-                  onClick={() => handleDelete(gallery.id)}
-                >
-                  <Trash2 className="h-4 w-4" />
-                </Button>
               </div>
             </CardContent>
           </Card>
         ))}
-      </div>
+      </Masonry>
     </div>
   );
 }

@@ -87,6 +87,14 @@ export default function Navbar() {
                       Sejarah
                     </Link>
                   </DropdownMenuItem>
+                  <DropdownMenuItem>
+                    <Link
+                      href="/profil/gallery"
+                      className="font-[family-name:var(--font-geist-sans)] text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      Gallery
+                    </Link>
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <DropdownMenu>
@@ -304,6 +312,13 @@ export default function Navbar() {
                   onClick={handleLinkClick}
                 >
                   Sejarah
+                </Link>
+                <Link
+                  href="/profil/gallery"
+                  className="block rounded-lg px-3 py-2 text-sm hover:bg-muted"
+                  onClick={handleLinkClick}
+                >
+                  Gallery
                 </Link>
               </div>
             )}

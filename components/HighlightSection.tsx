@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function SambutanPlugin() {
+export default function HighlightSection() {
   return (
     <div className="w-full overflow-hidden bg-rose-50 py-8 dark:bg-accent">
       <div className="mx-auto max-w-6xl px-4">
@@ -27,15 +27,15 @@ export default function SambutanPlugin() {
           </div>
 
           <div className="grid w-full grid-cols-3 gap-4 text-center md:w-auto">
-            <div className="flex flex-col items-center rounded-md border-4 border-foreground bg-primary p-4 text-white transition hover:shadow-card md:p-6">
+            <div className="flex flex-col items-center rounded-md border-2 border-foreground bg-primary p-4 text-background shadow-card md:p-6">
               <p className="text-2xl font-bold md:text-3xl">B</p>
               <p className="text-sm md:text-base">Akreditasi</p>
             </div>
-            <div className="flex flex-col items-center rounded-md border-4 border-foreground bg-primary p-4 text-white transition hover:shadow-card md:p-6">
+            <div className="flex flex-col items-center rounded-md border-2 border-foreground bg-primary p-4 text-background shadow-card md:p-6">
               <p className="text-2xl font-bold md:text-3xl">200+</p>
               <p className="text-sm md:text-base">Siswa</p>
             </div>
-            <div className="flex flex-col items-center rounded-md border-4 border-foreground bg-primary p-4 text-white transition hover:shadow-card md:p-6">
+            <div className="flex flex-col items-center rounded-md border-2 border-foreground bg-primary p-4 text-background shadow-card md:p-6">
               <p className="text-2xl font-bold md:text-3xl">7</p>
               <p className="text-sm md:text-base">Jurusan</p>
             </div>

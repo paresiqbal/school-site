@@ -27,3 +27,6 @@ export const formatDate = (dateString?: string | null): string => {
 
   return new Date(dateString).toLocaleDateString("en-US", options);
 };
+
+export const graphingText = (text: string, limit: number) =>
+  text.length > limit ? text.substring(0, limit) + "..." : text;

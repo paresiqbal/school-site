@@ -86,9 +86,9 @@ export default function MissionVisionGoals() {
         </div>
       </div>
 
-      <div className="rounded-md border-2 border-foreground bg-primary-foreground px-8 transition hover:shadow-card">
+      <div className="rounded-md border-2 border-foreground bg-primary-foreground px-8 shadow-card dark:bg-primary">
         <div className="py-6">
-          <blockquote className="border-l-4 border-primary pl-4 dark:text-gray-700">
+          <blockquote className="border-l-4 border-primary pl-4">
             <p className="text-xl font-bold">
               Education is the passport to the future, for tomorrow belongs to
               those who prepare for it today.

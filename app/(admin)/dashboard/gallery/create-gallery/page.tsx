@@ -1,12 +1,46 @@
 "use client";
 
 import { AppContext } from "@/context/AppContext";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
+
+// ui components
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Topbar from "@/components/Topbar";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { toast, Toaster } from "sonner";
 
 export default function CreateGallery() {
   const { token } = useContext(AppContext);
   const [image, setImage] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
   const handleImageUpload = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -29,7 +63,9 @@ export default function CreateGallery() {
       });
 
       if (response.ok) {
-        setMessage("Image uploaded successfully.");
+        toast.success("Gambar berhasil diunggah");
+        setImage(null);
+        setPreviewUrl(null);
       } else {
         const errorData = await response.json();
         setMessage(`Failed to upload image: ${errorData.message}`);
@@ -37,35 +73,93 @@ export default function CreateGallery() {
     } catch (error) {
       console.error("Error uploading image:", error);
       setMessage("An error occurred.");
+      toast.error("Failed to upload image. Please try again.");
     }
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
-      setImage(e.target.files[0]);
+      const file = e.target.files[0];
+      setImage(file);
+
+      const objectUrl = URL.createObjectURL(file);
+      setPreviewUrl(objectUrl);
     } else {
       setImage(null);
+      setPreviewUrl(null);
     }
   };
 
   return (
-    <form onSubmit={handleImageUpload} className="rounded border p-4 shadow">
-      <label className="mb-2 block">
-        <span className="text-gray-700">Select Image</span>
-        <input
-          type="file"
-          accept="image/*"
-          onChange={handleFileChange}
-          className="mt-1 block w-full text-gray-900"
-        />
-      </label>
-      <button
-        type="submit"
-        className="rounded bg-blue-600 px-4 py-2 text-white shadow hover:bg-blue-700"
-      >
-        Upload
-      </button>
-      {message && <p className="mt-4 text-sm text-green-600">{message}</p>}
-    </form>
+    <div className="container mx-auto">
+      <div className="flex flex-col justify-between pb-4 md:flex-row">
+        <div className="mb-4 flex items-center md:mb-0">
+          <Topbar />
+          <Breadcrumb className="ml-4 hidden md:flex">
+            <BreadcrumbList>
+              <BreadcrumbItem>
+                <BreadcrumbLink asChild>
+                  <Link href="/dashboard">Dashboard</Link>
+                </BreadcrumbLink>
+              </BreadcrumbItem>
+              <BreadcrumbSeparator />
+              <BreadcrumbLink asChild>
+                <Link href="/dashboard/gallery">Gallery</Link>
+              </BreadcrumbLink>
+              <BreadcrumbSeparator />
+              <BreadcrumbPage>Create Gallery</BreadcrumbPage>
+            </BreadcrumbList>
+          </Breadcrumb>
+        </div>
+      </div>
+      <Toaster />
+      <form onSubmit={handleImageUpload}>
+        <Card>
+          <CardHeader>
+            <CardTitle>
+              <span>Buat Gallery</span>
+            </CardTitle>
+            <CardDescription>Upload Foto</CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div>
+              <Label htmlFor="image-upload">Select Image</Label>
+              <Input
+                id="image-upload"
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="mt-1"
+              />
+            </div>
+            {previewUrl && (
+              <div className="mt-4">
+                <h3 className="mb-2 text-sm font-medium">Image Preview:</h3>
+                <div className="relative h-64 w-full overflow-hidden rounded-lg">
+                  <Image
+                    src={previewUrl}
+                    alt="Preview"
+                    layout="fill"
+                    objectFit="contain"
+                  />
+                </div>
+              </div>
+            )}
+            <Button type="submit" className="mt-4">
+              Upload
+            </Button>
+          </CardContent>
+          <CardFooter>
+            {message && (
+              <p
+                className={`mt-4 text-sm ${message.includes("Failed") || message.includes("error") ? "text-destructive" : "text-green-600"}`}
+              >
+                {message}
+              </p>
+            )}
+          </CardFooter>
+        </Card>
+      </form>
+    </div>
   );
 }
