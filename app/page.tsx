@@ -10,7 +10,7 @@ import HighlightSection from "@/components/HighlightSection";
 import KepsekSection from "@/components/KepsekSection";
 import InfoSection from "@/components/InfoSection";
 import AchievementSection from "@/components/AchievementSection";
-import NewsPlugin from "@/components/News";
+import NewsSection from "@/components/NewsSection";
 import GalleryPlugin from "@/components/GalleryPlugin";
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function Home() {
           <KepsekSection />
           <InfoSection />
           <AchievementSection />
-          <NewsPlugin />
+          <NewsSection />
           <GalleryPlugin />
         </main>
         <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6"></footer>

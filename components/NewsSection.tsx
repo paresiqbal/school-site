@@ -22,7 +22,7 @@ interface NewsData {
   created_at: string;
 }
 
-export default function NewsPlugin() {
+export default function NewsSection() {
   const [news, setNews] = useState<NewsData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
