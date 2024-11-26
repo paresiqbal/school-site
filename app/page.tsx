@@ -3,13 +3,15 @@ import type { Metadata } from "next";
 // componentss
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+
+// section ui
 import { CarouselSection } from "@/components/Carousel";
+import HighlightSection from "@/components/HighlightSection";
 import InfoPlugin from "@/components/Info";
 import PrestasiPlugin from "@/components/Prestasi";
 import NewsPlugin from "@/components/News";
 import KepsekPlugin from "@/components/Kepsek";
 import GalleryPlugin from "@/components/GalleryPlugin";
-import HighlightSection from "@/components/HighlightSection";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
