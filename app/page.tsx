@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 // componentss
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { CarouselPlugin } from "@/components/Carousel";
+import { CarouselSection } from "@/components/Carousel";
 import InfoPlugin from "@/components/Info";
 import PrestasiPlugin from "@/components/Prestasi";
 import NewsPlugin from "@/components/News";
@@ -22,7 +22,7 @@ export default function Home() {
     <>
       <Navbar />
       <div className="min-h-screen items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
-        <CarouselPlugin />
+        <CarouselSection />
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
           <SambutanPlugin />
           <KepsekPlugin />
