@@ -22,7 +22,7 @@ export function AgendaCard({ agenda, onDelete }: AgendaCardProps) {
     <Card className="rounded-md bg-card p-2 shadow-sm">
       <div className="w-full">
         <Image
-          src="/assets/bell.png"
+          src="/assets/agenda.svg"
           width={200}
           height={150}
           alt="bell"

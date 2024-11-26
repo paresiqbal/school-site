@@ -29,7 +29,7 @@ export default function GallerySection() {
         throw new Error("Failed to fetch galleries");
       }
       const data = await response.json();
-      setGalleries(data.slice(0, 8));
+      setGalleries(data.slice(0, 12));
     } catch (error) {
       console.error("Error fetching galleries:", error);
       toast.error("Failed to load galleries. Please try again.");
@@ -43,10 +43,10 @@ export default function GallerySection() {
   }, [fetchGalleries]);
 
   const breakpointColumnsObj = {
-    default: 4,
-    1100: 3,
-    700: 2,
-    500: 1,
+    default: 6,
+    // 1100: 3,
+    700: 3,
+    500: 2,
   };
 
   if (loading) {
@@ -78,6 +78,7 @@ export default function GallerySection() {
                     width={300}
                     height={225}
                     className="h-auto w-full object-cover"
+                    priority
                   />
                 </div>
               ))}
