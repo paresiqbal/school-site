@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import { CarouselSection } from "@/components/Carousel";
 import HighlightSection from "@/components/HighlightSection";
 import KepsekSection from "@/components/KepsekSection";
-import InfoPlugin from "@/components/Info";
+import InfoSection from "@/components/InfoSection";
 import PrestasiPlugin from "@/components/Prestasi";
 import NewsPlugin from "@/components/News";
 import GalleryPlugin from "@/components/GalleryPlugin";
@@ -28,7 +28,7 @@ export default function Home() {
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
           <HighlightSection />
           <KepsekSection />
-          <InfoPlugin />
+          <InfoSection />
           <PrestasiPlugin />
           <NewsPlugin />
           <GalleryPlugin />

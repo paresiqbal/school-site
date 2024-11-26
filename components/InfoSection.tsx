@@ -20,7 +20,7 @@ interface AgendaData {
   end_date: string;
 }
 
-export default function InfoPlugin() {
+export default function InfoSection() {
   const [announcement, setAnnouncement] = useState<AnnouncementData[]>([]);
   const [agenda, setAgenda] = useState<AgendaData[]>([]);
   const [error, setError] = useState<string | null>(null);
