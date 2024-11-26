@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function KepsekPlugin() {
+export default function KepsekSection() {
   return (
     <section className="mx-auto w-full max-w-6xl px-4 py-12 font-[family-name:var(--font-geist-sans)]">
       <h2 className="text-sm text-muted-foreground">SAMBUTAN</h2>

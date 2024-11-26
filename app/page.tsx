@@ -7,10 +7,10 @@ import Footer from "@/components/Footer";
 // section ui
 import { CarouselSection } from "@/components/Carousel";
 import HighlightSection from "@/components/HighlightSection";
+import KepsekSection from "@/components/KepsekSection";
 import InfoPlugin from "@/components/Info";
 import PrestasiPlugin from "@/components/Prestasi";
 import NewsPlugin from "@/components/News";
-import KepsekPlugin from "@/components/Kepsek";
 import GalleryPlugin from "@/components/GalleryPlugin";
 
 export const metadata: Metadata = {
@@ -27,7 +27,7 @@ export default function Home() {
         <CarouselSection />
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
           <HighlightSection />
-          <KepsekPlugin />
+          <KepsekSection />
           <InfoPlugin />
           <PrestasiPlugin />
           <NewsPlugin />
