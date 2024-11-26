@@ -22,7 +22,7 @@ interface AchievementData {
   created_at: string;
 }
 
-export default function AchievementPlugin() {
+export default function AchievementSection() {
   const [achievement, setAchievement] = useState<AchievementData[]>([]);
   const [error, setError] = useState<string | null>(null);
 

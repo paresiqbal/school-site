@@ -9,7 +9,7 @@ import { CarouselSection } from "@/components/Carousel";
 import HighlightSection from "@/components/HighlightSection";
 import KepsekSection from "@/components/KepsekSection";
 import InfoSection from "@/components/InfoSection";
-import PrestasiPlugin from "@/components/Prestasi";
+import AchievementSection from "@/components/AchievementSection";
 import NewsPlugin from "@/components/News";
 import GalleryPlugin from "@/components/GalleryPlugin";
 
@@ -29,7 +29,7 @@ export default function Home() {
           <HighlightSection />
           <KepsekSection />
           <InfoSection />
-          <PrestasiPlugin />
+          <AchievementSection />
           <NewsPlugin />
           <GalleryPlugin />
         </main>
