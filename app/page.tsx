@@ -11,7 +11,7 @@ import KepsekSection from "@/components/KepsekSection";
 import InfoSection from "@/components/InfoSection";
 import AchievementSection from "@/components/AchievementSection";
 import NewsSection from "@/components/NewsSection";
-import GalleryPlugin from "@/components/GalleryPlugin";
+import GallerySection from "@/components/GallerySection";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
@@ -31,7 +31,7 @@ export default function Home() {
           <InfoSection />
           <AchievementSection />
           <NewsSection />
-          <GalleryPlugin />
+          <GallerySection />
         </main>
         <footer className="row-start-3 flex flex-wrap items-center justify-center gap-6"></footer>
       </div>
