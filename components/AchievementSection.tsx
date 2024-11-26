@@ -14,6 +14,14 @@ import {
 } from "@/components/ui/carousel";
 import { CircleChevronRightIcon } from "lucide-react";
 
+// Utility functions
+import {
+  graphingText,
+  formatDate,
+  stripHtmlTags,
+  extractImageUrl,
+} from "@/utils/textUtils";
+
 interface AchievementData {
   id: number;
   title: string;
@@ -51,35 +59,6 @@ export default function AchievementSection() {
 
     fetchAchievement();
   }, []);
-
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
-  const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  };
-
-  const stripHtmlTags = (html: string): string => {
-    if (!html) return "";
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  };
-
-  const extractImageUrl = (html: string): string | null => {
-    if (!html) return null;
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const img = doc.querySelector("img");
-    return img ? img.src : null;
-  };
 
   if (error)
     return (
