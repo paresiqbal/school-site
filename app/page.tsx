@@ -7,9 +7,9 @@ import { CarouselSection } from "@/components/Carousel";
 import InfoPlugin from "@/components/Info";
 import PrestasiPlugin from "@/components/Prestasi";
 import NewsPlugin from "@/components/News";
-import SambutanPlugin from "@/components/Sambutan";
 import KepsekPlugin from "@/components/Kepsek";
 import GalleryPlugin from "@/components/GalleryPlugin";
+import HighlightSection from "@/components/HighlightSection";
 
 export const metadata: Metadata = {
   title: "SMK Negeri 1 Rejang Lebong",
@@ -24,7 +24,7 @@ export default function Home() {
       <div className="min-h-screen items-center justify-items-center font-[family-name:var(--font-geist-sans)]">
         <CarouselSection />
         <main className="row-start-2 flex w-full flex-col items-center justify-center sm:items-start">
-          <SambutanPlugin />
+          <HighlightSection />
           <KepsekPlugin />
           <InfoPlugin />
           <PrestasiPlugin />

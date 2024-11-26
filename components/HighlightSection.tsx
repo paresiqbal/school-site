@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function SambutanPlugin() {
+export default function HighlightSection() {
   return (
     <div className="w-full overflow-hidden bg-rose-50 py-8 dark:bg-accent">
       <div className="mx-auto max-w-6xl px-4">
