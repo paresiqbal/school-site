@@ -55,17 +55,17 @@ export default function SchoolHistory() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 py-8 md:grid-cols-3 lg:w-full">
-        <div className="flex flex-col rounded-md border-2 border-foreground bg-primary p-4 transition hover:shadow-card">
+        <div className="flex flex-col rounded-md border-2 border-foreground bg-primary p-4 text-white shadow-card">
           <h3 className="text-2xl font-bold">Siswa</h3>
           <p className="mt-2 text-4xl font-bold">200+</p>
           <p className="text-sm">Terdaftar setiap tahun</p>
         </div>
-        <div className="flex flex-col rounded-md border-2 border-foreground bg-primary p-4 transition hover:shadow-card">
+        <div className="flex flex-col rounded-md border-2 border-foreground bg-primary p-4 text-white shadow-card">
           <h3 className="text-2xl font-bold">Jurusan</h3>
           <p className="mt-2 text-4xl font-bold">7</p>
           <p className="text-sm">Pendidik yang berdedikasi</p>
         </div>
-        <div className="flex flex-col rounded-md border-2 border-foreground bg-primary p-4 transition hover:shadow-card">
+        <div className="flex flex-col rounded-md border-2 border-foreground bg-primary p-4 text-white shadow-card">
           <h3 className="text-2xl font-bold">Alumi</h3>
           <p className="mt-2 text-4xl font-bold">5,000+</p>
           <p className="text-sm">Lulusan terbaik</p>
