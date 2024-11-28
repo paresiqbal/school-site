@@ -85,7 +85,7 @@ export default function GallerySection() {
             </Masonry>
           </div>
           <div className="text-center">
-            <Link href="/gallery" passHref>
+            <Link href="/profil/gallery" passHref>
               <button className="inline-flex items-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-white transition-all hover:bg-primary/90 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-gray-900">
                 Lihat Galeri Lengkap
                 <ArrowRight className="ml-2 h-4 w-4" />
