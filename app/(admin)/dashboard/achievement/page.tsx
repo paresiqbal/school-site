@@ -41,7 +41,7 @@ export default function ListAchievement() {
       toast.success("Pengumuman berhasil diambil");
     } catch (error) {
       console.error(error);
-      setError("Gagal mengambil pengumuman. Coba lagi nanti.");
+      setError("Failed to connect.");
       toast.error("Gagal mengambil pengumuman");
     }
   }
