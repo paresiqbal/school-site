@@ -114,7 +114,7 @@ export default function AchievementSection() {
                     passHref
                     className="block h-full"
                   >
-                    <div className="flex h-full flex-row overflow-hidden rounded-md border border-foreground/20 bg-white transition hover:shadow-card dark:bg-gray-800">
+                    <div className="flex h-full flex-row overflow-hidden rounded-md border border-foreground/20 bg-white transition hover:shadow-card dark:bg-neutral-900">
                       <div className="relative h-auto w-1/3 min-w-[100px]">
                         <Image
                           src={imageUrl}
