@@ -12,11 +12,11 @@ import {
   truncateText,
 } from "@/utils/textUtils";
 import { NewsData } from "@/types/articleType";
+import Loading from "@/components/Loading";
 
 // ui lib
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
-import Loading from "@/components/Loading";
 
 export default function Berita() {
   const [news, setNews] = useState<NewsData[]>([]);
@@ -26,8 +26,6 @@ export default function Berita() {
     async function fetchNews() {
       setError(null);
       try {
-        // Artificial delay
-        await new Promise((resolve) => setTimeout(resolve, 2000));
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
           cache: "force-cache",
           next: { revalidate: 30 },

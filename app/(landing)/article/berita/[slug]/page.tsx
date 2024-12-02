@@ -1,16 +1,15 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
-import { toast, Toaster } from "sonner";
+import { useEffect, useState } from "react";
 
-interface NewsData {
-  id: number;
-  title: string;
-  content: string;
-  image?: string | null;
-  created_at: string;
-}
+// components
+import { NewsData } from "@/types/articleType";
+import Loading from "@/components/Loading";
+import { extractImageUrl, formatDate } from "@/utils/textUtils";
+
+// ui lib
+import { toast, Toaster } from "sonner";
 
 export default function NewsDetail(props: {
   params: Promise<{ slug: string }>;
@@ -57,25 +56,6 @@ export default function NewsDetail(props: {
 
     fetchNewsDetail();
   }, [slug]);
-
-  const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  };
-
-  const extractImageUrl = (html: string): string | null => {
-    if (!html) return null;
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const img = doc.querySelector("img");
-    return img ? img.src : null;
-  };
 
   if (error) return <p className="text-destructive">{error}</p>;
 
@@ -124,7 +104,10 @@ export default function NewsDetail(props: {
           ></div>
         </>
       ) : (
-        <p className="text-center">Loading berita...</p>
+        <div className="flex flex-col items-center justify-center gap-8">
+          <h1 className="text-lg font-bold">Loading...</h1>
+          <Loading size="medium" />
+        </div>
       )}
     </div>
   );
