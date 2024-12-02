@@ -32,7 +32,12 @@ export default function Berita() {
         }
 
         const data = await res.json();
-        setNews(data);
+        const sortedNews = data.sort(
+          (a: NewsData, b: NewsData) =>
+            new Date(b.created_at).getTime() - new Date(a.created_at).getTime(),
+        );
+
+        setNews(sortedNews);
         toast.success("Berita berhasil diambil");
       } catch (error) {
         console.error(error);
@@ -140,7 +145,7 @@ export default function Berita() {
           );
         })
       ) : (
-        <p className="text-center text-gray-500">No news available.</p>
+        <p className="text-center">No news available.</p>
       )}
     </div>
   );

@@ -130,7 +130,7 @@ export default function NewsSection() {
                   key={item.id}
                   className="md:basis-1/2 lg:basis-1/3"
                 >
-                  <div className="flex h-full flex-col rounded-md border-2 border-foreground transition hover:shadow-card">
+                  <div className="flex h-full flex-col rounded-md border-2 border-foreground bg-white transition hover:shadow-card dark:bg-neutral-900">
                     <div className="relative h-48 w-full">
                       <Image
                         src={imageUrl}
