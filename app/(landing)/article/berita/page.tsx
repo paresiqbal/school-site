@@ -16,6 +16,7 @@ import { NewsData } from "@/types/articleType";
 // ui lib
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
+import Loading from "@/components/Loading";
 
 export default function Berita() {
   const [news, setNews] = useState<NewsData[]>([]);
@@ -25,6 +26,8 @@ export default function Berita() {
     async function fetchNews() {
       setError(null);
       try {
+        // Artificial delay
+        await new Promise((resolve) => setTimeout(resolve, 2000));
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_NEWS}`, {
           cache: "force-cache",
           next: { revalidate: 30 },
@@ -119,7 +122,10 @@ export default function Berita() {
           );
         })
       ) : (
-        <p className="text-center">Belum ada berita.</p>
+        <div className="flex flex-col items-center justify-center gap-8">
+          <h1 className="text-lg font-bold">Loading...</h1>
+          <Loading size="medium" />
+        </div>
       )}
     </div>
   );
