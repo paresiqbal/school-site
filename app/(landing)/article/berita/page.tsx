@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
-import { toast } from "sonner";
-import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
+import { useEffect, useState } from "react";
+
+// components
 import {
   stripHtmlTags,
   extractImageUrl,
@@ -12,6 +12,10 @@ import {
   truncateText,
 } from "@/utils/textUtils";
 import { NewsData } from "@/types/articleType";
+
+// ui lib
+import { toast } from "sonner";
+import { Separator } from "@/components/ui/separator";
 
 export default function Berita() {
   const [news, setNews] = useState<NewsData[]>([]);
@@ -48,7 +52,7 @@ export default function Berita() {
     fetchNews();
   }, []);
 
-  if (error) return <p className="text-destructive">{error}</p>;
+  if (error) return <p className="text-xl text-destructive">{error}</p>;
 
   return (
     <div className="mx-auto mt-4 flex max-w-[1200px] flex-col pt-6 font-[family-name:var(--font-geist-sans)] md:items-center md:justify-center md:pt-12">
@@ -115,7 +119,7 @@ export default function Berita() {
           );
         })
       ) : (
-        <p className="text-center">No news available.</p>
+        <p className="text-center">Belum ada berita.</p>
       )}
     </div>
   );
