@@ -5,14 +5,13 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
-
-interface NewsData {
-  id: number;
-  title: string;
-  content: string;
-  image?: string | null;
-  created_at: string;
-}
+import {
+  stripHtmlTags,
+  extractImageUrl,
+  formatDate,
+  truncateText,
+} from "@/utils/textUtils";
+import { NewsData } from "@/types/articleType";
 
 export default function Berita() {
   const [news, setNews] = useState<NewsData[]>([]);
@@ -48,35 +47,6 @@ export default function Berita() {
 
     fetchNews();
   }, []);
-
-  const graphingText = (text: string, limit: number) => {
-    return text.length > limit ? text.substring(0, limit) + "..." : text;
-  };
-
-  const stripHtmlTags = (html: string): string => {
-    if (!html) return "";
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    return doc.body.textContent || "";
-  };
-
-  const extractImageUrl = (html: string): string | null => {
-    if (!html) return null;
-    const doc = new DOMParser().parseFromString(html, "text/html");
-    const img = doc.querySelector("img");
-    return img ? img.src : null;
-  };
-
-  const formatDate = (dateString?: string | null): string => {
-    if (!dateString) return "Date not available";
-
-    const options: Intl.DateTimeFormatOptions = {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    };
-
-    return new Date(dateString).toLocaleDateString("en-US", options);
-  };
 
   if (error) return <p className="text-destructive">{error}</p>;
 
@@ -137,7 +107,7 @@ export default function Berita() {
                     {item.title}
                   </Link>
                   <p className="mt-2 italic">
-                    {graphingText(stripHtmlTags(item.content), 120)}
+                    {truncateText(stripHtmlTags(item.content), 120)}
                   </p>
                 </div>
               </div>
