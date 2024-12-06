@@ -17,10 +17,14 @@ import Loading from "@/components/Loading";
 // ui lib
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 
 export default function Berita() {
   const [news, setNews] = useState<NewsData[]>([]);
+  const [filteredNews, setFilteredNews] = useState<NewsData[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchNews() {
@@ -42,6 +46,7 @@ export default function Berita() {
         );
 
         setNews(sortedNews);
+        setFilteredNews(sortedNews);
         toast.success("Berita berhasil diambil");
       } catch (error) {
         console.error(error);
@@ -53,6 +58,17 @@ export default function Berita() {
     fetchNews();
   }, []);
 
+  useEffect(() => {
+    const filtered = news.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+    setFilteredNews(filtered);
+  }, [searchQuery, news]);
+
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
   if (error) return <p className="text-xl text-destructive">{error}</p>;
 
   return (
@@ -63,8 +79,21 @@ export default function Berita() {
         </h1>
       </div>
 
-      {news.length > 0 ? (
-        news.map((item) => {
+      <div className="mb-6 w-full max-w-3xl">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform" />
+          <Input
+            type="text"
+            placeholder="Cari berita..."
+            value={searchQuery}
+            onChange={handleSearch}
+            className="h-12 w-full pl-10 text-lg"
+          />
+        </div>
+      </div>
+
+      {filteredNews.length > 0 ? (
+        filteredNews.map((item) => {
           const imageUrl =
             item.image ||
             extractImageUrl(item.content) ||
@@ -121,8 +150,14 @@ export default function Berita() {
         })
       ) : (
         <div className="flex flex-col items-center justify-center gap-8">
-          <h1 className="text-lg font-bold">Loading...</h1>
-          <Loading size="medium" />
+          {searchQuery ? (
+            <p className="text-lg font-bold">Tidak ada hasil yang ditemukan</p>
+          ) : (
+            <>
+              <h1 className="text-lg font-bold">Loading...</h1>
+              <Loading size="medium" />
+            </>
+          )}
         </div>
       )}
     </div>
