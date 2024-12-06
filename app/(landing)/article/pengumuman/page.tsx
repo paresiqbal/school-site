@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 import Link from "next/link";
 
 interface AnnouncementData {
@@ -16,7 +18,11 @@ interface AnnouncementData {
 
 export default function Pengumuman() {
   const [announcement, setAnnouncement] = useState<AnnouncementData[]>([]);
+  const [filteredAnnouncement, setFilteredAnnouncement] = useState<
+    AnnouncementData[]
+  >([]);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchAnnouncement() {
@@ -34,10 +40,11 @@ export default function Pengumuman() {
         }
 
         const responseBody = await res.text();
-
         const data = JSON.parse(responseBody);
 
-        setAnnouncement(Array.isArray(data) ? data : data?.data || []);
+        const announcements = Array.isArray(data) ? data : data?.data || [];
+        setAnnouncement(announcements);
+        setFilteredAnnouncement(announcements);
         toast.success("Pengumuman berhasil diambil");
       } catch (error) {
         console.error("Fetch error:", error);
@@ -48,6 +55,13 @@ export default function Pengumuman() {
 
     fetchAnnouncement();
   }, []);
+
+  useEffect(() => {
+    const filtered = announcement.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+    setFilteredAnnouncement(filtered);
+  }, [searchQuery, announcement]);
 
   const stripHtmlTags = (html: string): string => {
     if (!html) return "";
@@ -77,6 +91,10 @@ export default function Pengumuman() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
@@ -87,8 +105,21 @@ export default function Pengumuman() {
         </h1>
       </div>
 
-      {announcement.length > 0 ? (
-        announcement.map((item) => {
+      <div className="mb-6 w-full max-w-3xl">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform" />
+          <Input
+            type="text"
+            placeholder="Cari pengumuman..."
+            value={searchQuery}
+            onChange={handleSearch}
+            className="h-12 w-full pl-10 text-lg"
+          />
+        </div>
+      </div>
+
+      {filteredAnnouncement.length > 0 ? (
+        filteredAnnouncement.map((item) => {
           const imageUrl =
             item.image ||
             extractImageUrl(item.content) ||
@@ -144,7 +175,11 @@ export default function Pengumuman() {
           );
         })
       ) : (
-        <p className="text-center text-gray-500">No announcement available.</p>
+        <p className="text-center text-gray-500">
+          {searchQuery
+            ? "Tidak ada hasil yang ditemukan"
+            : "No announcement available."}
+        </p>
       )}
     </div>
   );

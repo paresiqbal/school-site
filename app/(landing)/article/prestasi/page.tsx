@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { Separator } from "@/components/ui/separator";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
 import Link from "next/link";
 
 interface AchievementData {
@@ -16,7 +18,11 @@ interface AchievementData {
 
 export default function Prestasi() {
   const [achievement, setAchievement] = useState<AchievementData[]>([]);
+  const [filteredAchievement, setFilteredAchievement] = useState<
+    AchievementData[]
+  >([]);
   const [error, setError] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     async function fetchAchievement() {
@@ -32,10 +38,11 @@ export default function Prestasi() {
         }
 
         const responseBody = await res.text();
-
         const data = JSON.parse(responseBody);
 
-        setAchievement(Array.isArray(data) ? data : data?.data || []);
+        const achievements = Array.isArray(data) ? data : data?.data || [];
+        setAchievement(achievements);
+        setFilteredAchievement(achievements);
         toast.success("Prestasi berhasil diambil");
       } catch (error) {
         console.error("Fetch error:", error);
@@ -46,6 +53,13 @@ export default function Prestasi() {
 
     fetchAchievement();
   }, []);
+
+  useEffect(() => {
+    const filtered = achievement.filter((item) =>
+      item.title.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+    setFilteredAchievement(filtered);
+  }, [searchQuery, achievement]);
 
   const stripHtmlTags = (html: string): string => {
     if (!html) return "";
@@ -75,6 +89,10 @@ export default function Prestasi() {
     return new Date(dateString).toLocaleDateString("en-US", options);
   };
 
+  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
+  };
+
   if (error) return <p className="text-destructive">{error}</p>;
 
   return (
@@ -85,8 +103,21 @@ export default function Prestasi() {
         </h1>
       </div>
 
-      {achievement.length > 0 ? (
-        achievement.map((item) => {
+      <div className="mb-6 w-full max-w-3xl">
+        <div className="relative">
+          <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 transform" />
+          <Input
+            type="text"
+            placeholder="Cari prestasi..."
+            value={searchQuery}
+            onChange={handleSearch}
+            className="h-12 w-full pl-10 text-lg"
+          />
+        </div>
+      </div>
+
+      {filteredAchievement.length > 0 ? (
+        filteredAchievement.map((item) => {
           const imageUrl =
             item.image ||
             extractImageUrl(item.content) ||
@@ -142,7 +173,11 @@ export default function Prestasi() {
           );
         })
       ) : (
-        <p className="text-center text-gray-500">No achievement available.</p>
+        <p className="text-center text-gray-500">
+          {searchQuery
+            ? "Tidak ada hasil yang ditemukan"
+            : "No achievement available."}
+        </p>
       )}
     </div>
   );
